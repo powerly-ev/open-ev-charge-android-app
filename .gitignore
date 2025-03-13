@@ -1,0 +1,15 @@
+app/src/main/gen
+.gradle
+.DS_Store
+.idea
+*.salive
+*.kotlin
+app/.DS_Store
+app/app.iml
+app/build
+build
+*.iml
+app/app-release.apk
+local.properties
+captures
+*.apk

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- using Material theme is required for strip CardInputWidget-->
+    <style name="MyAppTheme" parent="Theme.MaterialComponents.Light.NoActionBar" />
+</resources>

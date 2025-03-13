@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt">
+    <aapt:attr name="android:drawable">
+        <vector
+            android:width="32dp"
+            android:height="32dp"
+            android:viewportWidth="128"
+            android:viewportHeight="128">
+            <group
+                android:name="spinner"
+                android:pivotX="64"
+                android:pivotY="64">
+
+                <path android:pathData="M0,0h128v128h-128z" />
+                <path
+                    android:fillColor="#000000"
+                    android:pathData="M16,64m-16,0a16,16 0,1 1,32 0a16,16 0,1 1,-32 0" />
+                <path
+                    android:fillColor="#555555"
+                    android:pathData="M30.06,30.06m-11.31,-11.31a16,16 99.22,1 1,22.63 22.63a16,16 99.22,1 1,-22.63 -22.63" />
+                <path
+                    android:fillColor="#949494"
+                    android:pathData="M64,16m-0,-16a16,16 0,1 1,-0 32a16,16 0,1 1,-0 -32" />
+                <path
+                    android:fillColor="#cccccc"
+                    android:pathData="M97.94,30.06m11.31,-11.31a16,16 100.9,1 1,-22.63 22.63a16,16 100.9,1 1,22.63 -22.63" />
+            </group>
+        </vector>
+    </aapt:attr>
+    <target android:name="spinner">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:duration="2000"
+                android:propertyName="rotation"
+                android:repeatCount="infinite"
+                android:valueFrom="0"
+                android:valueTo="360" />
+        </aapt:attr>
+    </target>
+</animated-vector>

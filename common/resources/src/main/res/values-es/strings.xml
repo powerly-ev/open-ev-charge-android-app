@@ -1,0 +1,533 @@
+<resources>
+    <!-- HOME -->
+    <string name="home">Hogar</string>
+    <string name="scan">Escanear</string>
+    <string name="scan_qr_code">Escanear para Activar</string>
+    <string name="orders">Pedidos</string>
+    <string name="account">Cuenta</string>
+    <string name="home_help">Obtenga ayuda</string>
+
+    <!--Side Menu-->
+    <string name="language">Idioma</string>
+    <string name="support">Soporte</string>
+    <string name="type_message">Escriba un mensaje</string>
+    <string name="support_team">Soporte</string>
+    <string name="chat_title">Chat</string>
+    <string name="invite">Invitar</string>
+    <string name="link_copied">Enlace copiado …</string>
+    <string name="logout_title">Cerrar sesión</string>
+    <string name="logout_confirmation">¿Seguro que quieres cerrar sesión?</string>
+    <string name="update_required">Actualización requerida</string>
+    <string name="update_force_desc1">Se requiere una actualización importante que incluye funcionalidades adicionales, actualizaciones de seguridad y mejoras.</string>
+    <string name="update_force_desc2">Actualice la aplicación para continuar.</string>
+
+    <!-- Login-->
+
+    <string name="phone_signup_welcome">Bienvenidas</string>
+    <string name="phone_signup_label">Por favor, ingrese su número de teléfono. Le enviaremos un código de verificación para mantener su cuenta segura.</string>
+    <string name="phone_signup_select_country">Seleccione su país</string>
+    <string name="phone_signup_resend_code">Reenviar código</string>
+    <string name="phone_signup_verify_label">Verificaremos su número de teléfono.\n¿Es correcto?\n¿O\ndesea cambiarlo?</string>
+    <string name="phone_signup_profile_individual">Individual</string>
+    <string name="phone_signup_profile_business">Negocio</string>
+    <string name="selected_condition_phone">Por favor ingresa un número de célular válido</string>
+    <string name="terms_condition">Términos y condiciones</string>
+    <string name="enter_mobile_number">Ingresa tu número de celular</string>
+    <string name="first_name_title">Nombre</string>
+    <string name="last_name_title">Apellido</string>
+    <string name="profile_password">Contraseña</string>
+    <string name="agree_continue">Aceptar y Continuar</string>
+    <string name="enter_your_first_name">Por favor ingrese su nombre</string>
+    <string name="dashboard_login">Confirme su inicio de sesión en el panel web</string>
+
+    <!--Verification-->
+    <string name="Verification_title">Verificación</string>
+    <string name="resend_code">Reenviar código</string>
+    <string name="need_help_button">Necesito ayuda</string>
+    <string name="enter_code_sent_you">Ingresa el código de 4 dígitos que te enviamos</string>
+
+    <!--Profile Screen-->
+    <string name="email_title">Correo electrónico</string>
+    <string name="myProfile_title">Mi Perfil</string>
+    <string name="profile_select_country">Seleccionar país</string>
+    <string name="require_email_address">Se requiere de su correo electrónico para actualizar su perfil</string>
+    <string name="confirm_delete_account">¿Está seguro de que desea \neliminar su cuenta?</string>
+    <string name="delete_account_description">Su cuenta será desactivada inmediatamente. Después de 30 días, se eliminará de forma permanente y se eliminarán todos los créditos, promociones o recompensas no utilizados.</string>
+
+    <string name="guest_user">Invitado</string>
+    <string name="continue_as">Continuar Como</string>
+    <string name="switch_account">Cambiar cuenta</string>
+    <string name="profile_see">Ver el perfil</string>
+    <string name="without_country_code">Por favor ingrese el número de teléfono sin código de país</string>
+    <string name="p_select_country">Por favor seleccionar país</string>
+    <string name="select_language">Seleccione el idioma</string>
+
+    <!-- Welcome Screen-->
+    <string name="welcome">Hola :)</string>
+    <string name="welcome_description">¡Bienvenido al futuro de la carga de vehículos eléctricos! Comencemos con la configuración, primero tu preferencia de idioma.</string>
+    <string name="welcome_user_agreement">Al usar Powerly, usted acepta nuestra</string>
+    <string name="welcome_privacy_policy">Política de privacidad.</string>
+    <string name="welcome_and">Y</string>
+    <string name="welcome_terms_of_service">Términos de servicio</string>
+
+    <string name="login_option_title">Iniciar sesión</string>
+    <string name="login_option_google">Iniciar sesión con Google</string>
+    <string name="login_option_phone">Iniciar sesión con teléfono</string>
+    <string name="login_option_email">Iniciar sesión con correo electrónico</string>
+    <string name="login_option_guest">Continuar Como Invitado</string>
+    <string name="login_option_other">Explora otras opciones de inicio de sesión</string>
+
+    <string name="login_email">Correo Electrónico</string>
+    <string name="login_email_title">Iniciar sesión con dirección de correo electrónico</string>
+    <string name="login_email_enter">Introduce tu correo electrónico</string>
+    <string name="login_email_enter_msg">Por favor, ingrese su correo electrónico. Le enviaremos un código de verificación para mantener su cuenta segura.</string>
+    <string name="login_email_error_msg">Dirección de E-Mail incorrecta</string>
+    <string name="login_email_password">Contraseña</string>
+    <string name="login_email_password_enter">Introduce una contraseña</string>
+    <string name="login_email_password_new">Nueva contraseña</string>
+    <string name="login_email_password_confirm">Confirmar Contraseña</string>
+    <string name="login_email_password_create_title">Iniciar sesión con dirección de correo electrónico</string>
+    <string name="login_email_password_create">Crea una contraseña</string>
+    <string name="login_email_password_create_msg">Crea una contraseña fuerte que usarás para iniciar sesión</string>
+    <string name="login_email_password_length_msg">La contraseña debe tener al menos %d caracteres.</string>
+    <string name="login_email_password_not_matched">Las contraseñas no son idénticas</string>
+    <string name="login_email_password_forget">Olvidaste tu contraseña ?</string>
+    <string name="login_email_password_forget_msg">¡No hay problema! Enviaremos una contraseña de un solo uso (OTP) a %s. Una vez que la recibas, puedes usar la OTP para iniciar sesión y restablecer tu contraseña</string>
+    <string name="login_email_password_weak">Débil</string>
+    <string name="login_email_password_medium">Medio</string>
+    <string name="login_email_password_strong">Fuerte</string>
+
+    <!-- ACTIONS -->
+    <string name="retry">Reintentar</string>
+    <string name="No">No</string>
+    <string name="save">Guardar</string>
+    <string name="done">Hecho</string>
+    <string name="today">Hoy</string>
+    <string name="yes">Si</string>
+    <string name="no">No</string>
+    <string name="dialog_cancel">cancelar</string>
+    <string name="dialog_ok">OK</string>
+    <string name="update_now">Actualizar Ahora</string>
+    <string name="remove">Quitar</string>
+    <string name="got_it">Entendido</string>
+    <string name="add_a_note">Agrega una nota</string>
+    <string name="confirm">Confirmar</string>
+    <string name="deny">Denegar</string>
+
+    <string name="delete_account">Eliminar cuenta</string>
+    <string name="correct_and_continue">Correct &amp; Continue</string>
+    <string name="share_code">Compartir enlace de referencia</string>
+    <string name="copy_code">Copiar enlace de referencia</string>
+
+    <!-- titles -->
+    <string name="update_title">Actualizar</string>
+    <string name="edit_title">Editar</string>
+    <string name="next">Siguiente</string>
+    <string name="skip">Saltar</string>
+    <string name="delete_title">Borrar</string>
+    <string name="select_title">Seleccione</string>
+    <string name="change_title">Cambio</string>
+    <string name="add_title">Agregar</string>
+    <string name="account_information_title">Información de la Cuenta</string>
+    <string name="continue_text">Continuar</string>
+    <string name="selected_day">Día seleccionado</string>
+
+    <!--Payment-->
+    <string name="add_payment_method">Agregar método de pago</string>
+    <string name="payment_card_add">Añadir tarjeta</string>
+    <string name="payment_card_scan">Escanear Tarjeta</string>
+
+    <string name="wallet_title">Billetera</string>
+    <string name="wallet_withdraw_from">Retirar de:</string>
+    <string name="wallet_withdraw_agree">Aceptar y Retirar</string>
+    <string name="wallet_withdraw_successful">Retiro Exitoso</string>
+    <string name="wallet_withdraw_failed">Retiro Fallido</string>
+    <string name="wallet_policy">Política de Retiro</string>
+    <string name="wallet_policy_read_our">Lea nuestro</string>
+    <string name="wallet_policy_tab_withdraw">. Toque "Aceptar y Retirar" para aceptar</string>
+    <string name="wallet_policy_terms">Términos de servicio</string>
+
+    <!-- balance-->
+    <string name="show_balance">Mostrar saldo</string>
+    <string name="available_balance">Saldo disponible</string>
+    <string name="add_balance">Agregar saldo</string>
+    <string name="popular_text">Popular</string>
+    <string name="balance_non_refundable">El saldo con descuento no es reembolsable, toque continuar para aceptar</string>
+    <string name="balance_withdraw">Retirar</string>
+    <string name="default_payment">Método predeterminado</string>
+    <string name="payment_paypal">Paypal</string>
+    <string name="payment_point_checkout">Point Checkout</string>
+    <string name="will_add_balance">Agregaremos a tu saldo</string>
+    <string name="payment_failed">Pago fallido</string>
+    <string name="balance_refill_select_method">Por favor seleccione un método de pago.</string>
+
+    <!--Wallet Screen-->
+    <string name="add_new_card">Añadir nueva tarjeta</string>
+    <string name="cash_on_delivery">Efectivo a la entrega</string>
+    <string name="delete_card_warning">¿Estás seguro que quieres eliminar este método de pago?</string>
+    <string name="balance_title">Equilibrio</string>
+    <string name="card_title">TARJETA</string>
+    <string name="make_default">Establecer como predeterminado</string>
+
+    <string-array name="payment_methods">
+        <item>Efectivo</item>
+        <item>TARJETA</item>
+        <item>Point Checkout</item>
+        <item>E-Fawateer</item>
+        <item>Paypal</item>
+        <item>Apple Pay</item>
+        <item>Balance</item>
+    </string-array>
+
+    <!--STORES-->
+    <string name="distance_km">km</string>
+    <string name="store_closed">Cerrado</string>
+
+    <!--Orders-->
+    <string name="order_Id">Pedido Id</string>
+    <string name="selected_product">Producto</string>
+    <string name="discount_title">Descuento :</string>
+    <string name="vatId_title">Cédula o RUC</string>
+    <string name="subtotal_title">Subtotal :</string>
+    <string name="total_title">Total</string>
+    <string name="paymentMethod_title">Método De Pago</string>
+    <string name="payment_methods">Métodos de pago</string>
+    <string name="download_title">Descargar</string>
+    <string name="total_price">Precio Total</string>
+    <string name="vat_title">IVA</string>
+    <string name="not_now">Ahora No</string>
+
+    <!--Support -->
+    <string name="support_notification_title">Has recibido un nuevo mensaje</string>
+
+    <!--Notifications-->
+    <string name="reminder_title">Por favor completa el registro para recibir nuestras ofertas y descuentos</string>
+
+    <!-- Location -->
+    <string name="location_search_address">Buscar dirección</string>
+    <string name="search_for_location">Buscar Ubicación</string>
+    <string name="search_location">Buscar Ubicación</string>
+    <string name="location_title">Ubicación</string>
+    <string name="address_title">DIRECCIÓN</string>
+    <string name="delivery_address">Dirección de entrega</string>
+
+    <!--Invitation screen-->
+    <string name="invite_QR_description">Invita a tus amigas a descargar nuestra increíble aplicación</string>
+    <string name="invite_message">¡Hola! He estado usando la aplicación Powerly para cargar mi vehículo eléctrico y es increíble. ¡Deberías probarlo! Al unirte a través de mi referencia, ¡podrías ganar hasta $75 en recompensas! Aquí está el enlace para unirte: %s\nAplican términos y condiciones.</string>
+
+    <!--Messages-->
+    <string name="no_internet_message">Por favor, asegúrese de estar conectado a Internet.</string>
+    <string name="internet_connection_error">Lo sentimos, esta aplicación necesita una conexión a Internet para funcionar correctamente. Verifique su conexión a Internet y vuelva a intentarlo.</string>
+    <string name="maintenance_mode_error">Actualmente el servicio no está disponible por mantenimiento. Por favor, vuelva más tarde. Lo siento por los inconvenientes ocasionados</string>
+    <string name="camera_permission_message">Por favor permita el permiso de la cámara.</string>
+
+    <!-- Feedback-->
+    <string name="feedback_msg">Cómo fue tu experiencia ?</string>
+    <string name="feedback_terrible">TERRIBLE</string>
+    <string name="feedback_bad">MALO</string>
+    <string name="feedback_fine">FINO</string>
+    <string name="feedback_good">BUENO</string>
+    <string name="feedback_excellent">EXCELENTE</string>
+
+    <!-- ======POWERLY======= -->
+
+    <string name="home_station_near">Más Cercano</string>
+    <string name="account_power_sources_">Mis fuentes de energía</string>
+    <string name="account_power_sources">Centro de poder</string>
+    <string name="account_vehicles">Vehículos</string>
+
+    <string name="stations">Estaciones</string>
+    <string name="station_location_allow">Permitir</string>
+    <string name="station_external">Estación externa</string>
+    <string name="station_external_warn">Este servicio no está gestionado ni verificado por Powerly. Asegure su seguridad y siempre sea cauteloso.</string>
+    <string name="station_number">Estación #%s</string>
+    <string name="station_id">ID de estación</string>
+    <string name="station_new">Nueva</string>
+    <string name="station_book">Reservar con Anticipación </string>
+    <string name="station_drive">Conducir a la Estación</string>
+
+    <string name="station_unit_price_per_minute_total">%s %s/minuto X %s</string>
+    <string name="station_unit_price_per_kwh_total">%s %s/kWh X %s</string>
+    <string name="station_unit_price_per_minute">%s %s/minuto</string>
+    <string name="station_unit_price_per_kwh">%s %s/kWh</string>
+    <string name="station_per_minute">Por minuto</string>
+    <string name="station_per_kwh">Por kWh</string>
+    <string name="station_per">Por</string>
+    <string name="station_kwh">kWh</string>
+    <string name="station_km_value">%s km</string>
+    <string name="station_kwh_value">%s kWh</string>
+    <string name="station_km_away">%.1f KM de distancia</string>
+
+    <string name="station_price_per_unit">%.2f %s por  %s</string>
+    <string name="station_price_per_kwh">Precio por kWh</string>
+    <string name="station_price_per_min">Precio por minuto</string>
+    <string name="station_limit_per_kwh">Límite por kWh</string>
+    <string name="station_limit_per_min">Limit por minuto</string>
+    <string name="station_limit">Límite por Sesión (Min/KWh)</string>
+    <string name="station_no_limit">Sin Límite</string>
+
+    <string name="station_status_open24">Abierto las 24 horas</string>
+    <string name="station_status_open">Abierto</string>
+    <string name="station_unavailable">No disponible</string>
+    <string name="station_status_busy">Ocupada</string>
+    <string name="station_status_self_charging">Ocupado contigo</string>
+    <string name="station_status_self_booked">Reservado por ti</string>
+    <string name="station_status_booked">Reservado</string>
+    <string name="station_open_in">Abierto en %s</string>
+    <string name="station_close_in">Cercano en %s</string>
+
+    <string name="station_max_power">Máx %s kWh</string>
+    <string name="station_max">Máx</string>
+    <string name="station_max_value">(%s Máx)</string>
+    <string name="station_reviews">Calificaciones y Reseñas</string>
+    <string name="station_reviews_count">Todas las reseñas (%d)</string>
+    <string name="station_reviews_star">%d Estrellas</string>
+    <string name="station_reviews_helpful">Útil</string>
+    <string name="station_charging_activate">Activación del Cargador</string>
+    <string name="station_charging">Cargando</string>
+    <string name="station_charging_start">Comenzar Carga</string>
+    <string name="station_charging_start_error">Por favor, seleccione los conectores antes de iniciar la carga.</string>
+    <string name="station_charging_how_to">Cómo cargar</string>
+    <string name="station_charging_stop">Detener Carga</string>
+    <string name="station_charging_stop_msg">Asegúrate de desconectar el enchufe de tu vehículo eléctrico antes de detener la carga.</string>
+    <string name="station_charging_full">COMPLETO</string>
+    <string name="station_charging_min">%s minuto</string>
+    <string name="station_charging_minute">m</string>
+    <string name="station_charging_hour">h</string>
+
+    <string name="station_charging_msg_1">"Estás listo para activar el cargador. Selecciona el tiempo de carga y pulsa 'Iniciar Carga' para comenzar."</string>
+    <string name="station_charging_msg_2">"Antes de comenzar la carga, ten en cuenta lo siguiente:"</string>
+    <string name="station_charging_msg_3">"Si no te encuentras cerca de la estación de carga en este momento, la sesión de carga aún comenzará si continúas.</string>
+    <string name="station_charging_msg_4">"Si ya estás en la estación de carga y estás listo para activar el cargador, elige la duración de la carga y presiona 'Comenzar Carga' para iniciarla."</string>
+
+    <string name="station_qr_code">Código QR</string>
+    <string name="station_qr_code_scan">ESCANEAR AQUÍ</string>
+    <string name="station_qr_code_msg1">Si lo compartes con alguien, podrán escanearlo con su</string>
+    <string name="station_qr_code_msg2">" Powerly App "</string>
+    <string name="station_qr_code_msg3">cámara para iniciar la carga.</string>
+
+    <string name="station_book_title">Reservar Estación</string>
+    <string name="station_book_secure">Reserva Segura</string>
+    <string name="station_book_fee">(Tarifa no reembolsable.)</string>
+    <string name="station_book_slot">Ranura reservada</string>
+    <string name="station_book_message">¡Genial! Has reservado tu punto de carga. Conduce con seguridad, identifícalo por su nombre y ID, escanea su código QR y ¡disfruta de la carga!</string>
+    <string name="station_total_price">Precio Total </string>
+    <string name="station_charged">Cargado</string>
+    <string name="station_recharge">Recarga</string>
+    <string name="station_time">Hora</string>
+    <string name="station_price">Precio</string>
+    <string name="station_powerly_fees">Tarifas de Powerly</string>
+    <string name="station_app_fees">Tarifas de aplicación</string>
+    <string name="station_reservation_fees">Tarifas de reserva</string>
+    <string name="station_identifier">Identificador</string>
+    <string name="station_connector_remove">Quitar estación</string>
+    <string name="station_connector_add">Agregar Estación</string>
+
+    <string name="charger_request">Solicitar Cargador</string>
+    <string name="charger_request_msg">"Completa la siguiente información para solicitar una estación de carga cerca de tu ubicación"</string>
+    <string name="charger_location">Seleccionar Ubicación</string>
+    <string name="charger_location_pin">Marcar Ubicación</string>
+    <string name="charger_address">Tipo de Dirección</string>
+    <string name="charger_request_msg2">¿Eres el propietario de esta dirección y puedes autorizar la instalación del punto de carga?</string>
+    <string name="charger_new">Informar de un Nuevo Cargador</string>
+    <string name="charger_new_msg1">Marca para ti y para otros.</string>
+    <string name="charger_new_msg2">Ayuda a la comunidad a crecer y navegar.</string>
+    <string name="charger_new_msg3">Sé parte de un planeta más verde!</string>
+
+    <string name="charger_sync">Sincroniza tu Cargador con Powerly</string>
+    <string name="charger_sync_msg1">Una plataforma para controlar todos tus cargadores.</string>
+    <string name="charger_sync_msg2">Llega a millones sin esfuerzo.</string>
+    <string name="charger_sync_msg3">Disfruta de operaciones fluidas y pagos instantáneos.</string>
+
+    <string name="charger_address_park_area">Zona de estacionamiento</string>
+    <string name="charger_address_shopping_mall">Centro comercial</string>
+    <string name="charger_address_park">Parque</string>
+    <string name="charger_address_restaurant">Restaurante</string>
+    <string name="charger_address_apartment">Apartamento</string>
+    <string name="charger_address_other">Otro</string>
+
+    <string name="onboarding1_title1">Con Seguridad</string>
+    <string name="onboarding1_title2">Conduce a la Estación</string>
+    <string name="onboarding1_description">Localiza tu cargador con nuestra aplicación y dirígete a su ubicación. El mapa te guiará para una navegación fácil.</string>
+    <string name="onboarding2_title">Identifica el Cargador</string>
+    <string name="onboarding2_description1">En áreas con múltiples cargadores, identifica tu cargador usando su ID único o nombre, especialmente útil si has</string>
+    <string name="onboarding2_description2">reservado con antelación.</string>
+    <string name="onboarding2_description3">.</string>
+    <string name="onboarding3_title">Iniciar Cargador</string>
+    <string name="onboarding3_description1">Primero, conecta tu vehículo al cargador. Luego, escanea el código QR en el cargador para</string>
+    <string name="onboarding3_description2">iniciar la carga</string>
+    <string name="onboarding3_description3">del proceso.</string>
+    <string name="onboarding4_title1">Espera</string>
+    <string name="onboarding4_title2">para Cargar</string>
+    <string name="onboarding4_description">¡Configuración completa! Un temporizador de cuenta regresiva mostrará cuánto tiempo falta para que su vehículo esté completamente cargado. Relájese o tómese un momento para usted mientras tanto.</string>
+
+    <!-- My Power Sources -->
+    <string name="station_share">Compartir</string>
+    <string name="station_share_message">¡Hola! He listado mi %s en Powerly, y ahora está disponible para uso público. Ambos obtendremos créditos de carga de bonificación en tu primera carga. Instala la aplicación y podrás reservar y cargar tu EV fácilmente sin problemas. Pruébalo ahora\n%s</string>
+    <string name="station_earnings">Dinero ganado</string>
+    <string name="station_energy_kwh">Energía (kWh)</string>
+    <string name="station_plugs">Enchufes</string>
+    <string name="station_plug_type">Tipo de enchufe</string>
+    <string name="station_plug_add">Agregar Enchufe</string>
+    <string name="station_total_time">Tiempo total</string>
+    <string name="station_make_public">Hacer Público</string>
+    <string name="station_make_private">Hacer Privado</string>
+    <string name="station_make_private_msg_title">Retirar dispositivo de la lista</string>
+    <string name="station_make_private_msg">¿Estás seguro de que quieres retirar este dispositivo de la lista?\n\nNota: Una vez que retires este dispositivo de la lista, no será visible para el público.</string>
+    <string name="station_remove">Dispositivo</string>
+    <string name="station_pending">Pendiente</string>
+    <string name="station_config">Configurando</string>
+    <string name="station_configs">Configurando</string>
+
+    <string name="station_details">Detalles de la estación</string>
+    <string name="station_details_ac">AC</string>
+    <string name="station_details_dc">DC</string>
+    <string name="station_details_plug">Enchufar: %d</string>
+    <string name="station_details_parking">Estacionamiento</string>
+    <string name="station_details_amenities">Servicios</string>
+    <string name="station_details_amenities_msg">Selecciona las comodidades disponibles en esta ubicación</string>
+    <string name="station_details_title">título</string>
+    <string name="station_details_descriptions">Descripción</string>
+    <string name="station_details_description">Descripción</string>
+    <string name="station_details_price">Precio </string>
+    <string name="station_details_media">Multimedia</string>
+    <string name="station_details_media_camera">Cámara</string>
+    <string name="station_details_media_gallery">Galería</string>
+    <string name="station_details_hours">Horas</string>
+    <string name="station_details_working_hours">Horas de trabajo</string>
+    <string name="station_details_hours_start">Inicio</string>
+    <string name="station_details_hours_end">Fin</string>
+    <string name="station_details_hours_to">a</string>
+    <string name="station_details_hours_open24_7">Abierto las 24 horas</string>
+    <string name="station_details_updated_location_hours">Horario de Ubicación Actualizado</string>
+    <string name="station_details_address">Dirección de Ubicación</string>
+    <string name="station_details_address_city">Ciudad</string>
+    <string name="station_details_address_state">Estado</string>
+    <string name="station_details_address_zip">Código postal</string>
+    <string name="station_details_location">Ubicación del Pin en el Mapa</string>
+    <string name="station_details_add_photo">Agregar Fotos</string>
+    <string name="station_details_remove_photo">Eliminar medios</string>
+    <string name="station_details_remove_photo_msg">¿Estás seguro que deseas eliminar esta imagen?</string>
+    <string name="station_save_next">Guardar y continuar</string>
+
+    <string name="category_smart_meter">Medidor de potencia</string>
+    <string name="category_smart_plug">Enchufe inteligente</string>
+    <string name="category_ev_charger">Cargador de vehículos eléctricos</string>
+
+    <string name="smart_meter_add">Agregar Medidor Inteligente</string>
+    <string name="smart_meter_server">Servidor:</string>
+    <string name="smart_meter_username">Nombre de usuario:</string>
+    <string name="smart_meter_password">Contraseña:</string>
+    <string name="smart_meter_confirm_msg">Confirma cuando esté configurado correctamente.</string>
+    <string name="smart_meter_confirm">Confirmo la Configuración del Medidor Inteligente</string>
+    <string name="smart_meter_config_msg">Antes de agregar tu medidor inteligente a tu cuenta, asegúrate de una configuración adecuada:</string>
+
+    <string name="smart_plug_add">Agregar enchufe inteligente</string>
+    <string name="smart_plug_confirm">Confirmo que el enchufe inteligente parpadea</string>
+    <string name="smart_plug_msg">Por favor, coloque su enchufe inteligente en modo de configuración de la siguiente manera:\n1. Conecte el enchufe inteligente en el tomacorriente.\n2. Presione el botón durante 10 segundos hasta que el indicador del enchufe inteligente parpadee en luz ámbar, lo que indica que el enchufe inteligente está en modo AP.\n\n(Nota: El período de espera para el modo AP es de 3 minutos. Una vez que haya configurado la información en el enchufe inteligente, el modo AP se desactivará)</string>
+    <string name="smart_plug_wifi_title">Wi-Fi en casa</string>
+    <string name="smart_plug_wifi_msg">Por favor ingrese el SSID y la contraseña de su red Wi-Fi en casa.</string>
+    <string name="smart_plug_wifi_ssid">Ingresa el SSID del Wi-Fi</string>
+    <string name="smart_plug_wifi_password">Contraseña</string>
+
+    <string name="ev_charger_add">Agregar Cargador de vehículo eléctrico</string>
+    <string name="ev_charger_config_msg">Antes de agregar el cargador de su vehículo eléctrico a tu cuenta, asegúrate de una configuración adecuada:</string>
+    <string name="ev_charger_confirm">Confirmo la Configuración del cargador EV</string>
+
+    <string name="device_current_consumption">Consumo actual</string>
+    <string name="device_current">Corriente</string>
+    <string name="device_voltage">Voltaje</string>
+    <string name="device_power">Energia </string>
+    <string name="device_power_factor">Factor de potencia</string>
+    <string name="device_total_consumption">Consumo total</string>
+    <string name="device_total_power_factor">Factor de potencia total</string>
+    <string name="device_total_energy">Toda la energía</string>
+    <string name="device_reactive_power">Potencia reactiva total</string>
+    <string name="device_apparent_power">Potencia aparente total</string>
+    <string name="device_time_stamp">Marca de tiempo</string>
+    <string name="device_voltage_unit">%.1f V</string>
+    <string name="device_current_unit">%.2f A</string>
+    <string name="device_power_unit">%.1f wh</string>
+    <string name="device_energy_unit">%.2f kwh</string>
+
+    <string name="hotspot_title">Punto de acceso del dispositivo</string>
+    <string name="hotspot_msg">Conéctate al punto de acceso del dispositivo</string>
+    <string name="hotspot_step1">1. Ve a la Configuración de tu dispositivo > Wi-Fi\n2. Conéctate al Wi-Fi como se muestra a continuación</string>
+    <string name="hotspot_step2">3. Volver a la aplicación y continuar</string>
+
+    <!-- Vehicles -->
+
+    <string name="vehicle_title">Mis Vehículos</string>
+    <string name="vehicle_make">Marca</string>
+    <string name="vehicle_model">Modelo</string>
+    <string name="vehicle_model_search">Buscar modelo</string>
+    <string name="vehicle_version">Versión</string>
+    <string name="vehicle_add">Agregar vehículo</string>
+    <string name="vehicle_delete">¿Eliminar vehículo?</string>
+    <string name="vehicle_delete_message">¿Estás seguro de que deseas eliminar este vehículo?</string>
+    <string name="vehicle_manufacturer">Fabricante</string>
+    <string name="vehicle_manufacturer_search">Buscar fabricante</string>
+    <string name="vehicle_details">Detalles</string>
+    <string name="vehicle_details_color">Color</string>
+    <string name="vehicle_details_color_custom">Color personalizado</string>
+    <string name="vehicle_details_year">Año (%s)</string>
+    <string name="vehicle_details_fuel">Tipo de combustible	 (%s)</string>
+    <string name="vehicle_details_charging">Tipo de carga</string>
+
+    <string name="fuel_fuel">Combustible</string>
+    <string name="fuel_hybrid">Híbrido</string>
+    <string name="fuel_plug_in_hybrid">Híbrido enchufable</string>
+    <string name="fuel_electric">Eléctrico</string>
+    <string name="fuel_other">Otro</string>
+
+    <!-- Orders-->
+    <string name="sessions_active">Sesión Activa</string>
+    <string name="sessions_scheduled">Programado</string>
+    <string name="sessions_booking_cancel">Cancelar Reserva</string>
+    <string name="sessions_booking_cancel_msg">¿Estás seguro/a de que deseas cancelar esta reserva?</string>
+    <string name="sessions_booking_id">ID de Reserva</string>
+    <string name="sessions_scheduled_fees">Tarifas totales</string>
+    <string name="sessions_history">Historial</string>
+    <string name="sessions_purchased">Comprado</string>
+    <string name="sessions_sold">Vendido</string>
+    <string name="sessions_completed">Terminada</string>
+    <string name="sessions_active_empty">Sin pedido activo</string>
+    <string name="sessions_scheduled_empty">Sin pedido programado</string>
+    <string name="sessions_history_empty">Sin pedido completado</string>
+    <string name="sessions_charging_stop_msg">¿Estás seguro/a de que deseas detener la carga?.</string>
+
+    <string name="time_h">h</string>
+    <string name="time_m">m</string>
+    <string name="time_s">s</string>
+    <string name="time_am">AM</string>
+    <string name="time_pm">PM</string>
+    <string name="time_hours">horas</string>
+    <string name="time_minutes">minutos</string>
+
+    <!-- Home Slider -->
+    <array name="slider_title">
+        <item>Club Eléctrico</item>
+        <item>Referir y Ganar</item>
+        <item>Comparte la aplicación ahora</item>
+        <item>Comprar un Cargador de VE</item>
+    </array>
+
+    <array name="slider_action">
+        <item>Únete Ahora</item>
+        <item>Referir Ahora</item>
+        <item>Comprar Ahora</item>
+    </array>
+
+    <array name="slider_sub_title">
+        <item>Comparte tu experiencia, haz preguntas sobre vehículos eléctricos, cargadores y todo
+            lo relacionado con lo eléctrico.
+        </item>
+        <item>Invita a tus amigos a unirse a Powerly y obtén una recompensa en efectivo de hasta
+            $75.
+        </item>
+        <item>Ahora puedes invitar a tus amigos a usar nuestra aplicación.</item>
+        <item>Experimenta la conveniencia de tener tu propio punto de carga para vehículos
+            eléctricos en casa.
+        </item>
+    </array>
+</resources>

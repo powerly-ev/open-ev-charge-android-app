@@ -1,0 +1,7 @@
+<resources>
+    <string name="smartlook_api_key" translatable="false"></string>
+    <string name="appsflyer_api_key" translatable="false"></string>
+    <string name="fb_app_id" translatable="false"></string>
+    <string name="fb_provider_id" translatable="false"></string>
+    <string name="fb_client_token" translatable="false"></string>
+</resources>
