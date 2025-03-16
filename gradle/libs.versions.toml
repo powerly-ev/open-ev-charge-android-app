@@ -1,0 +1,185 @@
+[versions]
+# Plugin verisons
+androidGradlePlugin = "8.9.0"
+kotlinAndroid = "2.1.0"
+kotlinKsp = "2.1.0-1.0.29"
+androidTools = "31.8.1"
+kotlinSerialization = "2.1.0"
+googleServices = "4.4.2"
+hiltAndroid = "2.54"
+firebaseCrashlytics = "3.0.3"
+room = "2.6.1"
+secretsPlugin = "2.0.1"
+# Dependency versions
+## Android Core
+activityKtx = "1.10.0"
+annotation = "1.9.1"
+lifecycleVersion = "2.8.7"
+pagingRuntimeKtx = "3.3.6"
+coreKtx = "1.15.0"
+navigation = "2.8.7"
+workRuntimeKtxVersion = "2.10.0"
+multidex = "2.0.1"
+desugar_jdk_libsVersion = "2.1.4"
+serialization = "1.8.0"
+kotlinDateTime = "0.6.1"
+kotlinCoroutines = "1.10.1"
+material = "1.12.0"
+
+## Compose
+composeBom = "2025.02.00"
+foundationVersion = "1.7.8"
+hiltNavigationComposeVersion = "1.2.0"
+material3Version = "1.3.1"
+mapsComposeVersion = "6.1.1"
+mapsComposeUtilsVersion = "6.1.1"
+pagingComposeVersion = "3.3.6"
+coilComposeVersion = "2.7.0"
+## Google
+firebaseBom = "33.9.0"
+firebaseMessaging = "24.1.0"
+googlePlaces = "4.1.0"
+playServicesLocation = "21.3.0"
+## Third Parties
+retrofit = "2.11.0"
+okhttp = "5.0.0-alpha.14"
+
+lottie = "6.5.0"
+stripeAndroidVersion = "21.4.1"
+zxingCore = "3.5.3"
+zxingAndroidembedded = "4.3.0"
+customQrGeneratorVersion = "1.6.2"
+## Test
+espressoCoreVersion = "3.6.1"
+mockitoCore = "5.12.0"
+junit = "4.13.2"
+junitKtx = "1.2.1"
+kotlinxCoroutinesTestVersion = "1.10.1"
+runnerVersion = "1.6.2"
+uiautomator = "2.3.0"
+testCore = "1.6.1"
+junitVersion = "1.2.1"
+benchmarkMacroJunit4 = "1.3.3"
+
+###################
+
+[libraries]
+build-gradle = { module = "com.android.tools.build:gradle", version.ref = "androidGradlePlugin" }
+# Core
+kotlin-bom = { module = "org.jetbrains.kotlin:kotlin-bom", version.ref = "kotlinAndroid" }
+core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
+activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activityKtx" }
+# material/views is requird for strip CardInputWidget
+material = { module = "com.google.android.material:material", version.ref = "material" }
+lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycleVersion" }
+lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleVersion" }
+paging-runtime-ktx = { module = "androidx.paging:paging-runtime-ktx", version.ref = "pagingRuntimeKtx" }
+androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }
+work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "workRuntimeKtxVersion" }
+multidex = { module = "androidx.multidex:multidex", version.ref = "multidex" }
+kotlinx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinDateTime" }
+kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinCoroutines" }
+desugar-jdk-libs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar_jdk_libsVersion" }
+
+# Compose
+compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
+compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
+compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
+compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "material3Version" }
+compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "foundationVersion" }
+compose-coil = { module = "io.coil-kt:coil-compose", version.ref = "coilComposeVersion" }
+compose-coil-gif = { module = "io.coil-kt:coil-gif", version.ref = "coilComposeVersion" }
+androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationComposeVersion" }
+navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose" }
+androidx-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
+androidx-material-icons-core = { module = "androidx.compose.material:material-icons-core" }
+androidx-material3-window-size = { module = "androidx.compose.material3:material3-window-size-class" }
+androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "pagingComposeVersion" }
+androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycleVersion" }
+androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleVersion" }
+androidx-runtime-livedata = { module = "androidx.compose.runtime:runtime-livedata" }
+androidx-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
+androidx-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
+androidx-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
+maps-compose = { module = "com.google.maps.android:maps-compose", version.ref = "mapsComposeVersion" }
+maps-compose-utils = { module = "com.google.maps.android:maps-compose-utils", version.ref = "mapsComposeUtilsVersion" }
+
+# Firebase
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
+firebase-messaging = { module = "com.google.firebase:firebase-messaging", version.ref = "firebaseMessaging" }
+firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
+
+# Network
+squareup-retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+squareup-okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
+squareup-logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp" }
+squareup-converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+
+# Room database
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+
+# Third Parties
+zxing-android = { module = "com.journeyapps:zxing-android-embedded", version.ref = "zxingAndroidembedded" }
+zxing-core = { module = "com.google.zxing:core", version.ref = "zxingCore" }
+custom-qr-generator = { module = "com.github.alexzhirkevich:custom-qr-generator", version.ref = "customQrGeneratorVersion" }
+lottie-compose = { module = "com.airbnb.android:lottie-compose", version.ref = "lottie" }
+stripe-android = { module = "com.stripe:stripe-android", version.ref = "stripeAndroidVersion" }
+stripe-card-scan = { module = "com.stripe:stripecardscan", version.ref = "stripeAndroidVersion" }
+
+# DI
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
+hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroid" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hiltAndroid" }
+hilt-core = { group = "com.google.dagger", name = "hilt-core", version.ref = "hiltAndroid" }
+
+# GMS
+play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
+google-places = { module = "com.google.android.libraries.places:places", version.ref = "googlePlaces" }
+
+# Test
+test-core = { module = "androidx.test:core", version.ref = "testCore" }
+test-rules = { module = "androidx.test:rules", version.ref = "testCore" }
+test-runner = { module = "androidx.test:runner", version.ref = "runnerVersion" }
+mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
+uiautomator = { module = "androidx.test.uiautomator:uiautomator", version.ref = "uiautomator" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTestVersion" }
+junit = { module = "junit:junit", version.ref = "junit" }
+junit-ktx = { module = "androidx.test.ext:junit-ktx", version.ref = "junitKtx" }
+espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espressoCoreVersion" }
+
+# Dependencies of the included build-logic
+android-tools-common = { group = "com.android.tools", name = "common", version.ref = "androidTools" }
+compose-gradlePlugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlinAndroid" }
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlinAndroid" }
+ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "kotlinKsp" }
+room-gradlePlugin = { group = "androidx.room", name = "room-gradle-plugin", version.ref = "room" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-benchmark-macro-junit4 = { group = "androidx.benchmark", name = "benchmark-macro-junit4", version.ref = "benchmarkMacroJunit4" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
+android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinAndroid" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlinAndroid" }
+kotlin-ksp = { id = "com.google.devtools.ksp", version.ref = "kotlinKsp" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinSerialization" }
+hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hiltAndroid" }
+google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
+firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebaseCrashlytics" }
+secrets = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secretsPlugin" }
+room = { id = "androidx.room", version.ref = "room" }
+android-test = { id = "com.android.test", version.ref = "androidGradlePlugin" }
+
+# Plugins defined by this project
+powerly-application = { id = "powerly.application" }
+powerly-library = { id = "powerly.library" }
+powerly-hilt = { id = "powerly.hilt" }
+powerly-compose = { id = "powerly.compose" }
+powerly-application-compose = { id = "powerly.application.compose" }
+powerly-serialization = { id = "powerly.serialization" }
+powerly-room = { id = "powerly.room" }
+powerly-android-test = { id = "powerly.android.test" }

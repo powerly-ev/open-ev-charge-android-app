@@ -1,0 +1,337 @@
+<resources>
+    <!-- HOME -->
+    <string name="home">Home</string>
+    <string name="scan">Scan</string>
+    <string name="scan_qr_code">Scan to Activate</string>
+    <string name="orders">Orders</string>
+    <string name="account">Account</string>
+    <string name="home_help">Help</string>
+
+    <!--Side Menu-->
+    <string name="language">Language</string>
+    <string name="support">Support</string>
+    <string name="account_vehicles">Vehicles</string>
+    <string name="invite">Invite</string>
+    <string name="invite_link_copied">Link copied</string>
+    <string name="invite_QR_description">Invite your friends to download our amazing app</string>
+    <string name="logout_title">Sign out</string>
+    <string name="logout_confirmation">Are you sure you want to sign out?</string>
+    <string name="select_language">Select language</string>
+
+    <!-- Update-->
+    <string name="update_required">Update Required</string>
+    <string name="update_force_desc1">An important update which include  additional features, security updates and improvements is required.</string>
+    <string name="update_force_desc2">Please update the app in order to continue.</string>
+
+    <!--Profile Screen-->
+    <string name="profile_email">Email</string>
+    <string name="profile">My Profile</string>
+    <string name="profile_select_country">Select Country</string>
+    <string name="profile_require_email_address">Email is required to update your profile</string>
+    <string name="profile_confirm_delete_account">Are you sure you want to remove your account?</string>
+    <string name="profile_delete_account_description">Your account will be immediately deactivated. After 30 days it will be permanently deleted, and any unused credits, promotions, or rewards will be removed.</string>
+    <string name="profile_guest">Guest</string>
+    <string name="profile_see">See Profile</string>
+    <string name="profile_select_country_please">Please select country</string>
+
+    <!-- Welcome Screen-->
+    <string name="welcome">Hello :)</string>
+    <string name="welcome_description">Welcome to the future of EV charging! Let’s get you set up, first your language preference.</string>
+    <string name="welcome_user_agreement">By using Powerly, you consent to our</string>
+    <string name="welcome_privacy_policy">Privacy Policy.</string>
+    <string name="welcome_and">and</string>
+    <string name="welcome_terms_of_service">Terms of Service</string>
+    <string name="welcome_terms_condition">Terms and Conditions</string>
+
+    <!-- Login-->
+    <string name="login_select_country">Select your country</string>
+    <string name="login_resend_code_in">Resend code in</string>
+    <string name="login_first_name">First name</string>
+    <string name="login_last_name">Last name</string>
+    <string name="login_password">Password</string>
+    <string name="login_enter_first_name">Please enter your first name</string>
+    <string name="login_Verification_title">Verification</string>
+    <string name="login_resend_code">Resend code</string>
+    <string name="login_need_help">I need help</string>
+    <string name="login_enter_code">Enter the 4-digit code we sent you</string>
+    <string name="login_option_title">Sign in</string>
+    <string name="login_option_google">Sign in with Google</string>
+    <string name="login_option_email">Sign in with email</string>
+    <string name="login_option_guest">Continue as Guest</string>
+    <string name="login_option_other">Explore other Sign-in options</string>
+    <string name="login_email">Email</string>
+    <string name="login_email_title">Sign in or create account</string>
+    <string name="login_email_enter">Enter your email</string>
+    <string name="login_email_enter_msg">Please enter your email address. We\'ll send you a verification code to keep your account secure.</string>
+    <string name="login_email_error_msg">Email address incorrect</string>
+    <string name="login_email_password">Password</string>
+    <string name="login_email_password_enter">Enter a password</string>
+    <string name="login_email_password_new">New Password</string>
+    <string name="login_email_password_confirm">Confirm Password</string>
+    <string name="login_email_password_create_title">Sign-in with email address</string>
+    <string name="login_email_password_create">Create a password</string>
+    <string name="login_email_password_create_msg">Create a strong password that you will use to sign in</string>
+    <string name="login_email_password_length_msg">The password must be at least %d characters.</string>
+    <string name="login_email_password_not_matched">Passwords are not identical</string>
+    <string name="login_email_password_forget">Forget your password ?</string>
+    <string name="login_email_password_forget_msg">No problem! We\'ll send a one-Time Password (OTP) to %s. Once you receive it, you can use the OTP to login and reset your password</string>
+    <string name="login_email_password_weak">Weak</string>
+    <string name="login_email_password_medium">Medium</string>
+    <string name="login_email_password_strong">Strong</string>
+
+    <!-- ACTIONS -->
+    <string name="retry">Retry</string>
+    <string name="save">Save</string>
+    <string name="done">Done</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_ok">OK</string>
+    <string name="update_now">Update Now</string>
+    <string name="remove">Remove</string>
+    <string name="add_a_note">Add a note</string>
+    <string name="delete_account">Delete Account</string>
+    <string name="share_code">Share Referral Link</string>
+    <string name="copy_code">Copy Referral Link</string>
+    <string name="agree_and_continue">Agree &amp; Continue</string>
+    <string name="update">Update</string>
+    <string name="edit">Edit</string>
+    <string name="next">Next</string>
+    <string name="skip">Skip</string>
+    <string name="delete">Delete</string>
+    <string name="select">Select</string>
+    <string name="change">Change</string>
+    <string name="add">Add</string>
+    <string name="continue_">Continue</string>
+
+    <!--Payment-->
+    <string name="payment_method_add">Add Payment Method</string>
+    <string name="payment_card_add">Add Card</string>
+    <string name="payment_card_scan">Scan Card</string>
+    <string name="payment_default">Default Method</string>
+    <string name="payment_paypal">Paypal</string>
+    <string name="payment_point_checkout">Point Checkout</string>
+    <string name="payment_failed">Payment Failed</string>
+    <string name="payment_add_new_card">Add New Card</string>
+    <string name="payment_cash_on_delivery">Cash on Delivery</string>
+    <string name="payment_delete_card_message">Are you sure you want to delete this payment method?</string>
+    <string name="payment_card">Card</string>
+    <string name="payment_make_default">Make Default</string>
+
+    <!--Wallet-->
+    <string name="wallet">Wallet</string>
+    <string name="wallet_withdraw_from">Withdraw from:</string>
+    <string name="wallet_withdraw_agree">Agree &amp; Withdraw</string>
+    <string name="wallet_withdraw_successful">Withdraw Successful</string>
+    <string name="wallet_withdraw_failed">Withdraw Failed</string>
+    <string name="wallet_policy">Withdraw Policy</string>
+    <string name="wallet_policy_read_our">Read our</string>
+    <string name="wallet_policy_tab_withdraw">. Tab "Agree and Withdraw" to accept</string>
+    <string name="wallet_policy_terms">Terms of Service</string>
+
+    <!-- balance-->
+    <string name="balance">Balance</string>
+    <string name="balance_show">Show Balance</string>
+    <string name="balance_available">Available Balance</string>
+    <string name="balance_add">Add Balance</string>
+    <string name="balance_popular">Popular</string>
+    <string name="balance_non_refundable">Balance with discount is non-refundable, please tab continue to agree</string>
+    <string name="balance_refill_select_method">Please select a payment method.</string>
+    <string name="balance_add_message">We will add to your balance</string>
+
+    <!-- Location -->
+    <string name="location_search_address">Search Address</string>
+    <string name="location_search_for">Search for Location</string>
+    <string name="location_search">Search Location</string>
+    <string name="location_delivery_address">Delivery Address</string>
+
+    <!--Messages-->
+    <string name="no_internet_message">Please Make sure you are connected to the internet</string>
+    <string name="internet_connection_error">Sorry, this application needs an internet connection to work properly. Please check your internet connection and retry.</string>
+    <string name="maintenance_mode_error">The service is currently unavailable for maintenance. Please check back later. Sorry for the inconvenience</string>
+    <string name="camera_permission_message">Please Allow Camera Permission</string>
+    <string name="reminder_message">Please complete the registration to receive our offers and discounts</string>
+
+    <!-- Feedback-->
+    <string name="feedback_msg">How was your experience ?</string>
+    <string name="feedback_terrible">Terrible</string>
+    <string name="feedback_bad">Bad</string>
+    <string name="feedback_fine">Fine</string>
+    <string name="feedback_good">Good</string>
+    <string name="feedback_excellent">Excellent</string>
+
+    <!-- Stations -->
+    <string name="station_location_allow">Allow</string>
+    <string name="station_number">Station #%s</string>
+    <string name="station_new">New</string>
+    <string name="station_drive">Drive to Station</string>
+    <string name="station_unit_price_per_minute_total">%s %s/minute X %s</string> <!-- ex: 1.0 SR/minute X 1m 20 s -->
+    <string name="station_unit_price_per_kwh_total">%s %s/kWh X %s</string> <!-- ex: 1.0 SR/kWh X 50 -->
+    <string name="station_per_minute">Per minute</string>
+    <string name="station_per_kwh">Per kWh</string>
+    <string name="station_per">Per</string>
+    <string name="station_kwh">kWh</string>
+    <string name="station_km_value">%s km</string>
+    <string name="station_kwh_value">%s kWh</string>
+    <string name="station_km_away">%.1f km away</string>
+
+    <string name="station_status_open24">Open 24 hours</string>
+    <string name="station_status_open">Open</string>
+    <string name="station_unavailable">Unavailable</string>
+    <string name="station_status_busy">Busy</string>
+    <string name="station_status_self_charging">Busy by you</string>
+    <string name="station_status_self_booked">Booked by you</string>
+    <string name="station_status_booked">Booked</string>
+    <string name="station_open_in">Open at %s</string>
+    <string name="station_close_in">Close at %s</string>
+
+    <string name="station_max_power">Max %s kWh</string>
+    <string name="station_max">Max</string>
+    <string name="station_max_value">(%s Max)</string>
+    <string name="station_reviews">Ratings &amp; Reviews</string>
+    <string name="station_reviews_helpful">Helpful</string>
+    <string name="station_charging_activate">Charger Activation</string>
+    <string name="station_charging">Charging</string>
+    <string name="station_charging_start">Start Charging</string>
+    <string name="station_charging_start_error">Please select plugs before start charging.</string>
+    <string name="station_charging_how_to">How to charge</string>
+    <string name="station_charging_stop">Stop Charging</string>
+    <string name="station_charging_stop_msg">Please make sure the plug is detached from your EV before stopping the charge.</string>
+    <string name="station_charging_full">Full</string>
+    <string name="station_charging_minute">m</string>
+    <string name="station_charging_hour">h</string>
+
+    <string name="station_charging_msg_1">"You\'re ready to activate the charger.\nSelect your charge time and tap 'Start Charging' to start."</string>
+    <string name="station_charging_msg_2">"Before you start charging, please keep in mind:"</string>
+    <string name="station_charging_msg_3">"If you\'re not currently near the charging station, the charging session will still begin if you proceed.</string>
+    <string name="station_charging_msg_4">"If you're already at the charging station and ready to activate the charger, choose your charging duration and tap 'Start Charging' to initiate."</string>
+    <string name="station_total_price">Total Price</string>
+    <string name="station_charged">Charged</string>
+    <string name="station_recharge">Recharge</string>
+    <string name="station_time">Time</string>
+    <string name="station_price">Price</string>
+    <string name="station_powerly_fees">Powerly Fees</string>
+
+    <string name="onboarding1_title1">Safely</string>
+    <string name="onboarding1_title2">Drive to Station</string>
+    <string name="onboarding1_description">Locate your charger with our app and head to its location. The map will guide you for easy navigation.</string>
+    <string name="onboarding2_title">Identify the Charger</string>
+    <string name="onboarding2_description1">In areas with multiple chargers, identify your charger using its unique ID or name, especially helpful if you have</string>
+    <string name="onboarding2_description2">booked in advance</string>
+    <string name="onboarding2_description3">.</string>
+    <string name="onboarding3_title">Start Charger</string>
+    <string name="onboarding3_description1">First, connect your vehicle to the charger. Then, scan the QR code on the charger to</string>
+    <string name="onboarding3_description2">start the charging</string>
+    <string name="onboarding3_description3">process.</string>
+    <string name="onboarding4_title1">Wait</string>
+    <string name="onboarding4_title2">for Charging</string>
+    <string name="onboarding4_description">Setup complete! A countdown timer will show how long until your vehicle is fully charged. Relax or take a moment for yourself in the meantime.</string>
+
+    <!-- My Power Sources -->
+    <string name="station_plugs">Plugs</string>
+    <string name="station_plug_type">Plug Type</string>
+    <string name="station_plug_add">Add Plug</string>
+    <string name="station_details_plug">Plug: %d</string>
+    <string name="station_details_parking">Parking</string>
+    <string name="station_details_amenities">Amenities</string>
+    <string name="station_details_title">Title</string>
+    <string name="station_details_descriptions">Descriptions</string>
+    <string name="station_save_next">Save and Next</string>
+
+    <!-- Vehicles -->
+    <string name="vehicle_title">My Vehicles</string>
+    <string name="vehicle_make">Make</string>
+    <string name="vehicle_model">Model</string>
+    <string name="vehicle_model_search">Search Model</string>
+    <string name="vehicle_version">Version</string>
+    <string name="vehicle_add">Add Vehicle</string>
+    <string name="vehicle_delete">Delete vehicle?</string>
+    <string name="vehicle_delete_message">Are you sure you want to delete this vehicle?</string>
+    <string name="vehicle_manufacturer">Manufacturer</string>
+    <string name="vehicle_manufacturer_search">Search Manufacturer</string>
+    <string name="vehicle_details">Details</string>
+    <string name="vehicle_details_color">Color</string>
+    <string name="vehicle_details_color_custom">Custom Color</string>
+    <string name="vehicle_details_year">Year (%s)</string>
+    <string name="vehicle_details_fuel">Fuel type (%s)</string>
+    <string name="vehicle_details_charging">Charging type</string>
+
+    <string name="fuel_fuel">Fuel</string>
+    <string name="fuel_hybrid">Hybrid</string>
+    <string name="fuel_plug_in_hybrid">Plug-In Hybrid</string>
+    <string name="fuel_electric">Electric</string>
+    <string name="fuel_other">Other</string>
+
+    <!-- Orders-->
+    <string name="sessions_active">Active Session</string>
+    <string name="sessions_scheduled">Scheduled</string>
+    <string name="sessions_booking_id">Booking Id</string>
+    <string name="sessions_history">History</string>
+    <string name="sessions_completed">Completed</string>
+    <string name="sessions_active_empty">No active orders</string>
+    <string name="sessions_history_empty">No completed orders</string>
+    <string name="sessions_charging_stop_msg">Are you sure you want to stop charging.</string>
+
+    <string name="station_closed">Closed</string>
+    <string name="order_Id">Order Id</string>
+    <string name="order_selected_product">Product</string>
+    <string name="order_discount">Discount</string>
+    <string name="order_vatId">VAT ID</string>
+    <string name="order_subtotal">Subtotal : </string>
+    <string name="order_total">Total</string>
+    <string name="order_payment_method">Payment Method</string>
+    <string name="order_payment_methods">Payment Methods</string>
+    <string name="order_total_price">Total Price</string>
+    <string name="order_vat">VAT</string>
+
+    <string name="time_h">h</string>
+    <string name="time_m">m</string>
+    <string name="time_s">s</string>
+
+    <!-- Home Slider -->
+    <array name="slider_title">
+        <item>Club Electric</item>
+        <item>Refer and Earn</item>
+        <item>Share The App Now</item>
+        <item>Buy an EV Charge</item>
+    </array>
+
+    <array name="slider_action">
+        <item>Join Now</item>
+        <item>Refer Now</item>
+        <item>Buy Now</item>
+    </array>
+
+    <array name="slider_sub_title">
+        <item>Share your experience,\nask queries around EVs,\nchargers and all things electric.
+        </item>
+        <item>Invite your friends on ElectricPe and get a cash reward of up to $75.
+        </item>
+        <item>Now you can invite your friends to use our app.
+        </item>
+        <item>Experience the convenience of having your own personal EV charging point at home.
+        </item>
+    </array>
+
+
+    <!-- Non Translatable -->
+    <string name="app_name" translatable="false">Open Powerly</string>
+    <string name="splash_msg" translatable="false">Smart Charge. Anywhere.</string>
+
+    <string-array name="available_languages">
+        <item>English</item>
+        <item>العربية</item>
+        <item>Español</item>
+        <item>Français</item>
+    </string-array>
+
+    <string-array name="available_language_codes">
+        <item>en</item>
+        <item>ar</item>
+        <item>es</item>
+        <item>fr</item>
+    </string-array>
+
+    <string name="select_app_language" translatable="false">Select language |  اخْتَار اللُّغَة | Choisir la langue | Seleccione el idioma</string>
+
+</resources>
