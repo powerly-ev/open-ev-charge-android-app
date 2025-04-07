@@ -50,7 +50,7 @@ fun NavGraphBuilder.userDestinations(
                 viewModel = userViewModel,
                 navigateToHome = ::navigateToHome,
                 openUserAgreement = {
-                    //navController.navigate(AppRoutes.User.Welcome.UserAgreement(it))
+                    navController.navigate(AppRoutes.User.Welcome.UserAgreement(it))
                 },
                 changeAppLanguage = {
                     navController.navigate(AppRoutes.User.Welcome.Language)
@@ -67,7 +67,7 @@ fun NavGraphBuilder.userDestinations(
                 }
             )
         }
-        dialog<AppRoutes.User.Welcome.UserAgreement> {
+        composable<AppRoutes.User.Welcome.UserAgreement> {
             val userAgreement = it.toRoute<AppRoutes.User.Welcome.UserAgreement>()
             UserAgreementDialog(
                 type = userAgreement.type,

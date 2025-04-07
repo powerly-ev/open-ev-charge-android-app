@@ -25,11 +25,6 @@ internal fun paymentMethodDetails(
             else R.drawable.icon_card
         }
 
-        StripCard.POINT_CHECKOUT -> {
-            title = stringResource(R.string.payment_point_checkout)
-            icon = R.drawable.ic_point_payment
-        }
-
         StripCard.PAYPAL -> {
             title = stringResource(R.string.payment_paypal)
             icon = R.drawable.paypal

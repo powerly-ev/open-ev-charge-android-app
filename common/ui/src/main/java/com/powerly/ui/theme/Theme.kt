@@ -8,24 +8,11 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.res.colorResource
 import androidx.core.view.WindowCompat
 import com.powerly.ui.extensions.isArabic
+import com.powerly.resources.R
 
-
-private val appColorScheme = lightColorScheme(
-    primary = ColorGuide1.primary,
-    onPrimary = ColorGuide1.onPrimary,
-    secondary = ColorGuide1.secondary,
-    onSecondary = ColorGuide1.onSecondary,
-    tertiary = ColorGuide1.tertiary,
-    onTertiary = ColorGuide1.onTertiary,
-    background = ColorGuide1.background,
-    onBackground = ColorGuide1.onBackground,
-    surface = ColorGuide1.surface,
-    onSurface = ColorGuide1.onSurface,
-    onError = ColorGuide1.secondary,
-    error = ColorGuide1.errorColor
-)
 
 @Suppress("DEPRECATION")
 @Composable
@@ -51,7 +38,20 @@ fun AppTheme(
     }
 
     MaterialTheme(
-        colorScheme = appColorScheme,
+        colorScheme = lightColorScheme(
+            primary = colorResource(R.color.colorPrimary),
+            onPrimary = ColorGuide1.onPrimary,
+            secondary = colorResource(R.color.colorSecondary),
+            onSecondary = ColorGuide1.onSecondary,
+            tertiary = colorResource(R.color.colorTertiary),
+            onTertiary = ColorGuide1.onTertiary,
+            background = ColorGuide1.background,
+            onBackground = ColorGuide1.onBackground,
+            surface = ColorGuide1.surface,
+            onSurface = ColorGuide1.onSurface,
+            onError = colorResource(R.color.colorSecondary),
+            error = ColorGuide1.errorColor
+        ),
         typography = myTypography(isArabic()),
         content = content
     )

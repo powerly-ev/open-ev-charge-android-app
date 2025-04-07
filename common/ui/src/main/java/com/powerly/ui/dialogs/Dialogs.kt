@@ -28,6 +28,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.ModalBottomSheetProperties
+import androidx.compose.material3.SheetValue
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
@@ -210,6 +211,7 @@ fun MyScreenBottomSheet(
     shape: Shape = BottomSheetDefaults.HiddenShape,
     background: Color = Color.White,
     dismissOnBackPress: Boolean = true,
+    draggable: Boolean = true,
     onDismiss: () -> Unit = {},
     content: @Composable ColumnScope.() -> Unit
 ) {
@@ -218,10 +220,11 @@ fun MyScreenBottomSheet(
     val coroutineScope = rememberCoroutineScope()
     val sheetState = rememberModalBottomSheetState(
         skipPartiallyExpanded = true,
+        confirmValueChange = { draggable || (it != SheetValue.Hidden) }
     )
 
     val properties = ModalBottomSheetProperties(
-        shouldDismissOnBackPress = dismissOnBackPress
+        shouldDismissOnBackPress = dismissOnBackPress,
     )
 
     val hideDialog: () -> Unit = {

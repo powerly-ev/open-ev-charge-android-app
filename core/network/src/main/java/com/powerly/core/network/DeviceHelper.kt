@@ -43,6 +43,9 @@ class DeviceHelper @Inject constructor(
     val buildType: String get() = BuildConfig.BUILD_TYPE
     val apiKey = BuildConfig.API_API_KEY
     val apiBaseUrl = BuildConfig.API_BASE_URL
+    val privacyPolicyUrl = BuildConfig.PRIVACY_POLICY_URL
+    val termsAndConditionsUrl = BuildConfig.TERMS_AND_CONDITIONS_URL
+    val supportNumber = BuildConfig.SUPPORT_NUMBER
     val appType = BuildConfig.APP_TYPE
     val deviceVersion: String = Build.VERSION.RELEASE
 
@@ -51,10 +54,8 @@ class DeviceHelper @Inject constructor(
     val isTest: Boolean get() = BuildConfig.isTest ?: false
     val isDemo: Boolean get() = BuildConfig.FLAVOR.contains("demo")
     val isDebug: Boolean get() = BuildConfig.DEBUG ?: false
-    val googleClientKey: String get() = BuildConfig.GOOGLE_WEB_CLIENT
     val googlePlacesApiKey: String get() = BuildConfig.PLACES_API_KEY
     val publishableKey: String get() = BuildConfig.STRIP_PUBLISHABLE_KEY
-    val supportNumber: String get() = "0111111111111"
 
     val appLink
         get() =

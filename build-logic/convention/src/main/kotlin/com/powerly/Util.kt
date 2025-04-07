@@ -71,7 +71,7 @@ fun appBuildName(variantOutputImpl: BaseVariantOutputImpl) {
         "preRelease" -> "production"
         else -> name
     }.replace("default-", "")
-    println("variantName - $variantName")
+    //println("variantName - $variantName")
     val date = SimpleDateFormat("dd-MMM", Locale.US).format(Date()) // date Day:Month
     variantOutputImpl.outputFileName = "${MyProject.DISPLAY_NAME}-$variantName-$date.apk"
 }

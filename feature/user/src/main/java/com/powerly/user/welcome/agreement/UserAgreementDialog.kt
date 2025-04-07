@@ -1,5 +1,7 @@
 package com.powerly.user.welcome.agreement
 
+import android.util.Log
+import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -11,10 +13,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.powerly.resources.R
 import com.powerly.ui.dialogs.MyProgressView
-import com.powerly.ui.dialogs.MyScreenBottomSheet
 import com.powerly.ui.dialogs.webview.WebViewPage
 import com.powerly.ui.dialogs.webview.WebViewScreen
 import kotlinx.coroutines.launch
+
+private const val TAG = "UserAgreementDialog"
 
 @Composable
 internal fun UserAgreementDialog(
@@ -34,6 +37,7 @@ internal fun UserAgreementDialog(
     fun getUserAgreement(type: Int) {
         coroutineScope.launch {
             val url = viewModel.getUserAgreementLink(type) ?: return@launch
+            Log.v(TAG, url)
             val title = if (type == 1) {
                 context.getString(R.string.welcome_privacy_policy)
             } else {
@@ -50,11 +54,12 @@ internal fun UserAgreementDialog(
         getUserAgreement(type)
     }
 
-    MyScreenBottomSheet(onDismiss = onDismiss) {
-        if (webViewPage != null) WebViewScreen(
-            url = webViewPage!!.url,
-            title = webViewPage!!.title,
-            onClose = onDismiss
-        ) else MyProgressView()
-    }
+    BackHandler(enabled = true, onBack = {})
+
+    if (webViewPage != null) WebViewScreen(
+        url = webViewPage!!.url,
+        title = webViewPage!!.title,
+        onClose = onDismiss
+    ) else MyProgressView()
+
 }

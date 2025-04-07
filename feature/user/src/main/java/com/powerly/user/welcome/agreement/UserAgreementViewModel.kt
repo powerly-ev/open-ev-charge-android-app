@@ -1,15 +1,13 @@
 package com.powerly.user.welcome.agreement
 
 import androidx.lifecycle.ViewModel
-import com.powerly.core.data.repositories.AppRepository
-import com.powerly.lib.managers.CountryManager
+import com.powerly.core.network.DeviceHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class UserAgreementViewModel @Inject constructor(
-    private val appRepository: AppRepository,
-    private val countryManager: CountryManager
+    private val deviceHelper: DeviceHelper
 ) : ViewModel() {
 
     /**
@@ -17,7 +15,8 @@ class UserAgreementViewModel @Inject constructor(
      *
      * @param type The type of user agreement to fetch.
      */
-    suspend fun getUserAgreementLink(type: Int): String? {
-        return null
+    fun getUserAgreementLink(type: Int): String? {
+        return if (type == 1) deviceHelper.privacyPolicyUrl
+        else deviceHelper.termsAndConditionsUrl
     }
 }
