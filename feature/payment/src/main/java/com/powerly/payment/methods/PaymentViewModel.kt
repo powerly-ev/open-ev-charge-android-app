@@ -36,7 +36,8 @@ class PaymentViewModel @Inject constructor(
                     paymentMethods.clear()
                     paymentMethods.addAll(it.data)
                     defaultPaymentMethod.value =
-                        paymentMethods.firstOrNull { c -> c.default } ?: paymentMethods.first()
+                        paymentMethods.firstOrNull { c -> c.default }
+                            ?: paymentMethods.firstOrNull()
                 }
 
                 else -> {}

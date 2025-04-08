@@ -70,18 +70,21 @@ class PaymentManager @Inject constructor(
             expYear = cardMap?.get("exp_year").toString().toIntOrNull() ?: 0
         )
         Log.v(TAG, "cardParams - $cardParams")
-        stripe?.createCardToken(cardParams, callback = object : ApiResultCallback<Token> {
-            override fun onError(e: Exception) {
-                val message = e.message.orEmpty()
-                onError(message)
-                e.printStackTrace()
-            }
+        if (stripe != null) stripe?.createCardToken(
+            cardParams = cardParams,
+            callback = object : ApiResultCallback<Token> {
+                override fun onError(e: Exception) {
+                    val message = e.message.orEmpty()
+                    onError(message)
+                    e.printStackTrace()
+                }
 
-            override fun onSuccess(result: Token) {
-                Log.v(TAG, "payment-method ${result.id}")
-                onSuccess(result)
+                override fun onSuccess(result: Token) {
+                    Log.v(TAG, "payment-method ${result.id}")
+                    onSuccess(result)
+                }
             }
-        })
+        ) else onError("Stripe is not initialized")
     }
 
     /**
