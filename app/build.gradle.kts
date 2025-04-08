@@ -1,9 +1,11 @@
 import com.android.build.gradle.internal.api.BaseVariantOutputImpl
 import com.powerly.MyProject
 import com.powerly.appBuildName
+import com.powerly.getLocalProperties
 import com.powerly.getPropertiesFileName
+import com.powerly.hasDebugStoreConfig
+import com.powerly.hasReleaseStoreConfig
 import com.powerly.isGoogle
-import java.util.Properties
 
 plugins {
     alias(libs.plugins.powerly.application)
@@ -37,17 +39,12 @@ android {
         appBuildName(this as BaseVariantOutputImpl)
     }
 
+    // read local.properties
+    val localProperties = getLocalProperties(rootProject)
 
     signingConfigs {
-        // load app signing configurations from local.properties file
-        val localProperties = Properties()
-        val localPropertiesFile = rootProject.file("local.properties")
-        if (localPropertiesFile.exists()) {
-            localProperties.load(localPropertiesFile.inputStream())
-        }
-
-        getByName("debug") {
-            if (localProperties.containsKey("DEBUG_STORE_FILE")) {
+        if (localProperties.hasDebugStoreConfig()) {
+            getByName("debug") {
                 println("STORE_FILE: ${localProperties["DEBUG_STORE_FILE"]}")
                 println("KEY_ALIAS: ${localProperties["DEBUG_KEY_ALIAS"]}")
                 keyAlias = localProperties["DEBUG_KEY_ALIAS"] as? String
@@ -56,8 +53,8 @@ android {
                 storePassword = localProperties["DEBUG_STORE_PASSWORD"] as? String
             }
         }
-        create("release") {
-            if (localProperties.containsKey("RELEASE_STORE_FILE")) {
+        if (localProperties.hasReleaseStoreConfig()) {
+            create("release") {
                 println("STORE_FILE: ${localProperties["RELEASE_STORE_FILE"]}")
                 println("KEY_ALIAS: ${localProperties["RELEASE_KEY_ALIAS"]}")
                 keyAlias = localProperties["RELEASE_KEY_ALIAS"] as? String
@@ -83,7 +80,10 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            signingConfig = signingConfigs.getByName("release")
+            signingConfig = when {
+                localProperties.hasReleaseStoreConfig() -> signingConfigs.getByName("release")
+                else -> signingConfigs.getByName("debug")
+            }
             isDebuggable = false
         }
         // production-test

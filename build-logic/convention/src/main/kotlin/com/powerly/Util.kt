@@ -1,10 +1,12 @@
 package com.powerly
 
 import com.android.build.gradle.internal.api.BaseVariantOutputImpl
+import org.gradle.api.Project
 import org.gradle.api.invocation.Gradle
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import java.util.Properties
 
 /**
  * Determines the build variant name from a list of potential names.
@@ -99,3 +101,24 @@ fun isHuawei(gradle: Gradle): Boolean {
 fun isGoogle(gradle: Gradle): Boolean {
     return gradle.startParameter.taskRequests.toString().contains("Gms")
 }
+
+/**
+ * Loads properties from the `local.properties` file in the project root.
+ *
+ * Returns a `Properties` object if the file exists, `null` otherwise.
+ *
+ * @param root The project root.
+ * @return Properties loaded from `local.properties`, or `null` if not found.
+ */
+fun getLocalProperties(root: Project): Properties {
+    // load app signing configurations from local.properties file
+    val localProperties = Properties()
+    val localPropertiesFile = root.file("local.properties")
+    if (localPropertiesFile.exists()) {
+        localProperties.load(localPropertiesFile.inputStream())
+    }
+    return localProperties
+}
+
+fun Properties.hasDebugStoreConfig() = this.containsKey("DEBUG_STORE_FILE")
+fun Properties.hasReleaseStoreConfig() = this.containsKey("RELEASE_STORE_FILE")
