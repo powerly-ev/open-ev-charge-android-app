@@ -3,6 +3,7 @@ import com.powerly.MyProject
 import com.powerly.appBuildName
 import com.powerly.getPropertiesFileName
 import com.powerly.isGoogle
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.powerly.application)
@@ -36,6 +37,37 @@ android {
         appBuildName(this as BaseVariantOutputImpl)
     }
 
+
+    signingConfigs {
+        // load app signing configurations from local.properties file
+        val localProperties = Properties()
+        val localPropertiesFile = rootProject.file("local.properties")
+        if (localPropertiesFile.exists()) {
+            localProperties.load(localPropertiesFile.inputStream())
+        }
+
+        getByName("debug") {
+            if (localProperties.containsKey("DEBUG_STORE_FILE")) {
+                println("STORE_FILE: ${localProperties["DEBUG_STORE_FILE"]}")
+                println("KEY_ALIAS: ${localProperties["DEBUG_KEY_ALIAS"]}")
+                keyAlias = localProperties["DEBUG_KEY_ALIAS"] as? String
+                keyPassword = localProperties["DEBUG_KEY_PASSWORD"] as? String
+                storeFile = file(localProperties["DEBUG_STORE_FILE"] as String)
+                storePassword = localProperties["DEBUG_STORE_PASSWORD"] as? String
+            }
+        }
+        create("release") {
+            if (localProperties.containsKey("RELEASE_STORE_FILE")) {
+                println("STORE_FILE: ${localProperties["RELEASE_STORE_FILE"]}")
+                println("KEY_ALIAS: ${localProperties["RELEASE_KEY_ALIAS"]}")
+                keyAlias = localProperties["RELEASE_KEY_ALIAS"] as? String
+                keyPassword = localProperties["RELEASE_KEY_PASSWORD"] as? String
+                storeFile = file(localProperties["RELEASE_STORE_FILE"] as String)
+                storePassword = localProperties["RELEASE_STORE_PASSWORD"] as? String
+            }
+        }
+    }
+
     buildTypes {
         // test version
         // debuggable && un-minified
@@ -51,7 +83,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName("release")
             isDebuggable = false
         }
         // production-test
