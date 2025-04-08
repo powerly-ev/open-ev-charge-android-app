@@ -9,6 +9,11 @@
 -keep,allowobfuscation,allowshrinking class * extends com.google.gson.reflect.TypeToken
 -keep public class * extends android.app.**
 
+-dontwarn com.google.j2objc.annotations.ReflectionSupport
+-dontwarn com.google.j2objc.annotations.RetainedWith
+-dontwarn kotlinx.parcelize.Parceler
+-dontwarn kotlinx.parcelize.Parcelize
+
 -keep class com.powerly.lib.managers.MessagingService { *; }
 
 # Remove Logs (more concise)
