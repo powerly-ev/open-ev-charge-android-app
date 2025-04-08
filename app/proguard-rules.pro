@@ -1,4 +1,5 @@
 -keep class com.powerly.core.model.** { *; }
+-keep class com.powerly.lib.managers.MessagingService { *; }
 -dontwarn com.powerly.payment.BR
 
 # Retrofit, Gson, and Coroutines
@@ -8,13 +9,10 @@
 -keep,allowobfuscation,allowshrinking class com.google.gson.reflect.TypeToken
 -keep,allowobfuscation,allowshrinking class * extends com.google.gson.reflect.TypeToken
 -keep public class * extends android.app.**
+-keep public class com.google.j2objc.** { public *; }
 
--dontwarn com.google.j2objc.annotations.ReflectionSupport
--dontwarn com.google.j2objc.annotations.RetainedWith
--dontwarn kotlinx.parcelize.Parceler
--dontwarn kotlinx.parcelize.Parcelize
-
--keep class com.powerly.lib.managers.MessagingService { *; }
+-dontwarn com.google.j2objc.**
+-dontwarn kotlinx.parcelize.**
 
 # Remove Logs (more concise)
 -assumenosideeffects class android.util.Log {
