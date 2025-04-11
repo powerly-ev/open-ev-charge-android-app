@@ -12,6 +12,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -32,8 +33,6 @@ import coil.ImageLoader
 import coil.compose.rememberAsyncImagePainter
 import coil.decode.GifDecoder
 import coil.request.ImageRequest
-import coil.request.onAnimationEnd
-import coil.request.onAnimationStart
 import coil.request.repeatCount
 import coil.size.Size
 import com.powerly.resources.R
@@ -76,11 +75,11 @@ internal fun SplashScreenContent(
                     .align(Alignment.Center),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                GifImage(
-                    gif = R.drawable.splash_animation,
+                AnimatedLogo(
+                    drawable = R.drawable.splash_animation,
                     placeholder = R.drawable.logo,
                     modifier = Modifier.size(200.dp),
-                    onLoaded = onLogoLoaded,
+                    onDone = onLogoLoaded,
                     onStarted = {
                         coroutineScope.launch {
                             delay(1000)
@@ -90,6 +89,15 @@ internal fun SplashScreenContent(
                 )
                 AppSlogan(show = { showSlogan })
             }
+            Text(
+                text = stringResource(R.string.app_powered_by),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.secondary,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .padding(bottom = 16.dp)
+            )
         }
     }
 }
@@ -104,7 +112,7 @@ private fun AppSlogan(show: () -> Boolean) {
         spacing = 8.dp
     ) {
         Text(
-            text = stringResource(R.string.splash_msg),
+            text = stringResource(R.string.app_slogan),
             style = MaterialTheme.typography.bodyLarge,
             color = MaterialTheme.colorScheme.tertiary
         )
@@ -119,32 +127,39 @@ private fun AppSlogan(show: () -> Boolean) {
 }
 
 @Composable
-fun GifImage(
-    @DrawableRes gif: Int,
+private fun AnimatedLogo(
+    @DrawableRes drawable: Int,
     @DrawableRes placeholder: Int,
     modifier: Modifier = Modifier,
+    duration: Long = 3000,
     onStarted: () -> Unit,
-    onLoaded: () -> Unit
+    onDone: () -> Unit
 ) {
     val context = LocalContext.current
     val imageLoader = ImageLoader.Builder(context)
         .components {
             add(GifDecoder.Factory())
-        }
-        .build()
+        }.build()
 
     val model = ImageRequest.Builder(context)
         .repeatCount(0)
-        .onAnimationStart { onStarted() }
-        .onAnimationEnd { onLoaded() }
+        //.onAnimationStart { onStarted() }
+        //.onAnimationEnd { onLoaded() }
         .size(Size.ORIGINAL)
-        .data(data = gif)
+        .data(data = drawable)
         .build()
 
     val gifPainter = rememberAsyncImagePainter(
         model = model,
         imageLoader = imageLoader
     )
+
+    LaunchedEffect(Unit) {
+        delay(200)
+        onStarted()
+        delay(duration)
+        onDone()
+    }
 
     Image(
         painter = if (isPreview()) painterResource(placeholder)

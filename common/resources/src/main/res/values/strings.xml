@@ -316,7 +316,8 @@
 
     <!-- Non Translatable -->
     <string name="app_name" translatable="false">Open Powerly</string>
-    <string name="splash_msg" translatable="false">Smart Charge. Anywhere.</string>
+    <string name="app_slogan" translatable="false">Smart Charge. Anywhere.</string>
+    <string name="app_powered_by" translatable="false">By Powerly</string>
 
     <string-array name="available_languages">
         <item>English</item>

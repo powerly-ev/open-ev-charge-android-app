@@ -15,7 +15,7 @@ object MainScreen {
             this.removeExtra(MAIN_DESTINATION)
             return when (extra) {
                 Destination.HOME.name -> AppRoutes.Navigation
-                Destination.WELCOME.name -> AppRoutes.User.Welcome
+                Destination.WELCOME.name -> AppRoutes.User
                 else -> AppRoutes.Splash
             }
         } else return AppRoutes.Splash
