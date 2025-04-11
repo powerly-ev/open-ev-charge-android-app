@@ -17,7 +17,6 @@ import com.powerly.resources.R
 import com.powerly.ui.dialogs.alert.MyAlertDialog
 import com.powerly.ui.dialogs.alert.rememberAlertDialogState
 import com.powerly.ui.dialogs.loading.rememberScreenState
-import com.powerly.ui.extensions.finish
 import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.launch
 
@@ -28,14 +27,12 @@ private const val TAG = "VehiclesScreen"
  *
  * This composable function is responsible for displaying the list of vehicles,
  * handling user interactions, and triggering navigation to other screens.
- *
- * @param viewModel The ViewModel for the Vehicles screen.
- * @param addNewVehicle A lambda function that is called when the user wants to add a new vehicle.
  */
 @Composable
 internal fun VehiclesScreen(
     viewModel: VehiclesViewModel,
-    addNewVehicle: () -> Unit
+    addNewVehicle: () -> Unit,
+    onBack: () -> Unit
 ) {
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
@@ -110,9 +107,7 @@ internal fun VehiclesScreen(
         screenState = screenState,
         uiEvents = {
             when (it) {
-                is VehicleEvents.Close -> {
-                    context.finish()
-                }
+                is VehicleEvents.Close -> onBack()
 
                 is VehicleEvents.EditTitle -> {
                     updateVehicle(it.vehicle)

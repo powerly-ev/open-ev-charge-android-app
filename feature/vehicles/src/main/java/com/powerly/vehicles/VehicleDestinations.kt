@@ -20,9 +20,8 @@ fun NavGraphBuilder.vehiclesDestinations(
         composable<AppRoutes.Vehicles.List> {
             VehiclesScreen(
                 viewModel = viewModel,
-                addNewVehicle = {
-                    navController.navigate(AppRoutes.Vehicles.New)
-                }
+                addNewVehicle = { navController.navigate(AppRoutes.Vehicles.New) },
+                onBack = { navController.popBackStack() }
             )
         }
         composable<AppRoutes.Vehicles.New> {
