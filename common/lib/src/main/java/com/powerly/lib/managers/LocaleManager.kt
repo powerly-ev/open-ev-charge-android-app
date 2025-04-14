@@ -72,22 +72,6 @@ class LocaleManager @Inject constructor(
         else ""
     }
 
-
-    /**
-     * Create a list of app supported languages
-     * with Item (name,img,selected,id) object
-     */
-    fun getLocalesList(): List<Item> {
-        val list: MutableList<Item> = ArrayList()
-        val currentLanguage = storageManager.currentLanguage
-        for (code in localeMap.keys) {
-            val name = localeMap[code]
-            val selected = currentLanguage.equals(code, ignoreCase = true)
-            if (name != null) list.add(Item(name, "", selected, code))
-        }
-        return list
-    }
-
     //change app language with specific language code
     fun setLocale(context: Context, lang: String): Context {
         val locale = Locale(lang)
@@ -96,7 +80,6 @@ class LocaleManager @Inject constructor(
         config.setLocale(locale)
         config.fontScale = 1f //0.85 small size, 1 normal size, 1,15 big etc
         return context.createConfigurationContext(config)
-        return context
     }
 
     // restart activity

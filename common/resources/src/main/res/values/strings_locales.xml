@@ -1,0 +1,15 @@
+<resources>
+    <string-array name="available_languages">
+        <item>English</item>
+        <item>Arabic (العربية)</item>
+        <item>Spanish (Español)</item>
+        <item>French (Français)</item>
+    </string-array>
+
+    <string-array name="available_language_codes">
+        <item>en</item>
+        <item>ar</item>
+        <item>es</item>
+        <item>fr</item>
+    </string-array>
+</resources>

@@ -34,15 +34,10 @@ GEIMIN_API_KEY=your-api-key-here
 
 ## 🚀 Usage
 
-1. Make sure your English string file is located at:
-   ```
-   values/strings.xml
-   ```
-
-2. Run the script:
+Run the script:
 
 ```bash
-python translate_android_strings.py 
+python translate_android_strings.py tr
 ```
 
 ## 📁 Output Folder Structure
