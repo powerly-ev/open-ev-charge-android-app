@@ -61,7 +61,11 @@ class RetrofitClient @Inject constructor(
         val original = chain.request()
         val request = original.newBuilder().apply {
             method(original.method, original.body)
-            header("Accept-Language", Locale.getDefault().language)
+            val defaultLocale = Locale.getDefault().language
+            val apiSupportedLocales = listOf("en", "ar", "es", "fr")
+            val acceptLanguage = if (apiSupportedLocales.contains(defaultLocale)) defaultLocale
+            else "en"
+            header("Accept-Language", acceptLanguage)
             header("API-KEY", deviceHelper.apiKey)
             header("App-Type", deviceHelper.appType.toString())
             header("App-Version", deviceHelper.appVersion)
