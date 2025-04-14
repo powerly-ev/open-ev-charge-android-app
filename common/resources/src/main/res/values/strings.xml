@@ -290,29 +290,12 @@
 
     <!-- Home Slider -->
     <array name="slider_title">
-        <item>Club Electric</item>
-        <item>Refer and Earn</item>
-        <item>Share The App Now</item>
-        <item>Buy an EV Charge</item>
+        <item>All Set to Go</item>
     </array>
 
-    <array name="slider_action">
-        <item>Join Now</item>
-        <item>Refer Now</item>
-        <item>Buy Now</item>
+    <array name="slider_message">
+        <item>Find a charger, power up, and hit the road.</item>
     </array>
-
-    <array name="slider_sub_title">
-        <item>Share your experience,\nask queries around EVs,\nchargers and all things electric.
-        </item>
-        <item>Invite your friends on ElectricPe and get a cash reward of up to $75.
-        </item>
-        <item>Now you can invite your friends to use our app.
-        </item>
-        <item>Experience the convenience of having your own personal EV charging point at home.
-        </item>
-    </array>
-
 
     <!-- Non Translatable -->
     <string name="app_name" translatable="false">Open Powerly</string>

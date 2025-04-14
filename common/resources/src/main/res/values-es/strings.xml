@@ -290,28 +290,10 @@
 
     <!-- Home Slider -->
     <array name="slider_title">
-        <item>Club Eléctrico</item>
-        <item>Referir y Ganar</item>
-        <item>Comparte la aplicación ahora</item>
-        <item>Comprar un Cargador de VE</item>
+        <item>Todo listo para salir</item>
     </array>
 
-    <array name="slider_action">
-        <item>Únete Ahora</item>
-        <item>Referir Ahora</item>
-        <item>Comprar Ahora</item>
-    </array>
-
-    <array name="slider_sub_title">
-        <item>Comparte tu experiencia, haz preguntas sobre vehículos eléctricos, cargadores y todo
-            lo relacionado con lo eléctrico.
-        </item>
-        <item>Invita a tus amigos a unirse a Powerly y obtén una recompensa en efectivo de hasta
-            $75.
-        </item>
-        <item>Ahora puedes invitar a tus amigos a usar nuestra aplicación.</item>
-        <item>Experimenta la conveniencia de tener tu propio punto de carga para vehículos
-            eléctricos en casa.
-        </item>
+    <array name="slider_message">
+        <item>Encuentra un cargador, recarga energía y ponte en marcha.</item>
     </array>
 </resources>

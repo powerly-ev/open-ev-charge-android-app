@@ -1,6 +1,5 @@
 package com.powerly.map.home.slider
 
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -10,13 +9,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
-import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -29,11 +23,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.powerly.ui.containers.LayoutDirectionRtl
+import com.powerly.ui.components.SlidingCarousel
 import com.powerly.ui.containers.MyCardColum
 import com.powerly.ui.containers.MyColumn
-import com.powerly.ui.containers.MyRow
-import com.powerly.ui.components.SlidingCarousel
 import com.powerly.ui.theme.AppTheme
 import com.powerly.ui.theme.MyColors
 
@@ -52,11 +44,8 @@ private fun SlidePreview() {
             ItemSlider(
                 slide = SliderItem(
                     title = slide.title,
-                    subTitle = slide.subTitle,
-                    actionTitle = slide.actionTitle,
-                    action = slide.action,
-                    image = slide.image,
-                    actionIcon = slide.actionIcon
+                    message = slide.message,
+                    image = slide.image
                 ),
                 onClick = {}
             )
@@ -65,11 +54,8 @@ private fun SlidePreview() {
 }
 
 @Composable
-internal fun SectionSlider(
-    isLoggedIn: Boolean,
-    onClick: (action: SliderAction) -> Unit,
-) {
-    val slides = initSlides(LocalContext.current, isLoggedIn)
+internal fun SectionSlider(onClick: () -> Unit) {
+    val slides = initSlides(LocalContext.current)
     Box(Modifier.fillMaxWidth()) {
         SlidingCarousel(
             indicatorSelectedColor = MaterialTheme.colorScheme.secondary,
@@ -87,12 +73,13 @@ internal fun SectionSlider(
 @Composable
 private fun ItemSlider(
     slide: SliderItem,
-    onClick: (SliderAction) -> Unit
+    onClick: () -> Unit
 ) {
     MyCardColum(
         padding = PaddingValues(start = 16.dp, end = 0.dp, top = 16.dp, bottom = 16.dp),
         background = MaterialTheme.colorScheme.secondary,
-        spacing = 16.dp
+        spacing = 16.dp,
+        onClick = onClick
     ) {
         Text(
             text = slide.title,
@@ -111,7 +98,7 @@ private fun ItemSlider(
                 modifier = Modifier.weight(0.6f)
             ) {
                 Text(
-                    text = slide.subTitle,
+                    text = slide.message,
                     textAlign = TextAlign.Start,
                     style = style,
                     color = Color.White,
@@ -130,45 +117,6 @@ private fun ItemSlider(
                 contentDescription = "",
                 modifier = Modifier.weight(0.4f)
             )
-        }
-    }
-}
-
-
-@Composable
-private fun SliderButton(
-    text: String,
-    @DrawableRes icon: Int? = null,
-    onClick: (() -> Unit)? = null
-) {
-    LayoutDirectionRtl {
-        Surface(
-            onClick = { onClick?.invoke() },
-            modifier = Modifier
-                .height(30.dp)
-                .wrapContentWidth(),
-            color = Color.White,
-            shape = RoundedCornerShape(4.dp)
-        ) {
-            MyRow(
-                spacing = 4.dp,
-                modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp)
-            ) {
-                Text(
-                    text,
-                    style = MaterialTheme.typography.bodySmall,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.padding(horizontal = 4.dp),
-                    color = MaterialTheme.colorScheme.secondary
-                )
-                icon?.let {
-                    Image(
-                        painterResource(icon),
-                        contentDescription = "",
-                        modifier = Modifier.size(ButtonDefaults.IconSize)
-                    )
-                }
-            }
         }
     }
 }

@@ -290,26 +290,10 @@
 
     <!-- Home Slider -->
     <array name="slider_title">
-        <item>نادي الكهرباء</item>
-        <item>شارك واربح</item>
-        <item>شارك التطبيق الآن</item>
-        <item>شراء شاحن السيارة الكهربائية</item>
+        <item>جاهز للانطلاق</item>
     </array>
 
-    <array name="slider_action">
-        <item>انضم الآن</item>
-        <item>أُرِسْل الآن</item>
-        <item>اشترِ الآن</item>
-    </array>
-
-    <array name="slider_sub_title">
-        <item>شارك تجربتك، واطرح استفسارات حول السيارات الكهربائية، ومحطات الشحن، وكل ما يتعلق
-            بالكهرباء.
-        </item>
-        <item>قم بدعوة أصدقائك إلى Powerly واحصل على مكافأة نقدية تصل إلى 75 دولارًا.</item>
-        <item>الآن يمكنك دعوة أصدقائك لاستخدام تطبيقنا.</item>
-        <item>شارك تجربتك، واطرح استفسارات حول السيارات الكهربائية، ومحطات الشحن، وكل ما يتعلق
-            بالكهرباء.
-        </item>
+    <array name="slider_message">
+        <item> دورلك على شاحن، اشحن، وانطلق بأمان.</item>
     </array>
 </resources>

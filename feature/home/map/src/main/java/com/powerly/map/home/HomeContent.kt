@@ -122,8 +122,7 @@ internal fun HomeScreenContent(
     ) {
         Spacer(modifier = Modifier.height(8.dp))
         SectionSlider(
-            isLoggedIn = isLoggedIn,
-            onClick = { uiEvents(HomeEvents.SliderClick(it)) }
+            onClick = { uiEvents(HomeEvents.SliderClick) }
         )
         if (hasLocation) {
             SectionMap(

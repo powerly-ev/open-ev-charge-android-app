@@ -1,11 +1,10 @@
 package com.powerly.map.home
 
 import com.powerly.core.model.powerly.PowerSource
-import com.powerly.map.home.slider.SliderAction
 import com.powerly.ui.dialogs.signIn.SignInOptions
 
 internal sealed class HomeEvents {
-    data class SliderClick(val action: SliderAction) : HomeEvents()
+    data object SliderClick : HomeEvents()
     data class OpenPowerSource(val source: PowerSource) : HomeEvents()
     data class OpenMap(val source: PowerSource? = null) : HomeEvents()
     data object RequestLocation : HomeEvents()
