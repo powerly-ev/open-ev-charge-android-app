@@ -1,0 +1,299 @@
+<resources>
+    <!-- HOME -->
+    <string name="home">홈</string>
+    <string name="scan">스캔</string>
+    <string name="scan_qr_code">스캔하여 활성화</string>
+    <string name="orders">주문</string>
+    <string name="account">계정</string>
+    <string name="home_help">도움말</string>
+
+    <!--Side Menu-->
+    <string name="language">언어</string>
+    <string name="support">지원</string>
+    <string name="account_vehicles">차량</string>
+    <string name="invite">초대</string>
+    <string name="invite_link_copied">링크가 복사되었습니다.</string>
+    <string name="invite_QR_description">친구를 초대하여 놀라운 앱을 다운로드하세요.</string>
+    <string name="logout_title">로그아웃</string>
+    <string name="logout_confirmation">로그아웃하시겠습니까?</string>
+    <string name="select_language">언어 선택</string>
+
+    <!-- Update-->
+    <string name="update_required">업데이트 필요</string>
+    <string name="update_force_desc1">추가 기능, 보안 업데이트 및 개선 사항을 포함하는 중요한 업데이트가 필요합니다.</string>
+    <string name="update_force_desc2">계속하려면 앱을 업데이트하십시오.</string>
+
+    <!--Profile Screen-->
+    <string name="profile_email">이메일</string>
+    <string name="profile">내 프로필</string>
+    <string name="profile_select_country">국가 선택</string>
+    <string name="profile_require_email_address">프로필을 업데이트하려면 이메일이 필요합니다.</string>
+    <string name="profile_confirm_delete_account">계정을 삭제하시겠습니까?</string>
+    <string name="profile_delete_account_description">계정이 즉시 비활성화됩니다. 30일 후 영구적으로 삭제되며 사용하지 않은 크레딧, 프로모션 또는 보상은 제거됩니다.</string>
+    <string name="profile_guest">게스트</string>
+    <string name="profile_see">프로필 보기</string>
+    <string name="profile_select_country_please">국가를 선택해주세요</string>
+
+    <!-- Welcome Screen-->
+    <string name="welcome">안녕하세요 :)</string>
+    <string name="welcome_description">EV 충전의 미래에 오신 것을 환영합니다! 먼저 언어 설정을 해주세요.</string>
+    <string name="welcome_user_agreement">%s을(를) 사용함으로써 귀하는 당사의</string>
+    <string name="welcome_privacy_policy">개인 정보 처리 방침에 동의합니다.</string>
+    <string name="welcome_and">및</string>
+    <string name="welcome_terms_of_service">서비스 약관</string>
+    <string name="welcome_terms_condition">이용 약관</string>
+
+    <!-- Login-->
+    <string name="login_select_country">국가를 선택하세요</string>
+    <string name="login_resend_code_in">코드 재전송</string>
+    <string name="login_first_name">이름</string>
+    <string name="login_last_name">성</string>
+    <string name="login_password">비밀번호</string>
+    <string name="login_enter_first_name">이름을 입력하세요</string>
+    <string name="login_Verification_title">인증</string>
+    <string name="login_resend_code">코드 재전송</string>
+    <string name="login_need_help">도움이 필요합니다</string>
+    <string name="login_enter_code">보내드린 4자리 코드를 입력하세요</string>
+    <string name="login_option_title">로그인</string>
+    <string name="login_option_google">Google로 로그인</string>
+    <string name="login_option_email">이메일로 로그인</string>
+    <string name="login_option_guest">게스트로 계속하기</string>
+    <string name="login_option_other">다른 로그인 옵션 탐색</string>
+    <string name="login_email">이메일</string>
+    <string name="login_email_title">로그인 또는 계정 만들기</string>
+    <string name="login_email_enter">이메일을 입력하세요</string>
+    <string name="login_email_enter_msg">이메일 주소를 입력하세요. 계정 보안을 위해 인증 코드를 보내드립니다.</string>
+    <string name="login_email_error_msg">잘못된 이메일 주소입니다</string>
+    <string name="login_email_password">비밀번호</string>
+    <string name="login_email_password_enter">비밀번호를 입력하세요</string>
+    <string name="login_email_password_new">새 비밀번호</string>
+    <string name="login_email_password_confirm">비밀번호 확인</string>
+    <string name="login_email_password_create_title">이메일 주소로 로그인</string>
+    <string name="login_email_password_create">비밀번호 만들기</string>
+    <string name="login_email_password_create_msg">로그인하는 데 사용할 강력한 비밀번호를 만드세요</string>
+    <string name="login_email_password_length_msg">비밀번호는 최소 %d자 이상이어야 합니다.</string>
+    <string name="login_email_password_not_matched">비밀번호가 일치하지 않습니다</string>
+    <string name="login_email_password_forget">비밀번호를 잊으셨나요?</string>
+    <string name="login_email_password_forget_msg">문제 없습니다! %s(으)로 일회용 비밀번호(OTP)를 보내드립니다. 받으신 후 OTP를 사용하여 로그인하고 비밀번호를 재설정할 수 있습니다.</string>
+    <string name="login_email_password_weak">취약</string>
+    <string name="login_email_password_medium">보통</string>
+    <string name="login_email_password_strong">강력</string>
+
+    <!-- ACTIONS -->
+    <string name="retry">재시도</string>
+    <string name="save">저장</string>
+    <string name="done">완료</string>
+    <string name="yes">예</string>
+    <string name="no">아니오</string>
+    <string name="dialog_cancel">취소</string>
+    <string name="dialog_ok">확인</string>
+    <string name="update_now">지금 업데이트</string>
+    <string name="remove">제거</string>
+    <string name="add_a_note">메모 추가</string>
+    <string name="delete_account">계정 삭제</string>
+    <string name="share_code">추천 링크 공유</string>
+    <string name="copy_code">추천 링크 복사</string>
+    <string name="agree_and_continue">동의 &amp; 계속</string>
+    <string name="update">업데이트</string>
+    <string name="edit">수정</string>
+    <string name="next">다음</string>
+    <string name="skip">건너뛰기</string>
+    <string name="delete">삭제</string>
+    <string name="select">선택</string>
+    <string name="change">변경</string>
+    <string name="add">추가</string>
+    <string name="continue_">계속</string>
+
+    <!--Payment-->
+    <string name="payment_method_add">결제 방법 추가</string>
+    <string name="payment_card_add">카드 추가</string>
+    <string name="payment_card_scan">카드 스캔</string>
+    <string name="payment_default">기본 방법</string>
+    <string name="payment_paypal">Paypal</string>
+    <string name="payment_point_checkout">포인트 결제</string>
+    <string name="payment_failed">결제 실패</string>
+    <string name="payment_add_new_card">새 카드 추가</string>
+    <string name="payment_cash_on_delivery">현금 결제</string>
+    <string name="payment_delete_card_message">이 결제 방법을 삭제하시겠습니까?</string>
+    <string name="payment_card">카드</string>
+    <string name="payment_make_default">기본으로 설정</string>
+
+    <!--Wallet-->
+    <string name="wallet">지갑</string>
+    <string name="wallet_withdraw_from">출금처:</string>
+    <string name="wallet_withdraw_agree">동의 &amp; 출금</string>
+    <string name="wallet_withdraw_successful">출금 성공</string>
+    <string name="wallet_withdraw_failed">출금 실패</string>
+    <string name="wallet_policy">출금 정책</string>
+    <string name="wallet_policy_read_our">다음을 읽어보세요.</string>
+    <string name="wallet_policy_tab_withdraw">. "동의 및 출금" 탭을 눌러 수락하세요.</string>
+    <string name="wallet_policy_terms">서비스 약관</string>
+
+    <!-- balance-->
+    <string name="balance">잔액</string>
+    <string name="balance_show">잔액 표시</string>
+    <string name="balance_available">사용 가능한 잔액</string>
+    <string name="balance_add">잔액 추가</string>
+    <string name="balance_popular">인기</string>
+    <string name="balance_non_refundable">할인이 적용된 잔액은 환불되지 않습니다. 계속하려면 동의하세요.</string>
+    <string name="balance_refill_select_method">결제 방법을 선택해주세요.</string>
+    <string name="balance_add_message">잔액에 추가됩니다.</string>
+
+    <!-- Location -->
+    <string name="location_search_address">주소 검색</string>
+    <string name="location_search_for">위치 검색</string>
+    <string name="location_search">위치 검색</string>
+    <string name="location_delivery_address">배송 주소</string>
+
+    <!--Messages-->
+    <string name="no_internet_message">인터넷에 연결되었는지 확인하십시오</string>
+    <string name="internet_connection_error">죄송합니다. 이 애플리케이션은 제대로 작동하려면 인터넷 연결이 필요합니다. 인터넷 연결을 확인하고 다시 시도하십시오.</string>
+    <string name="maintenance_mode_error">현재 서비스는 유지 보수를 위해 사용할 수 없습니다. 나중에 다시 확인하십시오. 불편을 드려 죄송합니다.</string>
+    <string name="camera_permission_message">카메라 권한을 허용하십시오</string>
+    <string name="reminder_message">오퍼 및 할인을 받으려면 등록을 완료하십시오</string>
+
+    <!-- Feedback-->
+    <string name="feedback_msg">어떠셨나요?</string>
+    <string name="feedback_terrible">끔찍함</string>
+    <string name="feedback_bad">나쁨</string>
+    <string name="feedback_fine">괜찮음</string>
+    <string name="feedback_good">좋음</string>
+    <string name="feedback_excellent">훌륭함</string>
+
+    <!-- Stations -->
+    <string name="station_location_allow">허용</string>
+    <string name="station_number">충전소 #%s</string>
+    <string name="station_new">신규</string>
+    <string name="station_drive">충전소로 이동</string>
+    <string name="station_unit_price_per_minute_total">%s %s/분 X %s</string> <!-- ex: 1.0 SR/minute X 1m 20 s -->
+    <string name="station_unit_price_per_kwh_total">%s %s/kWh X %s</string> <!-- ex: 1.0 SR/kWh X 50 -->
+    <string name="station_per_minute">분당</string>
+    <string name="station_per_kwh">kWh당</string>
+    <string name="station_per">당</string>
+    <string name="station_kwh">kWh</string>
+    <string name="station_km_value">%s km</string>
+    <string name="station_kwh_value">%s kWh</string>
+    <string name="station_km_away">%.1f km 거리</string>
+
+    <string name="station_status_open24">24시간 영업</string>
+    <string name="station_status_open">영업 중</string>
+    <string name="station_unavailable">사용 불가</string>
+    <string name="station_status_busy">혼잡</string>
+    <string name="station_status_self_charging">사용 중 (본인)</string>
+    <string name="station_status_self_booked">예약됨 (본인)</string>
+    <string name="station_status_booked">예약됨</string>
+    <string name="station_open_in">%s에 영업 시작</string>
+    <string name="station_close_in">%s에 영업 종료</string>
+
+    <string name="station_max_power">최대 %s kWh</string>
+    <string name="station_max">최대</string>
+    <string name="station_max_value">(최대 %s)</string>
+    <string name="station_reviews">평점 &amp; 리뷰</string>
+    <string name="station_reviews_helpful">도움이 됨</string>
+    <string name="station_charging_activate">충전기 활성화</string>
+    <string name="station_charging">충전 중</string>
+    <string name="station_charging_start">충전 시작</string>
+    <string name="station_charging_start_error">충전을 시작하기 전에 플러그를 선택하세요.</string>
+    <string name="station_charging_how_to">충전 방법</string>
+    <string name="station_charging_stop">충전 중단</string>
+    <string name="station_charging_stop_msg">충전을 중단하기 전에 플러그가 EV에서 분리되었는지 확인하세요.</string>
+    <string name="station_charging_full">가득 참</string>
+    <string name="station_charging_minute">분</string>
+    <string name="station_charging_hour">시간</string>
+
+    <string name="station_charging_msg_1">"충전기를 활성화할 준비가 되었습니다.\n충전 시간을 선택하고 '충전 시작'을 눌러 시작하세요."</string>
+    <string name="station_charging_msg_2">"충전을 시작하기 전에 다음 사항에 유의하세요."</string>
+    <string name="station_charging_msg_3">"현재 충전소 근처에 없더라도 계속 진행하면 충전 세션이 시작됩니다.</string>
+    <string name="station_charging_msg_4">"이미 충전소에 있고 충전기를 활성화할 준비가 되었다면 충전 시간을 선택하고 '충전 시작'을 눌러 시작하세요."</string>
+    <string name="station_total_price">총 가격</string>
+    <string name="station_charged">충전됨</string>
+    <string name="station_recharge">재충전</string>
+    <string name="station_time">시간</string>
+    <string name="station_price">가격</string>
+    <string name="station_app_fees">앱 수수료</string>
+
+    <string name="onboarding1_title1">안전하게</string>
+    <string name="onboarding1_title2">충전소로 운전</string>
+    <string name="onboarding1_description">저희 앱으로 충전기를 찾고 해당 위치로 향하십시오. 지도가 쉬운 탐색을 위해 안내해 드릴 것입니다.</string>
+    <string name="onboarding2_title">충전기 식별</string>
+    <string name="onboarding2_description1">충전기가 여러 개 있는 지역에서는 고유 ID 또는 이름을 사용하여 충전기를 식별하십시오. 특히 미리</string>
+    <string name="onboarding2_description2">예약한</string>
+    <string name="onboarding2_description3">경우에 유용합니다.</string>
+    <string name="onboarding3_title">충전기 시작</string>
+    <string name="onboarding3_description1">먼저 차량을 충전기에 연결하십시오. 그런 다음 충전기의 QR 코드를 스캔하여</string>
+    <string name="onboarding3_description2">충전을 시작하십시오</string>
+    <string name="onboarding3_description3">과정.</string>
+    <string name="onboarding4_title1">대기</string>
+    <string name="onboarding4_title2">충전을 위해</string>
+    <string name="onboarding4_description">설정 완료! 카운트다운 타이머는 차량이 완전히 충전될 때까지 남은 시간을 보여줍니다. 휴식을 취하거나 그 동안 잠시 시간을 내십시오.</string>
+
+    <!-- My Power Sources -->
+    <string name="station_plugs">플러그</string>
+    <string name="station_plug_type">플러그 유형</string>
+    <string name="station_plug_add">플러그 추가</string>
+    <string name="station_details_plug">플러그: %d</string>
+    <string name="station_details_parking">주차</string>
+    <string name="station_details_amenities">편의 시설</string>
+    <string name="station_details_title">제목</string>
+    <string name="station_details_descriptions">설명</string>
+    <string name="station_save_next">저장하고 다음</string>
+
+    <!-- Vehicles -->
+    <string name="vehicle_title">내 차량</string>
+    <string name="vehicle_make">제조사</string>
+    <string name="vehicle_model">모델</string>
+    <string name="vehicle_model_search">모델 검색</string>
+    <string name="vehicle_version">버전</string>
+    <string name="vehicle_add">차량 추가</string>
+    <string name="vehicle_delete">차량을 삭제하시겠습니까?</string>
+    <string name="vehicle_delete_message">이 차량을 삭제하시겠습니까?</string>
+    <string name="vehicle_manufacturer">제조사</string>
+    <string name="vehicle_manufacturer_search">제조사 검색</string>
+    <string name="vehicle_details">세부 정보</string>
+    <string name="vehicle_details_color">색상</string>
+    <string name="vehicle_details_color_custom">사용자 정의 색상</string>
+    <string name="vehicle_details_year">연도 (%s)</string>
+    <string name="vehicle_details_fuel">연료 유형 (%s)</string>
+    <string name="vehicle_details_charging">충전 유형</string>
+
+    <string name="fuel_fuel">연료</string>
+    <string name="fuel_hybrid">하이브리드</string>
+    <string name="fuel_plug_in_hybrid">플러그인 하이브리드</string>
+    <string name="fuel_electric">전기</string>
+    <string name="fuel_other">기타</string>
+
+    <!-- Orders-->
+    <string name="sessions_active">활성 세션</string>
+    <string name="sessions_scheduled">예약됨</string>
+    <string name="sessions_booking_id">예약 ID</string>
+    <string name="sessions_history">기록</string>
+    <string name="sessions_completed">완료됨</string>
+    <string name="sessions_active_empty">활성 주문 없음</string>
+    <string name="sessions_history_empty">완료된 주문 없음</string>
+    <string name="sessions_charging_stop_msg">충전을 중단하시겠습니까?</string>
+
+    <string name="station_closed">닫힘</string>
+    <string name="order_Id">주문 ID</string>
+    <string name="order_selected_product">제품</string>
+    <string name="order_discount">할인</string>
+    <string name="order_vatId">VAT ID</string>
+    <string name="order_subtotal">소계 : </string>
+    <string name="order_total">총액</string>
+    <string name="order_payment_method">결제 방법</string>
+    <string name="order_payment_methods">결제 방법</string>
+    <string name="order_total_price">총 가격</string>
+    <string name="order_vat">VAT</string>
+
+    <string name="time_h">시</string>
+    <string name="time_m">분</string>
+    <string name="time_s">초</string>
+
+    <!-- Home Slider -->
+    <array name="slider_title">
+        <item>출발 준비 완료</item>
+    </array>
+
+    <array name="slider_message">
+        <item>충전기를 찾고, 전원을 켜고, 출발하세요.</item>
+    </array>
+</resources>
