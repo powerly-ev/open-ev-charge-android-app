@@ -192,7 +192,10 @@ private fun SectionTermsAndConditions(
         modifier = Modifier.fillMaxWidth()
     ) {
         Text(
-            text = stringResource(R.string.welcome_user_agreement),
+            text = stringResource(
+                R.string.welcome_user_agreement,
+                stringResource(id = R.string.app_name)
+            ),
             style = MaterialTheme.typography.labelLarge,
             color = MaterialTheme.colorScheme.secondary
         )

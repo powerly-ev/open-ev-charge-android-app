@@ -37,7 +37,7 @@
     <!-- Welcome Screen-->
     <string name="welcome">مرحباً :)</string>
     <string name="welcome_description">مرحبًا بكم في مستقبل شحن السيارات الكهربائية! دعونا نبدأ بإعدادك، أولاً اختر لغتك.</string>
-    <string name="welcome_user_agreement">باستخدامك باورلي فانك توافق علي</string>
+    <string name="welcome_user_agreement">باستخدامك %s فانك توافق علي</string>
     <string name="welcome_privacy_policy">سياسة الخصوصية.</string>
     <string name="welcome_and">و</string>
     <string name="welcome_terms_of_service">شروط الخدمة</string>
@@ -210,7 +210,7 @@
     <string name="station_recharge">إعادة الشحن</string>
     <string name="station_time">الوقت</string>
     <string name="station_price">السعر</string>
-    <string name="station_powerly_fees">رسوم باورلي</string>
+    <string name="station_app_fees">رسوم التطبيق</string>
 
     <string name="onboarding1_title1">بأمان الله</string>
     <string name="onboarding1_title2">اتجه الي الشاحن</string>

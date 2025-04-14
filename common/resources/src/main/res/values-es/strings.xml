@@ -37,7 +37,7 @@
     <!-- Welcome Screen-->
     <string name="welcome">Hola :)</string>
     <string name="welcome_description">¡Bienvenido al futuro de la carga de vehículos eléctricos! Comencemos con la configuración, primero tu preferencia de idioma.</string>
-    <string name="welcome_user_agreement">Al usar Powerly, usted acepta nuestra</string>
+    <string name="welcome_user_agreement">Al usar %s, usted acepta nuestra</string>
     <string name="welcome_privacy_policy">Política de privacidad.</string>
     <string name="welcome_and">Y</string>
     <string name="welcome_terms_of_service">Términos de servicio</string>
@@ -210,7 +210,7 @@
     <string name="station_recharge">Recarga</string>
     <string name="station_time">Hora</string>
     <string name="station_price">Precio</string>
-    <string name="station_powerly_fees">Tarifas de Powerly</string>
+    <string name="station_app_fees">Tarifas de App</string>
 
     <string name="onboarding1_title1">Con Seguridad</string>
     <string name="onboarding1_title2">Conduce a la Estación</string>

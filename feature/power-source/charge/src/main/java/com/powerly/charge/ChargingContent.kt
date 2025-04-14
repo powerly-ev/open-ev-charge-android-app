@@ -196,7 +196,7 @@ private fun SectionPrice(
                 value = "${chargingPrice()} $currency"
             )
             DetailsSubItem(
-                title = R.string.station_powerly_fees,
+                title = R.string.station_app_fees,
                 value = "${appFess()} $currency"
             )
         }
