@@ -57,10 +57,7 @@ class DeviceHelper @Inject constructor(
     val googlePlacesApiKey: String get() = BuildConfig.PLACES_API_KEY
     val publishableKey: String get() = BuildConfig.STRIP_PUBLISHABLE_KEY
 
-    val appLink
-        get() =
-            if (isGoogle) "https://play.google.com/store/apps/details?id=${context?.packageName}"
-            else "https://appgallery.huawei.com/app/C111520963"
+    val appLink get() = "https://play.google.com/store/apps/details?id=${context?.packageName}"
 
 
     fun deviceModel(): String {
