@@ -26,9 +26,10 @@ android {
 
     // read local.properties
     val localProperties = getLocalProperties(rootProject)
-
+    val appPackageName = localProperties.getPackageName()
+    println("Package Name - $appPackageName")
     defaultConfig {
-        applicationId = localProperties.getPackageName()
+        applicationId = appPackageName
         versionCode = MyProject.VERSION_CODE
         versionName = MyProject.VERSION_NAME
         multiDexEnabled = true
