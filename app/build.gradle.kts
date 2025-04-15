@@ -2,6 +2,7 @@ import com.android.build.gradle.internal.api.BaseVariantOutputImpl
 import com.powerly.MyProject
 import com.powerly.appBuildName
 import com.powerly.getLocalProperties
+import com.powerly.getPackageName
 import com.powerly.getPropertiesFileName
 import com.powerly.hasDebugStoreConfig
 import com.powerly.hasReleaseStoreConfig
@@ -23,8 +24,11 @@ android {
     namespace = MyProject.NAMESPACE
     compileSdk = MyProject.COMPILE_SDK
 
+    // read local.properties
+    val localProperties = getLocalProperties(rootProject)
+
     defaultConfig {
-        applicationId = MyProject.APPLICATION_ID
+        applicationId = localProperties.getPackageName()
         versionCode = MyProject.VERSION_CODE
         versionName = MyProject.VERSION_NAME
         multiDexEnabled = true
@@ -39,8 +43,6 @@ android {
         appBuildName(this as BaseVariantOutputImpl)
     }
 
-    // read local.properties
-    val localProperties = getLocalProperties(rootProject)
 
     signingConfigs {
         if (localProperties.hasDebugStoreConfig()) {

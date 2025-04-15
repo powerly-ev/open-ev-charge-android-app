@@ -120,5 +120,6 @@ fun getLocalProperties(root: Project): Properties {
     return localProperties
 }
 
+fun Properties.getPackageName() = (this["PACKAGE_NAME"] ?: "com.esttp.powerly").toString()
 fun Properties.hasDebugStoreConfig() = this.containsKey("DEBUG_STORE_FILE")
 fun Properties.hasReleaseStoreConfig() = this.containsKey("RELEASE_STORE_FILE")

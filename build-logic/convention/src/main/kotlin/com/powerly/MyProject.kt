@@ -4,7 +4,6 @@ import org.gradle.api.JavaVersion
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 object MyProject {
-    const val APPLICATION_ID = "com.esttp.powerly" // package name
     const val NAMESPACE = "com.powerly"
     const val DISPLAY_NAME = "Powerly"
 
