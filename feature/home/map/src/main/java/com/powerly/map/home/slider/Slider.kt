@@ -4,7 +4,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.IntrinsicSize
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -22,10 +21,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.powerly.ui.components.SlidingCarousel
-import com.powerly.ui.containers.MyCardColum
 import com.powerly.ui.containers.MyColumn
+import com.powerly.ui.containers.MySurfaceColumn
 import com.powerly.ui.theme.AppTheme
 import com.powerly.ui.theme.MyColors
 
@@ -54,7 +54,10 @@ private fun SlidePreview() {
 }
 
 @Composable
-internal fun SectionSlider(onClick: () -> Unit) {
+internal fun SectionSlider(
+    cornerRadius: Dp = 8.dp,
+    onClick: () -> Unit
+) {
     val slides = initSlides(LocalContext.current)
     Box(Modifier.fillMaxWidth()) {
         SlidingCarousel(
@@ -63,7 +66,11 @@ internal fun SectionSlider(onClick: () -> Unit) {
             itemsCount = slides.size,
             itemContent = { index ->
                 val slide = slides.getOrNull(index) ?: slides[0]
-                ItemSlider(slide, onClick = onClick)
+                ItemSlider(
+                    slide,
+                    cornerRadius = cornerRadius,
+                    onClick = onClick
+                )
             }
         )
     }
@@ -73,12 +80,14 @@ internal fun SectionSlider(onClick: () -> Unit) {
 @Composable
 private fun ItemSlider(
     slide: SliderItem,
+    cornerRadius: Dp = 8.dp,
     onClick: () -> Unit
 ) {
-    MyCardColum(
-        padding = PaddingValues(start = 16.dp, end = 0.dp, top = 16.dp, bottom = 16.dp),
-        background = MaterialTheme.colorScheme.secondary,
+    MySurfaceColumn(
+        modifier = Modifier.padding(start = 16.dp, end = 0.dp, top = 16.dp, bottom = 16.dp),
+        color = MaterialTheme.colorScheme.secondary,
         spacing = 16.dp,
+        cornerRadius = cornerRadius,
         onClick = onClick
     ) {
         Text(

@@ -10,6 +10,7 @@ class HomeUiState(deviceHelper: DeviceHelper = DeviceHelper()) {
     val languageCode = mutableStateOf("en")
     val languageName = mutableStateOf("english")
     val isLoggedIn = mutableStateOf(false)
+    val supportMap = mutableStateOf(deviceHelper.supportMap)
     val userName = mutableStateOf("")
     val balance = mutableStateOf("0.00")
     val currency = mutableStateOf("SAR")

@@ -13,4 +13,5 @@ android {
 dependencies {
     implementation(projects.common.lib)
     implementation(projects.common.ui)
+    implementation(projects.feature.powerSource)
 }

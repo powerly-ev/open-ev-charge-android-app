@@ -220,9 +220,10 @@
     <string name="onboarding2_description2">ينصح بالحجز المسبق</string>
     <string name="onboarding2_description3">من خلال التطبيق.</string>
     <string name="onboarding3_title">تشغيل الشاحن</string>
-    <string name="onboarding3_description1">أولاً, قم بتوصيل سيارتك بالشاحن. ثم قم بمسح رمز الاستجابة السريعة (رمز QR) علي الشاحن </string>
-    <string name="onboarding3_description2">لبدء عملية الشحن</string>
-    <string name="onboarding3_description3">, ثم اضغط علي بدء الشحن من التطبيق.</string>
+    <string name="onboarding3_description1">أولاً, قم بتوصيل سيارتك بالشاحن. ثم</string>
+    <string name="onboarding3_description2">قم بمسح رمز الاستجابة السريعة </string>
+    <string name="onboarding3_description3">لبدء عملية الشحن</string>
+    <string name="onboarding3_description4">, ثم اضغط علي بدء الشحن من التطبيق.</string>
     <string name="onboarding4_title1">انتظر</string>
     <string name="onboarding4_title2">حتي تتم عملية الشحن</string>
     <string name="onboarding4_description">كل شئ جاهز! سيظهر مؤقت العد التنازلي لتعرف متي سيتم شحن سيارتك بالكامل. استرخ أو خذ قسطاً من الراحة في الوقت بينهما.</string>

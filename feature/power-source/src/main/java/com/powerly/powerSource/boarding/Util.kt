@@ -17,8 +17,8 @@ internal data class OnBoardingItem(
     val title: AnnotatedString,
     val description: AnnotatedString,
     @DrawableRes val image: Int,
-    @DrawableRes val titleIcon: Int? = null,
-    @DrawableRes val descIcon: Int? = null
+    val titleIcons: List<Int> = emptyList(),
+    val innerIcons: List<Int> = emptyList()
 )
 
 @Composable
@@ -29,14 +29,14 @@ internal fun onBoardingItems(): List<OnBoardingItem> = listOf(
             if (isArabic()) {
                 pushStyle(SpanStyle(color = MaterialTheme.colorScheme.primary))
                 append(stringResource(R.string.onboarding1_title2))
-                appendInlineContent("icon")
+                appendInlineContent("icon1")
                 pushStyle(SpanStyle(color = MaterialTheme.colorScheme.secondary))
                 append("\n")
                 append(stringResource(R.string.onboarding1_title1))
             } else {
                 pushStyle(SpanStyle(color = MaterialTheme.colorScheme.secondary))
                 append(stringResource(R.string.onboarding1_title1))
-                appendInlineContent("icon")
+                appendInlineContent("icon1")
                 pushStyle(SpanStyle(color = MaterialTheme.colorScheme.primary))
                 append(stringResource(R.string.onboarding1_title2))
             }
@@ -45,7 +45,7 @@ internal fun onBoardingItems(): List<OnBoardingItem> = listOf(
             append(stringResource(R.string.onboarding1_description))
         },
         image = R.drawable.onboarding1,
-        titleIcon = R.drawable.location_enable
+        titleIcons = listOf(R.drawable.location_enable)
     ),
     OnBoardingItem(
         index = 1,
@@ -54,7 +54,7 @@ internal fun onBoardingItems(): List<OnBoardingItem> = listOf(
         },
         description = buildAnnotatedString {
             append(stringResource(R.string.onboarding2_description1))
-            appendInlineContent("icon")
+            appendInlineContent("icon1")
             pushStyle(SpanStyle(color = MaterialTheme.colorScheme.primary))
             append(stringResource(R.string.onboarding2_description2))
             pushStyle(SpanStyle(color = MaterialTheme.colorScheme.secondary))
@@ -62,7 +62,7 @@ internal fun onBoardingItems(): List<OnBoardingItem> = listOf(
             append(stringResource(R.string.onboarding2_description3))
         },
         image = R.drawable.onboarding2,
-        descIcon = R.drawable.calendar
+        innerIcons = listOf(R.drawable.calendar)
     ),
     OnBoardingItem(
         index = 2,
@@ -71,15 +71,17 @@ internal fun onBoardingItems(): List<OnBoardingItem> = listOf(
         },
         description = buildAnnotatedString {
             append(stringResource(R.string.onboarding3_description1))
-            appendInlineContent("icon")
-            pushStyle(SpanStyle(color = MaterialTheme.colorScheme.primary))
+            appendInlineContent("icon1")
             append(stringResource(R.string.onboarding3_description2))
+            appendInlineContent("icon2")
+            pushStyle(SpanStyle(color = MaterialTheme.colorScheme.primary))
+            append(stringResource(R.string.onboarding3_description3))
             pushStyle(SpanStyle(color = MaterialTheme.colorScheme.secondary))
             append(" ")
-            append(stringResource(R.string.onboarding3_description3))
+            append(stringResource(R.string.onboarding3_description4))
         },
         image = R.drawable.onboarding3,
-        descIcon = R.drawable.charge
+        innerIcons = listOf(R.drawable.scan, R.drawable.charge)
     ),
     OnBoardingItem(
         index = 3,

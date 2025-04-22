@@ -220,9 +220,10 @@
     <string name="onboarding2_description2">reservado con antelación.</string>
     <string name="onboarding2_description3">.</string>
     <string name="onboarding3_title">Iniciar Cargador</string>
-    <string name="onboarding3_description1">Primero, conecta tu vehículo al cargador. Luego, escanea el código QR en el cargador para</string>
-    <string name="onboarding3_description2">iniciar la carga</string>
-    <string name="onboarding3_description3">del proceso.</string>
+    <string name="onboarding3_description1">Primero, conecta tu vehículo al cargador. Luego,</string>
+    <string name="onboarding3_description2">escanea el código QR en el cargador para</string>
+    <string name="onboarding3_description3">iniciar la carga</string>
+    <string name="onboarding3_description4">del proceso.</string>
     <string name="onboarding4_title1">Espera</string>
     <string name="onboarding4_title2">para Cargar</string>
     <string name="onboarding4_description">¡Configuración completa! Un temporizador de cuenta regresiva mostrará cuánto tiempo falta para que su vehículo esté completamente cargado. Relájese o tómese un momento para usted mientras tanto.</string>

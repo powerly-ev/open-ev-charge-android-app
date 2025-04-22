@@ -1,12 +1,10 @@
 package com.powerly.powerSource.boarding
 
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.material3.MaterialTheme
@@ -21,12 +19,14 @@ import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.PlaceholderVerticalAlign
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
-import com.powerly.ui.containers.MyColumn
 import com.powerly.ui.components.MyIcon
+import com.powerly.ui.containers.MyColumn
 import com.powerly.ui.theme.AppTheme
 
 @Preview(locale = "ar")
@@ -34,75 +34,81 @@ import com.powerly.ui.theme.AppTheme
 private fun OnBoardingSlidePreview() {
     AppTheme {
         val items = onBoardingItems()
-        OnBoardingSlide(onBoardingItem = items[0])
+        OnBoardingSlide(
+            item = items[0],
+            modifier = Modifier
+                .fillMaxWidth()
+                .aspectRatio(ratio = 1.5f),
+            cornerSize = 16.dp
+        )
     }
 }
 
 @Composable
-internal fun OnBoardingSlide(onBoardingItem: OnBoardingItem) {
-    Surface(shape = RoundedCornerShape(16.dp)) {
+internal fun OnBoardingSlide(
+    item: OnBoardingItem,
+    modifier: Modifier,
+    cornerSize: Dp
+) {
+    Surface(shape = RoundedCornerShape(cornerSize)) {
         MyColumn(
-            modifier = Modifier.padding(24.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            spacing = 24.dp
+            spacing = 8.dp
         ) {
-            Surface(shape = RoundedCornerShape(16.dp)) {
+            Surface(shape = RoundedCornerShape(cornerSize)) {
                 Image(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .aspectRatio(ratio = 1.5f),
+                    modifier = modifier,
                     contentScale = ContentScale.Fit,
-                    painter = painterResource(id = onBoardingItem.image),
-                    contentDescription = onBoardingItem.title.text
+                    painter = painterResource(id = item.image),
+                    contentDescription = item.title.text
                 )
             }
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(8.dp))
 
             Text(
-                text = onBoardingItem.title,
-                inlineContent = if (onBoardingItem.titleIcon != null)
-                    inlineContent(icon = onBoardingItem.titleIcon)
-                else mapOf(),
+                text = item.title,
+                inlineContent = inlineContent(item.titleIcons),
                 style = MaterialTheme.typography.titleLarge.copy(
                     fontWeight = FontWeight.Bold,
-                    fontSize = 25.sp
+                    fontSize = 25.sp,
                 ),
+                minLines = 2,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
                 textAlign = TextAlign.Center
             )
 
             Text(
-                text = onBoardingItem.description,
-                style = MaterialTheme.typography.bodyMedium,
-                inlineContent = if (onBoardingItem.descIcon != null)
-                    inlineContent(icon = onBoardingItem.descIcon)
-                else mapOf(),
+                text = item.description,
+                style = MaterialTheme.typography.bodyLarge,
+                inlineContent = inlineContent(item.innerIcons),
                 textAlign = TextAlign.Center,
-                minLines = 3
+                minLines = 3,
+                maxLines = 3,
+                overflow = TextOverflow.Ellipsis
             )
         }
     }
 }
 
 /**
- *  This tells the Text to replace the placeholder string "[id]" by
  *  the composable given in the [InlineTextContent] object.
  */
 @Composable
 private fun inlineContent(
-    id: String = "icon",
-    @DrawableRes icon: Int
-) = mapOf(
-    Pair(
-        id,
-        InlineTextContent(
+    icons: List<Int>
+): Map<String, InlineTextContent> {
+    val map = mutableMapOf<String, InlineTextContent>()
+    icons.forEachIndexed { index, icon ->
+        map["icon${index + 1}"] = InlineTextContent(
             Placeholder(
-                width = 1.2.em,
-                height = 0.75.em,
+                width = 1.4.em,
+                height = 0.95.em,
                 placeholderVerticalAlign = PlaceholderVerticalAlign.AboveBaseline
             )
         ) {
             MyIcon(icon = icon, modifier = Modifier.fillMaxWidth())
         }
-    )
-)
-
+    }
+    return map
+}

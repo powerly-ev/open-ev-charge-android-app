@@ -220,9 +220,10 @@
     <string name="onboarding2_description2">booked in advance</string>
     <string name="onboarding2_description3">.</string>
     <string name="onboarding3_title">Start Charger</string>
-    <string name="onboarding3_description1">First, connect your vehicle to the charger. Then, scan the QR code on the charger to</string>
-    <string name="onboarding3_description2">start the charging</string>
-    <string name="onboarding3_description3">process.</string>
+    <string name="onboarding3_description1">First, connect your vehicle to the charger. Then,</string>
+    <string name="onboarding3_description2">scan the QR code on the charger to</string>
+    <string name="onboarding3_description3">start the charging</string>
+    <string name="onboarding3_description4">process.</string>
     <string name="onboarding4_title1">Wait</string>
     <string name="onboarding4_title2">for Charging</string>
     <string name="onboarding4_description">Setup complete! A countdown timer will show how long until your vehicle is fully charged. Relax or take a moment for yourself in the meantime.</string>

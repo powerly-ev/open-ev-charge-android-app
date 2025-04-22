@@ -34,6 +34,7 @@ import androidx.compose.ui.zIndex
 import com.powerly.core.model.powerly.Connector
 import com.powerly.core.model.powerly.PowerSource
 import com.powerly.map.home.slider.SectionSlider
+import com.powerly.powerSource.boarding.OnBoardingScreenContent
 import com.powerly.resources.R
 import com.powerly.ui.HomeUiState
 import com.powerly.ui.components.ButtonLarge
@@ -57,34 +58,98 @@ import com.powerly.ui.theme.MyColors
 
 private const val TAG = "HomeScreen"
 
-@Preview
-@Composable
-private fun HomeScreenPreview() {
-    val connectors = listOf(
+private val ps1 = PowerSource(
+    id = "1",
+    title = "Station1",
+    distance = 0.02,
+    inUse = false,
+    reserved = 0,
+    onlineStatus = 1,
+    isExternal = false,
+    connectors = listOf(
         Connector(
             name = "Connect 1",
             maxPower = 50.0
         )
     )
-    val ps1 = PowerSource(
-        id = "1",
-        title = "Station1",
-        distance = 0.02,
-        inUse = false,
-        reserved = 0,
-        onlineStatus = 1,
-        isExternal = false,
-        connectors = connectors
-    )
-    val near = listOf(ps1)
+)
+private val nearPowerSources = listOf(ps1, ps1, ps1)
+
+@Preview
+@Composable
+private fun Home_LoggedIn() {
     AppTheme {
         HomeScreenContent(
-            mapState = rememberMapState(initialLocation = null),
+            mapState = rememberMapState(
+                initialLocation = null,
+                locationEnabled = true
+            ),
             uiState = HomeUiState().apply {
                 isLoggedIn.value = true
+                supportMap.value = true
             },
-            nearStations = { near },
-            selectedPowerSource = {null},
+            nearStations = { nearPowerSources },
+            selectedPowerSource = { null },
+            uiEvents = {}
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun Home_LoggedIn_NoLocation() {
+    AppTheme {
+        HomeScreenContent(
+            mapState = rememberMapState(
+                initialLocation = null,
+                locationEnabled = false
+            ),
+            uiState = HomeUiState().apply {
+                isLoggedIn.value = true
+                supportMap.value = true
+            },
+            nearStations = { nearPowerSources },
+            selectedPowerSource = { null },
+            uiEvents = {}
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun Home_Guest_NoLocation() {
+    AppTheme {
+        HomeScreenContent(
+            mapState = rememberMapState(
+                initialLocation = null,
+                locationEnabled = false
+            ),
+            uiState = HomeUiState().apply {
+                isLoggedIn.value = false
+                supportMap.value = true
+            },
+            nearStations = { nearPowerSources },
+            selectedPowerSource = { null },
+            uiEvents = {}
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun Home_LoggedIn_NoMap() {
+    AppTheme {
+        HomeScreenContent(
+            mapState = rememberMapState(
+                initialLocation = null,
+                locationEnabled = false
+            ),
+            uiState = HomeUiState().apply {
+                isLoggedIn.value = true
+                supportMap.value = false
+            },
+            nearStations = { nearPowerSources },
+            selectedPowerSource = { null },
             uiEvents = {}
         )
     }
@@ -101,6 +166,7 @@ internal fun HomeScreenContent(
 ) {
     val isLoggedIn by remember { uiState.isLoggedIn }
     val hasLocation by remember { mapState.locationEnabled }
+    val supportMap = remember { uiState.supportMap.value }
 
     MyScreen(
         header = {
@@ -121,16 +187,23 @@ internal fun HomeScreenContent(
         screenState = screenState
     ) {
         Spacer(modifier = Modifier.height(8.dp))
-        SectionSlider(
+        if (supportMap) SectionSlider(
+            cornerRadius = 8.dp,
             onClick = { uiEvents(HomeEvents.SliderClick) }
         )
-        if (hasLocation) {
+        if (hasLocation && supportMap) {
             SectionMap(
                 mapState = mapState,
                 selectedPowerSource = selectedPowerSource,
                 powerSources = nearStations,
                 onMapClick = { uiEvents(HomeEvents.OpenMap()) },
                 onPowerSource = { uiEvents(HomeEvents.OpenMap(it)) },
+            )
+        } else if (supportMap.not()) {
+            OnBoardingScreenContent(
+                modifier = Modifier.padding(vertical = 8.dp),
+                background = MaterialTheme.colorScheme.background,
+                slideCornerRadius = 8.dp
             )
         } else {
             SectionEnableLocation {

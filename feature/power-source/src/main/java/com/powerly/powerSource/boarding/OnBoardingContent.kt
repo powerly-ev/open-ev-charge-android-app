@@ -1,5 +1,6 @@
 package com.powerly.powerSource.boarding
 
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.rememberPagerState
@@ -12,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.powerly.resources.R
 import com.powerly.ui.containers.MyColumn
@@ -25,32 +27,44 @@ import kotlinx.coroutines.launch
 
 private const val TAG = "OnBoardingScreen"
 
-@Preview(locale = "ar")
+@Preview(locale = "en", heightDp = 500)
 @Composable
 private fun OnBoardingScreenPreview() {
     AppTheme {
-        OnBoardingScreenContent(onDone = {})
+        OnBoardingScreenContent(
+            onDone = {},
+            modifier = Modifier.padding(16.dp)
+        )
     }
 }
 
 @Composable
-internal fun OnBoardingScreenContent(onDone: () -> Unit) {
+fun OnBoardingScreenContent(
+    onDone: (() -> Unit)? = null,
+    modifier: Modifier = Modifier.padding(16.dp),
+    background: Color = Color.White,
+    slideModifier: Modifier = Modifier
+        .fillMaxWidth()
+        .aspectRatio(ratio = 1.5f),
+    slideCornerRadius: Dp = 16.dp
+) {
     val items = onBoardingItems()
     val pagerState = rememberPagerState(pageCount = { items.size })
     val coroutineScope = rememberCoroutineScope()
 
     val onNext: () -> Unit = {
-        if (pagerState.currentPage == items.lastIndex) onDone()
+        if (pagerState.currentPage == items.lastIndex) onDone?.invoke()
         coroutineScope.launch {
             pagerState.animateScrollToPage(pagerState.currentPage + 1)
         }
     }
 
     MyScreen(
-        background = Color.White,
+        background = background,
+        modifier = modifier,
         footer = {
-            MyColumn(modifier = Modifier.padding(16.dp)) {
-                Surface(color = Color.Transparent) {
+            MyColumn(modifier = modifier.padding()) {
+                if (onDone != null) Surface(color = Color.Transparent) {
                     Text(
                         modifier = Modifier
                             .padding(
@@ -63,7 +77,7 @@ internal fun OnBoardingScreenContent(onDone: () -> Unit) {
                         color = MaterialTheme.colorScheme.tertiary
                     )
                 }
-                ButtonLarge(
+                if (onDone != null) ButtonLarge(
                     text = stringResource(id = R.string.next),
                     modifier = Modifier.fillMaxWidth(),
                     onClick = onNext
@@ -75,12 +89,16 @@ internal fun OnBoardingScreenContent(onDone: () -> Unit) {
             indicatorSelectedColor = MaterialTheme.colorScheme.secondary,
             indicatorUnSelectedColor = MyColors.grey250,
             autoSlideDuration = 8000,
-            dotsSpace = 32.dp,
+            dotsSpace = 16.dp,
             itemsCount = items.size,
             pagerState = pagerState,
             itemContent = { index ->
                 val item = items.getOrNull(index) ?: items[0]
-                OnBoardingSlide(item)
+                OnBoardingSlide(
+                    item = item,
+                    modifier = slideModifier,
+                    cornerSize = slideCornerRadius
+                )
             }
         )
     }

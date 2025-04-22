@@ -220,9 +220,10 @@
     <string name="onboarding2_description2">réservé à l\'avance.</string>
     <string name="onboarding2_description3">.</string>
     <string name="onboarding3_title">Démarrer le Chargeur</string>
-    <string name="onboarding3_description1">D\'abord, connectez votre véhicule au chargeur. Ensuite, scannez le code QR sur le chargeur pour</string>
-    <string name="onboarding3_description2">démarrer la charge</string>
-    <string name="onboarding3_description3">du processus.</string>
+    <string name="onboarding3_description1">D\'abord, connectez votre véhicule au chargeur. Ensuite,</string>
+    <string name="onboarding3_description2">Ensuite, scannez le code QR sur le chargeur pour</string>
+    <string name="onboarding3_description3">démarrer la charge</string>
+    <string name="onboarding3_description4">du processus.</string>
     <string name="onboarding4_title1">Attendre</string>
     <string name="onboarding4_title2">pour la Charge</string>
     <string name="onboarding4_description">Configuration terminée ! Un compte à rebours indiquera combien de temps il reste avant que votre véhicule soit complètement chargé. Détendez-vous ou prenez un moment pour vous en attendant.</string>

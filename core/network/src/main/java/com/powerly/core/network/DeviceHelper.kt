@@ -56,7 +56,7 @@ class DeviceHelper @Inject constructor(
     val isDebug: Boolean get() = BuildConfig.DEBUG ?: false
     val googlePlacesApiKey: String get() = BuildConfig.PLACES_API_KEY
     val publishableKey: String get() = BuildConfig.STRIP_PUBLISHABLE_KEY
-
+    val supportMap: Boolean get() = googlePlacesApiKey.isNotBlank()
     val appLink get() = "https://play.google.com/store/apps/details?id=${context?.packageName}"
 
 
