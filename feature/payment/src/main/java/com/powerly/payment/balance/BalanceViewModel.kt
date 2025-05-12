@@ -22,6 +22,7 @@ import com.powerly.resources.R
 import com.powerly.ui.dialogs.alert.initAlertDialogState
 import com.stripe.android.payments.paymentlauncher.PaymentResult
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.flow
@@ -126,6 +127,7 @@ class BalanceViewModel @Inject constructor(
         val result = userRepository.getUserDetails()
         if (result is ApiStatus.Success) {
             storageManager.userDetails = result.data
+            delay(500)
         }
     }
 

@@ -10,7 +10,8 @@ import com.powerly.splash.update.UpdateAppDialog
 import com.powerly.ui.extensions.finish
 
 fun NavGraphBuilder.splashDestinations(
-    navController: NavHostController
+    navController: NavHostController,
+    onRefreshUser: () -> Unit
 ) {
     composable<AppRoutes.Splash> {
         val context = LocalContext.current
@@ -23,7 +24,8 @@ fun NavGraphBuilder.splashDestinations(
                 }
             },
             openHomeScreen = { extras ->
-                navController.navigate(AppRoutes.Navigation){
+                onRefreshUser()
+                navController.navigate(AppRoutes.Navigation) {
                     popUpTo(AppRoutes.Splash) {
                         inclusive = true
                     }

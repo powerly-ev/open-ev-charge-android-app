@@ -1,6 +1,7 @@
 package com.powerly
 
 import android.content.Context
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -45,12 +46,11 @@ class MainViewModel @Inject constructor(
     fun refreshUser() {
         val user = storageManager.userDetails
         if (user != null) updateUserState(user)
-        else {
-            uiState.isLoggedIn.value = false
-        }
+        else { uiState.isLoggedIn.value = false }
     }
 
     private fun updateUserState(details: User) {
+        Log.v(TAG,"user-balance ${details.balance}")
         with(uiState) {
             isLoggedIn.value = true
             userName.value = details.firstName

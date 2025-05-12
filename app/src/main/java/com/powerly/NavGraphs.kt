@@ -64,7 +64,10 @@ fun RootGraph(
             )
         }
 
-        splashDestinations(navController)
+        splashDestinations(
+            navController = navController,
+            onRefreshUser = { mainViewModel.refreshUser() }
+        )
 
         composable<AppRoutes.Navigation> {
             NavigationScreen(
@@ -101,7 +104,8 @@ fun RootGraph(
         paymentDestinations(
             navController = navController,
             paymentViewModel,
-            balanceViewModel
+            balanceViewModel,
+            onRefreshUser = { mainViewModel.refreshUser() }
         )
 
         vehiclesDestinations(

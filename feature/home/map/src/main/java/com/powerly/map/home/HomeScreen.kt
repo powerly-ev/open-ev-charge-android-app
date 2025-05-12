@@ -45,10 +45,9 @@ fun HomeScreen(
     homeViewModel: HomeViewModel,
     navigate: (NavigationEvents) -> Unit
 ) {
-    val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
     val screenState = rememberBasicScreenState(LoadingState())
-    var signInOptionsDialog = rememberMyDialogState()
+    val signInOptionsDialog = rememberMyDialogState()
 
     val isLoggedIn by remember { uiState.isLoggedIn }
     var doOnce by rememberSaveable { mutableStateOf(true) }

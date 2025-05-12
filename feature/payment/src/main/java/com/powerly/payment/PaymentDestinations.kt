@@ -17,7 +17,8 @@ import com.powerly.payment.wallet.WalletScreen
 fun NavGraphBuilder.paymentDestinations(
     navController: NavHostController,
     paymentViewModel: PaymentViewModel,
-    balanceViewModel: BalanceViewModel
+    balanceViewModel: BalanceViewModel,
+    onRefreshUser: () -> Unit
 ) {
     composable<AppRoutes.Payment.Wallet> {
         WalletScreen(
@@ -34,7 +35,10 @@ fun NavGraphBuilder.paymentDestinations(
                 balanceViewModel.setBalanceItem(it)
                 navController.navigate(AppRoutes.Payment.Balance.Add)
             },
-            onBack = { navController.popBackStack() }
+            onBack = {
+                onRefreshUser()
+                navController.popBackStack()
+            }
         )
     }
 
