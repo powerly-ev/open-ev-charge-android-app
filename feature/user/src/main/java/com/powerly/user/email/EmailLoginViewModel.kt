@@ -136,13 +136,12 @@ class EmailLoginViewModel @Inject constructor(
     fun resendPinCode() {
         viewModelScope.launch {
             Log.i(TAG, "resendPinCode")
-            // Launch a coroutine to collect the phone resend code flow.
             // Toggle the reset pin flag.
             // this clears the existing pin code field
             resetPin.value = resetPin.value.not()
-            screenState.loading = false
-            val result = loginRepository.emailVerifyResend(email.value)
             screenState.loading = true
+            val result = loginRepository.emailVerifyResend(email.value)
+            screenState.loading = false
             // Handle the different API states.
             when (result) {
                 is ApiStatus.Success -> {
