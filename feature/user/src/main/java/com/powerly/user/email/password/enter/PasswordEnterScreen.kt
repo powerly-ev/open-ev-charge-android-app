@@ -11,6 +11,7 @@ import com.powerly.resources.R
 import com.powerly.ui.dialogs.alert.AlertDialogProperties
 import com.powerly.ui.dialogs.alert.MyAlertDialog
 import com.powerly.ui.dialogs.alert.rememberAlertDialogState
+import com.powerly.user.email.LoginResult
 import kotlinx.coroutines.launch
 
 private const val TAG = "PasswordEnterScreen"
@@ -18,14 +19,12 @@ private const val TAG = "PasswordEnterScreen"
 /**
  * Composable function for the email and password sign in screen.
  *
- * @param viewModel The [EmailLoginViewModel] for managing email and password sign in.
- * @param navigateToHome Callback to navigate to the home screen.
- * @param onBack Callback to navigate back to the previous screen.
  */
 @Composable
 internal fun EmailPasswordEnterScreen(
     viewModel: EmailLoginViewModel,
     navigateToHome: () -> Unit,
+    navigateToVerification: () -> Unit,
     navigateToPasswordReset: () -> Unit,
     onBack: () -> Unit
 ) {
@@ -45,11 +44,14 @@ internal fun EmailPasswordEnterScreen(
     fun login(it: String) {
         password = it
         coroutineScope.launch {
-            val loggedIn = viewModel.emailLogin(email, password)
-            if (loggedIn) navigateToHome()
+            val state = viewModel.emailLogin(email, password)
+            when (state) {
+                LoginResult.SUCCESS -> navigateToHome()
+                LoginResult.VERIFICATION_REQUIRED -> navigateToVerification()
+                LoginResult.ERROR -> {}
+            }
         }
     }
-
 
     MyAlertDialog(
         state = forgetPasswordDialog,

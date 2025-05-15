@@ -125,6 +125,9 @@ fun NavGraphBuilder.userDestinations(
                 navigateToPasswordReset = {
                     navController.navigate(AppRoutes.User.Email.Password.Reset)
                 },
+                navigateToVerification = {
+                    navController.navigate(AppRoutes.User.Email.Verification)
+                },
                 onBack = { navController.popBackStack() }
             )
         }

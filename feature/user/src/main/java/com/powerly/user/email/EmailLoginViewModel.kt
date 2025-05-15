@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.powerly.core.data.repositories.LoginEmailRepository
+import com.powerly.core.model.api.ApiErrorConstants
 import com.powerly.core.model.api.ApiStatus
 import com.powerly.core.model.location.Country
 import com.powerly.core.model.user.EmailCheck
@@ -57,7 +58,7 @@ class EmailLoginViewModel @Inject constructor(
     /**
      * Logs in the user with the provided email and password.
      */
-    suspend fun emailLogin(email: String, password: String): Boolean {
+    suspend fun emailLogin(email: String, password: String): LoginResult {
         // Get the device token
         screenState.loading = true
         val imei = storageManager.imei()
@@ -68,18 +69,28 @@ class EmailLoginViewModel @Inject constructor(
             is ApiStatus.Success -> {
                 Log.i(TAG, "user - ${result.data}")
                 saveLogin(result.data)
-                return true
+                return LoginResult.SUCCESS
             }
 
             is ApiStatus.Error -> {
+                val message = result.msg
+                Log.i(TAG, "message: $message")
                 screenState.showMessage(result.msg)
+                // when email verification is required
+                if (message.code == ApiErrorConstants.UNAUTHENTICATED) {
+                    // resend a verification code to the email
+                    val result = loginRepository.emailVerifyResend(email)
+                    if (result.isSuccessful) {
+                        this.email.value = email
+                        return LoginResult.VERIFICATION_REQUIRED
+                    }
+                }
             }
 
             else -> {}
         }
-        return false
+        return LoginResult.ERROR
     }
-
 
     /**
      * Registers the user with the provided email and password.
@@ -209,4 +220,10 @@ class EmailLoginViewModel @Inject constructor(
     companion object {
         private const val TAG = "EmailLoginViewModel"
     }
+}
+
+enum class LoginResult {
+    SUCCESS,
+    VERIFICATION_REQUIRED,
+    ERROR
 }
