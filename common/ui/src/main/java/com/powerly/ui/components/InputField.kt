@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.LocalAutofillHighlightColor
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -16,6 +17,7 @@ import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -86,6 +88,7 @@ fun MyTextField(
     showKeyboard: Boolean = false,
     focusedBorderColor: Color = MaterialTheme.colorScheme.secondary,
     unfocusedBorderColor: Color = MyColors.borderColor,
+    highlightColor: Color = Color.Transparent,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     onValueChange: (String) -> Unit,
 ) {
@@ -102,45 +105,47 @@ fun MyTextField(
         }
     }
 
-    OutlinedTextField(
-        value = value,
-        onValueChange = onValueChange,
-        modifier = modifier.focusRequester(focusRequester),
-        shape = RoundedCornerShape(cornerRadius),
-        minLines = lines,
-        maxLines = maxLines,
-        trailingIcon = trailingView,
-        isError = isError(),
-        enabled = enabled,
-        keyboardOptions = keyboardOptions,
-        placeholder = {
-            placeholder?.let {
-                Text(
-                    text = it,
-                    color = MaterialTheme.colorScheme.tertiary
+    CompositionLocalProvider(LocalAutofillHighlightColor provides highlightColor) {
+        OutlinedTextField(
+            value = value,
+            onValueChange = onValueChange,
+            modifier = modifier.focusRequester(focusRequester),
+            shape = RoundedCornerShape(cornerRadius),
+            minLines = lines,
+            maxLines = maxLines,
+            trailingIcon = trailingView,
+            isError = isError(),
+            enabled = enabled,
+            keyboardOptions = keyboardOptions,
+            placeholder = {
+                placeholder?.let {
+                    Text(
+                        text = it,
+                        color = MaterialTheme.colorScheme.tertiary
+                    )
+                }
+            },
+            supportingText = {
+                if (isError()) Text(
+                    modifier = Modifier.fillMaxWidth(),
+                    text = error(),
+                    color = MaterialTheme.colorScheme.error
                 )
-            }
-        },
-        supportingText = {
-            if (isError()) Text(
-                modifier = Modifier.fillMaxWidth(),
-                text = error(),
-                color = MaterialTheme.colorScheme.error
-            )
-        },
-        label = {
-            label?.let {
-                Text(
-                    text = it,
-                    color = MaterialTheme.colorScheme.tertiary
-                )
-            }
-        },
-        colors = OutlinedTextFieldDefaults.colors(
-            focusedBorderColor = focusedBorderColor,
-            unfocusedBorderColor = unfocusedBorderColor,
-        ),
-    )
+            },
+            label = {
+                label?.let {
+                    Text(
+                        text = it,
+                        color = MaterialTheme.colorScheme.tertiary
+                    )
+                }
+            },
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedBorderColor = focusedBorderColor,
+                unfocusedBorderColor = unfocusedBorderColor,
+            ),
+        )
+    }
 }
 
 @Composable
@@ -154,6 +159,7 @@ fun MyPasswordTextField(
     showKeyboard: Boolean = false,
     focusedBorderColor: Color = MaterialTheme.colorScheme.secondary,
     unfocusedBorderColor: Color = MyColors.borderColor,
+    highlightColor: Color = Color.Transparent,
     onValueChange: (String) -> Unit,
 ) {
     var showPassword by remember { mutableStateOf(false) }
@@ -169,54 +175,56 @@ fun MyPasswordTextField(
             keyboard?.show()
         }
     }
-    OutlinedTextField(
-        value = value,
-        onValueChange = onValueChange,
-        modifier = modifier.focusRequester(focusRequester),
-        shape = RoundedCornerShape(8.dp),
-        singleLine = true,
-        isError = isError(),
-        keyboardOptions = keyboardOptions,
-        visualTransformation = if (showPassword) VisualTransformation.None
-        else PasswordVisualTransformation(),
-        suffix = {
-            MyIcon(
-                icon = if (showPassword.not()) R.drawable.password_show
-                else R.drawable.password_hide,
-                modifier = Modifier
-                    .size(24.dp)
-                    .clickable { showPassword = showPassword.not() }
-            )
-        },
-        placeholder = {
-            placeholder?.let {
-                Text(
-                    text = it,
-                    color = MaterialTheme.colorScheme.tertiary
+    CompositionLocalProvider(LocalAutofillHighlightColor provides highlightColor) {
+        OutlinedTextField(
+            value = value,
+            onValueChange = onValueChange,
+            modifier = modifier.focusRequester(focusRequester),
+            shape = RoundedCornerShape(8.dp),
+            singleLine = true,
+            isError = isError(),
+            keyboardOptions = keyboardOptions,
+            visualTransformation = if (showPassword) VisualTransformation.None
+            else PasswordVisualTransformation(),
+            suffix = {
+                MyIcon(
+                    icon = if (showPassword.not()) R.drawable.password_show
+                    else R.drawable.password_hide,
+                    modifier = Modifier
+                        .size(24.dp)
+                        .clickable { showPassword = showPassword.not() }
                 )
-            }
-        },
-        supportingText = {
-            if (isError()) Text(
-                modifier = Modifier.fillMaxWidth(),
-                text = error(),
-                color = MaterialTheme.colorScheme.error,
-                style = MaterialTheme.typography.labelMedium
-            )
-        },
-        label = {
-            label?.let {
-                Text(
-                    text = it,
-                    color = MaterialTheme.colorScheme.tertiary
+            },
+            placeholder = {
+                placeholder?.let {
+                    Text(
+                        text = it,
+                        color = MaterialTheme.colorScheme.tertiary
+                    )
+                }
+            },
+            supportingText = {
+                if (isError()) Text(
+                    modifier = Modifier.fillMaxWidth(),
+                    text = error(),
+                    color = MaterialTheme.colorScheme.error,
+                    style = MaterialTheme.typography.labelMedium
                 )
-            }
-        },
-        colors = OutlinedTextFieldDefaults.colors(
-            focusedBorderColor = focusedBorderColor,
-            unfocusedBorderColor = unfocusedBorderColor,
-        ),
-    )
+            },
+            label = {
+                label?.let {
+                    Text(
+                        text = it,
+                        color = MaterialTheme.colorScheme.tertiary
+                    )
+                }
+            },
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedBorderColor = focusedBorderColor,
+                unfocusedBorderColor = unfocusedBorderColor,
+            ),
+        )
+    }
 }
 
 @Preview

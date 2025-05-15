@@ -5,6 +5,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalAutofillManager
 import androidx.compose.ui.res.stringResource
 import com.powerly.user.email.EmailLoginViewModel
 import com.powerly.resources.R
@@ -29,6 +30,7 @@ internal fun EmailPasswordEnterScreen(
     onBack: () -> Unit
 ) {
     val coroutineScope = rememberCoroutineScope()
+    val autoFillManager = LocalAutofillManager.current
     val forgetPasswordDialog = rememberAlertDialogState()
     val screenState = remember { viewModel.screenState }
     val email by remember { viewModel.email }
@@ -46,7 +48,11 @@ internal fun EmailPasswordEnterScreen(
         coroutineScope.launch {
             val state = viewModel.emailLogin(email, password)
             when (state) {
-                LoginResult.SUCCESS -> navigateToHome()
+                LoginResult.SUCCESS -> {
+                    autoFillManager?.commit()
+                    navigateToHome()
+                }
+
                 LoginResult.VERIFICATION_REQUIRED -> navigateToVerification()
                 LoginResult.ERROR -> {}
             }

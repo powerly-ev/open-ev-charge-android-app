@@ -5,6 +5,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalAutofillManager
 import com.powerly.user.UserViewModel
 import com.powerly.user.email.EmailLoginViewModel
 import kotlinx.coroutines.launch
@@ -29,6 +30,7 @@ internal fun EmailPasswordCreateScreen(
     onBack: () -> Unit
 ) {
     val coroutineScope = rememberCoroutineScope()
+    val autofillManager = LocalAutofillManager.current
     val screenState = remember { viewModel.screenState }
     var country by remember { userViewModel.country }
     val email by remember { viewModel.email }
@@ -46,7 +48,10 @@ internal fun EmailPasswordCreateScreen(
             coroutineScope.launch {
                 if (country == null) return@launch
                 val registered = viewModel.register(country!!)
-                if (registered) navigateToVerification()
+                if (registered) {
+                    autofillManager?.commit()
+                    navigateToVerification()
+                }
             }
         },
         onBack = onBack
