@@ -1,6 +1,7 @@
 package com.powerly.user.email
 
 import android.util.Log
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -30,6 +31,7 @@ class EmailLoginViewModel @Inject constructor(
 
     val resetPin = mutableStateOf(false)
     val resetCounter = mutableStateOf(false)
+    val counterTimeout = mutableIntStateOf(60)
     val email = mutableStateOf("")
     val password = mutableStateOf("")
 
@@ -174,19 +176,41 @@ class EmailLoginViewModel @Inject constructor(
      * Reset Password
      */
 
-    suspend fun forgetPassword(email: String): Boolean {
+    suspend fun forgetPassword(email: String): Int? {
         screenState.loading = true
         val result = loginRepository.emailForgetPassword(email)
         screenState.loading = false
         when (result) {
-            is ApiStatus.Success -> return true
+            is ApiStatus.Success -> return result.data.canResendInSeconds
             is ApiStatus.Error -> {
                 screenState.showMessage(result.msg)
             }
 
             else -> {}
         }
-        return false
+        return null
+    }
+
+    fun forgetPasswordResendCode() {
+        viewModelScope.launch {
+            screenState.loading = true
+            //val result = loginRepository.emailResetResend(email.value)
+            val result = loginRepository.emailForgetPassword(email.value)
+            screenState.loading = false
+            when (result) {
+                is ApiStatus.Success -> {
+                    resetPin.value = resetPin.value.not()
+                    counterTimeout.intValue = result.data.canResendInSeconds
+                    resetCounter.value = resetCounter.value.not()
+                }
+
+                is ApiStatus.Error -> {
+                    screenState.showMessage(result.msg)
+                }
+
+                else -> {}
+            }
+        }
     }
 
     suspend fun resetPassword(pin: String, password: String): Boolean {

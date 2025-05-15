@@ -48,6 +48,8 @@ import com.powerly.ui.dialogs.loading.rememberScreenState
 import com.powerly.ui.extensions.onClick
 import com.powerly.ui.theme.AppTheme
 import com.powerly.ui.theme.MyColors
+import com.powerly.user.email.verify.SectionCounter
+import com.powerly.user.email.verify.VerificationEvents
 import java.util.Locale
 import java.util.concurrent.TimeUnit
 
@@ -60,6 +62,8 @@ private fun VerificationScreenPreview() {
     AppTheme {
         ResetPasswordScreenContent(
             resetPin = { false },
+            timeout = { 60 },
+            resetCounter = { false },
             userId = "m@powerly.com",
             uiEvents = {}
         )
@@ -69,7 +73,9 @@ private fun VerificationScreenPreview() {
 @Composable
 internal fun ResetPasswordScreenContent(
     screenState: ScreenState = rememberScreenState(),
+    timeout: () -> Int,
     resetPin: () -> Boolean,
+    resetCounter: () -> Boolean,
     userId: String,
     uiEvents: (EmailResetEvents) -> Unit
 ) {
@@ -135,6 +141,12 @@ internal fun ResetPasswordScreenContent(
             resetPin = resetPin,
             onEnter = { pinCode = it }
         )
+        SectionCounter(
+            timeout = timeout(),
+            resetCounter = resetCounter,
+            onResend = { uiEvents(EmailResetEvents.ResendPin) }
+        )
+        Spacer(Modifier.height(16.dp))
         MyPasswordTextField(
             value = password,
             label = stringResource(R.string.login_email_password_new),

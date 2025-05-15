@@ -166,11 +166,11 @@ private fun SectionPinCode(
 }
 
 @Composable
-private fun SectionCounter(
+internal fun SectionCounter(
     resetCounter: () -> Boolean,
     timeout: Int,
-    onResend: () -> Unit,
-    onHelp: () -> Unit
+    onHelp: (() -> Unit)? = null,
+    onResend: () -> Unit
 ) {
 
     var count by remember { mutableStateOf("") }
@@ -220,7 +220,7 @@ private fun SectionCounter(
                 modifier = Modifier.onClick(onResend)
             )
         }
-        if (showHelp) {
+        if (showHelp && onHelp != null) {
             Spacer(Modifier.height(16.dp))
             ButtonSmall(
                 text = stringResource(id = R.string.login_need_help),

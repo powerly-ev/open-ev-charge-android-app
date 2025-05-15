@@ -123,6 +123,7 @@ fun NavGraphBuilder.userDestinations(
                     navigateToHome(loggedIn = true)
                 },
                 navigateToPasswordReset = {
+                    emailViewModel.counterTimeout.intValue = it
                     navController.navigate(AppRoutes.User.Email.Password.Reset)
                 },
                 navigateToVerification = {

@@ -26,7 +26,7 @@ internal fun EmailPasswordEnterScreen(
     viewModel: EmailLoginViewModel,
     navigateToHome: () -> Unit,
     navigateToVerification: () -> Unit,
-    navigateToPasswordReset: () -> Unit,
+    navigateToPasswordReset: (Int) -> Unit,
     onBack: () -> Unit
 ) {
     val coroutineScope = rememberCoroutineScope()
@@ -38,8 +38,8 @@ internal fun EmailPasswordEnterScreen(
 
     fun forgetPassword() {
         coroutineScope.launch {
-            val reset = viewModel.forgetPassword(email)
-            if (reset) navigateToPasswordReset()
+            val timeout = viewModel.forgetPassword(email)
+            if (timeout != null) navigateToPasswordReset(timeout)
         }
     }
 

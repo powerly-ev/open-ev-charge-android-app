@@ -3,10 +3,8 @@ package com.powerly.user.email.password.reset
 import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import com.powerly.user.email.EmailLoginViewModel
 import kotlinx.coroutines.launch
 
@@ -22,7 +20,9 @@ internal fun EmailPasswordResetScreen(
 
     val coroutineScope = rememberCoroutineScope()
     val screenState = remember { viewModel.screenState }
-    var resetPin by remember { mutableStateOf(false) }
+    val resetPin by remember { viewModel.resetPin }
+    val resetCounter by remember { viewModel.resetCounter }
+    val resetTimeOut by remember { viewModel.counterTimeout }
     val email by remember { viewModel.email }
 
     BackHandler(onBack = {})
@@ -37,13 +37,17 @@ internal fun EmailPasswordResetScreen(
         }
     }
 
+
     ResetPasswordScreenContent(
         screenState = screenState,
         resetPin = { resetPin },
+        resetCounter = { resetCounter },
+        timeout = { resetTimeOut },
         userId = email,
         uiEvents = {
             when (it) {
                 is EmailResetEvents.Edit -> onBack()
+                is EmailResetEvents.ResendPin -> viewModel.forgetPasswordResendCode()
                 is EmailResetEvents.Next -> resetPassword(it.pin, it.password)
             }
         }
