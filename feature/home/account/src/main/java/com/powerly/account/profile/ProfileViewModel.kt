@@ -38,11 +38,12 @@ class ProfileViewModel @Inject constructor(
     val screenState = initScreenState()
     private var profileUpdated: Boolean = false
 
-    fun initCountry() {
+    init {
         user.value = storageManager.userDetails
         countryManager.getSavedCountry()?.let {
             userCountry.value = it
         }
+        Log.v(TAG, "user = $user")
         Log.v(TAG, "userCountry = ${userCountry.value.name}")
     }
 

@@ -116,6 +116,7 @@ class StorageManager @Inject constructor(
     suspend fun logOutAll() {
         retrofitClient.initClients("")
         _user = null
+        userDetails = null
         preferences.edit { clear() }
         withContext(ioDispatcher) {
             localDataSource.clearCountry()

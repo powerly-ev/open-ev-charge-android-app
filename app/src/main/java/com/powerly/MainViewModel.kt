@@ -1,6 +1,5 @@
 package com.powerly
 
-import android.content.Context
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.lifecycle.ViewModel
@@ -12,7 +11,6 @@ import com.powerly.core.network.DeviceHelper
 import com.powerly.lib.managers.LocaleManager
 import com.powerly.lib.managers.StorageManager
 import com.powerly.payment.PaymentManager
-import com.powerly.resources.R
 import com.powerly.ui.HomeUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -30,7 +28,7 @@ class MainViewModel @Inject constructor(
     val uiState = HomeUiState(deviceHelper)
     val isLoggedIn: Boolean get() = storageManager.isLoggedIn
 
-    fun initUiState(context: Context) {
+    fun initUiState() {
         with(uiState) {
             languageName.value = localeManager.getLanguageName()
             languageCode.value = storageManager.currentLanguage
@@ -38,7 +36,7 @@ class MainViewModel @Inject constructor(
             if (isLoggedIn.value) {
                 updateUserState(storageManager.userDetails!!)
             } else {
-                userName.value = context.getString(R.string.profile_guest)
+                userName.value = ""
             }
         }
     }
@@ -46,11 +44,14 @@ class MainViewModel @Inject constructor(
     fun refreshUser() {
         val user = storageManager.userDetails
         if (user != null) updateUserState(user)
-        else { uiState.isLoggedIn.value = false }
+        else {
+            uiState.isLoggedIn.value = false
+            uiState.userName.value = ""
+        }
     }
 
     private fun updateUserState(details: User) {
-        Log.v(TAG,"user-balance ${details.balance}")
+        Log.v(TAG, "user-balance ${details.balance}")
         with(uiState) {
             isLoggedIn.value = true
             userName.value = details.firstName

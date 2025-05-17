@@ -13,11 +13,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
-import com.powerly.resources.R
-import com.powerly.ui.extensions.safeStartActivity
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.github.alexzhirkevich.customqrgenerator.QrData
 import com.github.alexzhirkevich.customqrgenerator.vector.QrCodeDrawable
-import com.powerly.account.profile.ProfileViewModel
+import com.powerly.resources.R
+import com.powerly.ui.extensions.safeStartActivity
 
 /**
  * Composable function that displays the Invite screen.
@@ -28,7 +28,7 @@ import com.powerly.account.profile.ProfileViewModel
  */
 @Composable
 internal fun InviteScreen(
-    viewModel: ProfileViewModel,
+    viewModel: InviteViewModel = hiltViewModel(),
     onBack: () -> Unit
 ) {
     val context = LocalContext.current

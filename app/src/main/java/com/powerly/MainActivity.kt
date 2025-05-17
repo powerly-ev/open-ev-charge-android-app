@@ -25,7 +25,7 @@ class MainActivity : ComponentActivity() {
     @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.initUiState(this)
+        viewModel.initUiState()
         setContent {
             AppTheme {
                 RootGraph(startDestination = intent.getMainDestination())

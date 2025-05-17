@@ -11,7 +11,6 @@ import androidx.navigation.compose.dialog
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.powerly.account.accountDestinations
-import com.powerly.account.profile.ProfileViewModel
 import com.powerly.core.model.powerly.OrderTab
 import com.powerly.core.model.util.Message
 import com.powerly.home.NavigationScreen
@@ -41,7 +40,6 @@ fun RootGraph(
     paymentViewModel: PaymentViewModel = hiltViewModel(),
     balanceViewModel: BalanceViewModel = hiltViewModel(),
     vehiclesViewModel: VehiclesViewModel = hiltViewModel(),
-    profileViewModel: ProfileViewModel = hiltViewModel(),
     userViewModel: UserViewModel = hiltViewModel(),
     emailViewModel: EmailLoginViewModel = hiltViewModel(),
     psViewModel: PsViewModel = hiltViewModel(),
@@ -115,7 +113,6 @@ fun RootGraph(
 
         accountDestinations(
             navController = navController,
-            viewModel = profileViewModel,
             onRefreshUser = { mainViewModel.refreshUser() }
         )
     }

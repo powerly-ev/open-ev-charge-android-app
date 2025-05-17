@@ -92,10 +92,7 @@ object AppRoutes {
         data object Invite : Route()
 
         @Serializable
-        data object Profile : Route() {
-            @Serializable
-            data object Country : Route()
-        }
+        data object Profile : Route()
 
         @Serializable
         data object Language : Route()

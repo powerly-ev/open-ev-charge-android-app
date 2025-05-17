@@ -148,7 +148,7 @@ private fun SectionHeader(
     MyRow(
         modifier = Modifier
             .background(Color.White)
-            .clickable(onClick = openProfile)
+            .clickable(onClick = { if (isLoggedIn) openProfile() })
             .fillMaxWidth()
             .padding(vertical = 8.dp, horizontal = 24.dp)
     ) {

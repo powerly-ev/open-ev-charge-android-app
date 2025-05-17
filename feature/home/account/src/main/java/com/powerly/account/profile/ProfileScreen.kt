@@ -2,17 +2,18 @@ package com.powerly.account.profile
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.powerly.resources.R
 import com.powerly.ui.dialogs.alert.AlertDialogProperties
 import com.powerly.ui.dialogs.alert.MyAlertDialog
 import com.powerly.ui.dialogs.alert.rememberAlertDialogState
+import com.powerly.ui.dialogs.countries.CountriesDialog
+import com.powerly.ui.dialogs.rememberMyDialogState
 import kotlinx.coroutines.launch
 
 private const val TAG = "ProfileScreen"
@@ -24,35 +25,35 @@ private const val TAG = "ProfileScreen"
  *
  * @param viewModel The [ProfileViewModel] instance that manages the profile screen's data and logic.
  * @param navigateToWelcomeScreen A lambda function to navigate to the welcome screen. Called after successful logout or account deletion.
- * @param selectedCountry A lambda function to handle the country selection event.
  * @param onClose A lambda function to handle the close button event.
  */
 @Composable
 internal fun ProfileScreen(
-    viewModel: ProfileViewModel,
+    viewModel: ProfileViewModel = hiltViewModel(),
     navigateToWelcomeScreen: () -> Unit,
     focusPassword: Boolean = false,
-    selectedCountry: () -> Unit,
     onClose: (updateProfile: Boolean) -> Unit,
 ) {
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
 
     val screenState = remember { viewModel.screenState }
+    val countriesDialog = rememberMyDialogState()
     val deleteAccountDialog = rememberAlertDialogState()
     val signOutDialog = rememberAlertDialogState()
 
-    var country by remember { viewModel.userCountry }
-    var user by remember { viewModel.user }
-
-    LaunchedEffect(Unit) {
-        viewModel.initCountry()
-    }
-
+    val country by remember { viewModel.userCountry }
+    val user by remember { viewModel.user }
 
     BackHandler(enabled = true) {
         onClose(viewModel.isProfileUpdated())
     }
+
+    CountriesDialog(
+        state = countriesDialog,
+        selectedCountry = viewModel::getUserCountry,
+        onSelectCountry = viewModel::updateUserCountry
+    )
 
     /**
      * Displays a dialog for the user to logout his account.
@@ -109,7 +110,10 @@ internal fun ProfileScreen(
                     onClose(viewModel.isProfileUpdated())
                 }
 
-                is ProfileEvents.SelectCountry -> selectedCountry()
+                is ProfileEvents.SelectCountry -> {
+                    countriesDialog.show()
+                }
+
                 is ProfileEvents.Save -> {
                     viewModel.updateProfile(
                         newUser = it.newUser,
