@@ -38,7 +38,7 @@ coilComposeVersion = "2.7.0"
 ## Google
 firebaseBom = "33.13.0"
 firebaseMessaging = "24.1.1"
-googlePlaces = "4.2.0"
+googlePlaces = "4.1.0"
 playServicesLocation = "21.3.0"
 ## Third Parties
 retrofit = "2.11.0"
