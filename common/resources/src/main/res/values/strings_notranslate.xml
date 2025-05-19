@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name" translatable="false">Open Powerly</string>
     <string name="app_slogan" translatable="false">Smart Charge. Anywhere.</string>
-    <string name="app_powered_by" translatable="false">By Powerly</string>
+    <string name="app_powered_by" translatable="false">By Powerly.app</string>
     <string name="select_app_language" translatable="false">Select language |  اخْتَار اللُّغَة | Choisir la langue | Seleccione el idioma</string>
 </resources>

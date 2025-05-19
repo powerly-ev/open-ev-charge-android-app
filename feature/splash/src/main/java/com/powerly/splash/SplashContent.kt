@@ -92,7 +92,7 @@ internal fun SplashScreenContent(
             Text(
                 text = stringResource(R.string.app_powered_by),
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.secondary,
+                color = MaterialTheme.colorScheme.tertiary,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
