@@ -62,7 +62,9 @@ class CountryManager @Inject constructor(
      * @return The detected Country or the default country if detection fails.
      */
     fun detectCountry(): Country? {
-        return detectCountryByTelephonyManager() ?: defaultCountry
+        return detectCountryByTelephonyManager()
+            ?: getCountryById(storageManager.countryId)
+            ?: defaultCountry
     }
 
     fun getSavedCountry(): Country? {

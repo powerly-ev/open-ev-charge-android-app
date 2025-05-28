@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.core.net.toUri
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.powerly.core.analytics.EVENTS
 import com.powerly.core.analytics.EventsManager
 import com.powerly.core.data.model.BalanceRefillStatus
@@ -24,9 +23,7 @@ import com.stripe.android.payments.paymentlauncher.PaymentResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
@@ -54,11 +51,7 @@ class BalanceViewModel @Inject constructor(
         val countryId = countryManager.detectCountry()?.id
         val result = paymentRepository.getBalanceItems(countryId)
         emit(result)
-    }.stateIn(
-        scope = viewModelScope,
-        initialValue = ApiStatus.Loading,
-        started = SharingStarted.Lazily
-    )
+    }
 
     suspend fun refillBalance(stripCard: StripCard): Boolean {
         log(EVENTS.BALANCE_REFILL)
