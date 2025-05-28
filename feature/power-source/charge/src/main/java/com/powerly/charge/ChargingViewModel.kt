@@ -31,6 +31,8 @@ class ChargeViewModel @Inject constructor(
     private val charger = savedStateHandle.toRoute<AppRoutes.PowerSource.Charging>()
 
     val session = mutableStateOf<Session?>(null)
+    private var pendingSessionId: String = ""
+    private var lastSessionUpdateTime: Int = 0
 
     private val _chargingStatus = MutableStateFlow<ChargingStatus>(ChargingStatus.Loading)
     val chargingStatus = _chargingStatus.asStateFlow()
@@ -90,7 +92,6 @@ class ChargeViewModel @Inject constructor(
         }
     }
 
-    private var pendingSessionId: String = ""
     fun stopCharging() {
         val sessionId = session.value?.id
         // to prevent calling stop charging multiple times..
@@ -109,7 +110,18 @@ class ChargeViewModel @Inject constructor(
         }
     }
 
-    private var lastSessionUpdateTime: Int = 0
+    private suspend fun forceStopCharging() {
+        val session = session.value ?: return
+        Log.i(TAG, "forceStopCharging - ${session.id}")
+        _chargingStatus.emit(ChargingStatus.Loading)
+        sessionsRepository.stopCharging(
+            orderId = session.id,
+            chargePointId = charger.chargePointId,
+            connector = charger.connector
+        )
+        _chargingStatus.emit(ChargingStatus.Stop(session))
+    }
+
 
     /**
      * Initializes the charging timer and sets up the charging session.
@@ -142,7 +154,7 @@ class ChargeViewModel @Inject constructor(
             onDone = {
                 viewModelScope.launch {
                     delay(5 * 1000)
-                    stopCharging()
+                    forceStopCharging()
                 }
             }
         )

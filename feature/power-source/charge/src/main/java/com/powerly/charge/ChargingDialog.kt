@@ -30,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import com.powerly.core.model.powerly.ChargingQuantity
 import com.powerly.core.model.powerly.Connector
 import com.powerly.core.model.powerly.PowerSource
+import com.powerly.core.network.BuildConfig
 import com.powerly.resources.R
 import com.powerly.ui.components.ButtonLarge
 import com.powerly.ui.components.ItemConnector
@@ -175,7 +176,7 @@ fun ChargingDialog(
 
         //time slots
         ListTimes(
-            times = ps.chargingTimes(),
+            times = ps.chargingTimes(includeTest = BuildConfig.DEBUG),
             selectedTime = { selectedTime },
             onSelectTime = { selectedTime = it }
         )
