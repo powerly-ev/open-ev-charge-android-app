@@ -90,6 +90,8 @@ class UserLocationManager @Inject constructor(
                     }
                 )
             }
+        } else {
+            continuation.resume(null)
         }
     }
 
