@@ -1,5 +1,6 @@
 package com.powerly.ui.dialogs.inputDialog
 
+import android.app.Dialog
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.MaterialTheme
@@ -23,6 +24,7 @@ import com.powerly.ui.theme.AppTheme
 import com.powerly.resources.R
 import com.powerly.ui.dialogs.MyDialogState
 import com.powerly.ui.dialogs.rememberMyDialogState
+import com.powerly.ui.screen.DialogHeader
 
 
 @Preview
@@ -55,7 +57,7 @@ fun MyInputDialog(
     MyDialog(
         state = state,
         header = {
-            ScreenHeader(
+            DialogHeader(
                 title = stringResource(id = title),
                 layoutDirection = LayoutDirection.Rtl,
                 onClose = { state.dismiss() },

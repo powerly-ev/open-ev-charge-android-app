@@ -28,9 +28,9 @@ import com.powerly.ui.containers.LayoutDirectionLtr
 import com.powerly.ui.dialogs.MyBottomSheet
 import com.powerly.ui.containers.MyColumn
 import com.powerly.ui.components.MyTextDynamic
-import com.powerly.ui.screen.ScreenHeader
 import com.powerly.ui.dialogs.MyDialogState
 import com.powerly.ui.dialogs.rememberMyDialogState
+import com.powerly.ui.screen.DialogHeader
 import com.powerly.ui.theme.AppTheme
 import com.powerly.ui.theme.MyColors
 import com.powerly.ui.theme.myBorder
@@ -64,7 +64,7 @@ fun SignInOptionsDialog(
         modifier = Modifier.padding(16.dp),
         background = MyColors.grey100,
         header = {
-            ScreenHeader(
+            DialogHeader(
                 title = "",
                 layoutDirection = LayoutDirection.Rtl,
                 onClose = {state.dismiss()}

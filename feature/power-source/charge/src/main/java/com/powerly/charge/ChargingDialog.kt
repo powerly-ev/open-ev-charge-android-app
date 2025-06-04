@@ -38,7 +38,7 @@ import com.powerly.ui.components.StationIcon
 import com.powerly.ui.containers.MyRow
 import com.powerly.ui.containers.MySurfaceRow
 import com.powerly.ui.dialogs.MyDialog
-import com.powerly.ui.screen.ScreenHeader
+import com.powerly.ui.screen.DialogHeader
 import com.powerly.ui.theme.AppTheme
 import com.powerly.ui.theme.MyColors
 import com.powerly.ui.theme.myBorder
@@ -128,7 +128,7 @@ fun ChargingDialog(
 
     MyDialog(
         header = {
-            ScreenHeader(
+            DialogHeader(
                 title = stringResource(id = R.string.station_charging_activate),
                 layoutDirection = LayoutDirection.Ltr,
                 onClose = onDismiss

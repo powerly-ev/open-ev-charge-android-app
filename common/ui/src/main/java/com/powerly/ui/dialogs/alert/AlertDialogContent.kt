@@ -33,6 +33,7 @@ import com.powerly.ui.containers.MyRow
 import com.powerly.ui.containers.MySurfaceColumn
 import com.powerly.ui.screen.ScreenHeader
 import com.powerly.ui.components.ButtonLarge
+import com.powerly.ui.screen.DialogHeader
 import com.powerly.ui.theme.AppTheme
 import com.powerly.ui.theme.MyColors.borderColor
 
@@ -127,7 +128,7 @@ internal fun AlertDialogContent(
             BottomSheetDefaults.DragHandle()
         }
         title?.let {
-            ScreenHeader(
+            DialogHeader(
                 title = it,
                 showDivider = true,
                 layoutDirection = LayoutDirection.Rtl,

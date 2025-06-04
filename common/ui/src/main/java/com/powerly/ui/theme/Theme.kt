@@ -1,5 +1,6 @@
 package com.powerly.ui.theme
 
+import android.os.Build
 import androidx.activity.compose.LocalActivity
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.lightColorScheme
@@ -10,33 +11,16 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.colorResource
 import androidx.core.view.WindowCompat
-import com.powerly.ui.extensions.isArabic
 import com.powerly.resources.R
+import com.powerly.ui.extensions.isArabic
 
 
-@Suppress("DEPRECATION")
 @Composable
 fun AppTheme(
     darkTheme: Boolean = false,
-    whiteSystemBars: Boolean = true,
     content: @Composable () -> Unit
 ) {
-    val view = LocalView.current
-    val window = LocalActivity.current?.window
-    if (view.isInEditMode.not() && window != null) {
-        SideEffect {
-            val systemBarsColor = if (whiteSystemBars) Color.White.toArgb()
-            else MyColors.background.toArgb()
-
-            window.statusBarColor = systemBarsColor
-            window.navigationBarColor = systemBarsColor
-
-            val windowInsetsController = WindowCompat.getInsetsController(window, view)
-            windowInsetsController.isAppearanceLightStatusBars = darkTheme.not()
-            windowInsetsController.isAppearanceLightNavigationBars = darkTheme.not()
-        }
-    }
-
+    ConfigureSystemBars(darkTheme)
     MaterialTheme(
         colorScheme = lightColorScheme(
             primary = colorResource(R.color.colorPrimary),
@@ -58,3 +42,22 @@ fun AppTheme(
 }
 
 
+@Suppress("DEPRECATION")
+@Composable
+private fun ConfigureSystemBars(darkTheme: Boolean) {
+    val view = LocalView.current
+    val window = LocalActivity.current?.window
+    if (view.isInEditMode.not() && window != null) {
+        SideEffect {
+            val systemBarsColor = if (darkTheme) MyColors.background.toArgb()
+            else Color.White.toArgb()
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+                window.statusBarColor = systemBarsColor
+                window.navigationBarColor = systemBarsColor
+            }
+            val windowInsetsController = WindowCompat.getInsetsController(window, view)
+            windowInsetsController.isAppearanceLightStatusBars = darkTheme.not()
+            windowInsetsController.isAppearanceLightNavigationBars = darkTheme.not()
+        }
+    }
+}

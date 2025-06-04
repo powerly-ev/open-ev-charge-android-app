@@ -46,9 +46,11 @@ import com.powerly.ui.components.ButtonSmall
 import com.powerly.ui.components.MyTextDynamic
 import com.powerly.ui.containers.LayoutDirectionLtr
 import com.powerly.ui.containers.MyRow
+import com.powerly.ui.dialogs.loading.LoadingDialog
 import com.powerly.ui.dialogs.loading.ScreenState
 import com.powerly.ui.dialogs.loading.rememberScreenState
-import com.powerly.ui.screen.MyScreen
+import com.powerly.ui.dialogs.message.MessageDialog
+import com.powerly.ui.dialogs.success.SuccessDialog
 import com.powerly.ui.theme.AppTheme
 import com.powerly.ui.theme.MyColors
 import kotlinx.coroutines.launch
@@ -98,39 +100,40 @@ internal fun OrdersScreenContent(
     pageContent: @Composable PagerScope.(page: Int) -> Unit
 ) {
     val coroutineScope = rememberCoroutineScope()
-    MyScreen(
-        screenState = screenState
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White)
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Color.White)
+        TabRow(
+            selectedTabIndex = pagerState.currentPage,
+            indicator = { tabPositions ->
+                TabRowDefaults.SecondaryIndicator(
+                    modifier = Modifier.tabIndicatorOffset(
+                        tabPositions[pagerState.currentPage]
+                    ), color = MaterialTheme.colorScheme.primary
+                )
+            }
         ) {
-            TabRow(
-                selectedTabIndex = pagerState.currentPage,
-                indicator = { tabPositions ->
-                    TabRowDefaults.SecondaryIndicator(
-                        modifier = Modifier.tabIndicatorOffset(
-                            tabPositions[pagerState.currentPage]
-                        ), color = MaterialTheme.colorScheme.primary
-                    )
-                }
-            ) {
-                tabs.forEachIndexed { index, tab ->
-                    val selected = index == pagerState.currentPage
-                    ItemTab(
-                        selected = selected,
-                        tab = tab
-                    ) {
-                        coroutineScope.launch {
-                            pagerState.animateScrollToPage(index)
-                        }
+            tabs.forEachIndexed { index, tab ->
+                val selected = index == pagerState.currentPage
+                ItemTab(
+                    selected = selected,
+                    tab = tab
+                ) {
+                    coroutineScope.launch {
+                        pagerState.animateScrollToPage(index)
                     }
                 }
             }
-            HorizontalPager(state = pagerState, pageContent = pageContent)
         }
+        HorizontalPager(state = pagerState, pageContent = pageContent)
     }
+
+    screenState.successState?.let { SuccessDialog(state = it) }
+    screenState.messageState?.let { MessageDialog(state = it) }
+    screenState.loadingState?.let { LoadingDialog(state = it) }
 }
 
 @Composable

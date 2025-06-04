@@ -23,11 +23,11 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import com.powerly.resources.R
 import com.powerly.ui.containers.MySurfaceRow
-import com.powerly.ui.screen.ScreenHeader
 import com.powerly.ui.components.MyIcon
 import com.powerly.ui.dialogs.MyBottomSheet
 import com.powerly.ui.dialogs.MyDialogState
 import com.powerly.ui.dialogs.rememberMyDialogState
+import com.powerly.ui.screen.DialogHeader
 import com.powerly.ui.theme.AppTheme
 
 /**
@@ -66,7 +66,7 @@ fun LanguagesDialogContent(
         spacing = 8.dp,
         background = Color.White,
         header = {
-            ScreenHeader(
+            DialogHeader(
                 title = stringResource(R.string.select_language),
                 layoutDirection = LayoutDirection.Rtl,
                 onClose = {

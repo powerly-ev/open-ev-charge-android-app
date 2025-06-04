@@ -36,7 +36,6 @@ import androidx.lifecycle.Lifecycle
 import com.powerly.resources.R
 import com.powerly.ui.screen.MyScreen
 import com.powerly.ui.util.OnLifecycleEvent
-import com.powerly.ui.screen.ScreenHeader
 import com.powerly.ui.components.ButtonText
 import com.powerly.ui.dialogs.loading.ScreenState
 import com.powerly.ui.dialogs.loading.rememberScreenState
@@ -46,6 +45,7 @@ import com.powerly.ui.theme.MyColors
 import com.google.zxing.BarcodeFormat
 import com.journeyapps.barcodescanner.DecoratedBarcodeView
 import com.journeyapps.barcodescanner.DefaultDecoderFactory
+import com.powerly.ui.screen.DialogHeader
 
 private const val TAG = "ScannerScreen"
 
@@ -73,7 +73,7 @@ fun ScannerScreenContent(
 ) {
     MyScreen(
         header = {
-            ScreenHeader(
+            DialogHeader(
                 title = stringResource(id = title),
                 closeIcon = null
             )

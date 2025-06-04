@@ -33,6 +33,7 @@ import com.powerly.ui.screen.ScreenHeader
 import com.powerly.ui.dialogs.MyBasicBottomSheet
 import com.powerly.ui.dialogs.MyDialogState
 import com.powerly.ui.extensions.thenIf
+import com.powerly.ui.screen.DialogHeader
 import com.powerly.ui.theme.MyColors
 
 @Preview
@@ -76,7 +77,7 @@ private fun ColorPicker(
             .wrapContentHeight()
     ) {
 
-        ScreenHeader(
+        DialogHeader(
             title = stringResource(
                 id = R.string.vehicle_details_color_custom
             ),

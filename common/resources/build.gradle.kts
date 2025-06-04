@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.powerly.library)
 }
 
-dependencies{
+dependencies {
     implementation(libs.material)
 }
 

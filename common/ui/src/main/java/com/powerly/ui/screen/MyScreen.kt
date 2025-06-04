@@ -41,14 +41,14 @@ fun MyScreen(
     Scaffold(
         topBar = header,
         bottomBar = { Box(Modifier.padding(footerPadding), content = footer) }
-    ) {
+    ) { padding ->
         screenState?.successState?.let { SuccessDialog(state = it) }
         screenState?.messageState?.let { MessageDialog(state = it) }
         screenState?.loadingState?.let { LoadingDialog(state = it) }
         Box(
             modifier = Modifier
                 .background(background)
-                .padding(it)
+                .padding(padding)
                 .fillMaxSize()
         ) {
             MyColumn(

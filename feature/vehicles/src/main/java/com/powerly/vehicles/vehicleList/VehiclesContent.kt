@@ -224,7 +224,7 @@ private fun SectionTitle(
     uiEvents: (VehicleEvents) -> Unit
 ) {
 
-    var titleDialog = rememberMyDialogState()
+    val titleDialog = rememberMyDialogState()
     MyInputDialog(
         state = titleDialog,
         default = vehicle.title.orEmpty(),

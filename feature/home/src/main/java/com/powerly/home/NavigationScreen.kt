@@ -74,6 +74,7 @@ fun NavigationScreen(
     }
 
     Scaffold(
+        containerColor = Color.White,
         bottomBar = {
             Footer(
                 navController = innerNavController,
