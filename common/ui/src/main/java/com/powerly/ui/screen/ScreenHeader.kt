@@ -59,7 +59,7 @@ fun ScreenHeaderPreview() {
 fun DialogHeaderPreview() {
     AppTheme {
         DialogHeader(
-            title = "Screen Title",
+            title = "Dialog Title",
             textAlign = TextAlign.Center,
             singleLine = false,
             showDivider = true,
