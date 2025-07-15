@@ -3,6 +3,7 @@ package com.powerly
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -34,6 +35,7 @@ private const val TAG = "RootGraph"
 
 @Composable
 fun RootGraph(
+    modifier: Modifier = Modifier,
     startDestination: Route = AppRoutes.Splash,
     mainViewModel: MainViewModel = hiltViewModel(),
     sessionsViewModel: SessionViewModel = hiltViewModel(),
@@ -52,6 +54,7 @@ fun RootGraph(
     NavHost(
         navController = navController,
         startDestination = startDestination,
+        modifier = modifier
     ) {
 
         dialog<AppRoutes.MessageDialog> {

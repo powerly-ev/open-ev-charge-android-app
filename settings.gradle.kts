@@ -28,7 +28,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "powerly-android"
+rootProject.name = "open-powerly-android"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":app")
 

@@ -79,10 +79,8 @@ class MainViewModel @Inject constructor(
     }
 
     fun initPaymentManager(activity: ComponentActivity) {
-        if (isLoggedIn) {
-            paymentManager.initCardScanner(activity)
-            paymentManager.initNextActionForPayment(activity)
-        }
+        paymentManager.initCardScanner(activity)
+        paymentManager.initNextActionForPayment(activity)
     }
 
     companion object {

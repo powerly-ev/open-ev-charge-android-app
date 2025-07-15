@@ -9,13 +9,13 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.app.ActivityCompat
+import com.powerly.core.data.model.PermissionsState
 import kotlin.collections.get
 
 
@@ -131,12 +131,3 @@ fun rememberPermissionsState(vararg permissions: String): PermissionsState {
         )
     }
 }
-
-@Stable
-class PermissionsState(
-    val requestSpecific: (String, onResult: ((granted: Boolean) -> Unit)?) -> Unit,
-    val request: (onResult: ((granted: Boolean) -> Unit)?) -> Unit,
-    val requestManually: (onResult: ((granted: Boolean) -> Unit)?) -> Unit,
-    val isGranted: () -> Boolean,
-    val isItGranted: (String) -> Boolean
-)

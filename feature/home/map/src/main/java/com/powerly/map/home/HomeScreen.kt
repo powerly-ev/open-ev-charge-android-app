@@ -11,7 +11,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.platform.LocalContext
+import com.powerly.core.data.model.ActivityResultState
 import com.powerly.map.MyMapViewModel
 import com.powerly.map.home.NavigationEvents.Login
 import com.powerly.map.home.NavigationEvents.Map
@@ -21,8 +21,6 @@ import com.powerly.ui.dialogs.loading.LoadingState
 import com.powerly.ui.dialogs.loading.rememberBasicScreenState
 import com.powerly.ui.dialogs.rememberMyDialogState
 import com.powerly.ui.dialogs.signIn.SignInOptionsDialog
-import com.powerly.ui.extensions.intent
-import com.powerly.ui.util.ActivityResultState
 import com.powerly.ui.util.rememberPermissionsState
 import kotlinx.coroutines.launch
 
@@ -42,7 +40,6 @@ fun HomeScreen(
     uiState: HomeUiState,
     activityResult: ActivityResultState,
     mapViewModel: MyMapViewModel,
-    homeViewModel: HomeViewModel,
     navigate: (NavigationEvents) -> Unit
 ) {
     val coroutineScope = rememberCoroutineScope()
@@ -62,7 +59,7 @@ fun HomeScreen(
 
     fun initMapAndLocation(requestManually: Boolean = false) {
         Log.v(TAG, "initMapAndLocation")
-        homeViewModel.requestLocationServices(
+        mapViewModel.requestLocationServices(
             permissionsState = permissionsState,
             activityResult = activityResult,
             requestManually = requestManually,

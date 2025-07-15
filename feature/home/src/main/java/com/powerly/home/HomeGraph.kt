@@ -130,7 +130,6 @@ fun HomeGraph(
                 uiState = uiState,
                 activityResult = activityResult,
                 mapViewModel = mapViewModel,
-                homeViewModel = homeViewModel,
                 navigate = {
                     when (it) {
                         is NavigationEvents.Balance -> {

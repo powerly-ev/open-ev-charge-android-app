@@ -2,17 +2,16 @@ package com.powerly.ui.util
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent
-import android.os.Bundle
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
+import com.powerly.core.data.model.ActivityResultState
 
 /**
  * Creates and remembers an [ActivityResultState] object.
@@ -85,21 +84,5 @@ fun rememberActivityResultState(): ActivityResultState {
     }
 }
 
-@Stable
-class ActivityResultState(
-    val startActivity: (
-        packageName: String,
-        onResult: ((ActivityResult?) -> Unit)?
-    ) -> Unit,
-    val startActivityWithBundle: (
-        packageName: String,
-        bundle: Bundle?,
-        onResult: ((ActivityResult?) -> Unit)?
-    ) -> Unit,
-    val startActivityForResult: (
-        intent: Intent,
-        onResult: ((ActivityResult?) -> Unit)?
-    ) -> Unit,
-)
 
 val ActivityResult?.isOk: Boolean get() = this?.resultCode == RESULT_OK

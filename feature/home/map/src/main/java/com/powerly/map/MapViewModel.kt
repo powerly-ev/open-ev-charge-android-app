@@ -5,11 +5,14 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.powerly.core.data.model.ActivityResultState
+import com.powerly.core.data.model.PermissionsState
 import com.powerly.core.data.model.SourcesStatus
 import com.powerly.core.data.repositories.PowerSourceRepository
 import com.powerly.core.model.location.Target
 import com.powerly.core.model.powerly.PowerSource
 import com.powerly.lib.managers.UserLocationManager
+import com.powerly.lib.usecases.LocationServicesUseCase
 import com.powerly.ui.map.initMapViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -18,7 +21,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MyMapViewModel @Inject constructor(
     private val powerSourceRepository: PowerSourceRepository,
-    private val locationManager: UserLocationManager
+    private val locationManager: UserLocationManager,
+    private val locationServicesUseCase: LocationServicesUseCase
 ) : ViewModel() {
 
     val userLocation = mutableStateOf<Target?>(null)
@@ -90,6 +94,20 @@ class MyMapViewModel @Inject constructor(
         }
         nearPowerSources.clear()
         nearPowerSources.addAll(powerSourcesMap.values.toList())
+    }
+
+    fun requestLocationServices(
+        permissionsState: PermissionsState,
+        activityResult: ActivityResultState,
+        requestManually: Boolean = false,
+        onAllowed: () -> Unit
+    ) {
+        locationServicesUseCase(
+            permissionsState = permissionsState,
+            activityResult = activityResult,
+            requestManually = requestManually,
+            onAllowed = onAllowed
+        )
     }
 
     suspend fun initMap() {

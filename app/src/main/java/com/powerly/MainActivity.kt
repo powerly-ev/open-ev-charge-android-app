@@ -7,6 +7,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.ui.Modifier
 import com.powerly.lib.MainScreen.getMainDestination
 import com.powerly.lib.managers.LocaleManager
 import com.powerly.lib.managers.StorageManager
@@ -28,7 +30,10 @@ class MainActivity : ComponentActivity() {
         viewModel.initUiState()
         setContent {
             AppTheme {
-                RootGraph(startDestination = intent.getMainDestination())
+                RootGraph(
+                    startDestination = intent.getMainDestination(),
+                    modifier = Modifier.systemBarsPadding(),
+                )
             }
         }
         //force portrait orientation
