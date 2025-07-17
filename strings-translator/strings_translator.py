@@ -49,7 +49,7 @@ def translate_text(text, target_lang):
         print(f"Error translating with geimin: {e}")
         return None
 
-# python311 strings_translator.py en ar es fr zh-CN hi de ja ko pt th vi id tr
+# python strings_translator.py en ar es fr zh-CN hi de ja ko pt th vi id tr
 def main(en_file_path, locales):
     print("Reading English strings...")
     en_strings =open(en_file_path,'r',encoding='utf-8').read()

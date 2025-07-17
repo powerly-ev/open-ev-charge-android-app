@@ -13,14 +13,14 @@
     <string name="account_vehicles">ยานพาหนะ</string>
     <string name="invite">เชิญ</string>
     <string name="invite_link_copied">คัดลอกลิงก์แล้ว</string>
-    <string name="invite_QR_description">เชิญเพื่อนของคุณดาวน์โหลดแอปที่ยอดเยี่ยมของเรา</string>
+    <string name="invite_QR_description">เชิญเพื่อนของคุณเพื่อดาวน์โหลดแอปที่ยอดเยี่ยมของเรา</string>
     <string name="logout_title">ออกจากระบบ</string>
-    <string name="logout_confirmation">คุณแน่ใจหรือไม่ว่าต้องการออกจากระบบ</string>
+    <string name="logout_confirmation">คุณแน่ใจหรือไม่ว่าต้องการออกจากระบบ?</string>
     <string name="select_language">เลือกภาษา</string>
 
     <!-- Update-->
     <string name="update_required">ต้องอัปเดต</string>
-    <string name="update_force_desc1">จำเป็นต้องมีการอัปเดตที่สำคัญ ซึ่งรวมถึงคุณสมบัติเพิ่มเติม การอัปเดตความปลอดภัย และการปรับปรุง</string>
+    <string name="update_force_desc1">จำเป็นต้องมีการอัปเดตที่สำคัญซึ่งรวมถึงคุณสมบัติเพิ่มเติม การอัปเดตความปลอดภัย และการปรับปรุงต่างๆ</string>
     <string name="update_force_desc2">โปรดอัปเดตแอปเพื่อดำเนินการต่อ</string>
 
     <!--Profile Screen-->
@@ -28,7 +28,7 @@
     <string name="profile">โปรไฟล์ของฉัน</string>
     <string name="profile_select_country">เลือกประเทศ</string>
     <string name="profile_require_email_address">ต้องมีอีเมลเพื่ออัปเดตโปรไฟล์ของคุณ</string>
-    <string name="profile_confirm_delete_account">คุณแน่ใจหรือไม่ว่าต้องการลบบัญชีของคุณ</string>
+    <string name="profile_confirm_delete_account">คุณแน่ใจหรือไม่ว่าต้องการลบบัญชีของคุณ?</string>
     <string name="profile_delete_account_description">บัญชีของคุณจะถูกปิดใช้งานทันที หลังจาก 30 วัน บัญชีจะถูกลบอย่างถาวร และเครดิต โปรโมชั่น หรือรางวัลที่ไม่ได้ใช้จะถูกลบออก</string>
     <string name="profile_guest">ผู้เยี่ยมชม</string>
     <string name="profile_see">ดูโปรไฟล์</string>
@@ -36,8 +36,8 @@
 
     <!-- Welcome Screen-->
     <string name="welcome">สวัสดี :)</string>
-    <string name="welcome_description">ยินดีต้อนรับสู่อนาคตของการชาร์จ EV! มาเริ่มต้นการตั้งค่ากัน เริ่มต้นด้วยการตั้งค่าภาษา</string>
-    <string name="welcome_user_agreement">เมื่อใช้ %s แสดงว่าคุณยินยอมตาม</string>
+    <string name="welcome_description">ยินดีต้อนรับสู่อนาคตของการชาร์จ EV! มาเริ่มต้นการตั้งค่าของคุณ โดยเริ่มจากภาษาที่คุณต้องการ</string>
+    <string name="welcome_user_agreement">เมื่อใช้ %s แสดงว่าคุณยินยอมต่อ</string>
     <string name="welcome_privacy_policy">นโยบายความเป็นส่วนตัว</string>
     <string name="welcome_and">และ</string>
     <string name="welcome_terms_of_service">ข้อกำหนดในการให้บริการ</string>
@@ -52,13 +52,13 @@
     <string name="login_enter_first_name">โปรดป้อนชื่อของคุณ</string>
     <string name="login_Verification_title">การยืนยัน</string>
     <string name="login_resend_code">ส่งรหัสอีกครั้ง</string>
-    <string name="login_need_help">ต้องการความช่วยเหลือ</string>
+    <string name="login_need_help">ฉันต้องการความช่วยเหลือ</string>
     <string name="login_enter_code">ป้อนรหัส 4 หลักที่เราส่งให้คุณ</string>
     <string name="login_option_title">ลงชื่อเข้าใช้</string>
     <string name="login_option_google">ลงชื่อเข้าใช้ด้วย Google</string>
     <string name="login_option_email">ลงชื่อเข้าใช้ด้วยอีเมล</string>
     <string name="login_option_guest">ดำเนินการต่อในฐานะผู้เยี่ยมชม</string>
-    <string name="login_option_other">สำรวจตัวเลือกลงชื่อเข้าใช้อื่นๆ</string>
+    <string name="login_option_other">สำรวจตัวเลือกการลงชื่อเข้าใช้อื่นๆ</string>
     <string name="login_email">อีเมล</string>
     <string name="login_email_title">ลงชื่อเข้าใช้หรือสร้างบัญชี</string>
     <string name="login_email_enter">ป้อนอีเมลของคุณ</string>
@@ -70,11 +70,11 @@
     <string name="login_email_password_confirm">ยืนยันรหัสผ่าน</string>
     <string name="login_email_password_create_title">ลงชื่อเข้าใช้ด้วยที่อยู่อีเมล</string>
     <string name="login_email_password_create">สร้างรหัสผ่าน</string>
-    <string name="login_email_password_create_msg">สร้างรหัสผ่านที่คาดเดายาก ซึ่งคุณจะใช้เพื่อลงชื่อเข้าใช้</string>
-    <string name="login_email_password_length_msg">รหัสผ่านต้องมีอย่างน้อย %d ตัวอักษร</string>
+    <string name="login_email_password_create_msg">สร้างรหัสผ่านที่รัดกุมที่คุณจะใช้ในการลงชื่อเข้าใช้</string>
+    <string name="login_email_password_length_msg">รหัสผ่านต้องมีความยาวอย่างน้อย %d ตัวอักษร</string>
     <string name="login_email_password_not_matched">รหัสผ่านไม่ตรงกัน</string>
     <string name="login_email_password_forget">ลืมรหัสผ่าน?</string>
-    <string name="login_email_password_forget_msg">ไม่มีปัญหา! เราจะส่งรหัสผ่านแบบใช้ครั้งเดียว (OTP) ไปที่ %s เมื่อคุณได้รับแล้ว คุณสามารถใช้ OTP เพื่อลงชื่อเข้าใช้และรีเซ็ตรหัสผ่านของคุณได้</string>
+    <string name="login_email_password_forget_msg">ไม่มีปัญหา! เราจะส่งรหัสผ่านแบบใช้ครั้งเดียว (OTP) ไปที่ %s เมื่อคุณได้รับแล้ว คุณสามารถใช้ OTP เพื่อเข้าสู่ระบบและรีเซ็ตรหัสผ่านของคุณ</string>
     <string name="login_email_password_weak">อ่อน</string>
     <string name="login_email_password_medium">ปานกลาง</string>
     <string name="login_email_password_strong">แข็งแกร่ง</string>
@@ -93,7 +93,7 @@
     <string name="delete_account">ลบบัญชี</string>
     <string name="share_code">แชร์ลิงก์แนะนำ</string>
     <string name="copy_code">คัดลอกลิงก์แนะนำ</string>
-    <string name="agree_and_continue">ยอมรับและดำเนินการต่อ</string>
+    <string name="agree_and_continue">ยอมรับ &amp; ดำเนินการต่อ</string>
     <string name="update">อัปเดต</string>
     <string name="edit">แก้ไข</string>
     <string name="next">ถัดไป</string>
@@ -113,20 +113,20 @@
     <string name="payment_point_checkout">Point Checkout</string>
     <string name="payment_failed">การชำระเงินล้มเหลว</string>
     <string name="payment_add_new_card">เพิ่มบัตรใหม่</string>
-    <string name="payment_cash_on_delivery">เก็บเงินปลายทาง</string>
-    <string name="payment_delete_card_message">คุณแน่ใจหรือไม่ว่าต้องการลบวิธีการชำระเงินนี้</string>
+    <string name="payment_cash_on_delivery">ชำระเงินปลายทาง</string>
+    <string name="payment_delete_card_message">คุณแน่ใจหรือไม่ว่าต้องการลบวิธีการชำระเงินนี้?</string>
     <string name="payment_card">บัตร</string>
     <string name="payment_make_default">ตั้งเป็นค่าเริ่มต้น</string>
 
     <!--Wallet-->
     <string name="wallet">กระเป๋าเงิน</string>
     <string name="wallet_withdraw_from">ถอนจาก:</string>
-    <string name="wallet_withdraw_agree">ยอมรับและถอน</string>
-    <string name="wallet_withdraw_successful">ถอนสำเร็จ</string>
-    <string name="wallet_withdraw_failed">ถอนล้มเหลว</string>
+    <string name="wallet_withdraw_agree">ยอมรับ &amp; ถอน</string>
+    <string name="wallet_withdraw_successful">ถอนเงินสำเร็จ</string>
+    <string name="wallet_withdraw_failed">ถอนเงินล้มเหลว</string>
     <string name="wallet_policy">นโยบายการถอน</string>
     <string name="wallet_policy_read_our">อ่าน</string>
-    <string name="wallet_policy_tab_withdraw">ของเรา . แตะ "ยอมรับและถอน" เพื่อยอมรับ</string>
+    <string name="wallet_policy_tab_withdraw">ของเรา ". แถบ "ยอมรับและถอน" เพื่อยอมรับ</string>
     <string name="wallet_policy_terms">ข้อกำหนดในการให้บริการ</string>
 
     <!-- balance-->
@@ -135,9 +135,9 @@
     <string name="balance_available">ยอดเงินคงเหลือ</string>
     <string name="balance_add">เพิ่มยอดเงิน</string>
     <string name="balance_popular">ยอดนิยม</string>
-    <string name="balance_non_refundable">ยอดเงินพร้อมส่วนลดไม่สามารถขอคืนได้ โปรดแตะดำเนินการต่อเพื่อยอมรับ</string>
+    <string name="balance_non_refundable">ยอดเงินพร้อมส่วนลดไม่สามารถคืนเงินได้ โปรดแตะดำเนินการต่อเพื่อยอมรับ</string>
     <string name="balance_refill_select_method">โปรดเลือกวิธีการชำระเงิน</string>
-    <string name="balance_add_message">เราจะเพิ่มไปยังยอดเงินของคุณ</string>
+    <string name="balance_add_message">เราจะเพิ่มยอดเงินของคุณ</string>
 
     <!-- Location -->
     <string name="location_search_address">ค้นหาที่อยู่</string>
@@ -147,18 +147,18 @@
 
     <!--Messages-->
     <string name="no_internet_message">โปรดตรวจสอบให้แน่ใจว่าคุณเชื่อมต่ออินเทอร์เน็ตแล้ว</string>
-    <string name="internet_connection_error">ขออภัย แอปพลิเคชันนี้ต้องใช้การเชื่อมต่ออินเทอร์เน็ตเพื่อทำงานอย่างถูกต้อง โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณแล้วลองอีกครั้ง</string>
+    <string name="internet_connection_error">ขออภัย แอปพลิเคชันนี้ต้องใช้การเชื่อมต่ออินเทอร์เน็ตเพื่อให้ทำงานได้อย่างถูกต้อง โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณและลองอีกครั้ง</string>
     <string name="maintenance_mode_error">ขณะนี้บริการไม่พร้อมใช้งานเนื่องจากการบำรุงรักษา โปรดกลับมาตรวจสอบอีกครั้งในภายหลัง ขออภัยในความไม่สะดวก</string>
     <string name="camera_permission_message">โปรดอนุญาตการเข้าถึงกล้อง</string>
     <string name="reminder_message">โปรดลงทะเบียนให้เสร็จสิ้นเพื่อรับข้อเสนอและส่วนลดของเรา</string>
 
     <!-- Feedback-->
-    <string name="feedback_msg">ประสบการณ์ของคุณเป็นอย่างไร?</string>
+    <string name="feedback_msg">ประสบการณ์ของคุณเป็นอย่างไรบ้าง?</string>
     <string name="feedback_terrible">แย่มาก</string>
     <string name="feedback_bad">แย่</string>
-    <string name="feedback_fine">พอใช้ได้</string>
+    <string name="feedback_fine">ดี</string>
     <string name="feedback_good">ดี</string>
-    <string name="feedback_excellent">ดีเยี่ยม</string>
+    <string name="feedback_excellent">ยอดเยี่ยม</string>
 
     <!-- Stations -->
     <string name="station_location_allow">อนุญาต</string>
@@ -188,21 +188,21 @@
     <string name="station_max_power">สูงสุด %s kWh</string>
     <string name="station_max">สูงสุด</string>
     <string name="station_max_value">(สูงสุด %s)</string>
-    <string name="station_reviews">การให้คะแนนและความคิดเห็น</string>
+    <string name="station_reviews">การให้คะแนน &amp; รีวิว</string>
     <string name="station_reviews_helpful">มีประโยชน์</string>
     <string name="station_charging_activate">การเปิดใช้งานเครื่องชาร์จ</string>
     <string name="station_charging">กำลังชาร์จ</string>
     <string name="station_charging_start">เริ่มชาร์จ</string>
     <string name="station_charging_start_error">โปรดเลือกปลั๊กก่อนเริ่มชาร์จ</string>
-    <string name="station_charging_how_to">วิธีชาร์จ</string>
+    <string name="station_charging_how_to">วิธีการชาร์จ</string>
     <string name="station_charging_stop">หยุดชาร์จ</string>
-    <string name="station_charging_stop_msg">โปรดตรวจสอบให้แน่ใจว่าถอดปลั๊กออกจาก EV ของคุณก่อนหยุดการชาร์จ</string>
+    <string name="station_charging_stop_msg">โปรดตรวจสอบให้แน่ใจว่าได้ถอดปลั๊กออกจาก EV ของคุณก่อนที่จะหยุดการชาร์จ</string>
     <string name="station_charging_full">เต็ม</string>
-    <string name="station_charging_minute">น</string>
-    <string name="station_charging_hour">ช</string>
+    <string name="station_charging_minute">น.</string>
+    <string name="station_charging_hour">ชั่วโมง</string>
 
     <string name="station_charging_msg_1">"คุณพร้อมที่จะเปิดใช้งานเครื่องชาร์จแล้ว\nเลือกระยะเวลาการชาร์จของคุณแล้วแตะ \'เริ่มชาร์จ\' เพื่อเริ่มต้น"</string>
-    <string name="station_charging_msg_2">"ก่อนที่คุณจะเริ่มชาร์จ โปรดคำนึงถึง:"</string>
+    <string name="station_charging_msg_2">"ก่อนที่คุณจะเริ่มชาร์จ โปรดทราบ:"</string>
     <string name="station_charging_msg_3">"หากคุณไม่ได้อยู่ใกล้สถานีชาร์จในขณะนี้ เซสชันการชาร์จจะยังคงเริ่มต้นหากคุณดำเนินการต่อ</string>
     <string name="station_charging_msg_4">"หากคุณอยู่ที่สถานีชาร์จแล้วและพร้อมที่จะเปิดใช้งานเครื่องชาร์จ ให้เลือกระยะเวลาการชาร์จของคุณแล้วแตะ \'เริ่มชาร์จ\' เพื่อเริ่มต้น"</string>
     <string name="station_total_price">ราคารวม</string>
@@ -212,20 +212,21 @@
     <string name="station_price">ราคา</string>
     <string name="station_app_fees">ค่าธรรมเนียมแอป</string>
 
-    <string name="onboarding1_title1">ปลอดภัย</string>
+    <string name="onboarding1_title1">อย่างปลอดภัย</string>
     <string name="onboarding1_title2">ขับรถไปที่สถานี</string>
-    <string name="onboarding1_description">ค้นหาเครื่องชาร์จของคุณด้วยแอปของเราแล้วมุ่งหน้าไปยังตำแหน่งที่ตั้ง แผนที่จะแนะนำคุณเพื่อการนำทางที่ง่ายดาย</string>
+    <string name="onboarding1_description">ค้นหาเครื่องชาร์จของคุณด้วยแอปของเราและมุ่งหน้าไปยังตำแหน่งที่ตั้ง แผนที่จะนำทางคุณอย่างง่ายดาย</string>
     <string name="onboarding2_title">ระบุเครื่องชาร์จ</string>
-    <string name="onboarding2_description1">ในพื้นที่ที่มีเครื่องชาร์จหลายเครื่อง ให้ระบุเครื่องชาร์จของคุณโดยใช้ ID หรือชื่อเฉพาะ โดยเฉพาะอย่างยิ่งหากคุณได้</string>
+    <string name="onboarding2_description1">ในพื้นที่ที่มีเครื่องชาร์จหลายเครื่อง ให้ระบุเครื่องชาร์จของคุณโดยใช้ ID หรือชื่อเฉพาะ โดยเฉพาะอย่างยิ่งหากคุณ</string>
     <string name="onboarding2_description2">จองล่วงหน้า</string>
     <string name="onboarding2_description3">.</string>
-    <string name="onboarding3_title">เริ่มเครื่องชาร์จ</string>
-    <string name="onboarding3_description1">ขั้นแรก ให้เชื่อมต่อรถของคุณเข้ากับเครื่องชาร์จ จากนั้นสแกนรหัส QR บนเครื่องชาร์จเพื่อ</string>
-    <string name="onboarding3_description2">เริ่มการชาร์จ</string>
-    <string name="onboarding3_description3">ดำเนินการ</string>
+    <string name="onboarding3_title">เริ่มชาร์จ</string>
+    <string name="onboarding3_description1">ขั้นแรก ให้เชื่อมต่อรถของคุณเข้ากับเครื่องชาร์จ จากนั้น</string>
+    <string name="onboarding3_description2">สแกนรหัส QR บนเครื่องชาร์จเพื่อ</string>
+    <string name="onboarding3_description3">เริ่มการชาร์จ</string>
+    <string name="onboarding3_description4">กระบวนการ</string>
     <string name="onboarding4_title1">รอ</string>
     <string name="onboarding4_title2">สำหรับการชาร์จ</string>
-    <string name="onboarding4_description">การตั้งค่าเสร็จสมบูรณ์! ตัวจับเวลาถอยหลังจะแสดงระยะเวลาจนกว่ารถของคุณจะชาร์จเต็ม ผ่อนคลายหรือใช้เวลาสักครู่สำหรับตัวคุณเองในระหว่างนี้</string>
+    <string name="onboarding4_description">ตั้งค่าเสร็จสมบูรณ์! ตัวจับเวลาถอยหลังจะแสดงระยะเวลาก่อนที่รถของคุณจะชาร์จเต็ม ผ่อนคลายหรือหาเวลาให้ตัวเองในระหว่างนี้</string>
 
     <!-- My Power Sources -->
     <string name="station_plugs">ปลั๊ก</string>
@@ -234,7 +235,7 @@
     <string name="station_details_plug">ปลั๊ก: %d</string>
     <string name="station_details_parking">ที่จอดรถ</string>
     <string name="station_details_amenities">สิ่งอำนวยความสะดวก</string>
-    <string name="station_details_title">ชื่อเรื่อง</string>
+    <string name="station_details_title">ชื่อ</string>
     <string name="station_details_descriptions">คำอธิบาย</string>
     <string name="station_save_next">บันทึกและถัดไป</string>
 
@@ -243,10 +244,10 @@
     <string name="vehicle_make">ยี่ห้อ</string>
     <string name="vehicle_model">รุ่น</string>
     <string name="vehicle_model_search">ค้นหารุ่น</string>
-    <string name="vehicle_version">รุ่นย่อย</string>
+    <string name="vehicle_version">เวอร์ชัน</string>
     <string name="vehicle_add">เพิ่มยานพาหนะ</string>
     <string name="vehicle_delete">ลบยานพาหนะ?</string>
-    <string name="vehicle_delete_message">คุณแน่ใจหรือไม่ว่าต้องการลบยานพาหนะนี้</string>
+    <string name="vehicle_delete_message">คุณแน่ใจหรือไม่ว่าต้องการลบยานพาหนะนี้?</string>
     <string name="vehicle_manufacturer">ผู้ผลิต</string>
     <string name="vehicle_manufacturer_search">ค้นหาผู้ผลิต</string>
     <string name="vehicle_details">รายละเอียด</string>
@@ -270,23 +271,23 @@
     <string name="sessions_completed">เสร็จสิ้น</string>
     <string name="sessions_active_empty">ไม่มีคำสั่งซื้อที่ใช้งานอยู่</string>
     <string name="sessions_history_empty">ไม่มีคำสั่งซื้อที่เสร็จสิ้น</string>
-    <string name="sessions_charging_stop_msg">คุณแน่ใจหรือไม่ว่าต้องการหยุดชาร์จ</string>
+    <string name="sessions_charging_stop_msg">คุณแน่ใจหรือไม่ว่าต้องการหยุดการชาร์จ</string>
 
     <string name="station_closed">ปิด</string>
-    <string name="order_Id">หมายเลขคำสั่งซื้อ</string>
+    <string name="order_Id">รหัสคำสั่งซื้อ</string>
     <string name="order_selected_product">สินค้า</string>
     <string name="order_discount">ส่วนลด</string>
-    <string name="order_vatId">หมายเลข VAT</string>
-    <string name="order_subtotal">ยอดรวมย่อย : </string>
+    <string name="order_vatId">รหัส VAT</string>
+    <string name="order_subtotal">รวมย่อย : </string>
     <string name="order_total">รวม</string>
     <string name="order_payment_method">วิธีการชำระเงิน</string>
     <string name="order_payment_methods">วิธีการชำระเงิน</string>
     <string name="order_total_price">ราคารวม</string>
     <string name="order_vat">VAT</string>
 
-    <string name="time_h">ช</string>
-    <string name="time_m">น</string>
-    <string name="time_s">ว</string>
+    <string name="time_h">ชั่วโมง</string>
+    <string name="time_m">นาที</string>
+    <string name="time_s">วินาที</string>
 
     <!-- Home Slider -->
     <array name="slider_title">
@@ -294,6 +295,6 @@
     </array>
 
     <array name="slider_message">
-        <item>ค้นหาเครื่องชาร์จ เติมพลัง และออกเดินทาง</item>
+        <item>ค้นหาเครื่องชาร์จ เพิ่มพลัง และออกเดินทาง</item>
     </array>
 </resources>

@@ -1,8 +1,8 @@
 <resources>
     <!-- HOME -->
-    <string name="home">Ana Sayfa</string>
+    <string name="home">Anasayfa</string>
     <string name="scan">Tara</string>
-    <string name="scan_qr_code">Etkinleştirmek için Tara</string>
+    <string name="scan_qr_code">Etkinleştirmek İçin Tara</string>
     <string name="orders">Siparişler</string>
     <string name="account">Hesap</string>
     <string name="home_help">Yardım</string>
@@ -13,10 +13,10 @@
     <string name="account_vehicles">Araçlar</string>
     <string name="invite">Davet Et</string>
     <string name="invite_link_copied">Bağlantı kopyalandı</string>
-    <string name="invite_QR_description">Harika uygulamamızı indirmeleri için arkadaşlarınızı davet edin</string>
+    <string name="invite_QR_description">Harika uygulamamızı indirmek için arkadaşlarınızı davet edin</string>
     <string name="logout_title">Çıkış Yap</string>
     <string name="logout_confirmation">Çıkış yapmak istediğinizden emin misiniz?</string>
-    <string name="select_language">Dil seçin</string>
+    <string name="select_language">Dil Seç</string>
 
     <!-- Update-->
     <string name="update_required">Güncelleme Gerekli</string>
@@ -27,9 +27,9 @@
     <string name="profile_email">E-posta</string>
     <string name="profile">Profilim</string>
     <string name="profile_select_country">Ülke Seç</string>
-    <string name="profile_require_email_address">Profilinizi güncellemek için e-posta gereklidir</string>
+    <string name="profile_require_email_address">Profilinizi güncellemek için e-posta adresi gereklidir</string>
     <string name="profile_confirm_delete_account">Hesabınızı silmek istediğinizden emin misiniz?</string>
-    <string name="profile_delete_account_description">Hesabınız anında devre dışı bırakılacaktır. 30 gün sonra kalıcı olarak silinecek ve kullanılmayan krediler, promosyonlar veya ödüller kaldırılacaktır.</string>
+    <string name="profile_delete_account_description">Hesabınız hemen devre dışı bırakılacaktır. 30 gün sonra kalıcı olarak silinecek ve kullanılmayan krediler, promosyonlar veya ödüller kaldırılacaktır.</string>
     <string name="profile_guest">Misafir</string>
     <string name="profile_see">Profili Gör</string>
     <string name="profile_select_country_please">Lütfen ülke seçin</string>
@@ -38,7 +38,7 @@
     <string name="welcome">Merhaba :)</string>
     <string name="welcome_description">EV şarjının geleceğine hoş geldiniz! Önce dil tercihinizi ayarlayalım.</string>
     <string name="welcome_user_agreement">%s kullanarak, şunları kabul etmiş olursunuz:</string>
-    <string name="welcome_privacy_policy">Gizlilik Politikası.</string>
+    <string name="welcome_privacy_policy">Gizlilik Politikamız.</string>
     <string name="welcome_and">ve</string>
     <string name="welcome_terms_of_service">Hizmet Şartları</string>
     <string name="welcome_terms_condition">Şartlar ve Koşullar</string>
@@ -58,9 +58,9 @@
     <string name="login_option_google">Google ile giriş yap</string>
     <string name="login_option_email">E-posta ile giriş yap</string>
     <string name="login_option_guest">Misafir olarak devam et</string>
-    <string name="login_option_other">Diğer giriş seçeneklerini keşfedin</string>
+    <string name="login_option_other">Diğer Giriş seçeneklerini keşfet</string>
     <string name="login_email">E-posta</string>
-    <string name="login_email_title">Giriş yapın veya hesap oluşturun</string>
+    <string name="login_email_title">Giriş yap veya hesap oluştur</string>
     <string name="login_email_enter">E-postanızı girin</string>
     <string name="login_email_enter_msg">Lütfen e-posta adresinizi girin. Hesabınızı güvende tutmak için size bir doğrulama kodu göndereceğiz.</string>
     <string name="login_email_error_msg">E-posta adresi hatalı</string>
@@ -71,10 +71,10 @@
     <string name="login_email_password_create_title">E-posta adresi ile giriş yap</string>
     <string name="login_email_password_create">Bir şifre oluşturun</string>
     <string name="login_email_password_create_msg">Giriş yapmak için kullanacağınız güçlü bir şifre oluşturun</string>
-    <string name="login_email_password_length_msg">Şifre en az %d karakter olmalıdır.</string>
+    <string name="login_email_password_length_msg">Şifre en az %d karakterden oluşmalıdır.</string>
     <string name="login_email_password_not_matched">Şifreler aynı değil</string>
     <string name="login_email_password_forget">Şifreni mi unuttun?</string>
-    <string name="login_email_password_forget_msg">Sorun değil! %s\'e tek seferlik bir şifre (OTP) göndereceğiz. Aldıktan sonra, OTP\'yi kullanarak giriş yapabilir ve şifrenizi sıfırlayabilirsiniz.</string>
+    <string name="login_email_password_forget_msg">Sorun değil! %s adresine tek seferlik bir şifre (OTP) göndereceğiz. Aldıktan sonra, OTP\'yi kullanarak giriş yapabilir ve şifrenizi sıfırlayabilirsiniz</string>
     <string name="login_email_password_weak">Zayıf</string>
     <string name="login_email_password_medium">Orta</string>
     <string name="login_email_password_strong">Güçlü</string>
@@ -91,8 +91,8 @@
     <string name="remove">Kaldır</string>
     <string name="add_a_note">Not ekle</string>
     <string name="delete_account">Hesabı Sil</string>
-    <string name="share_code">Referans Bağlantısını Paylaş</string>
-    <string name="copy_code">Referans Bağlantısını Kopyala</string>
+    <string name="share_code">Tavsiye Bağlantısını Paylaş</string>
+    <string name="copy_code">Tavsiye Bağlantısını Kopyala</string>
     <string name="agree_and_continue">Kabul Et ve Devam Et</string>
     <string name="update">Güncelle</string>
     <string name="edit">Düzenle</string>
@@ -110,7 +110,7 @@
     <string name="payment_card_scan">Kartı Tara</string>
     <string name="payment_default">Varsayılan Yöntem</string>
     <string name="payment_paypal">Paypal</string>
-    <string name="payment_point_checkout">Puanla Ödeme</string>
+    <string name="payment_point_checkout">Nokta Ödeme</string>
     <string name="payment_failed">Ödeme Başarısız</string>
     <string name="payment_add_new_card">Yeni Kart Ekle</string>
     <string name="payment_cash_on_delivery">Kapıda Nakit Ödeme</string>
@@ -126,7 +126,7 @@
     <string name="wallet_withdraw_failed">Çekme Başarısız</string>
     <string name="wallet_policy">Çekme Politikası</string>
     <string name="wallet_policy_read_our">Şunları okuyun:</string>
-    <string name="wallet_policy_tab_withdraw">. Kabul etmek için "Kabul Et ve Çek" sekmesine dokunun</string>
+    <string name="wallet_policy_tab_withdraw">. Kabul etmek için \"Kabul Et ve Çek\" sekmesine dokunun</string>
     <string name="wallet_policy_terms">Hizmet Şartları</string>
 
     <!-- balance-->
@@ -135,7 +135,7 @@
     <string name="balance_available">Kullanılabilir Bakiye</string>
     <string name="balance_add">Bakiye Ekle</string>
     <string name="balance_popular">Popüler</string>
-    <string name="balance_non_refundable">İndirimli bakiye iade edilemez, kabul etmek için lütfen devam\'a dokunun</string>
+    <string name="balance_non_refundable">İndirimli bakiye iade edilemez, kabul etmek için lütfen devam et sekmesine dokunun</string>
     <string name="balance_refill_select_method">Lütfen bir ödeme yöntemi seçin.</string>
     <string name="balance_add_message">Bakiyenize ekleyeceğiz</string>
 
@@ -147,14 +147,14 @@
 
     <!--Messages-->
     <string name="no_internet_message">Lütfen internete bağlı olduğunuzdan emin olun</string>
-    <string name="internet_connection_error">Üzgünüz, bu uygulamanın düzgün çalışması için internet bağlantısına ihtiyacı var. Lütfen internet bağlantınızı kontrol edin ve tekrar deneyin.</string>
+    <string name="internet_connection_error">Üzgünüz, bu uygulamanın düzgün çalışması için internet bağlantısı gerekiyor. Lütfen internet bağlantınızı kontrol edin ve tekrar deneyin.</string>
     <string name="maintenance_mode_error">Hizmet şu anda bakım nedeniyle kullanılamıyor. Lütfen daha sonra tekrar kontrol edin. Verdiğimiz rahatsızlıktan dolayı özür dileriz</string>
     <string name="camera_permission_message">Lütfen Kamera İznini Verin</string>
     <string name="reminder_message">Tekliflerimizi ve indirimlerimizi almak için lütfen kaydı tamamlayın</string>
 
     <!-- Feedback-->
     <string name="feedback_msg">Deneyiminiz nasıldı?</string>
-    <string name="feedback_terrible">Korkunç</string>
+    <string name="feedback_terrible">Berbat</string>
     <string name="feedback_bad">Kötü</string>
     <string name="feedback_fine">İdare Eder</string>
     <string name="feedback_good">İyi</string>
@@ -185,12 +185,12 @@
     <string name="station_open_in">%s\'de açılıyor</string>
     <string name="station_close_in">%s\'de kapanıyor</string>
 
-    <string name="station_max_power">Max %s kWh</string>
-    <string name="station_max">Max</string>
-    <string name="station_max_value">(%s Max)</string>
+    <string name="station_max_power">Maks %s kWh</string>
+    <string name="station_max">Maks</string>
+    <string name="station_max_value">(%s Maks)</string>
     <string name="station_reviews">Değerlendirmeler &amp; Yorumlar</string>
     <string name="station_reviews_helpful">Yardımcı</string>
-    <string name="station_charging_activate">Şarj Etkinleştirme</string>
+    <string name="station_charging_activate">Şarj Cihazı Etkinleştirme</string>
     <string name="station_charging">Şarj Etme</string>
     <string name="station_charging_start">Şarjı Başlat</string>
     <string name="station_charging_start_error">Lütfen şarja başlamadan önce fişleri seçin.</string>
@@ -201,10 +201,10 @@
     <string name="station_charging_minute">d</string>
     <string name="station_charging_hour">s</string>
 
-    <string name="station_charging_msg_1">"Şarj cihazını etkinleştirmeye hazırsınız.\nŞarj sürenizi seçin ve başlatmak için \'Şarjı Başlat\'a dokunun."</string>
+    <string name="station_charging_msg_1">"Şarj cihazını etkinleştirmeye hazırsınız.\nŞarj sürenizi seçin ve başlatmak için 'Şarjı Başlat'a dokunun."</string>
     <string name="station_charging_msg_2">"Şarja başlamadan önce lütfen şunları unutmayın:"</string>
-    <string name="station_charging_msg_3">"Şu anda şarj istasyonunun yakınında değilseniz, devam ederseniz şarj oturumu yine de başlayacaktır.</string>
-    <string name="station_charging_msg_4">"Zaten şarj istasyonundaysanız ve şarj cihazını etkinleştirmeye hazırsanız, şarj sürenizi seçin ve başlatmak için \'Şarjı Başlat\'a dokunun."</string>
+    <string name="station_charging_msg_3">"Şu anda şarj istasyonunun yakınında değilseniz, yine de devam ederseniz şarj oturumu başlayacaktır.</string>
+    <string name="station_charging_msg_4">"Zaten şarj istasyonundaysanız ve şarj cihazını etkinleştirmeye hazırsanız, şarj sürenizi seçin ve başlatmak için 'Şarjı Başlat'a dokunun."</string>
     <string name="station_total_price">Toplam Fiyat</string>
     <string name="station_charged">Şarj Edildi</string>
     <string name="station_recharge">Yeniden Şarj Et</string>
@@ -214,25 +214,26 @@
 
     <string name="onboarding1_title1">Güvenle</string>
     <string name="onboarding1_title2">İstasyona Sür</string>
-    <string name="onboarding1_description">Uygulamamızla şarj cihazınızı bulun ve konumuna gidin. Harita, kolay navigasyon için size rehberlik edecektir.</string>
+    <string name="onboarding1_description">Uygulamamızla şarj cihazınızı bulun ve konumuna gidin. Harita, kolay navigasyon için size yol gösterecektir.</string>
     <string name="onboarding2_title">Şarj Cihazını Tanımlayın</string>
-    <string name="onboarding2_description1">Birden fazla şarj cihazı olan alanlarda, özellikle sahipseniz, benzersiz kimliğini veya adını kullanarak şarj cihazınızı tanımlayın</string>
-    <string name="onboarding2_description2">önceden rezervasyon yaptı</string>
+    <string name="onboarding2_description1">Birden fazla şarj cihazının bulunduğu alanlarda, özellikle varsa, benzersiz kimliği veya adını kullanarak şarj cihazınızı tanımlayın</string>
+    <string name="onboarding2_description2">önceden rezerve edilmiş</string>
     <string name="onboarding2_description3">.</string>
     <string name="onboarding3_title">Şarj Cihazını Başlat</string>
-    <string name="onboarding3_description1">Öncelikle aracınızı şarj cihazına bağlayın. Ardından, şarj cihazındaki QR kodunu tarayarak</string>
-    <string name="onboarding3_description2">şarjı başlatın</string>
-    <string name="onboarding3_description3">işlem.</string>
-    <string name="onboarding4_title1">Bekle</string>
-    <string name="onboarding4_title2">Şarj İçin</string>
-    <string name="onboarding4_description">Kurulum tamamlandı! Bir geri sayım sayacı, aracınızın tamamen şarj olmasına ne kadar kaldığını gösterecektir. Bu arada rahatlayın veya kendinize bir an ayırın.</string>
+    <string name="onboarding3_description1">Öncelikle aracınızı şarj cihazına bağlayın. Sonra,</string>
+    <string name="onboarding3_description2">şarj cihazındaki QR kodunu tarayın</string>
+    <string name="onboarding3_description3">şarj etmeyi başlatmak için</string>
+    <string name="onboarding3_description4">işlem.</string>
+    <string name="onboarding4_title1">Şarj İçin</string>
+    <string name="onboarding4_title2">Bekleyin</string>
+    <string name="onboarding4_description">Kurulum tamamlandı! Bir geri sayım sayacı, aracınızın tamamen şarj olmasına kadar ne kadar süre kaldığını gösterecektir. Bu arada rahatlayın veya kendinize zaman ayırın.</string>
 
     <!-- My Power Sources -->
     <string name="station_plugs">Fişler</string>
     <string name="station_plug_type">Fiş Tipi</string>
     <string name="station_plug_add">Fiş Ekle</string>
     <string name="station_details_plug">Fiş: %d</string>
-    <string name="station_details_parking">Park Yeri</string>
+    <string name="station_details_parking">Otopark</string>
     <string name="station_details_amenities">Olanaklar</string>
     <string name="station_details_title">Başlık</string>
     <string name="station_details_descriptions">Açıklamalar</string>
@@ -243,9 +244,9 @@
     <string name="vehicle_make">Marka</string>
     <string name="vehicle_model">Model</string>
     <string name="vehicle_model_search">Model Ara</string>
-    <string name="vehicle_version">Versiyon</string>
+    <string name="vehicle_version">Sürüm</string>
     <string name="vehicle_add">Araç Ekle</string>
-    <string name="vehicle_delete">Aracı silmek mi?</string>
+    <string name="vehicle_delete">Aracı sil?</string>
     <string name="vehicle_delete_message">Bu aracı silmek istediğinizden emin misiniz?</string>
     <string name="vehicle_manufacturer">Üretici</string>
     <string name="vehicle_manufacturer_search">Üretici Ara</string>
@@ -254,17 +255,17 @@
     <string name="vehicle_details_color_custom">Özel Renk</string>
     <string name="vehicle_details_year">Yıl (%s)</string>
     <string name="vehicle_details_fuel">Yakıt türü (%s)</string>
-    <string name="vehicle_details_charging">Şarj tipi</string>
+    <string name="vehicle_details_charging">Şarj türü</string>
 
     <string name="fuel_fuel">Yakıt</string>
     <string name="fuel_hybrid">Hibrit</string>
-    <string name="fuel_plug_in_hybrid">Şarjlı Hibrit</string>
+    <string name="fuel_plug_in_hybrid">Plug-In Hibrit</string>
     <string name="fuel_electric">Elektrikli</string>
     <string name="fuel_other">Diğer</string>
 
     <!-- Orders-->
     <string name="sessions_active">Aktif Oturum</string>
-    <string name="sessions_scheduled">Planlanmış</string>
+    <string name="sessions_scheduled">Planlandı</string>
     <string name="sessions_booking_id">Rezervasyon Kimliği</string>
     <string name="sessions_history">Geçmiş</string>
     <string name="sessions_completed">Tamamlandı</string>
@@ -294,6 +295,6 @@
     </array>
 
     <array name="slider_message">
-        <item>Bir şarj cihazı bulun, güçlendirin ve yola koyulun.</item>
+        <item>Şarj cihazı bulun, gücü açın ve yola koyulun.</item>
     </array>
 </resources>

@@ -13,68 +13,68 @@
     <string name="account_vehicles">車両</string>
     <string name="invite">招待</string>
     <string name="invite_link_copied">リンクをコピーしました</string>
-    <string name="invite_QR_description">友達を招待して、素晴らしいアプリをダウンロードしてもらいましょう</string>
+    <string name="invite_QR_description">友達を招待して、この素晴らしいアプリをダウンロードしてもらいましょう</string>
     <string name="logout_title">サインアウト</string>
-    <string name="logout_confirmation">サインアウトしてもよろしいですか？</string>
+    <string name="logout_confirmation">本当にサインアウトしますか？</string>
     <string name="select_language">言語を選択</string>
 
     <!-- Update-->
     <string name="update_required">アップデートが必要です</string>
-    <string name="update_force_desc1">追加機能、セキュリティアップデート、改善を含む重要なアップデートが必要です。</string>
+    <string name="update_force_desc1">追加機能、セキュリティアップデート、および改善を含む重要なアップデートが必要です。</string>
     <string name="update_force_desc2">続行するには、アプリをアップデートしてください。</string>
 
     <!--Profile Screen-->
     <string name="profile_email">メールアドレス</string>
-    <string name="profile">プロフィール</string>
+    <string name="profile">マイプロフィール</string>
     <string name="profile_select_country">国を選択</string>
-    <string name="profile_require_email_address">プロフィールを更新するには、メールアドレスが必要です</string>
+    <string name="profile_require_email_address">プロフィールを更新するにはメールアドレスが必要です</string>
     <string name="profile_confirm_delete_account">アカウントを削除してもよろしいですか？</string>
-    <string name="profile_delete_account_description">アカウントはすぐに無効になります。30日後、完全に削除され、未使用のクレジット、プロモーション、または特典は削除されます。</string>
+    <string name="profile_delete_account_description">アカウントはすぐに無効になります。30日後には完全に削除され、未使用のクレジット、プロモーション、または特典は削除されます。</string>
     <string name="profile_guest">ゲスト</string>
     <string name="profile_see">プロフィールを見る</string>
     <string name="profile_select_country_please">国を選択してください</string>
 
     <!-- Welcome Screen-->
-    <string name="welcome">こんにちは (^_^) </string>
-    <string name="welcome_description">EV充電の未来へようこそ！ まずは言語設定から始めましょう。</string>
+    <string name="welcome">こんにちは :)</string>
+    <string name="welcome_description">EV充電の未来へようこそ！まずは言語設定から始めましょう。</string>
     <string name="welcome_user_agreement">%sを使用することにより、当社の</string>
-    <string name="welcome_privacy_policy">プライバシーポリシー。</string>
+    <string name="welcome_privacy_policy">プライバシーポリシーに同意したものとみなされます。</string>
     <string name="welcome_and">および</string>
     <string name="welcome_terms_of_service">利用規約</string>
-    <string name="welcome_terms_condition">利用規約</string>
+    <string name="welcome_terms_condition">諸条件</string>
 
     <!-- Login-->
-    <string name="login_select_country">国を選択してください</string>
-    <string name="login_resend_code_in">コードを再送信（残り</string>
+    <string name="login_select_country">国を選択</string>
+    <string name="login_resend_code_in">コードを再送信（あと</string>
     <string name="login_first_name">名</string>
     <string name="login_last_name">姓</string>
     <string name="login_password">パスワード</string>
     <string name="login_enter_first_name">名を入力してください</string>
     <string name="login_Verification_title">認証</string>
     <string name="login_resend_code">コードを再送信</string>
-    <string name="login_need_help">ヘルプが必要</string>
+    <string name="login_need_help">ヘルプ</string>
     <string name="login_enter_code">送信された4桁のコードを入力してください</string>
     <string name="login_option_title">サインイン</string>
     <string name="login_option_google">Googleでサインイン</string>
-    <string name="login_option_email">メールアドレスでサインイン</string>
+    <string name="login_option_email">メールでサインイン</string>
     <string name="login_option_guest">ゲストとして続行</string>
     <string name="login_option_other">その他のサインインオプション</string>
     <string name="login_email">メールアドレス</string>
-    <string name="login_email_title">サインインまたはアカウントを作成</string>
-    <string name="login_email_enter">メールアドレスを入力</string>
-    <string name="login_email_enter_msg">メールアドレスを入力してください。アカウントを安全に保つために、認証コードを送信します。</string>
+    <string name="login_email_title">サインインまたはアカウント作成</string>
+    <string name="login_email_enter">メールアドレスを入力してください</string>
+    <string name="login_email_enter_msg">メールアドレスを入力してください。アカウントのセキュリティを確保するために、認証コードを送信します。</string>
     <string name="login_email_error_msg">メールアドレスが正しくありません</string>
     <string name="login_email_password">パスワード</string>
     <string name="login_email_password_enter">パスワードを入力</string>
     <string name="login_email_password_new">新しいパスワード</string>
-    <string name="login_email_password_confirm">パスワードの確認</string>
+    <string name="login_email_password_confirm">パスワードを認証</string>
     <string name="login_email_password_create_title">メールアドレスでサインイン</string>
     <string name="login_email_password_create">パスワードを作成</string>
     <string name="login_email_password_create_msg">サインインに使用する強力なパスワードを作成してください</string>
     <string name="login_email_password_length_msg">パスワードは%d文字以上である必要があります。</string>
     <string name="login_email_password_not_matched">パスワードが一致しません</string>
     <string name="login_email_password_forget">パスワードをお忘れですか？</string>
-    <string name="login_email_password_forget_msg">問題ありません！ %sにワンタイムパスワード（OTP）を送信します。 受信したら、OTPを使用してログインし、パスワードをリセットできます。</string>
+    <string name="login_email_password_forget_msg">ご心配ありません！%sにワンタイムパスワード（OTP）を送信します。OTPを受け取ったら、OTPを使用してログインし、パスワードをリセットできます。</string>
     <string name="login_email_password_weak">弱い</string>
     <string name="login_email_password_medium">普通</string>
     <string name="login_email_password_strong">強い</string>
@@ -94,7 +94,7 @@
     <string name="share_code">紹介リンクを共有</string>
     <string name="copy_code">紹介リンクをコピー</string>
     <string name="agree_and_continue">同意して続行</string>
-    <string name="update">アップデート</string>
+    <string name="update">更新</string>
     <string name="edit">編集</string>
     <string name="next">次へ</string>
     <string name="skip">スキップ</string>
@@ -108,9 +108,9 @@
     <string name="payment_method_add">支払い方法を追加</string>
     <string name="payment_card_add">カードを追加</string>
     <string name="payment_card_scan">カードをスキャン</string>
-    <string name="payment_default">デフォルトの方法</string>
+    <string name="payment_default">デフォルトの支払い方法</string>
     <string name="payment_paypal">Paypal</string>
-    <string name="payment_point_checkout">ポイントチェックアウト</string>
+    <string name="payment_point_checkout">ポイント決済</string>
     <string name="payment_failed">支払い失敗</string>
     <string name="payment_add_new_card">新しいカードを追加</string>
     <string name="payment_cash_on_delivery">代金引換</string>
@@ -125,8 +125,8 @@
     <string name="wallet_withdraw_successful">引き出しに成功しました</string>
     <string name="wallet_withdraw_failed">引き出しに失敗しました</string>
     <string name="wallet_policy">引き出しポリシー</string>
-    <string name="wallet_policy_read_our">こちらをお読みください</string>
-    <string name="wallet_policy_tab_withdraw">. タブ「同意して引き出す」をクリックして同意します</string>
+    <string name="wallet_policy_read_our">当社の</string>
+    <string name="wallet_policy_tab_withdraw">をお読みください。「同意して引き出す」タブをクリックして同意してください</string>
     <string name="wallet_policy_terms">利用規約</string>
 
     <!-- balance-->
@@ -135,7 +135,7 @@
     <string name="balance_available">利用可能な残高</string>
     <string name="balance_add">残高を追加</string>
     <string name="balance_popular">人気</string>
-    <string name="balance_non_refundable">割引付きの残高は払い戻しできません。続行するには同意してください</string>
+    <string name="balance_non_refundable">割引付き残高は払い戻しできません。同意する場合は「続行」をタップしてください</string>
     <string name="balance_refill_select_method">支払い方法を選択してください。</string>
     <string name="balance_add_message">残高に追加します</string>
 
@@ -147,33 +147,33 @@
 
     <!--Messages-->
     <string name="no_internet_message">インターネットに接続されていることを確認してください</string>
-    <string name="internet_connection_error">申し訳ありませんが、このアプリケーションを正常に動作させるにはインターネット接続が必要です。インターネット接続を確認して、再試行してください。</string>
-    <string name="maintenance_mode_error">現在、メンテナンスのためサービスをご利用いただけません。後で再度ご確認ください。ご不便をおかけして申し訳ありません</string>
+    <string name="internet_connection_error">申し訳ありませんが、このアプリケーションを正常に動作させるにはインターネット接続が必要です。インターネット接続を確認して、もう一度お試しください。</string>
+    <string name="maintenance_mode_error">現在、メンテナンスのためサービスをご利用いただけません。後でもう一度お試しください。ご不便をおかけして申し訳ありません。</string>
     <string name="camera_permission_message">カメラの権限を許可してください</string>
     <string name="reminder_message">オファーや割引を受け取るには、登録を完了してください</string>
 
     <!-- Feedback-->
-    <string name="feedback_msg">どのような体験でしたか？</string>
-    <string name="feedback_terrible">ひどい</string>
+    <string name="feedback_msg">ご使用感はいかがでしたか？</string>
+    <string name="feedback_terrible">最悪</string>
     <string name="feedback_bad">悪い</string>
     <string name="feedback_fine">普通</string>
     <string name="feedback_good">良い</string>
-    <string name="feedback_excellent">素晴らしい</string>
+    <string name="feedback_excellent">最高</string>
 
     <!-- Stations -->
     <string name="station_location_allow">許可</string>
-    <string name="station_number">ステーション #%s</string>
-    <string name="station_new">新規</string>
-    <string name="station_drive">ステーションへ移動</string>
-    <string name="station_unit_price_per_minute_total">%s %s/分 X %s</string> <!-- ex: 1.0 SR/分 X 1m 20 s -->
+    <string name="station_number">ステーション#%s</string>
+    <string name="station_new">新しい</string>
+    <string name="station_drive">ステーションまで運転</string>
+    <string name="station_unit_price_per_minute_total">%s %s/分 X %s</string> <!-- ex: 1.0 SR/minute X 1m 20 s -->
     <string name="station_unit_price_per_kwh_total">%s %s/kWh X %s</string> <!-- ex: 1.0 SR/kWh X 50 -->
-    <string name="station_per_minute">分あたり</string>
-    <string name="station_per_kwh">kWhあたり</string>
-    <string name="station_per">あたり</string>
+    <string name="station_per_minute">毎分</string>
+    <string name="station_per_kwh">毎kWh</string>
+    <string name="station_per">当たり</string>
     <string name="station_kwh">kWh</string>
     <string name="station_km_value">%s km</string>
     <string name="station_kwh_value">%s kWh</string>
-    <string name="station_km_away">%.1f km 離れています</string>
+    <string name="station_km_away">%.1f km</string>
 
     <string name="station_status_open24">24時間営業</string>
     <string name="station_status_open">営業中</string>
@@ -185,47 +185,48 @@
     <string name="station_open_in">%sにオープン</string>
     <string name="station_close_in">%sにクローズ</string>
 
-    <string name="station_max_power">最大 %s kWh</string>
+    <string name="station_max_power">最大%s kWh</string>
     <string name="station_max">最大</string>
-    <string name="station_max_value">（最大 %s）</string>
+    <string name="station_max_value">（最大%s）</string>
     <string name="station_reviews">評価とレビュー</string>
-    <string name="station_reviews_helpful">役に立つ</string>
-    <string name="station_charging_activate">充電器の有効化</string>
+    <string name="station_reviews_helpful">役に立った</string>
+    <string name="station_charging_activate">充電器の起動</string>
     <string name="station_charging">充電中</string>
-    <string name="station_charging_start">充電を開始</string>
-    <string name="station_charging_start_error">充電を開始する前に、プラグを選択してください。</string>
+    <string name="station_charging_start">充電開始</string>
+    <string name="station_charging_start_error">充電を開始する前にプラグを選択してください。</string>
     <string name="station_charging_how_to">充電方法</string>
-    <string name="station_charging_stop">充電を停止</string>
-    <string name="station_charging_stop_msg">充電を停止する前に、プラグがEVから取り外されていることを確認してください。</string>
+    <string name="station_charging_stop">充電停止</string>
+    <string name="station_charging_stop_msg">充電を停止する前に、必ずプラグがEVから取り外されていることを確認してください。</string>
     <string name="station_charging_full">満充電</string>
     <string name="station_charging_minute">分</string>
     <string name="station_charging_hour">時間</string>
 
-    <string name="station_charging_msg_1">"充電器を有効にする準備ができました。\n充電時間を選択し、[充電開始]をタップして開始してください。"</string>
+    <string name="station_charging_msg_1">"充電器を起動する準備ができました。\n充電時間を選択し、[充電開始]をタップして開始します。"</string>
     <string name="station_charging_msg_2">"充電を開始する前に、次の点にご注意ください。"</string>
-    <string name="station_charging_msg_3">"現在、充電ステーションの近くにいない場合でも、続行すると充電セッションが開始されます。</string>
-    <string name="station_charging_msg_4">"すでに充電ステーションにいて、充電器を有効にする準備ができている場合は、充電時間を選択し、[充電開始]をタップして開始してください。"</string>
+    <string name="station_charging_msg_3">"現在充電ステーションの近くにいなくても、続行すると充電セッションが開始されます。</string>
+    <string name="station_charging_msg_4">"すでに充電ステーションにいて、充電器を起動する準備ができている場合は、充電時間を選択し、[充電開始]をタップして開始します。"</string>
     <string name="station_total_price">合計金額</string>
     <string name="station_charged">充電済み</string>
-    <string name="station_recharge">リチャージ</string>
+    <string name="station_recharge">再充電</string>
     <string name="station_time">時間</string>
     <string name="station_price">価格</string>
     <string name="station_app_fees">アプリ手数料</string>
 
     <string name="onboarding1_title1">安全に</string>
-    <string name="onboarding1_title2">ステーションに移動</string>
-    <string name="onboarding1_description">アプリで充電器を見つけて、その場所に向かいます。 地図が簡単なナビゲーションをガイドします。</string>
+    <string name="onboarding1_title2">ステーションまで運転</string>
+    <string name="onboarding1_description">アプリで充電器を見つけて、その場所に向かいましょう。地図が簡単なナビゲーションをガイドします。</string>
     <string name="onboarding2_title">充電器を識別する</string>
-    <string name="onboarding2_description1">複数の充電器がある場所では、特に事前に予約している場合は、充電器の一意のIDまたは名前を使用して充電器を識別します。</string>
-    <string name="onboarding2_description2">事前に予約した場合</string>
-    <string name="onboarding2_description3">.</string>
+    <string name="onboarding2_description1">複数の充電器があるエリアでは、特に事前に予約している場合は、一意のIDまたは名前を使用して充電器を識別します</string>
+    <string name="onboarding2_description2">事前に予約済みの場合に便利です</string>
+    <string name="onboarding2_description3">。</string>
     <string name="onboarding3_title">充電器を起動</string>
-    <string name="onboarding3_description1">まず、車両を充電器に接続します。 次に、充電器のQRコードをスキャンして</string>
-    <string name="onboarding3_description2">充電を開始</string>
-    <string name="onboarding3_description3">プロセス。</string>
-    <string name="onboarding4_title1">充電を</string>
-    <string name="onboarding4_title2">待つ</string>
-    <string name="onboarding4_description">セットアップ完了！ カウントダウンタイマーに、車両が完全に充電されるまでの時間が表示されます。 その間、リラックスしたり、自分の時間を少し取ったりしてください。</string>
+    <string name="onboarding3_description1">まず、車両を充電器に接続します。次に、</string>
+    <string name="onboarding3_description2">充電器のQRコードをスキャンして</string>
+    <string name="onboarding3_description3">充電</string>
+    <string name="onboarding3_description4">処理を開始します。</string>
+    <string name="onboarding4_title1">充電を待つ</string>
+    <string name="onboarding4_title2">充電待ち</string>
+    <string name="onboarding4_description">セットアップ完了！カウントダウンタイマーに、車両が完全に充電されるまでの時間が表示されます。それまでの間、リラックスしたり、少し休憩したりしてください。</string>
 
     <!-- My Power Sources -->
     <string name="station_plugs">プラグ</string>
@@ -239,7 +240,7 @@
     <string name="station_save_next">保存して次へ</string>
 
     <!-- Vehicles -->
-    <string name="vehicle_title">車両</string>
+    <string name="vehicle_title">マイ車両</string>
     <string name="vehicle_make">メーカー</string>
     <string name="vehicle_model">モデル</string>
     <string name="vehicle_model_search">モデルを検索</string>
@@ -247,13 +248,13 @@
     <string name="vehicle_add">車両を追加</string>
     <string name="vehicle_delete">車両を削除しますか？</string>
     <string name="vehicle_delete_message">この車両を削除してもよろしいですか？</string>
-    <string name="vehicle_manufacturer">製造業者</string>
-    <string name="vehicle_manufacturer_search">製造業者を検索</string>
+    <string name="vehicle_manufacturer">製造元</string>
+    <string name="vehicle_manufacturer_search">製造元を検索</string>
     <string name="vehicle_details">詳細</string>
     <string name="vehicle_details_color">色</string>
     <string name="vehicle_details_color_custom">カスタムカラー</string>
-    <string name="vehicle_details_year">年（%s）</string>
-    <string name="vehicle_details_fuel">燃料タイプ（%s）</string>
+    <string name="vehicle_details_year">年 (%s)</string>
+    <string name="vehicle_details_fuel">燃料タイプ (%s)</string>
     <string name="vehicle_details_charging">充電タイプ</string>
 
     <string name="fuel_fuel">燃料</string>
@@ -274,7 +275,7 @@
 
     <string name="station_closed">閉鎖</string>
     <string name="order_Id">注文ID</string>
-    <string name="order_selected_product">商品</string>
+    <string name="order_selected_product">製品</string>
     <string name="order_discount">割引</string>
     <string name="order_vatId">VAT ID</string>
     <string name="order_subtotal">小計 : </string>
@@ -290,10 +291,10 @@
 
     <!-- Home Slider -->
     <array name="slider_title">
-        <item>準備完了</item>
+        <item>出発準備完了</item>
     </array>
 
     <array name="slider_message">
-        <item>充電器を見つけて、電源を入れ、出発しましょう。</item>
+        <item>充電器を見つけて電源を入れ、出発しましょう。</item>
     </array>
 </resources>
