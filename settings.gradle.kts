@@ -33,11 +33,11 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":app")
 
 // features
-include(":feature:home")
-include(":feature:home:map")
-include(":feature:home:scan")
-include(":feature:home:orders")
-include(":feature:home:account")
+include(":feature:main")
+include(":feature:main:home")
+include(":feature:main:scan")
+include(":feature:main:orders")
+include(":feature:main:account")
 
 include(":feature:power-source")
 include(":feature:power-source:charge")

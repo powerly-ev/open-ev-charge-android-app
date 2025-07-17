@@ -14,7 +14,7 @@ import androidx.navigation.toRoute
 import com.powerly.account.accountDestinations
 import com.powerly.core.model.powerly.OrderTab
 import com.powerly.core.model.util.Message
-import com.powerly.home.NavigationScreen
+import com.powerly.main.NavigationScreen
 import com.powerly.lib.AppRoutes
 import com.powerly.lib.Route
 import com.powerly.orders.SessionViewModel
