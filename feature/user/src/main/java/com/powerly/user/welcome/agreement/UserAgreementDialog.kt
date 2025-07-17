@@ -1,6 +1,5 @@
 package com.powerly.user.welcome.agreement
 
-import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -36,13 +35,12 @@ internal fun UserAgreementDialog(
      */
     fun getUserAgreement(type: Int) {
         coroutineScope.launch {
-            val url = viewModel.getUserAgreementLink(type) ?: return@launch
-            Log.v(TAG, url)
             val title = if (type == 1) {
                 context.getString(R.string.welcome_privacy_policy)
             } else {
                 context.getString(R.string.welcome_terms_condition)
             }
+            val url = viewModel.getUserAgreementLink(type).orEmpty()
             webViewPage = WebViewPage(
                 url = url,
                 title = title

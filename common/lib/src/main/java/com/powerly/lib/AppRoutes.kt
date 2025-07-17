@@ -146,10 +146,10 @@ object AppRoutes {
         data object Welcome : Route() {
             @Serializable
             data object Language : Route()
-
-            @Serializable
-            data class UserAgreement(val type: Int) : Route()
         }
+
+        @Serializable
+        data class Agreement(val type: Int) : Route()
 
         data object Email : Route() {
             @Serializable

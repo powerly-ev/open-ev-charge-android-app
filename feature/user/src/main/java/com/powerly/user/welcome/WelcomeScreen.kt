@@ -35,7 +35,7 @@ internal fun WelcomeScreen(
     navigateToLogin: (SignInOptions) -> Unit,
     navigateToHome: () -> Unit
 ) {
-    var signInOptionsDialog = rememberMyDialogState()
+    val signInOptionsDialog = rememberMyDialogState()
     val appVersion = remember { viewModel.appVersion }
     val languageName = remember { languagesViewModel.languageName }
 

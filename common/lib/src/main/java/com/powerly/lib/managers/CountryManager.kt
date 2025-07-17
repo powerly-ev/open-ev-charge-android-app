@@ -26,7 +26,7 @@ class CountryManager @Inject constructor(
         private const val TAG = "CountryManager"
         private var countries = HashMap<String, Country>()
         fun getCountryList() = countries.values.toList()
-        private const val DEFAULT_COUNTRY_ID = "1"
+        private const val DEFAULT_COUNTRY_ISO = "JO" //jordan code two letters
     }
 
     /**
@@ -68,12 +68,12 @@ class CountryManager @Inject constructor(
     }
 
     fun getSavedCountry(): Country? {
-        val country = getCountryById(storageManager.countryId)
+        val country = getCountryById(storageManager.countryId) ?: detectCountry()
         Log.v(TAG, "getSavedCountry - ${country?.name}")
-        return country ?: detectCountry()
+        return country
     }
 
-    private val defaultCountry: Country? get() = countries[DEFAULT_COUNTRY_ID]
+    private val defaultCountry: Country? get() = countries[DEFAULT_COUNTRY_ISO]
 
     /**
      * Detects the user's country using the TelephonyManager.
@@ -104,9 +104,7 @@ class CountryManager @Inject constructor(
     private fun getCountryById(id: Int?): Country? = countries["$id"]
 
     private fun getCountryByCode(iso: String): Country? =
-        countries.values.firstOrNull { it.iso == iso }
-
-    fun getCountries() = countries
+        countries.values.firstOrNull { it.iso.equals(iso, ignoreCase = true) }
 
     fun initCountries(list: List<Country>) {
         countries.clear()
