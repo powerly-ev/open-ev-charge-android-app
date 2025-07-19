@@ -1,0 +1,97 @@
+require 'net/http'
+require 'json'
+require 'uri'
+require 'googleauth'
+require 'google/apis/drive_v3'
+
+# === === CONFIGURATION === ===
+BUILD_FLAVOR    = ENV['BUILD_FLAVOR'] || 'default' 
+BUILD_VARIANT    = ENV['BUILD_VARIANT'] || 'debug' 
+BUILD_TYPE    = "#{BUILD_FLAVOR}#{BUILD_VARIANT.capitalize}"
+DRIVE_FOLDER_ID = ENV['DRIVE_FOLDER_ID'] || ''
+DRIVE_SERVICE_JSON = ENV['DRIVE_SERVICE_JSON']
+SLACK_CHANNEL = ENV['SLACK_CHANNEL']
+SLACK_TOKEN   = ENV['SLACK_BOT_TOKEN']
+
+# === === FUNCTION: Build APK === ===
+def build_apk
+  gradle(
+    task: 'assemble',
+    build_type: BUILD_TYPE
+  )
+
+  apk_path = Dir["../app/build/outputs/apk/#{BUILD_FLAVOR}/#{BUILD_VARIANT}/*.apk"].first
+  UI.user_error!("APK not found for build type: #{BUILD_TYPE}") unless apk_path
+  apk_path
+end
+
+# === === FUNCTION: Upload to Google Drive === ===
+def upload_to_google_drive(apk_path)
+  credentials = Google::Auth::ServiceAccountCredentials.make_creds(
+    json_key_io: File.open(DRIVE_SERVICE_JSON),
+    scope: ['https://www.googleapis.com/auth/drive.file']
+  )
+
+  drive_service = Google::Apis::DriveV3::DriveService.new
+  drive_service.authorization = credentials
+
+  file_metadata = {
+    name: File.basename(apk_path),
+    mime_type: 'application/vnd.android.package-archive',
+    parents: [DRIVE_FOLDER_ID]
+  }
+
+  file = drive_service.create_file(
+    file_metadata,
+    fields: 'id, webViewLink',
+    upload_source: apk_path,
+    content_type: 'application/vnd.android.package-archive',
+    supports_all_drives: true
+  )
+
+  UI.message("Uploaded to Google Drive: #{file.web_view_link}")
+  file.web_view_link
+end
+
+# === === FUNCTION: Send Slack Message === ===
+def send_slack_notification(message)
+  slack_api_url = URI("https://slack.com/api/chat.postMessage")
+  http = Net::HTTP.new(slack_api_url.host, slack_api_url.port)
+  http.use_ssl = true
+
+  request = Net::HTTP::Post.new(slack_api_url.path, {
+    "Authorization" => "Bearer #{SLACK_TOKEN}",
+    "Content-Type" => "application/json"
+  })
+
+  payload = {
+    channel: SLACK_CHANNEL,
+    text: message
+  }
+
+  request.body = payload.to_json
+  response = http.request(request)
+
+  unless JSON.parse(response.body)['ok']
+    UI.user_error!("Failed to send Slack message: #{response.body}")
+  end
+
+  UI.message("Slack message sent successfully.")
+end
+
+# === === MAIN LANE === ===
+lane :build_and_deploy do
+  UI.message("🚧 Starting APK build for #{BUILD_TYPE}...")
+  apk_path = build_apk
+  UI.success("✅ Build complete: #{apk_path}")
+
+  UI.message("📤 Uploading APK to Google Drive...")
+  drive_link = upload_to_google_drive(apk_path)
+  UI.success("✅ Upload successful")
+
+  app_name = File.basename(apk_path, ".apk") 
+  UI.message("💬 Sending Slack notification for #{app_name}...")
+  send_slack_notification("✅ APK (#{app_name}) uploaded to Google Drive:\n#{drive_link}")
+  UI.success("🎉 Deployment finished")
+
+end

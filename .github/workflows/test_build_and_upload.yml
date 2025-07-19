@@ -1,0 +1,51 @@
+name: Fastlane Build & Upload (Test Branch)
+
+on:
+  push:
+    branches:
+      - test
+
+jobs:
+  build-and-upload:
+    runs-on: ubuntu-latest
+
+    env:
+      BUILD_FLAVOR: default
+      BUILD_VARIANT: debug
+      DRIVE_FOLDER_ID: ${{ secrets.DRIVE_FOLDER_ID }}
+      SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
+      SLACK_BOT_TOKEN: ${{ secrets.SLACK_TOKEN }}
+      DRIVE_SERVICE_JSON_PATH: fastlane-drive-service.json
+
+    steps:
+      - name: 🧾 Checkout repo
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'  
+          bundler-cache: true
+
+      - name: 📦 Install dependencies
+        run: bundle install
+
+      - name: 📁 Copy secrets to build config
+        run: |
+          echo "${{ secrets.SECRETS_DEBUG }}" > secrets.default.properties
+
+      - name: 📝 Save Google Drive service JSON
+        run: |
+          echo '${{ secrets.DRIVE_SERVICE_JSON }}' > $DRIVE_SERVICE_JSON_PATH
+        shell: bash
+
+      - name: 🚀 Run Fastlane build
+        run: |
+          bundle exec fastlane build_and_deploy
+        env:
+          BUILD_FLAVOR: ${{ env.BUILD_FLAVOR }}
+          BUILD_VARIANT: ${{ env.BUILD_VARIANT }}
+          DRIVE_FOLDER_ID: ${{ secrets.DRIVE_FOLDER_ID }}
+          SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_TOKEN }}
+          DRIVE_SERVICE_JSON: ${{ env.DRIVE_SERVICE_JSON_PATH }}
