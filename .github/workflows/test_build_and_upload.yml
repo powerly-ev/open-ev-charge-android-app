@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - test
+    pull_request:
+    branches: [ test ]
 
 jobs:
   build-and-upload:
@@ -17,18 +19,40 @@ jobs:
       SLACK_BOT_TOKEN: ${{ secrets.SLACK_TOKEN }}
       DRIVE_SERVICE_JSON_PATH: fastlane-drive-service.json
 
+    defaults:
+      run:
+        working-directory: fastlane
+
     steps:
       - name: 🧾 Checkout repo
         uses: actions/checkout@v4
 
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Cache Ruby gems
+        uses: actions/cache@v3
+        with:
+          path: fastlane/vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('fastlane/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+
+
       - name: 🔧 Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.1'  
+          ruby-version: '2.7'  
           bundler-cache: true
 
       - name: 📦 Install dependencies
         run: bundle install
+
+      - name: Make gradlew executable
+        run: chmod +x ../gradlew
 
       - name: 📁 Copy secrets to build config
         run: |
