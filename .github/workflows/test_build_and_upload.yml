@@ -16,7 +16,7 @@ jobs:
       BUILD_VARIANT: debug
       DRIVE_FOLDER_ID: ${{ secrets.DRIVE_FOLDER_ID }}
       SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
-      SLACK_BOT_TOKEN: ${{ secrets.SLACK_TOKEN }}
+      SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
       DRIVE_SERVICE_JSON_PATH: fastlane-drive-service.json
 
     defaults:
