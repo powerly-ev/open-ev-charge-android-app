@@ -14,10 +14,6 @@ jobs:
     env:
       BUILD_FLAVOR: default
       BUILD_VARIANT: debug
-      DRIVE_FOLDER_ID: ${{ secrets.DRIVE_FOLDER_ID }}
-      SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
-      SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-      DRIVE_SERVICE_JSON_PATH: fastlane-drive-service.json
 
     defaults:
       run:
@@ -69,3 +65,10 @@ jobs:
       - name: 🚀 Run Fastlane build
         run: |
           bundle exec fastlane build_and_deploy
+        env:
+          BUILD_FLAVOR: ${{ env.BUILD_FLAVOR }}
+          BUILD_VARIANT: ${{ env.BUILD_VARIANT }}
+          DRIVE_FOLDER_ID: ${{ secrets.DRIVE_FOLDER_ID }}
+          SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          DRIVE_SERVICE_JSON: fastlane-drive-service.json
