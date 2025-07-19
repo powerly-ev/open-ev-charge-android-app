@@ -17,7 +17,11 @@ SLACK_TOKEN   = ENV['SLACK_BOT_TOKEN']
 def build_apk
   gradle(
     task: 'assemble',
-    build_type: BUILD_TYPE
+    build_type: BUILD_TYPE,
+    flags: "--parallel",
+    properties: {
+      "org.gradle.parallel" => "true"
+    }
   )
 
   apk_path = Dir["../app/build/outputs/apk/#{BUILD_FLAVOR}/#{BUILD_VARIANT}/*.apk"].first
