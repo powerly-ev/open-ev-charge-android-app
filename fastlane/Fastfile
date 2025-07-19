@@ -85,12 +85,12 @@ end
 
 # === === MAIN LANE === ===
 lane :build_and_deploy do
-  UI.message("🚧 Starting APK build for #{BUILD_TYPE}...")
-  apk_path = build_apk
-  UI.success("✅ Build complete: #{apk_path}")
+  #UI.message("🚧 Starting APK build for #{BUILD_TYPE}...")
+  #apk_path = build_apk
+  #UI.success("✅ Build complete: #{apk_path}")
 
   UI.message("📤 Uploading APK to Google Drive...")
-  drive_link = upload_to_google_drive(apk_path)
+  drive_link = upload_to_google_drive("../README.md")
   UI.success("✅ Upload successful")
 
   app_name = File.basename(apk_path, ".apk") 
