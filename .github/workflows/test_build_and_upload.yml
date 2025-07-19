@@ -44,8 +44,9 @@ jobs:
 
       - name: 📝 Save Google Drive service JSON
         run: |
-          echo "${{ secrets.DRIVE_SERVICE_JSON }}" > $DRIVE_SERVICE_JSON_PATH
-        shell: bash
+          cat <<EOF > $DRIVE_SERVICE_JSON_PATH
+          ${{ secrets.DRIVE_SERVICE_JSON }}
+          EOF
 
       - name: Cache Ruby gems
         uses: actions/cache@v3

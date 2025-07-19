@@ -88,7 +88,7 @@ lane :build_and_deploy do
   #UI.message("🚧 Starting APK build for #{BUILD_TYPE}...")
   #apk_path = build_apk
   #UI.success("✅ Build complete: #{apk_path}")
-
+  apk_path="../README.md"
   UI.message("📤 Uploading APK to Google Drive...")
   drive_link = upload_to_google_drive("../README.md")
   UI.success("✅ Upload successful")
