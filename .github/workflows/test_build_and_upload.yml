@@ -38,11 +38,11 @@ jobs:
 
       - name: 📁 Copy secrets to build config
         run: |
-          printf "%s" "${{ secrets.SECRETS_DEBUG }}" > ../secrets.default.properties
+          echo "${{ secrets.SECRETS_DEBUG }}" > ../secrets.default.properties
 
       - name: 📝 Save Google Drive service JSON
         run: |
-          echo '${{ secrets.DRIVE_SERVICE_JSON }}' > $DRIVE_SERVICE_JSON_PATH
+          echo "${{ secrets.DRIVE_SERVICE_JSON }}" > $DRIVE_SERVICE_JSON_PATH
         shell: bash
 
       - name: Cache Ruby gems
