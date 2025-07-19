@@ -38,7 +38,9 @@ jobs:
 
       - name: 📁 Copy secrets to build config
         run: |
-          echo "${{ secrets.SECRETS_DEBUG }}" > ../secrets.default.properties
+          cat <<EOF > ../secrets.default.properties
+          ${{ secrets.SECRETS_DEBUG }}
+          EOF
 
       - name: 📝 Save Google Drive service JSON
         run: |
