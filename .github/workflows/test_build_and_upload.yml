@@ -33,6 +33,18 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      - name: Make gradlew executable
+        run: chmod +x ../gradlew
+
+      - name: 📁 Copy secrets to build config
+        run: |
+          printf "%s" "${{ secrets.SECRETS_DEBUG }}" > ../secrets.default.properties
+
+      - name: 📝 Save Google Drive service JSON
+        run: |
+          echo '${{ secrets.DRIVE_SERVICE_JSON }}' > $DRIVE_SERVICE_JSON_PATH
+        shell: bash
+
       - name: Cache Ruby gems
         uses: actions/cache@v3
         with:
@@ -50,18 +62,6 @@ jobs:
 
       - name: 📦 Install dependencies
         run: bundle install
-
-      - name: Make gradlew executable
-        run: chmod +x ../gradlew
-
-      - name: 📁 Copy secrets to build config
-        run: |
-          printf "%s" "${{ secrets.SECRETS_DEBUG }}" > ../secrets.default.properties
-
-      - name: 📝 Save Google Drive service JSON
-        run: |
-          echo '${{ secrets.DRIVE_SERVICE_JSON }}' > $DRIVE_SERVICE_JSON_PATH
-        shell: bash
 
       - name: 🚀 Run Fastlane build
         run: |
