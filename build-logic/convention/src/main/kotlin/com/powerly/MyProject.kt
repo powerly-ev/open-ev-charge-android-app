@@ -5,7 +5,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 object MyProject {
     const val NAMESPACE = "com.powerly"
-    const val DISPLAY_NAME = "Powerly"
+    const val DISPLAY_NAME = "open-powerly"
 
     const val VERSION_CODE = 1
     const val VERSION_NAME = "0.1"
