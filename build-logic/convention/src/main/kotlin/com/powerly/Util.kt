@@ -68,26 +68,14 @@ fun getPropertiesFileName(gradle: Gradle): String {
  * @param variantOutputImpl The [BaseVariantOutputImpl] representing the build variant output.
  */
 fun appBuildName(variantOutputImpl: BaseVariantOutputImpl) {
-    val variantName = when (val name = variantOutputImpl.name) {
-        "debug" -> "test"
-        "preRelease" -> "production"
-        else -> name
-    }.replace("default-", "")
+    val variantName = variantOutputImpl.name
+        .replace("default-", "")
+        .replace("gms-", "")
+        .replace("debug", "test")
+        .replace("release", "production", ignoreCase = true)
     //println("variantName - $variantName")
     val date = SimpleDateFormat("dd-MMM", Locale.US).format(Date()) // date Day:Month
     variantOutputImpl.outputFileName = "${MyProject.DISPLAY_NAME}-$variantName-$date.apk"
-}
-
-/**
- * Checks if the current Gradle build is an HMS (Huawei Mobile Services) build.
- *
- * It determines this by checking if the task requests contain "Hms".
- *
- * @param gradle The current Gradle instance.
- * @return `true` if the build is an HMS build, `false` otherwise.
- */
-fun isHuawei(gradle: Gradle): Boolean {
-    return gradle.startParameter.taskRequests.toString().contains("Hms")
 }
 
 /**
