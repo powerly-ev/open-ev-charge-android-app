@@ -33,10 +33,16 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ../gradlew
 
-      - name: 📁 Copy secrets to build config
+      - name: 📁 Copy secret.properties to project direcotry
         run: |
           cat <<EOF > ../secrets.default.properties
           ${{ secrets.SECRETS_PRODUCTION }}
+          EOF
+      
+      - name: 📁 Copy local.properties to project direcotry
+        run: |
+          cat <<EOF > ../local.properties
+          ${{ secrets.LOCAL_PROPERTIES }}
           EOF
 
       - name: 📝 Save Google Drive service JSON
