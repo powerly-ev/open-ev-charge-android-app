@@ -95,7 +95,8 @@ lane :build_and_deploy do
 
   app_name = File.basename(apk_path, ".apk") 
   UI.message("💬 Sending Slack notification for #{app_name}...")
-  send_slack_notification("✅ APK (#{app_name}) uploaded to Google Drive:\n#{drive_link}")
+  slack_link = "<#{drive_link}|#{app_name}>"
+  send_slack_notification("✅ APK (#{slack_link}) uploaded to Google Drive")
   UI.success("🎉 Deployment finished")
 
 end
