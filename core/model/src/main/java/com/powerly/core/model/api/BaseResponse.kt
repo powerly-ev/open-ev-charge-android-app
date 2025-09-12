@@ -23,7 +23,7 @@ open class BaseResponse<T> {
 
     val isSuccess: Boolean get() = success == 1
     val hasData: Boolean get() = isSuccess && data != null
-    val hasOnlyData: Boolean get() = data != null
+    val hasOnlyData: Boolean get() = data != null && (success == null || success == 1)
 
     val getData: T get() = data!!
 }
