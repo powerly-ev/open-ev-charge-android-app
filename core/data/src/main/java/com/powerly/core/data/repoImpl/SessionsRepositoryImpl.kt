@@ -37,7 +37,7 @@ class SessionsRepositoryImpl @Inject constructor(
                 connector = connector
             )
             val response = remoteDataSource.startCharging(request)
-            if (response.hasData) ChargingStatus.Success(response.getData!!)
+            if (response.hasOnlyData) ChargingStatus.Success(response.getData!!)
             else ChargingStatus.Error(response.getMessage())
         } catch (e: HttpException) {
             ChargingStatus.Error(e.asErrorMessage)
