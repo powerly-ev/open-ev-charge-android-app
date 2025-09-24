@@ -20,6 +20,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -30,20 +31,20 @@ import com.powerly.account.AccountEvents
 import com.powerly.account.AccountScreen
 import com.powerly.core.model.powerly.OrderTab
 import com.powerly.core.model.powerly.Session
-import com.powerly.lib.AppRoutes
-import com.powerly.lib.Route
 import com.powerly.home.MyMapViewModel
 import com.powerly.home.home.HomeScreen
 import com.powerly.home.home.HomeViewModel
 import com.powerly.home.home.NavigationEvents
 import com.powerly.home.map.MapScreen
+import com.powerly.lib.AppRoutes
+import com.powerly.lib.Route
 import com.powerly.orders.OrdersScreen
 import com.powerly.orders.SessionViewModel
 import com.powerly.orders.history.details.DeliveredOrderScreen
+import com.powerly.resources.R
 import com.powerly.scan.ScannerScreen
 import com.powerly.ui.HomeUiState
 import com.powerly.ui.extensions.intent
-import com.powerly.ui.extensions.openCall
 import com.powerly.ui.util.rememberActivityResultState
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -60,6 +61,7 @@ fun HomeGraph(
 ) {
     val context = LocalContext.current
     val activity = LocalActivity.current as ComponentActivity
+    val uriHandler = LocalUriHandler.current
     val coroutineScope = rememberCoroutineScope()
     val mapViewModel: MyMapViewModel = viewModel(activity)
     val homeViewModel: HomeViewModel = viewModel(activity)
@@ -94,10 +96,7 @@ fun HomeGraph(
     }
 
     fun openSupport() {
-        coroutineScope.launch {
-            val supportNumber = homeViewModel.getSupportNumber()
-            context.openCall(supportNumber)
-        }
+        uriHandler.openUri(context.getString(R.string.community_link))
     }
 
     // open a power source passed in a deep link
