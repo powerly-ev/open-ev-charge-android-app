@@ -13,19 +13,18 @@ import androidx.core.content.ContextCompat
 import com.powerly.lib.managers.StorageManager
 import com.powerly.resources.R
 import com.powerly.ui.extensions.intent
-import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
+
 
 /**
  *  ReminderReceiver is a BroadcastReceiver that listens for a specific broadcast intent.
  *  Upon receiving the intent, it checks if the user is logged in. If the user is NOT logged in,
  *  it displays a notification to remind the user to complete the registration process.
  */
-@AndroidEntryPoint
-class ReminderReceiver : BroadcastReceiver() {
+class ReminderReceiver : BroadcastReceiver(), KoinComponent {
 
-    @Inject
-    lateinit var storageManager: StorageManager
+    private val storageManager: StorageManager by inject()
 
     companion object {
         const val NOTIFICATION_CHANNEL_ID = "delivery_channel"

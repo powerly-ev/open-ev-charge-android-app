@@ -11,11 +11,11 @@ import com.powerly.lib.managers.LocaleManager
 import com.powerly.lib.managers.StorageManager
 import com.powerly.ui.dialogs.loading.LoadingState
 import com.powerly.ui.dialogs.loading.initBasicScreenState
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
+import org.koin.android.annotation.KoinViewModel
 
-@HiltViewModel
-class LanguagesViewModel @Inject constructor(
+
+@KoinViewModel
+class LanguagesViewModel (
     private val userRepository: UserRepository,
     private val appRepository: AppRepository,
     private val localeManager: LocaleManager,

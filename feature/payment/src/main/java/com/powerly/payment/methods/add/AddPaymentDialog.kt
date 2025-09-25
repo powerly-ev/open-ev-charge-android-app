@@ -3,7 +3,7 @@ package com.powerly.payment.methods.add
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.remember
-import androidx.hilt.navigation.compose.hiltViewModel
+import org.koin.androidx.compose.koinViewModel
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import com.powerly.payment.methods.PaymentViewModel
 import com.powerly.ui.dialogs.MyScreenBottomSheet
@@ -12,7 +12,7 @@ private const val TAG = "AddPaymentScreen"
 
 @Composable
 internal fun AddPaymentDialog(
-    viewModel: PaymentViewModel = hiltViewModel(),
+    viewModel: PaymentViewModel = koinViewModel(),
     onDismiss: () -> Unit
 ) {
     val screenState = remember { viewModel.screenState }

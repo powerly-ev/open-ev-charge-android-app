@@ -13,15 +13,15 @@ import com.powerly.core.data.repositories.SessionsRepository
 import com.powerly.core.model.powerly.Session
 import com.powerly.lib.AppRoutes
 import com.powerly.lib.managers.StorageManager
-import dagger.hilt.android.lifecycle.HiltViewModel
+import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class ChargeViewModel @Inject constructor(
+
+@KoinViewModel
+class ChargeViewModel (
     private val sessionsRepository: SessionsRepository,
     private val chargingTimerManager: ChargingTimerManager,
     private val storageManager: StorageManager,

@@ -7,7 +7,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.res.stringResource
-import androidx.hilt.navigation.compose.hiltViewModel
+import org.koin.androidx.compose.koinViewModel
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import com.powerly.core.data.model.ChargingStatus
@@ -35,7 +35,7 @@ private const val TAG = "ChargingScreen"
  */
 @Composable
 fun ChargingScreen(
-    viewModel: ChargeViewModel = hiltViewModel(),
+    viewModel: ChargeViewModel = koinViewModel(),
     openSessionHistory: (Session) -> Unit,
     openActiveSessions: () -> Unit,
     onBack: () -> Unit

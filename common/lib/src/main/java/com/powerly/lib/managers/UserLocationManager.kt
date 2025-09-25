@@ -6,9 +6,7 @@ import android.content.pm.PackageManager
 import android.location.LocationManager
 import androidx.core.app.ActivityCompat
 import com.powerly.core.model.location.Target
-import dagger.hilt.android.qualifiers.ApplicationContext
-import javax.inject.Inject
-import javax.inject.Singleton
+import org.koin.core.annotation.Single
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
@@ -19,9 +17,9 @@ import kotlin.coroutines.suspendCoroutine
  * @property context The Context from which this manager is invoked.
  * @constructor Creates an instance of UserLocationManager.
  */
-@Singleton
-class UserLocationManager @Inject constructor(
-    @ApplicationContext private val context: Context,
+@Single
+class UserLocationManager(
+    private val context: Context,
     private val locationProvider: UserLocationProvider
 ) {
 

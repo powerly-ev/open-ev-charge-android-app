@@ -9,12 +9,12 @@ import com.powerly.core.network.RemoteDataSource
 import com.powerly.core.network.asErrorMessage
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
+import org.koin.core.annotation.Named
+import org.koin.core.annotation.Single
 import retrofit2.HttpException
-import javax.inject.Inject
-import javax.inject.Named
 
-
-class AppRepositoryImpl @Inject constructor(
+@Single
+class AppRepositoryImpl(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource,
     @Named("IO") private val ioDispatcher: CoroutineDispatcher

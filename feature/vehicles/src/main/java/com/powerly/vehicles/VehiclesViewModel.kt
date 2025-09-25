@@ -10,17 +10,17 @@ import com.powerly.core.model.api.ApiStatus
 import com.powerly.core.model.powerly.Vehicle
 import com.powerly.core.model.powerly.VehicleMaker
 import com.powerly.core.model.powerly.VehicleModel
-import dagger.hilt.android.lifecycle.HiltViewModel
+import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class VehiclesViewModel @Inject constructor(
+
+@KoinViewModel
+class VehiclesViewModel (
     private val vehiclesRepository: VehiclesRepository,
 ) : ViewModel() {
 

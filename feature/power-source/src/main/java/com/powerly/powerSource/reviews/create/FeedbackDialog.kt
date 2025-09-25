@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalContext
-import androidx.hilt.navigation.compose.hiltViewModel
+import org.koin.androidx.compose.koinViewModel
 import com.powerly.core.model.api.ApiStatus
 import com.powerly.ui.dialogs.MyBasicBottomSheet
 import com.powerly.ui.dialogs.loading.LoadingDialog
@@ -23,7 +23,7 @@ private const val TAG = "FeedbackScreen"
  */
 @Composable
 internal fun FeedbackDialog(
-    viewModel: FeedbackViewModel = hiltViewModel(),
+    viewModel: FeedbackViewModel = koinViewModel(),
     onDismiss: () -> Unit
 ) {
     val context = LocalContext.current

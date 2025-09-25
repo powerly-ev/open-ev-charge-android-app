@@ -46,9 +46,9 @@ gradlePlugin {
             id = "powerly.library"
             implementationClass = "AndroidLibraryConventionPlugin"
         }
-        register("hilt") {
-            id = "powerly.hilt"
-            implementationClass = "HiltConventionPlugin"
+        register("koin") {
+            id = "powerly.koin"
+            implementationClass = "KoinConventionPlugin"
         }
         register("compose") {
             id = "powerly.compose"

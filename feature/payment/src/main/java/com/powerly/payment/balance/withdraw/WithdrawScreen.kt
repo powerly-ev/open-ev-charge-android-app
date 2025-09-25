@@ -9,7 +9,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.hilt.navigation.compose.hiltViewModel
+import org.koin.androidx.compose.koinViewModel
 import com.powerly.core.model.api.ApiStatus
 import com.powerly.resources.R
 import com.powerly.ui.dialogs.alert.AlertDialogProperties
@@ -28,7 +28,7 @@ import kotlinx.coroutines.launch
  */
 @Composable
 internal fun WithdrawScreen(
-    viewModel: WithdrawViewModel = hiltViewModel(),
+    viewModel: WithdrawViewModel = koinViewModel(),
     onClose: () -> Unit,
 ) {
     val context = LocalContext.current

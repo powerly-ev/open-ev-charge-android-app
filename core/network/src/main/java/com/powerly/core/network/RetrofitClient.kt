@@ -11,11 +11,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.Locale
 import java.util.concurrent.TimeUnit
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class RetrofitClient @Inject constructor(
+class RetrofitClient(
     private val errorMessage: String,
     private val deviceHelper: DeviceHelper
 ) {

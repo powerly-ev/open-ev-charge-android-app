@@ -9,7 +9,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
-import androidx.hilt.navigation.compose.hiltViewModel
+import org.koin.androidx.compose.koinViewModel
 import com.powerly.resources.R
 import com.powerly.ui.dialogs.MyProgressView
 import com.powerly.ui.dialogs.webview.WebViewPage
@@ -20,7 +20,7 @@ private const val TAG = "UserAgreementDialog"
 
 @Composable
 internal fun UserAgreementDialog(
-    viewModel: UserAgreementViewModel = hiltViewModel(),
+    viewModel: UserAgreementViewModel = koinViewModel(),
     type: Int,
     onDismiss: () -> Unit
 ) {

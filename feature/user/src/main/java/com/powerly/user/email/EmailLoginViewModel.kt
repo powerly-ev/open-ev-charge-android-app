@@ -17,12 +17,12 @@ import com.powerly.core.model.user.User
 import com.powerly.core.model.user.VerificationBody
 import com.powerly.lib.managers.StorageManager
 import com.powerly.ui.dialogs.loading.initScreenState
-import dagger.hilt.android.lifecycle.HiltViewModel
+import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class EmailLoginViewModel @Inject constructor(
+
+@KoinViewModel
+class EmailLoginViewModel (
     private val loginRepository: LoginEmailRepository,
     private val storageManager: StorageManager
 ) : ViewModel() {

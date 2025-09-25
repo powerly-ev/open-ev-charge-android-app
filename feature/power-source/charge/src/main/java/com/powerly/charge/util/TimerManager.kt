@@ -3,9 +3,9 @@ package com.powerly.charge.util
 import android.util.Log
 import java.util.Timer
 import java.util.TimerTask
-import javax.inject.Inject
 
-class ChargingTimerManager @Inject constructor() {
+
+class ChargingTimerManager () {
 
     private var timer: Timer? = null
 

@@ -4,11 +4,11 @@ import androidx.lifecycle.ViewModel
 import com.powerly.core.data.model.ChargingStatus
 import com.powerly.core.data.repositories.SessionsRepository
 import com.powerly.core.model.powerly.Session
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
+import org.koin.android.annotation.KoinViewModel
 
-@HiltViewModel
-class ChargerViewModel @Inject constructor(
+
+@KoinViewModel
+class ChargerViewModel (
     private val sessionsRepository: SessionsRepository
 ) : ViewModel() {
 

@@ -10,7 +10,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.core.net.toUri
-import androidx.hilt.navigation.compose.hiltViewModel
+import org.koin.androidx.compose.koinViewModel
 import com.powerly.core.data.model.SourceStatus
 import com.powerly.core.model.api.ApiStatus
 import com.powerly.core.model.powerly.PowerSource
@@ -38,7 +38,7 @@ private const val TAG = "ScannerScreen"
  */
 @Composable
 fun ScannerScreen(
-    viewModel: ScannerViewModel = hiltViewModel(),
+    viewModel: ScannerViewModel = koinViewModel(),
     openPowerSource: (PowerSource) -> Unit,
     onBack: () -> Unit
 ) {

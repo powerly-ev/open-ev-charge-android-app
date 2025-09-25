@@ -43,7 +43,6 @@ dependencies {
     api(libs.compose.coil.gif)
 
     api(libs.navigation.compose)
-    api(libs.androidx.hilt.navigation.compose)
 
     api(libs.androidx.paging.compose)
 

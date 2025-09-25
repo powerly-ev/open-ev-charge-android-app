@@ -4,7 +4,7 @@ import androidx.activity.compose.LocalActivity
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.hilt.navigation.compose.hiltViewModel
+import org.koin.androidx.compose.koinViewModel
 import com.powerly.ui.dialogs.languages.LanguagesDialogContent
 import com.powerly.ui.dialogs.loading.LoadingDialog
 import kotlinx.coroutines.launch
@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
  */
 @Composable
 internal fun LanguagesDialog(
-    viewModel: LanguagesViewModel = hiltViewModel(),
+    viewModel: LanguagesViewModel = koinViewModel(),
     onDismiss: () -> Unit
 ) {
     val activity = LocalActivity.current!!

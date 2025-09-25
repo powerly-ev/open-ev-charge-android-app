@@ -4,9 +4,9 @@ import com.powerly.core.data.repositories.LoginEmailRepository
 import com.powerly.core.model.api.ApiErrorConstants
 import com.powerly.core.model.api.ApiStatus
 import com.powerly.core.model.user.EmailCheckBody
+import com.powerly.core.model.user.EmailForgetBody
 import com.powerly.core.model.user.EmailLoginBody
 import com.powerly.core.model.user.EmailRegisterBody
-import com.powerly.core.model.user.EmailForgetBody
 import com.powerly.core.model.user.EmailResetBody
 import com.powerly.core.model.user.EmailVerifyResendBody
 import com.powerly.core.model.user.VerificationBody
@@ -15,12 +15,12 @@ import com.powerly.core.network.asErrorMessage
 import com.powerly.core.network.asValidationErrorMessage
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
+import org.koin.core.annotation.Named
+import org.koin.core.annotation.Single
 import retrofit2.HttpException
-import javax.inject.Inject
-import javax.inject.Named
 
-
-class LoginEmailRepositoryImpl @Inject constructor(
+@Single
+class LoginEmailRepositoryImpl (
     private val remoteDataSource: RemoteDataSource,
     @Named("IO") private val ioDispatcher: CoroutineDispatcher
 ) : LoginEmailRepository {

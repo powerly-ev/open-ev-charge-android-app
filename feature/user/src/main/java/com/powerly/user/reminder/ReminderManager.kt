@@ -6,10 +6,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.util.Log
-import dagger.hilt.android.qualifiers.ApplicationContext
+import com.powerly.user.reminder.ReminderManager.Companion.destination
+import org.koin.core.annotation.Single
 import java.util.Calendar
-import javax.inject.Inject
-import javax.inject.Singleton
 
 
 /**
@@ -23,9 +22,9 @@ import javax.inject.Singleton
  * @property context The application context, needed to access system services
  *   like [AlarmManager]. It's injected using dependency injection.
  */
-@Singleton
-class ReminderManager @Inject constructor(
-    @ApplicationContext private val context: Context
+@Single
+class ReminderManager (
+     private val context: Context
 ) {
 
     companion object {

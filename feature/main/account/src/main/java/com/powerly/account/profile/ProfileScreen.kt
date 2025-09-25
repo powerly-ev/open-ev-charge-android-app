@@ -7,7 +7,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.hilt.navigation.compose.hiltViewModel
+import org.koin.androidx.compose.koinViewModel
 import com.powerly.resources.R
 import com.powerly.ui.dialogs.alert.AlertDialogProperties
 import com.powerly.ui.dialogs.alert.MyAlertDialog
@@ -29,7 +29,7 @@ private const val TAG = "ProfileScreen"
  */
 @Composable
 internal fun ProfileScreen(
-    viewModel: ProfileViewModel = hiltViewModel(),
+    viewModel: ProfileViewModel = koinViewModel(),
     navigateToWelcomeScreen: () -> Unit,
     focusPassword: Boolean = false,
     onClose: (updateProfile: Boolean) -> Unit,

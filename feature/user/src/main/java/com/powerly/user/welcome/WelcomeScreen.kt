@@ -3,7 +3,7 @@ package com.powerly.user.welcome
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
-import androidx.hilt.navigation.compose.hiltViewModel
+import org.koin.androidx.compose.koinViewModel
 import com.powerly.user.UserViewModel
 import com.powerly.user.welcome.language.LanguagesDialog
 import com.powerly.user.welcome.language.LanguagesViewModel
@@ -29,7 +29,7 @@ private const val TAG = "WelcomeScreen"
 @Composable
 internal fun WelcomeScreen(
     viewModel: UserViewModel,
-    languagesViewModel: LanguagesViewModel = hiltViewModel(),
+    languagesViewModel: LanguagesViewModel = koinViewModel(),
     changeAppLanguage: () -> Unit,
     openUserAgreement: (Int) -> Unit,
     navigateToLogin: (SignInOptions) -> Unit,

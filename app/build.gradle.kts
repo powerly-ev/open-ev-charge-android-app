@@ -10,7 +10,7 @@ import com.powerly.isGoogle
 
 plugins {
     alias(libs.plugins.powerly.application)
-    alias(libs.plugins.powerly.hilt)
+    alias(libs.plugins.powerly.koin)
     alias(libs.plugins.powerly.application.compose)
     alias(libs.plugins.secrets)
 }

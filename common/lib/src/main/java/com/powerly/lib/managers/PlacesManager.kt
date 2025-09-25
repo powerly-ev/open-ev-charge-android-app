@@ -5,9 +5,6 @@ import android.content.Context
 import android.graphics.Typeface
 import android.text.style.StyleSpan
 import android.util.Log
-import com.powerly.core.model.location.MyAddress
-import com.powerly.core.model.location.Target
-import com.powerly.core.network.DeviceHelper
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.AutocompletePrediction
 import com.google.android.libraries.places.api.model.AutocompleteSessionToken
@@ -15,20 +12,21 @@ import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.api.net.FetchPlaceRequest
 import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest
 import com.google.android.libraries.places.api.net.PlacesClient
-import dagger.hilt.android.qualifiers.ApplicationContext
+import com.powerly.core.model.location.MyAddress
+import com.powerly.core.model.location.Target
+import com.powerly.core.network.DeviceHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.koin.core.annotation.Single
 import java.util.Locale
-import javax.inject.Inject
-import javax.inject.Singleton
 
 /**
  * A manager class for interacting with the Google Places API.
  * Provides functionality for autocomplete place queries and fetching place details.
  */
-@Singleton
-class PlacesManager @Inject constructor(
-    @ApplicationContext private val context: Context,
+@Single
+class PlacesManager(
+    private val context: Context,
     private val placesProvider: PlacesProvider,
     deviceHelper: DeviceHelper,
 ) {

@@ -13,10 +13,11 @@ import com.powerly.core.network.needToRefreshToken
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
-import javax.inject.Inject
-import javax.inject.Named
+import org.koin.core.annotation.Named
+import org.koin.core.annotation.Single
 
-class UserRepositoryImpl @Inject constructor(
+@Single
+class UserRepositoryImpl (
     private val remoteDataSource: RemoteDataSource,
     @Named("IO") private val ioDispatcher: CoroutineDispatcher
 ) : UserRepository {

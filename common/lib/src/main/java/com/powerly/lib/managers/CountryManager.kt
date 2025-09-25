@@ -5,9 +5,7 @@ import android.content.Context.TELEPHONY_SERVICE
 import android.telephony.TelephonyManager
 import android.util.Log
 import com.powerly.core.model.location.Country
-import dagger.hilt.android.qualifiers.ApplicationContext
-import javax.inject.Inject
-import javax.inject.Singleton
+import org.koin.core.annotation.Single
 
 /**
  * Manages country detection and provides access to country information.
@@ -15,9 +13,9 @@ import javax.inject.Singleton
  * This class provides methods to detect the user's country using either the TelephonyManager or
  * location information. It also stores a map of countries with their IDs and ISO codes.
  */
-@Singleton
-class CountryManager @Inject constructor(
-    @ApplicationContext private val context: Context,
+@Single
+class CountryManager (
+     private val context: Context,
     private val locationManager: UserLocationManager,
     private val placesManager: PlacesManager,
     private val storageManager: StorageManager

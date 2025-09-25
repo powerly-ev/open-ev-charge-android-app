@@ -3,7 +3,7 @@ import com.powerly.MyProject
 plugins {
     alias(libs.plugins.powerly.library)
     alias(libs.plugins.powerly.serialization)
-    alias(libs.plugins.powerly.hilt)
+    alias(libs.plugins.powerly.koin)
 }
 
 android {
@@ -16,9 +16,8 @@ dependencies {
     api(projects.core.data)
     api(projects.core.network)
     api(projects.core.analytics)
-
-    implementation(projects.core.analytics.impl)
-    implementation(projects.core.database)
+    api(projects.core.database)
+    api(projects.core.analytics.impl)
 
     //--------- core
     api(platform(libs.kotlin.bom))

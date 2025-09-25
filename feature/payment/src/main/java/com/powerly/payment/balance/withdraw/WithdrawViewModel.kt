@@ -12,14 +12,14 @@ import com.powerly.lib.managers.StorageManager
 import com.powerly.ui.dialogs.loading.LoadingState
 import com.powerly.ui.dialogs.loading.initBasicScreenState
 import com.powerly.ui.dialogs.message.MessageState
-import dagger.hilt.android.lifecycle.HiltViewModel
+import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 
-@HiltViewModel
-class WithdrawViewModel @Inject constructor(
+
+@KoinViewModel
+class WithdrawViewModel (
     private val paymentRepository: PaymentRepository,
     private val appRepository: AppRepository,
     private val countryManager: CountryManager,

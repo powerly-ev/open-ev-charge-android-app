@@ -14,13 +14,13 @@ import com.stripe.android.payments.paymentlauncher.PaymentResult
 import com.stripe.android.stripecardscan.cardscan.CardScanSheet
 import com.stripe.android.stripecardscan.cardscan.CardScanSheetResult
 import com.stripe.android.stripecardscan.payment.card.ScannedCard
-import javax.inject.Inject
+import org.koin.core.annotation.Single
 
 
 /**
  * A class to manage payment operations with stripe sde.
  */
-class PaymentManager @Inject constructor(
+class PaymentManager(
     private val context: Context,
     private val publishableKey: String
 ) {

@@ -2,7 +2,7 @@ package com.powerly.vehicles.vehicleDetails.options.connectors
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.hilt.navigation.compose.hiltViewModel
+import org.koin.androidx.compose.koinViewModel
 import com.powerly.core.model.api.ApiStatus
 import com.powerly.core.model.powerly.Connector
 import com.powerly.ui.dialogs.MyDialogState
@@ -15,7 +15,7 @@ private const val TAG = "ConnectorsDialog"
 fun ConnectorsDialog(
     state: MyDialogState,
     selectedConnectors: () -> List<Connector>,
-    viewModel: ConnectorsViewModel = hiltViewModel(),
+    viewModel: ConnectorsViewModel = koinViewModel(),
     onSelect: (Connector) -> Unit
 ) {
     MyScreenBottomSheet(state = state) {

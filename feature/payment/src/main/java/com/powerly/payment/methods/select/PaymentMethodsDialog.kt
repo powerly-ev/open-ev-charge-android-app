@@ -7,7 +7,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import androidx.hilt.navigation.compose.hiltViewModel
+import org.koin.androidx.compose.koinViewModel
 import com.powerly.core.model.payment.StripCard
 import com.powerly.payment.methods.PaymentViewModel
 import com.powerly.ui.dialogs.MyScreenBottomSheet
@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 internal fun PaymentMethodsDialog(
-    viewModel: PaymentViewModel = hiltViewModel(),
+    viewModel: PaymentViewModel = koinViewModel(),
     paymentPurpose: PaymentPurpose = PaymentPurpose.SELECT_DEFAULT,
     onAddPaymentMethod: () -> Unit,
     onDismiss: () -> Unit

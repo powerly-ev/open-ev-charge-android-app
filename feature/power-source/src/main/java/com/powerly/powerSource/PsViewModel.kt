@@ -12,12 +12,12 @@ import com.powerly.core.model.powerly.PowerSource
 import com.powerly.core.model.powerly.Review
 import com.powerly.lib.managers.StorageManager
 import com.powerly.lib.managers.UserLocationManager
-import dagger.hilt.android.lifecycle.HiltViewModel
+import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import javax.inject.Inject
+
 
 /**
  * ViewModel for managing data related to power sources.
@@ -26,8 +26,8 @@ import javax.inject.Inject
  * including details, reviews, and media. It interacts with the `PowerSourceRepository`
  * to retrieve data and exposes it to composable functions.
  */
-@HiltViewModel
-class PsViewModel @Inject constructor(
+@KoinViewModel
+class PsViewModel (
     private val powerSourceRepository: PowerSourceRepository,
     private val locationManager: UserLocationManager,
     private val storageManager: StorageManager

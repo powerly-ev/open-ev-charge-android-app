@@ -6,16 +6,14 @@ import android.location.Geocoder
 import android.os.Build
 import android.util.Log
 import com.powerly.core.model.location.MyAddress
-import dagger.hilt.android.qualifiers.ApplicationContext
+import org.koin.core.annotation.Single
 import java.util.Locale
-import javax.inject.Inject
-import javax.inject.Singleton
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
-@Singleton
-class PlacesProvider @Inject constructor(
-    @ApplicationContext private val context: Context
+@Single
+class PlacesProvider (
+     private val context: Context
 ) {
     companion object {
         private const val TAG = "PlacesProvider"

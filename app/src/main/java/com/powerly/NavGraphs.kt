@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.hilt.navigation.compose.hiltViewModel
+import org.koin.androidx.compose.koinViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -37,14 +37,14 @@ private const val TAG = "RootGraph"
 fun RootGraph(
     modifier: Modifier = Modifier,
     startDestination: Route = AppRoutes.Splash,
-    mainViewModel: MainViewModel = hiltViewModel(),
-    sessionsViewModel: SessionViewModel = hiltViewModel(),
-    paymentViewModel: PaymentViewModel = hiltViewModel(),
-    balanceViewModel: BalanceViewModel = hiltViewModel(),
-    vehiclesViewModel: VehiclesViewModel = hiltViewModel(),
-    userViewModel: UserViewModel = hiltViewModel(),
-    emailViewModel: EmailLoginViewModel = hiltViewModel(),
-    psViewModel: PsViewModel = hiltViewModel(),
+    mainViewModel: MainViewModel = koinViewModel(),
+    sessionsViewModel: SessionViewModel = koinViewModel(),
+    paymentViewModel: PaymentViewModel = koinViewModel(),
+    balanceViewModel: BalanceViewModel = koinViewModel(),
+    vehiclesViewModel: VehiclesViewModel = koinViewModel(),
+    userViewModel: UserViewModel = koinViewModel(),
+    emailViewModel: EmailLoginViewModel = koinViewModel(),
+    psViewModel: PsViewModel = koinViewModel(),
     navController: NavHostController = rememberNavController()
 ) {
 

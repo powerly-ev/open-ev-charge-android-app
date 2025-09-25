@@ -10,11 +10,12 @@ import com.powerly.core.network.asErrorMessage
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
-import javax.inject.Inject
-import javax.inject.Named
+import org.koin.core.annotation.Named
+import org.koin.core.annotation.Single
 
 
-class PaymentRepositoryImpl @Inject constructor(
+@Single
+class PaymentRepositoryImpl (
     private val remoteDataSource: RemoteDataSource,
     @Named("IO") private val ioDispatcher: CoroutineDispatcher
 ) : PaymentRepository {

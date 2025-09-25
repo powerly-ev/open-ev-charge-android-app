@@ -7,11 +7,12 @@ import com.powerly.core.network.RemoteDataSource
 import com.powerly.core.network.asErrorMessage
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
+import org.koin.core.annotation.Named
+import org.koin.core.annotation.Single
 import retrofit2.HttpException
-import javax.inject.Inject
-import javax.inject.Named
 
-class LoginSocialRepositoryImpl @Inject constructor(
+@Single
+class LoginSocialRepositoryImpl(
     private val remoteDataSource: RemoteDataSource,
     @Named("IO") private val ioDispatcher: CoroutineDispatcher
 ) : LoginSocialRepository {

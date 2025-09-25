@@ -1,26 +1,25 @@
 package com.powerly.core.database.di
 
+
 import android.content.Context
 import androidx.room.Room
 import com.powerly.core.database.AppDatabase
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
-import kotlin.jvm.java
+import org.koin.core.annotation.ComponentScan
+import org.koin.core.annotation.Module
+import org.koin.core.annotation.Single
 
 @Module
-@InstallIn(SingletonComponent::class)
-internal object DatabaseModule {
-    @Provides
-    @Singleton
-    fun providesDatabase(
-        @ApplicationContext context: Context,
-    ): AppDatabase = Room.databaseBuilder(
-        context,
+@ComponentScan("com.powerly.core.database")
+class DatabaseModule
+
+
+@Single
+fun provideAppDatabase(
+    applicationContext: Context
+): AppDatabase {
+    return Room.databaseBuilder(
+        applicationContext,
         AppDatabase::class.java,
-        "powerly-database",
-    ).fallbackToDestructiveMigration().build()
+        "powerly-database"
+    ).fallbackToDestructiveMigration(true).build()
 }

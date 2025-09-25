@@ -8,11 +8,11 @@ import com.powerly.core.model.api.ApiStatus
 import com.powerly.core.network.DeviceHelper
 import com.powerly.lib.managers.CountryManager
 import com.powerly.lib.managers.StorageManager
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
+import org.koin.android.annotation.KoinViewModel
 
-@HiltViewModel
-class SplashViewModel @Inject constructor(
+
+@KoinViewModel
+class SplashViewModel (
     private val userRepository: UserRepository,
     private val appRepository: AppRepository,
     private val deviceHelper: DeviceHelper,

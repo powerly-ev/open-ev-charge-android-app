@@ -48,6 +48,8 @@ import com.powerly.ui.extensions.intent
 import com.powerly.ui.util.rememberActivityResultState
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.koin.compose.viewmodel.koinActivityViewModel
+import org.koin.compose.viewmodel.koinViewModel
 
 private const val TAG = "HomeGraph"
 
@@ -63,8 +65,8 @@ fun HomeGraph(
     val activity = LocalActivity.current as ComponentActivity
     val uriHandler = LocalUriHandler.current
     val coroutineScope = rememberCoroutineScope()
-    val mapViewModel: MyMapViewModel = viewModel(activity)
-    val homeViewModel: HomeViewModel = viewModel(activity)
+    val mapViewModel: MyMapViewModel = koinViewModel(viewModelStoreOwner = activity)
+    val homeViewModel: HomeViewModel = koinViewModel(viewModelStoreOwner = activity)
     var doOnce by rememberSaveable { mutableStateOf(true) }
     var sessionToReview by rememberSaveable { mutableStateOf("") }
     val activityResult = rememberActivityResultState()

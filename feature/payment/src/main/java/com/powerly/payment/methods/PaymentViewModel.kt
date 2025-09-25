@@ -11,15 +11,15 @@ import com.powerly.core.model.util.asErrorMessage
 import com.powerly.payment.PaymentManager
 import com.powerly.ui.dialogs.loading.initScreenState
 import com.stripe.android.model.PaymentMethodCreateParams
-import dagger.hilt.android.lifecycle.HiltViewModel
+import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class PaymentViewModel @Inject constructor(
+
+@KoinViewModel
+class PaymentViewModel (
     private val paymentRepository: PaymentRepository,
     private val paymentManager: PaymentManager
 ) : ViewModel() {

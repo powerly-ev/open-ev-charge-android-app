@@ -8,7 +8,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
-import androidx.hilt.navigation.compose.hiltViewModel
+import org.koin.androidx.compose.koinViewModel
 import com.powerly.core.model.payment.StripCard
 import com.powerly.payment.methods.PaymentViewModel
 import com.powerly.payment.wallet.options.WalletOptionsDialog
@@ -23,7 +23,7 @@ private const val TAG = "WalletScreen"
 
 @Composable
 internal fun WalletScreen(
-    viewModel: PaymentViewModel = hiltViewModel(),
+    viewModel: PaymentViewModel = koinViewModel(),
     addPaymentMethod: () -> Unit,
     onBack: () -> Unit
 ) {

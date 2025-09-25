@@ -5,11 +5,10 @@ import com.powerly.core.database.model.CountryEntity
 import com.powerly.core.database.model.asCountry
 import com.powerly.core.database.model.asEntity
 import com.powerly.core.model.location.Country
-import jakarta.inject.Inject
-import javax.inject.Singleton
+import org.koin.core.annotation.Single
 
-@Singleton
-class LocalDataSource @Inject constructor(
+@Single
+class LocalDataSource (
     private val countriesDao: CountriesDao
 ) {
     suspend fun getCountries(): List<Country>? {

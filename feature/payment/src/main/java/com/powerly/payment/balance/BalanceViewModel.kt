@@ -20,16 +20,16 @@ import com.powerly.payment.PaymentManager
 import com.powerly.resources.R
 import com.powerly.ui.dialogs.alert.initAlertDialogState
 import com.stripe.android.payments.paymentlauncher.PaymentResult
-import dagger.hilt.android.lifecycle.HiltViewModel
+import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import javax.inject.Inject
+
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
-@HiltViewModel
-class BalanceViewModel @Inject constructor(
+@KoinViewModel
+class BalanceViewModel (
     private val userRepository: UserRepository,
     private val paymentRepository: PaymentRepository,
     private val eventsManager: EventsManager,

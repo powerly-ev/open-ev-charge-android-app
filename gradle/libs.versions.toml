@@ -6,7 +6,8 @@ kotlinKsp = "2.2.20-2.0.3"
 androidTools = "31.13.0"
 kotlinSerialization = "2.2.20"
 googleServices = "4.4.3"
-hiltAndroid = "2.57.1"
+koin = "4.1.0"
+koinAnnotations = "2.1.0"
 firebaseCrashlytics = "3.0.6"
 room = "2.8.0"
 secretsPlugin = "2.0.1"
@@ -30,7 +31,6 @@ material = "1.13.0"
 ## Compose
 composeBom = "2025.09.00"
 foundationVersion = "1.9.1"
-hiltNavigationComposeVersion = "1.3.0"
 material3Version = "1.3.2"
 mapsComposeVersion = "6.11.0"
 mapsComposeUtilsVersion = "6.11.0"
@@ -92,7 +92,6 @@ compose-material3 = { module = "androidx.compose.material3:material3", version.r
 compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "foundationVersion" }
 compose-coil = { module = "io.coil-kt:coil-compose", version.ref = "coilComposeVersion" }
 compose-coil-gif = { module = "io.coil-kt:coil-gif", version.ref = "coilComposeVersion" }
-androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationComposeVersion" }
 navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose" }
 androidx-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
@@ -132,11 +131,15 @@ lottie-compose = { module = "com.airbnb.android:lottie-compose", version.ref = "
 stripe-android = { module = "com.stripe:stripe-android", version.ref = "stripeAndroidVersion" }
 stripe-card-scan = { module = "com.stripe:stripecardscan", version.ref = "stripeAndroidVersion" }
 
-# DI
-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
-hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroid" }
-hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hiltAndroid" }
-hilt-core = { group = "com.google.dagger", name = "hilt-core", version.ref = "hiltAndroid" }
+#koin
+koin-bom = { group = "io.insert-koin", name = "koin-bom", version.ref = "koin" }
+koin-core = { group = "io.insert-koin", name = "koin-core" }
+koin-android = { group = "io.insert-koin", name = "koin-android" }
+koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose" }
+koin-compose-viewmodel = { group = "io.insert-koin", name = "koin-compose-viewmodel" }
+koin-compose-viewmodel-navigation = { group = "io.insert-koin", name = "koin-compose-viewmodel-navigation" }
+koin-annotations = { group = "io.insert-koin", name = "koin-annotations", version.ref = "koinAnnotations" }
+koin-ksp-compiler = { group = "io.insert-koin", name = "koin-ksp-compiler", version.ref = "koinAnnotations" }
 
 # GMS
 play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
@@ -169,7 +172,6 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinAnd
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlinAndroid" }
 kotlin-ksp = { id = "com.google.devtools.ksp", version.ref = "kotlinKsp" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinSerialization" }
-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hiltAndroid" }
 google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebaseCrashlytics" }
 secrets = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secretsPlugin" }
@@ -179,7 +181,7 @@ android-test = { id = "com.android.test", version.ref = "androidGradlePlugin" }
 # Plugins defined by this project
 powerly-application = { id = "powerly.application" }
 powerly-library = { id = "powerly.library" }
-powerly-hilt = { id = "powerly.hilt" }
+powerly-koin = { id = "powerly.koin" }
 powerly-compose = { id = "powerly.compose" }
 powerly-application-compose = { id = "powerly.application.compose" }
 powerly-serialization = { id = "powerly.serialization" }

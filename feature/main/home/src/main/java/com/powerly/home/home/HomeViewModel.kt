@@ -9,11 +9,11 @@ import com.powerly.core.model.powerly.PowerSource
 import com.powerly.core.network.DeviceHelper
 import com.powerly.lib.CONSTANTS.POWER_SOURCE_ID
 import com.powerly.lib.managers.StorageManager
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
+import org.koin.android.annotation.KoinViewModel
 
-@HiltViewModel
-class HomeViewModel @Inject constructor(
+
+@KoinViewModel
+class HomeViewModel (
     private val powerSourceRepository: PowerSourceRepository,
     private val deviceHelper: DeviceHelper,
     private val storageManager: StorageManager

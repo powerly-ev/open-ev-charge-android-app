@@ -12,12 +12,12 @@ import com.powerly.lib.managers.CountryManager
 import com.powerly.lib.managers.NotificationsManager
 import com.powerly.lib.managers.StorageManager
 import com.powerly.user.reminder.ReminderManager
-import dagger.hilt.android.lifecycle.HiltViewModel
+import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class UserViewModel @Inject constructor(
+
+@KoinViewModel
+class UserViewModel (
     private val countryManager: CountryManager,
     private val appRepository: AppRepository,
     private val reminderManager: ReminderManager,

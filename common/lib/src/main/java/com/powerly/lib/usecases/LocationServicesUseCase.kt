@@ -6,9 +6,10 @@ import android.util.Log
 import com.powerly.core.data.model.ActivityResultState
 import com.powerly.core.data.model.PermissionsState
 import com.powerly.lib.managers.UserLocationManager
-import javax.inject.Inject
+import org.koin.core.annotation.Single
 
-class LocationServicesUseCase @Inject constructor(
+@Single
+class LocationServicesUseCase(
     private val locationManager: UserLocationManager
 ) {
     operator fun invoke(

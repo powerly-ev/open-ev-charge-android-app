@@ -1,24 +1,21 @@
 package com.powerly.core.data.di
 
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import javax.inject.Singleton
-import javax.inject.Named
+import org.koin.core.annotation.ComponentScan
+import org.koin.core.annotation.Module
+import org.koin.core.annotation.Named
+import org.koin.core.annotation.Single
+
 
 @Module
-@InstallIn(SingletonComponent::class)
-object DispatchersModule {
-    @Provides
-    @Singleton
-    @Named("IO")
+@ComponentScan("com.powerly.core.data")
+class DataModule {
+    @Single
+    @Named("IO") // The qualifier name
     fun provideIODispatcher(): CoroutineDispatcher = Dispatchers.IO
 
-    @Provides
-    @Singleton
+    @Single
     @Named("Default")
     fun provideDefaultDispatcher(): CoroutineDispatcher = Dispatchers.Default
 }

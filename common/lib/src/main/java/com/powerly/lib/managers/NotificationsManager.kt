@@ -11,20 +11,18 @@ import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
-import com.powerly.core.data.repositories.AppRepository
-import com.powerly.lib.MyPackages
-import com.powerly.resources.R
 import com.google.gson.annotations.SerializedName
+import com.powerly.core.data.repositories.AppRepository
 import com.powerly.core.model.user.DeviceBody
 import com.powerly.lib.MainScreen.setMainScreenHome
-import dagger.hilt.android.qualifiers.ApplicationContext
+import com.powerly.lib.MyPackages
+import com.powerly.resources.R
+import org.koin.core.annotation.Single
 import java.util.UUID
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class NotificationsManager @Inject constructor(
-    @ApplicationContext private val context: Context,
+@Single
+class NotificationsManager(
+    private val context: Context,
     private val storageManager: StorageManager,
     private val appRepository: AppRepository
 ) {

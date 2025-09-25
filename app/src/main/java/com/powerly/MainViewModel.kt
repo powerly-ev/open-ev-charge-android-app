@@ -12,12 +12,11 @@ import com.powerly.lib.managers.LocaleManager
 import com.powerly.lib.managers.StorageManager
 import com.powerly.payment.PaymentManager
 import com.powerly.ui.HomeUiState
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import javax.inject.Inject
+import org.koin.android.annotation.KoinViewModel
 
-@HiltViewModel
-class MainViewModel @Inject constructor(
+@KoinViewModel
+class MainViewModel (
     private val userRepository: UserRepository,
     private val localeManager: LocaleManager,
     private val storageManager: StorageManager,

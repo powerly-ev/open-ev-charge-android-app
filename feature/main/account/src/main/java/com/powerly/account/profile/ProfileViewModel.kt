@@ -16,16 +16,16 @@ import com.powerly.lib.managers.CountryManager
 import com.powerly.lib.managers.NotificationsManager
 import com.powerly.lib.managers.StorageManager
 import com.powerly.ui.dialogs.loading.initScreenState
-import dagger.hilt.android.lifecycle.HiltViewModel
+import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class ProfileViewModel @Inject constructor(
+
+@KoinViewModel
+class ProfileViewModel (
     private val userRepository: UserRepository,
     private val appRepository: AppRepository,
     private val storageManager: StorageManager,

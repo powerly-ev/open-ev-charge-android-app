@@ -5,16 +5,16 @@ import androidx.lifecycle.viewModelScope
 import com.powerly.core.model.api.ApiStatus
 import com.powerly.core.data.repositories.PowerSourceRepository
 import com.powerly.core.model.powerly.Connector
-import dagger.hilt.android.lifecycle.HiltViewModel
+import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 
-@HiltViewModel
-class ConnectorsViewModel @Inject constructor(
+
+@KoinViewModel
+class ConnectorsViewModel (
     private val powerSourceRepository: PowerSourceRepository,
 ) : ViewModel() {
 

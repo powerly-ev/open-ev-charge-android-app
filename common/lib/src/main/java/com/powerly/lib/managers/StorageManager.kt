@@ -1,6 +1,5 @@
 package com.powerly.lib.managers
 
-import android.annotation.SuppressLint
 import android.content.Context
 import androidx.core.content.edit
 import com.google.gson.Gson
@@ -13,18 +12,16 @@ import com.google.gson.stream.JsonWriter
 import com.powerly.core.database.LocalDataSource
 import com.powerly.core.model.user.User
 import com.powerly.core.network.RetrofitClient
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
+import org.koin.core.annotation.Named
+import org.koin.core.annotation.Single
 import java.util.Locale
 import java.util.UUID
-import javax.inject.Inject
-import javax.inject.Named
-import javax.inject.Singleton
 
-@Singleton
-class StorageManager @Inject constructor(
-    @ApplicationContext private val context: Context,
+@Single
+class StorageManager(
+    private val context: Context,
     private val localDataSource: LocalDataSource,
     private val retrofitClient: RetrofitClient,
     @Named("IO") private val ioDispatcher: CoroutineDispatcher
@@ -43,7 +40,6 @@ class StorageManager @Inject constructor(
     )
 
     init {
-        instance = this
         retrofitClient.initClients(userToken)
     }
 
@@ -162,9 +158,6 @@ class StorageManager @Inject constructor(
 
         private var _user: User? = null
         private var _uniqueID: String? = null
-
-        @SuppressLint("StaticFieldLeak")
-        lateinit var instance: StorageManager
     }
 }
 

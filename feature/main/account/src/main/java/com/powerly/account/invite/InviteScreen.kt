@@ -13,7 +13,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
-import androidx.hilt.navigation.compose.hiltViewModel
+import org.koin.androidx.compose.koinViewModel
 import com.github.alexzhirkevich.customqrgenerator.QrData
 import com.github.alexzhirkevich.customqrgenerator.vector.QrCodeDrawable
 import com.powerly.resources.R
@@ -28,7 +28,7 @@ import com.powerly.ui.extensions.safeStartActivity
  */
 @Composable
 internal fun InviteScreen(
-    viewModel: InviteViewModel = hiltViewModel(),
+    viewModel: InviteViewModel = koinViewModel(),
     onBack: () -> Unit
 ) {
     val context = LocalContext.current

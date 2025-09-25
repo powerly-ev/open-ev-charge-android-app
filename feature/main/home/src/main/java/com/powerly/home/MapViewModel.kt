@@ -14,12 +14,12 @@ import com.powerly.core.model.powerly.PowerSource
 import com.powerly.lib.managers.UserLocationManager
 import com.powerly.lib.usecases.LocationServicesUseCase
 import com.powerly.ui.map.initMapViewState
-import dagger.hilt.android.lifecycle.HiltViewModel
+import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class MyMapViewModel @Inject constructor(
+
+@KoinViewModel
+class MyMapViewModel (
     private val powerSourceRepository: PowerSourceRepository,
     private val locationManager: UserLocationManager,
     private val locationServicesUseCase: LocationServicesUseCase

@@ -3,12 +3,11 @@ package com.powerly.scan
 import androidx.lifecycle.ViewModel
 import com.powerly.core.data.repositories.PowerSourceRepository
 import com.powerly.core.model.api.ApiStatus
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.flow
-import javax.inject.Inject
+import org.koin.android.annotation.KoinViewModel
 
-@HiltViewModel
-class ScannerViewModel @Inject constructor(
+@KoinViewModel
+class ScannerViewModel (
     private val powerSourceRepository: PowerSourceRepository,
 ) : ViewModel() {
     fun powerSourceDetails(identifier: String) = flow {

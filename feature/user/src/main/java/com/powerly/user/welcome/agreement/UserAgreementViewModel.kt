@@ -2,11 +2,11 @@ package com.powerly.user.welcome.agreement
 
 import androidx.lifecycle.ViewModel
 import com.powerly.core.network.DeviceHelper
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
+import org.koin.android.annotation.KoinViewModel
 
-@HiltViewModel
-class UserAgreementViewModel @Inject constructor(
+
+@KoinViewModel
+class UserAgreementViewModel (
     private val deviceHelper: DeviceHelper
 ) : ViewModel() {
 

@@ -9,13 +9,8 @@ import java.net.InetSocketAddress
 import java.net.Socket
 import java.net.SocketAddress
 import java.util.Locale
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class DeviceHelper @Inject constructor(
-    private val context: Context? = null
-) {
+class DeviceHelper(private val context: Context) {
     companion object {
         private const val TAG = "DeviceHelper"
     }

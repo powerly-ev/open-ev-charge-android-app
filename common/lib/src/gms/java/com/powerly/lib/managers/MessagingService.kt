@@ -9,24 +9,18 @@ import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.google.gson.Gson
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import com.google.firebase.FirebaseApp
 import kotlinx.coroutines.suspendCancellableCoroutine
-import javax.inject.Inject
 import kotlin.coroutines.resume
 import kotlin.text.orEmpty
 
 
-@AndroidEntryPoint
-class MessagingService : FirebaseMessagingService() {
-    @Inject
-    lateinit var eventsManager: EventsManager
-
-    @Inject
-    lateinit var notificationsManager: NotificationsManager
+class MessagingService : FirebaseMessagingService(), KoinComponent {
+    private val eventsManager: EventsManager by inject()
+    private val notificationsManager: NotificationsManager by inject()
 
     private val serviceScope = CoroutineScope(SupervisorJob())
 

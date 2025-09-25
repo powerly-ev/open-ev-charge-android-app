@@ -9,13 +9,13 @@ import com.powerly.core.data.repositories.FeedbackRepository
 import com.powerly.core.data.repositories.SessionsRepository
 import com.powerly.core.model.powerly.Session
 import com.powerly.lib.managers.StorageManager
-import dagger.hilt.android.lifecycle.HiltViewModel
+import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
-import javax.inject.Inject
 
-@HiltViewModel
-class SessionViewModel @Inject constructor(
+
+@KoinViewModel
+class SessionViewModel (
     private val sessionsRepository: SessionsRepository,
     private val feedbackRepository: FeedbackRepository,
     private val storageManager: StorageManager

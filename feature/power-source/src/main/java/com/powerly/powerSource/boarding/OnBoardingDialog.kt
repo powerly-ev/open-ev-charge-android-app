@@ -1,16 +1,16 @@
 package com.powerly.powerSource.boarding
 
 import androidx.compose.runtime.Composable
-import androidx.hilt.navigation.compose.hiltViewModel
+import org.koin.androidx.compose.koinViewModel
 import androidx.lifecycle.ViewModel
 import com.powerly.lib.managers.StorageManager
 import com.powerly.ui.dialogs.MyScreenBottomSheet
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
+import org.koin.android.annotation.KoinViewModel
+
 
 @Composable
 fun OnBoardingDialog(
-    viewModel: OnBoardingViewModel = hiltViewModel(),
+    viewModel: OnBoardingViewModel = koinViewModel(),
     onDismiss: () -> Unit,
 ) {
     MyScreenBottomSheet(onDismiss = onDismiss) {
@@ -23,8 +23,8 @@ fun OnBoardingDialog(
     }
 }
 
-@HiltViewModel
-class OnBoardingViewModel @Inject constructor(
+@KoinViewModel
+class OnBoardingViewModel (
     private val storageManager: StorageManager
 ) : ViewModel() {
     fun setBoarding() {

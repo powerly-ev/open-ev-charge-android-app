@@ -3,11 +3,11 @@ package com.powerly.user.welcome.language
 import android.app.Activity
 import androidx.lifecycle.ViewModel
 import com.powerly.lib.managers.LocaleManager
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
+import org.koin.android.annotation.KoinViewModel
 
-@HiltViewModel
-class LanguagesViewModel @Inject constructor(
+
+@KoinViewModel
+class LanguagesViewModel (
     private val localeManager: LocaleManager
 ) : ViewModel() {
 

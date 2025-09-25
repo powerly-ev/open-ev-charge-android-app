@@ -8,15 +8,15 @@ import com.powerly.core.data.model.ReviewOptionsStatus
 import com.powerly.core.data.repositories.FeedbackRepository
 import com.powerly.core.model.api.ApiStatus
 import com.powerly.lib.AppRoutes
-import dagger.hilt.android.lifecycle.HiltViewModel
+import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class FeedbackViewModel @Inject constructor(
+
+@KoinViewModel
+class FeedbackViewModel (
     private val feedbackRepository: FeedbackRepository,
     savedStateHandle: SavedStateHandle,
 ) : ViewModel() {

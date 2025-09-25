@@ -3,13 +3,11 @@ package com.powerly.core.analyticsImpl
 import android.content.Context
 import com.powerly.core.analytics.EventsManager
 import com.powerly.core.analytics.UserIdentifier
-import dagger.hilt.android.qualifiers.ApplicationContext
-import javax.inject.Inject
-import javax.inject.Singleton
+import org.koin.core.annotation.Single
 
-@Singleton
-class EventsManagerImpl @Inject constructor(
-    @ApplicationContext private val context: Context,
+@Single
+class EventsManagerImpl(
+    private val context: Context,
     private val isDebug: Boolean,
     private val identifier: UserIdentifier?
 ) : EventsManager {
