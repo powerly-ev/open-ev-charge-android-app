@@ -17,22 +17,17 @@
 
 ## 🧭 Table of Contents
 
-- [About Powerly & Vision](#about-powerly--vision)
-- [Features](#features)
-- [Screenshots](#screenshots)
-- [Architecture & Tech Stack](#architecture--tech-stack)
-- [Getting Started](#getting-started)
-    - [Prerequisites](#prerequisites)
-    - [Installation](#installation)
-    - [Running the App](#running-the-app)
-    - [Testing](#testing)
-- [Configuration & APIs](#configuration--apis)
-- [Roadmap](#roadmap)
-- [Contributing](#contributing)
-- [License](#license)
-- [Acknowledgments & Links](#acknowledgments--links)
+- [🌐 About Powerly & Vision](#-about-powerly--vision)
+- [✨ Features](#-features)
+- [📷 Screenshots](#-screenshots)
+- [🏗 Architecture & Tech Stack](#-architecture--tech-stack)
+- [🚀 Getting Started](#-getting-started)
+    - [🧰 Prerequisites](#-prerequisites)
+    - [⚙️ Installation](#️-installation)
+- [🙌 Contributing](#-contributing)
+- [📄 License](#-license)
+- [🔗 Acknowledgments & Links](#-acknowledgments--links)
 
----
 
 ## 🌐 About Powerly & Vision
 
@@ -62,8 +57,8 @@ This Android app is part of that ecosystem, allowing businesses, fleet operators
 
 ## 📷 Screenshots
 
-| Home Screen | Map View | Charging Session |
-|-------------|----------|------------------|
+| Map View | Charging Session | Feedback Screen |
+|-------------|----------|----------------------------------------------|
 | ![Home](screenshots/map_view.webp) | ![Map](screenshots/charging_session.webp) | ![Charging](screenshots/session_rating.webp) |
 
 ---
@@ -131,7 +126,7 @@ SUPPORT_NUMBER=" "                       # optional
 
 #### 🧪 local.properties
 
-In addition to the usual `sdk.dir`, `local.properties` must define package name and signing information:
+In addition to the usual `sdk.dir`, `local.properties` may define package name and signing information:
 
 ```properties
 PACKAGE_NAME=com.powerly.open
