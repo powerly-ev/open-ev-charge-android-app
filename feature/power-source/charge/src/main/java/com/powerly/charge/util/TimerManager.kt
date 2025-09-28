@@ -1,11 +1,13 @@
 package com.powerly.charge.util
 
 import android.util.Log
+import org.koin.core.annotation.Single
 import java.util.Timer
 import java.util.TimerTask
 
 
-class ChargingTimerManager () {
+@Single
+class ChargingTimerManager() {
 
     private var timer: Timer? = null
 
