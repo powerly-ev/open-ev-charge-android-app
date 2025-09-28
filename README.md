@@ -1,86 +1,223 @@
-# EV Charging App (Android Kotlin)
 
-Welcome to the **EV Charging App**, an open-source Android application developed using Kotlin and Jetpack components for discovering and managing electric vehicle (EV) charging stations. This application is white-label ready, allowing businesses to brand, customize, and configure backend services (e.g., Firebase) for deployment on Google Play.
+<p align="center">
+  <img src="screenshots/logo.png" alt="Powerly Logo" width="120" />
+</p>
 
-## Features
-- **Charger Locator**: Interactive map displaying nearby EV charging stations.
-- **User Authentication**: Sign in/out functionality with email.
-- **Station Details**: Real-time charger availability, charger type, and pricing information.
-- **White-Label Ready**: Easily customizable UI components, colors, and branding elements.
+<h1 align="center">Open EV Charge — Android App</h1>
+<p align="center">⚡Powerly EV charging app — manage chargers, enable peer-to-peer sharing, integrate payments, and launch your smart energy services, all powered by the Powerly platform.</p>
 
-## Prerequisites
-- **Android Studio**: Version Flamingo (2023.2.1) or later and agb 8.9.0.
-- **Android SDK**: Minimum SDK version 24 (Android 6.1).
-- **Firebase Account**: `optional` for push notifications and analytics.
-- **Gradle**: Project dependency management (included with Android Studio).
+---
 
-## Getting Started
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+[![Issues](https://img.shields.io/github/issues/powerly-ev/open-ev-charge-android-app)](https://github.com/powerly-ev/open-ev-charge-android-app/issues)
+[![Releases](https://img.shields.io/github/v/release/powerly-ev/open-ev-charge-android-app?include_prereleases&sort=semver)](https://github.com/powerly-ev/open-ev-charge-android-app/releases)
+[![Stars](https://img.shields.io/github/stars/powerly-ev/open-ev-charge-android-app)](https://github.com/powerly-ev/open-ev-charge-android-app/stargazers)
 
-### 1. Clone the Repository
-```bash
-git clone [<your-repo-url>](https://github.com/powerly-ev/open-ev-charge-android-app.git)
-cd <your-repo-name>
+---
+
+## 🧭 Table of Contents
+
+- [About Powerly & Vision](#about-powerly--vision)
+- [Features](#features)
+- [Screenshots](#screenshots)
+- [Architecture & Tech Stack](#architecture--tech-stack)
+- [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation)
+    - [Running the App](#running-the-app)
+    - [Testing](#testing)
+- [Configuration & APIs](#configuration--apis)
+- [Roadmap](#roadmap)
+- [Contributing](#contributing)
+- [License](#license)
+- [Acknowledgments & Links](#acknowledgments--links)
+
+---
+
+## 🌐 About Powerly & Vision
+
+**Powerly** is an open-source EV charging platform designed to make electric mobility accessible, scalable, and customizable.  
+This Android app is part of that ecosystem, allowing businesses, fleet operators, municipalities, and individuals to launch **branded EV charging apps** in minutes.
+
+🔌 Supports **open protocols** like **OCPP** and **OCPI**, ensuring seamless charger compatibility, roaming, and backend integrations.  
+🌍 Features include **AI site planning**, **fleet tools**, **real-time analytics**, and **P2P charging** (share your private charger with others).
+
+📖 Read more: [Powerly Open Source](https://www.powerly.app/open-source/)
+
+---
+
+## ✨ Features
+
+- ⚡ White-label EV charging app template
+- 🗺️ Charger discovery with filtering by connector type and availability
+- 📡 Real-time session control & monitoring
+- 📅 Booking and scheduling charging sessions
+- 📊 Usage history, cost breakdown & billing
+- 🤝 Peer-to-peer charging support for private chargers
+- 🌐 Roaming & cross-network integration
+- 🔌 OCPP & OCPI protocol support
+- 🔑 Integration-ready with [Powerly API](https://api.powerly.app/docs/)
+
+---
+
+## 📷 Screenshots
+
+| Home Screen | Map View | Charging Session |
+|-------------|----------|------------------|
+| ![Home](screenshots/map_view.webp) | ![Map](screenshots/charging_session.webp) | ![Charging](screenshots/session_rating.webp) |
+
+---
+
+## 🏗 Architecture & Tech Stack
+
+**Architecture:** Clean Architecture with MVVM
+
+**Languages & Tools:**
+- Kotlin
+- Jetpack Compose
+- Retrofit / OkHttp
+- Coroutines
+- Room / Local persistence
+- Koin for dependency injection
+- Google Maps SDK
+- Fastlane & GitHub Actions (CI/CD)
+
+📚 For deeper insights, add `docs/architecture.md` and link it here.
+
+---
+
+## 🚀 Getting Started
+
+### 🧰 Prerequisites
+
+Before building the project, make sure the following environment and configuration files are correctly set up:
+
+#### 🔧 Build Flavors
+
+The project includes two build flavors:
+
+- **`default`** – a build **without Firebase**.
+- **`gms`** – includes Google services (Crashlytics, Analytics, Messaging).
+    - ✅ Requires a Firebase project and a `google-services.json` file placed in the `app/` directory.
+
+#### 📦 Build Variants
+
+The app supports the following build variants:
+
+- **`debug`** – uses the test API environment.
+- **`release`** – uses the production API environment with optimizations enabled
+- **`preRelease`** – a debuggable production variant
+
+#### 🔐 Required Secrets Files
+
+You must create two property files in the project root:
+
+- `secrets.debug.properties` – used for `debug` builds
+- `secrets.production.properties` – used for `release` and `preRelease` builds
+
+Or use only `secrets.default.properties`
+
+Each file must define the following keys:
+
+```properties
+PLACES_API_KEY=your_google_places_api_key        # required for map functionality
+STRIP_PUBLISHABLE_KEY=your_stripe_publishable_key # required for payments
+API_BASE_URL=https://api.example.com             # base URL for test or production
+API_API_KEY=your_api_key                         # API key for test or production
+PRIVACY_POLICY_URL=https://example.com/privacy   # optional
+TERMS_AND_CONDITIONS_URL=https://example.com/terms # optional
+SUPPORT_NUMBER=" "                       # optional
 ```
 
-### 2. Open Project in Android Studio
-- Launch Android Studio.
-- Select "Open an Existing Project."
-- Navigate to your cloned project directory and open it.
-- Select a specified build variant `default<BuildType>` If you don't intend to include Firebase services or `gms<BuildType>` where Firebase and other google services are included.
+#### 🧪 local.properties
 
-### 3. Configure Firebase
-1. Create a Firebase project at [console.firebase.google.com](https://console.firebase.google.com).
-2. Download the `google-services.json` file.
-3. Place it in the `app/src/gms` directory of your Android project.
-4. Enable Firebase services (e.g., Authentication, Push) via Firebase console.
-5. Select build variant `gms<BuildType>` where Firebase and other google services are included  
+In addition to the usual `sdk.dir`, `local.properties` must define package name and signing information:
 
-### 4. White-Labeling
-Customize the app for your business by:
-- **Branding**: Replace logos and icons in module `common/resources/res` folder.
-- **Strings**: Modify `strings.xml` in `common/resources/res/values`.
-- **App Theme**: Update colors,typography and theme configs at `common/ui//theme`.
-- **Package ID**: Update `applicationId` in `app/build.gradle` to match your Google Play account.
+```properties
+PACKAGE_NAME=com.powerly.open
 
-### 5. Build and Run
-- Connect a physical Android device or configure an emulator.
-- Press the "Run" button (Shift + F10) to build and deploy the app.
+# Optional for debug signing
+DEBUG_STORE_FILE=/path/to/debug.keystore
+DEBUG_STORE_PASSWORD=your_debug_store_password
+DEBUG_KEY_ALIAS=your_debug_alias
+DEBUG_KEY_PASSWORD=your_debug_key_password
 
-## Contributing
-We encourage contributions! Follow these steps:
-1. Fork the repository.
-2. Create a new feature branch (`git checkout -b feature/<your-feature>`).
-3. Commit your changes clearly following the [commit guidelines](#commit-message-guidelines).
-4. Push to your fork (`git push origin feature/<your-feature>`).
-5. Submit a pull request.
+# Optional for release signing
+RELEASE_STORE_FILE=/path/to/release.keystore
+RELEASE_STORE_PASSWORD=your_release_store_password
+RELEASE_KEY_ALIAS=your_release_alias
+RELEASE_KEY_PASSWORD=your_release_key_password
+```
 
-### Commit Message Guidelines
-Format commits using `<type>(<scope>): <description>`. Examples:
-- `feat(map): add filtering of chargers by type`
-- `fix(firebase): handle authentication exceptions properly`
+---
 
-## White-Labeling Guide
-Businesses can leverage this app as a foundation for branded EV charging solutions:
-- **Firebase Setup**: Provide your `google-services.json` at `app/src/gms`.
-- **API Keys**: Set your third-party APIs (e.g., Google Maps API or Strip publishable key) at 
-`secrets.debug.properties` and/or `secrets.production.properties` with the same key set of `secrets.default.properties`.
-- **Google Play**: Update your signing keys and deploy under your Google Play account.
-- **Analytics**: Use Firebase Analytics or integrate another analytics provider.
+### ⚙️ Installation
 
-## License Information
-This project is distributed under a [dual-license model](LICENSE):
-1. **Apache 2.0 License** (open-source usage):
-   - Use, modify, distribute freely under Apache 2.0.
-   - Mandatory removal of original branding (name, logo, API keys) when forking or modifying.
-   - Read the complete [Apache 2.0 License](LICENSE).
+1. **Clone the repository:**
 
-2. **Enterprise Commercial License** (business and premium usage):
-   - Premium features, advanced analytics, priority support require a paid subscription.
-   - Explicit approval required for commercial backend use.
-   - For Enterprise License inquiries, contact [sales@ypowerly.app](mailto:sales@powerly.app).
+```bash
+git clone https://github.com/powerly-ev/open-ev-charge-android-app.git
+cd open-ev-charge-android-app
+```
 
-## Support
-For queries or issues:
-- Open a GitHub issue.
-- Reach out to maintainers at dev@powerly.app.
+2. **Add configuration files:**
 
+- Place `google-services.json` in the `app/` directory (for `gms` flavor).
+- Add `secrets.debug.properties` and `secrets.production.properties` to the project root.
+- Fill `local.properties` with package name and signing credentials (if required).
+
+3. **Sync Gradle** in Android Studio to ensure dependencies and configurations are loaded.
+
+4. **Build the desired flavor and variant:**
+
+You can build any combination using Gradle tasks:
+
+- `assembleDefaultDebug` – default flavor with debug environment
+- `assembleDefaultRelease` – default flavor with production environment
+- `assembleGmsDebug` – GMS flavor (requires Firebase) with test environment
+- `assembleGmsRelease` – GMS flavor with production environment
+- `assembleGmsPreRelease` – GMS flavor with debuggable production build
+
+Example:
+
+```bash
+./gradlew assembleDefaultDebug
+```
+
+5. **Run the app** on an emulator or device from Android Studio, or install the APK from `app/build/outputs/apk/`.
+
+---
+
+✅ **Tip:** Use `preRelease` when you need production API behavior with debugging enabled — perfect for staging and QA.
+
+---
+
+## 🙌 Contributing
+
+We welcome contributions!
+
+1. Fork the repository
+2. Create a new branch: `git checkout -b feature/your-feature`
+3. Add your changes with tests
+4. Commit and push: `git commit -m "Add feature"`
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+Distributed under the **Apache License 2.0**.  
+See [LICENSE](LICENSE) for more information.
+
+---
+
+## 🔗 Acknowledgments & Links
+
+- 🌐 Website: [https://www.powerly.app](https://www.powerly.app)
+- 📘 API Docs: [https://api.powerly.app/docs/](https://api.powerly.app/docs/)
+- 📱 iOS App: [https://github.com/powerly-ev/open-ev-charge-ios-app](https://github.com/powerly-ev/open-ev-charge-ios-app)
+- 🛠 Powerly Open Source: [https://www.powerly.app/open-source/](https://www.powerly.app/open-source/)
+
+---
+
+<p align="center">🚀 Powering the future of electric mobility — with open source.</p>
