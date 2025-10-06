@@ -7,7 +7,7 @@ import com.powerly.core.model.api.ApiErrorConstants
 import com.powerly.core.model.api.ApiStatus
 import com.powerly.core.network.DeviceHelper
 import com.powerly.lib.managers.CountryManager
-import com.powerly.lib.managers.StorageManager
+import com.powerly.core.data.storage.StorageManager
 import org.koin.android.annotation.KoinViewModel
 
 

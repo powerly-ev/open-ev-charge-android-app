@@ -15,7 +15,7 @@ import com.powerly.core.model.payment.PaymentRedirect
 import com.powerly.core.model.payment.StripCard
 import com.powerly.core.model.util.Message
 import com.powerly.lib.managers.CountryManager
-import com.powerly.lib.managers.StorageManager
+import com.powerly.core.data.storage.StorageManager
 import com.powerly.payment.PaymentManager
 import com.powerly.resources.R
 import com.powerly.ui.dialogs.alert.initAlertDialogState

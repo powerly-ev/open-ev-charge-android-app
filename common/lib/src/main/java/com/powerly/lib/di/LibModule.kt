@@ -6,7 +6,7 @@ import com.powerly.core.analytics.EventsManager
 import com.powerly.core.analytics.UserIdentifier
 import com.powerly.core.analyticsImpl.EventsManagerImpl
 import com.powerly.core.network.DeviceHelper
-import com.powerly.lib.managers.StorageManager
+import com.powerly.core.data.storage.StorageManager
 import org.koin.core.annotation.ComponentScan
 import org.koin.core.annotation.Module
 import org.koin.core.annotation.Single

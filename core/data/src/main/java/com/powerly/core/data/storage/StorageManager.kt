@@ -1,4 +1,4 @@
-package com.powerly.lib.managers
+package com.powerly.core.data.storage
 
 import android.content.Context
 import androidx.core.content.edit

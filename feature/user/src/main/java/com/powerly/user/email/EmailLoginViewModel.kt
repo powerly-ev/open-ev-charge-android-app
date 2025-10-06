@@ -15,7 +15,7 @@ import com.powerly.core.model.user.EmailRegisterBody
 import com.powerly.core.model.user.EmailResetBody
 import com.powerly.core.model.user.User
 import com.powerly.core.model.user.VerificationBody
-import com.powerly.lib.managers.StorageManager
+import com.powerly.core.data.storage.StorageManager
 import com.powerly.ui.dialogs.loading.initScreenState
 import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.launch
@@ -24,11 +24,9 @@ import kotlinx.coroutines.launch
 @KoinViewModel
 class EmailLoginViewModel (
     private val loginRepository: LoginEmailRepository,
-    private val storageManager: StorageManager
 ) : ViewModel() {
 
     val screenState = initScreenState()
-
     val resetPin = mutableStateOf(false)
     val resetCounter = mutableStateOf(false)
     val counterTimeout = mutableIntStateOf(60)

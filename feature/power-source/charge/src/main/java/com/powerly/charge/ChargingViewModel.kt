@@ -12,7 +12,7 @@ import com.powerly.core.data.model.ChargingStatus
 import com.powerly.core.data.repositories.SessionsRepository
 import com.powerly.core.model.powerly.Session
 import com.powerly.lib.AppRoutes
-import com.powerly.lib.managers.StorageManager
+import com.powerly.core.data.storage.StorageManager
 import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow

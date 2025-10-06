@@ -10,7 +10,7 @@ import com.powerly.core.model.user.DeviceBody
 import com.powerly.core.network.DeviceHelper
 import com.powerly.lib.managers.CountryManager
 import com.powerly.lib.managers.NotificationsManager
-import com.powerly.lib.managers.StorageManager
+import com.powerly.core.data.storage.StorageManager
 import com.powerly.user.reminder.ReminderManager
 import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.launch

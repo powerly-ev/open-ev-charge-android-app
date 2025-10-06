@@ -14,7 +14,6 @@ import com.powerly.core.model.user.UserUpdateBody
 import com.powerly.core.network.DeviceHelper
 import com.powerly.lib.managers.CountryManager
 import com.powerly.lib.managers.NotificationsManager
-import com.powerly.lib.managers.StorageManager
 import com.powerly.ui.dialogs.loading.initScreenState
 import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.flow.Flow
@@ -25,27 +24,33 @@ import kotlinx.coroutines.launch
 
 
 @KoinViewModel
-class ProfileViewModel (
+class ProfileViewModel(
     private val userRepository: UserRepository,
     private val appRepository: AppRepository,
-    private val storageManager: StorageManager,
     private val deviceHelper: DeviceHelper,
     private val countryManager: CountryManager,
     private val notificationsManager: NotificationsManager,
 ) : ViewModel() {
-    val user = mutableStateOf<User?>(null)
     val userCountry = mutableStateOf(Country(1))
     val screenState = initScreenState()
-    private var profileUpdated: Boolean = false
 
     init {
-        user.value = storageManager.userDetails
         countryManager.getSavedCountry()?.let {
             userCountry.value = it
         }
-        Log.v(TAG, "user = $user")
         Log.v(TAG, "userCountry = ${userCountry.value.name}")
     }
+
+    /**
+     * A cold Flow that emits the current user details.
+     * This allows observing user data changes reactively. The flow is converted to a
+     * StateFlow in the UI layer, ensuring that the latest user information is always displayed.
+     */
+    val userFlow = userRepository.userFlow.stateIn(
+        scope = viewModelScope,
+        initialValue = null,
+        started = SharingStarted.Lazily
+    )
 
     /**
      * Updates the user profile with the provided [newUser] data.
@@ -79,26 +84,17 @@ class ProfileViewModel (
             val result = userRepository.updateUserDetails(request)
             screenState.loading = false
             when (result) {
-                is ApiStatus.Error -> screenState.showMessage(result.msg)
+                is ApiStatus.Error -> {
+                    screenState.showMessage(result.msg)
+                }
+
                 is ApiStatus.Success -> {
-                    user.value = result.data
-                    profileUpdated = true
-                    storageManager.userDetails = result.data
                     screenState.showSuccess()
-                    if (currency != null) {
-                        storageManager.pinUserCurrency = true
-                    }
                 }
 
                 else -> {}
             }
         }
-    }
-
-    fun isProfileUpdated(): Boolean {
-        val updated = profileUpdated
-        profileUpdated = false
-        return updated
     }
 
     fun updateUserCountry(country: Country) {
@@ -128,15 +124,14 @@ class ProfileViewModel (
      */
     suspend fun logout(): Boolean {
         Log.i(TAG, "logout")
-        if (storageManager.isLoggedIn) {
-            val imei = storageManager.imei()
+        if (userRepository.isLoggedIn) {
             screenState.loading = true
-            val it = userRepository.logout(imei)
+            val it = userRepository.logout()
             screenState.loading = false
             when (it) {
                 is ApiStatus.Error -> screenState.showMessage(it.msg)
                 is ApiStatus.Success -> {
-                    logoutDevice()
+                    notificationsManager.clearNotifications()
                     return true
                 }
 
@@ -159,7 +154,7 @@ class ProfileViewModel (
         when (it) {
             is ApiStatus.Error -> screenState.showMessage(it.msg)
             is ApiStatus.Success -> {
-                logoutDevice()
+                notificationsManager.clearNotifications()
                 return true
             }
 
@@ -168,11 +163,6 @@ class ProfileViewModel (
         return false
     }
 
-    private suspend fun logoutDevice() {
-        storageManager.logOutAll()
-        storageManager.showRegisterNotification = true
-        notificationsManager.clearNotifications()
-    }
 
     val appLink: String get() = deviceHelper.appLink
 

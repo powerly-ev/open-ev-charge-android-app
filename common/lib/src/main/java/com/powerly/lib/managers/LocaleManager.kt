@@ -3,6 +3,7 @@ package com.powerly.lib.managers
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import com.powerly.core.data.storage.StorageManager
 import com.powerly.lib.MainScreen.setMainScreenHome
 import com.powerly.lib.MainScreen.setMainScreenWelcome
 import com.powerly.resources.R
@@ -14,7 +15,7 @@ import java.util.Locale
  * Manages the application's locale and language settings.
  *
  * This class provides methods for initializing, changing, and retrieving
- * language settings for the application. It utilizes a [StorageManager]
+ * language settings for the application. It utilizes a [com.powerly.core.data.storage.StorageManager]
  * to persist the selected language preference.
  *
  * It uses a map to store available languages and their corresponding codes.

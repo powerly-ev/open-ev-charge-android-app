@@ -8,7 +8,7 @@ import com.powerly.core.model.api.ApiStatus
 import com.powerly.core.model.user.DeviceBody
 import com.powerly.core.network.DeviceHelper
 import com.powerly.lib.managers.LocaleManager
-import com.powerly.lib.managers.StorageManager
+import com.powerly.core.data.storage.StorageManager
 import com.powerly.ui.dialogs.loading.LoadingState
 import com.powerly.ui.dialogs.loading.initBasicScreenState
 import org.koin.android.annotation.KoinViewModel

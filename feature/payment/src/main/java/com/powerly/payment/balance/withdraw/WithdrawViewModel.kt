@@ -8,7 +8,7 @@ import com.powerly.core.data.repositories.PaymentRepository
 import com.powerly.core.model.api.ApiStatus
 import com.powerly.core.model.payment.Wallet
 import com.powerly.lib.managers.CountryManager
-import com.powerly.lib.managers.StorageManager
+import com.powerly.core.data.storage.StorageManager
 import com.powerly.ui.dialogs.loading.LoadingState
 import com.powerly.ui.dialogs.loading.initBasicScreenState
 import com.powerly.ui.dialogs.message.MessageState

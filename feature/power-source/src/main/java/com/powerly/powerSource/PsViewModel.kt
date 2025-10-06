@@ -10,7 +10,7 @@ import com.powerly.core.model.api.ApiStatus
 import com.powerly.core.model.powerly.Media
 import com.powerly.core.model.powerly.PowerSource
 import com.powerly.core.model.powerly.Review
-import com.powerly.lib.managers.StorageManager
+import com.powerly.core.data.storage.StorageManager
 import com.powerly.lib.managers.UserLocationManager
 import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.flow.Flow

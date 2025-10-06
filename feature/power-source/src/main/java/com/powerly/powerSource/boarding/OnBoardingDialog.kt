@@ -3,7 +3,7 @@ package com.powerly.powerSource.boarding
 import androidx.compose.runtime.Composable
 import org.koin.androidx.compose.koinViewModel
 import androidx.lifecycle.ViewModel
-import com.powerly.lib.managers.StorageManager
+import com.powerly.core.data.storage.StorageManager
 import com.powerly.ui.dialogs.MyScreenBottomSheet
 import org.koin.android.annotation.KoinViewModel
 

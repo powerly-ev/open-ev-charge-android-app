@@ -8,7 +8,7 @@ import androidx.paging.cachedIn
 import com.powerly.core.data.repositories.FeedbackRepository
 import com.powerly.core.data.repositories.SessionsRepository
 import com.powerly.core.model.powerly.Session
-import com.powerly.lib.managers.StorageManager
+import com.powerly.core.data.storage.StorageManager
 import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn

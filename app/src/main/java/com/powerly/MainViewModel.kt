@@ -9,7 +9,7 @@ import com.powerly.core.model.api.ApiStatus
 import com.powerly.core.model.user.User
 import com.powerly.core.network.DeviceHelper
 import com.powerly.lib.managers.LocaleManager
-import com.powerly.lib.managers.StorageManager
+import com.powerly.core.data.storage.StorageManager
 import com.powerly.payment.PaymentManager
 import com.powerly.ui.HomeUiState
 import kotlinx.coroutines.launch

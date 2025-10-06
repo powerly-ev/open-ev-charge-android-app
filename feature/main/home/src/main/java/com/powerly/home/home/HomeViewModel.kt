@@ -8,7 +8,7 @@ import com.powerly.core.data.repositories.PowerSourceRepository
 import com.powerly.core.model.powerly.PowerSource
 import com.powerly.core.network.DeviceHelper
 import com.powerly.lib.CONSTANTS.POWER_SOURCE_ID
-import com.powerly.lib.managers.StorageManager
+import com.powerly.core.data.storage.StorageManager
 import org.koin.android.annotation.KoinViewModel
 
 
