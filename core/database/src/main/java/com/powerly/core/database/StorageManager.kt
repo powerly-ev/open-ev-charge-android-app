@@ -1,4 +1,4 @@
-package com.powerly.core.data.storage
+package com.powerly.core.database
 
 import android.content.Context
 import androidx.core.content.edit
@@ -9,10 +9,11 @@ import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
 import com.google.gson.stream.JsonToken
 import com.google.gson.stream.JsonWriter
-import com.powerly.core.database.LocalDataSource
 import com.powerly.core.model.user.User
-import com.powerly.core.network.RetrofitClient
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.withContext
 import org.koin.core.annotation.Named
 import org.koin.core.annotation.Single
@@ -23,14 +24,19 @@ import java.util.UUID
 class StorageManager(
     private val context: Context,
     private val localDataSource: LocalDataSource,
-    private val retrofitClient: RetrofitClient,
     @Named("IO") private val ioDispatcher: CoroutineDispatcher
 ) {
+
     private val gson: Gson = GsonBuilder()
         // Register a custom TypeAdapter for Int type to handle null and empty json values
         .registerTypeAdapter(Int::class.javaObjectType, IntTypeAdapter())
         .create()
 
+    private val _userFlow = MutableStateFlow<User?>(null)
+    val userFlow: Flow<User?> = _userFlow.asStateFlow()
+
+    private var _userToken: String? = null
+    private var _language: String? = null
 
     private val preferences = context.getSharedPreferences(
         USER_PREFERENCES, Context.MODE_PRIVATE
@@ -40,7 +46,9 @@ class StorageManager(
     )
 
     init {
-        retrofitClient.initClients(userToken)
+        _userFlow.value = userDetails
+        _userToken = userToken
+        _language = currentLanguage
     }
 
     var messagingToken: String
@@ -50,9 +58,9 @@ class StorageManager(
         }
 
     var userToken: String
-        get() = preferences.getString(USER_TOKEN, "").orEmpty()
+        get() = _userToken ?: preferences.getString(USER_TOKEN, "").orEmpty()
         set(token) {
-            retrofitClient.initClients(token)
+            _userToken = token
             preferences.edit { putString(USER_TOKEN, token) }
         }
 
@@ -63,8 +71,10 @@ class StorageManager(
         }
 
     var currentLanguage: String
-        get() = appPreferences.getString(LANGUAGE, Locale.getDefault().language).orEmpty()
+        get() = _language ?: appPreferences.getString(LANGUAGE, Locale.getDefault().language)
+            .orEmpty()
         set(language) {
+            _language = language
             appPreferences.edit { putString(LANGUAGE, language) }
         }
 
@@ -82,12 +92,11 @@ class StorageManager(
     val isLoggedIn: Boolean get() = userToken.isEmpty().not()
 
     val countryId: Int? get() = userDetails?.countryId
-    val userId: Int? get() = userDetails?.id
 
     var userDetails: User?
-        get() = _user ?: getPref(USER)
+        get() = _userFlow.value ?: getPref(USER)
         set(data) {
-            _user = data
+            _userFlow.value = data
             setPref(USER, data)
         }
 
@@ -109,10 +118,9 @@ class StorageManager(
             preferences.edit { putBoolean(CURRENCY_STATIC, static) }
         }
 
-    suspend fun logOutAll() {
-        retrofitClient.initClients("")
-        _user = null
+    suspend fun clearLoginData() {
         userDetails = null
+        userToken = ""
         preferences.edit { clear() }
         withContext(ioDispatcher) {
             localDataSource.clearCountry()
@@ -155,8 +163,6 @@ class StorageManager(
         private const val LANGUAGE = "language"
         private const val REGISTER_NOTIFICATION = "notification"
         private const val ON_BOARDING = "on_boarding"
-
-        private var _user: User? = null
         private var _uniqueID: String? = null
     }
 }

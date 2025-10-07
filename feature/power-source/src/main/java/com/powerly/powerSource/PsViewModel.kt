@@ -5,12 +5,13 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.powerly.core.data.model.SourceStatus
+import com.powerly.core.data.repositories.AppRepository
 import com.powerly.core.data.repositories.PowerSourceRepository
+import com.powerly.core.data.repositories.UserRepository
 import com.powerly.core.model.api.ApiStatus
 import com.powerly.core.model.powerly.Media
 import com.powerly.core.model.powerly.PowerSource
 import com.powerly.core.model.powerly.Review
-import com.powerly.core.data.storage.StorageManager
 import com.powerly.lib.managers.UserLocationManager
 import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.flow.Flow
@@ -27,10 +28,11 @@ import kotlinx.coroutines.launch
  * to retrieve data and exposes it to composable functions.
  */
 @KoinViewModel
-class PsViewModel (
+class PsViewModel(
     private val powerSourceRepository: PowerSourceRepository,
     private val locationManager: UserLocationManager,
-    private val storageManager: StorageManager
+    private val userRepository: UserRepository,
+    private val appRepository: AppRepository,
 ) : ViewModel() {
 
     private var cachedMedia: Pair<String, List<Media>>? = null
@@ -73,7 +75,7 @@ class PsViewModel (
                     it
                 }
                 powerSource.apply {
-                    this.currency = storageManager.currency
+                    this.currency = appRepository.getCurrency()
                     this.media = media
                     this.distance(latitude, longitude)
                 }
@@ -94,14 +96,15 @@ class PsViewModel (
         ).cachedIn(viewModelScope)
 
 
-    val showOnBoardingDialog: Boolean
-        get() {
-            val show = storageManager.showOnBoarding
-            if (show) storageManager.showOnBoarding = false
-            return show
-        }
+    fun showOnBoardingOnce() = appRepository.showOnBoardingOnce()
 
     fun navigateToMap(latitude: Double, longitude: Double) {
         locationManager.navigateToMap(latitude, longitude)
+    }
+
+    fun updateBalance() {
+        viewModelScope.launch {
+            userRepository.getUserDetails()
+        }
     }
 }

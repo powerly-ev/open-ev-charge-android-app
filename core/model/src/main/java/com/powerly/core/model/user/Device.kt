@@ -6,8 +6,8 @@ import com.google.gson.annotations.SerializedName
 class UpdateDeviceResponse : BaseResponse<Any?>()
 
 data class DeviceBody(
-    @SerializedName("device_imei") private val imei: String? = null,
-    @SerializedName("device_token") private val token: String? = null,
+    @SerializedName("device_imei") private val deviceImei: String? = null,
+    @SerializedName("device_token") private val deviceToken: String? = null,
     @SerializedName("device_type") private val deiceType: Int? = null,
     @SerializedName("device_model") private val deviceModel: String? = null,
     @SerializedName("device_version") private val deviceVersion: String? = null,

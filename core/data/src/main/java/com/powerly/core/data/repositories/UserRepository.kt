@@ -4,8 +4,23 @@ import com.powerly.core.data.model.AuthStatus
 import com.powerly.core.model.api.ApiStatus
 import com.powerly.core.model.user.User
 import com.powerly.core.model.user.UserUpdateBody
+import kotlinx.coroutines.flow.Flow
 
 interface UserRepository {
+
+    /**
+     * A boolean flag indicating whether the user is currently logged in.
+     *
+     * @return `true` if the user is logged in, `false` otherwise.
+     */
+    val isLoggedIn: Boolean
+
+    /**
+     * A flow that emits the current user object.
+     * It will emit a new [User] object whenever the user data changes.
+     * If no user is logged in, it will emit `null`.
+     */
+    val userFlow: Flow<User?>
 
     /**
      * Updates user details.
@@ -38,11 +53,9 @@ interface UserRepository {
 
     /**
      * Logs out the user.
-     *
-     * @param imei The IMEI of the device.
      * @return  [ApiStatus] results.
      */
-    suspend fun logout(imei: String): ApiStatus<Boolean>
+    suspend fun logout(): ApiStatus<Boolean>
 
     /**
      * Deletes a user.
@@ -50,5 +63,11 @@ interface UserRepository {
      * @return  [ApiStatus] results.
      */
     suspend fun deleteUser(): ApiStatus<Boolean>
+
+    /**
+     * Clears all locally stored login data and user information.
+     *
+     */
+    suspend fun clearLoginData()
 }
 

@@ -11,18 +11,15 @@ import com.powerly.account.profile.ProfileScreen
 import com.powerly.lib.AppRoutes
 
 fun NavGraphBuilder.accountDestinations(
-    navController: NavHostController,
-    onRefreshUser: () -> Unit
+    navController: NavHostController
 ) {
     navigation<AppRoutes.Account>(startDestination = AppRoutes.Account.Profile) {
         composable<AppRoutes.Account.Profile> {
             ProfileScreen(
                 navigateToWelcomeScreen = {
-                    onRefreshUser()
                     navController.navigate(AppRoutes.User.Welcome)
                 },
-                onClose = { profileUpdated ->
-                    if (profileUpdated) onRefreshUser()
+                onClose = {
                     navController.popBackStack()
                 }
             )

@@ -24,8 +24,7 @@ import com.powerly.user.welcome.language.LanguagesDialog
 fun NavGraphBuilder.userDestinations(
     navController: NavHostController,
     userViewModel: UserViewModel,
-    emailViewModel: EmailLoginViewModel,
-    onRefreshUser: () -> Unit
+    emailViewModel: EmailLoginViewModel
 ) {
 
     fun navigateToHome(
@@ -33,7 +32,6 @@ fun NavGraphBuilder.userDestinations(
         openProfile: Boolean = false
     ) {
         val isLoggedIn = userViewModel.isLoggedIn
-        onRefreshUser()
         if (loggedIn) {
             userViewModel.cancelRegistrationReminders()
             userViewModel.updateDevice()

@@ -1,13 +1,12 @@
 package com.powerly.account.profile
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import org.koin.androidx.compose.koinViewModel
 import com.powerly.resources.R
 import com.powerly.ui.dialogs.alert.AlertDialogProperties
 import com.powerly.ui.dialogs.alert.MyAlertDialog
@@ -15,6 +14,7 @@ import com.powerly.ui.dialogs.alert.rememberAlertDialogState
 import com.powerly.ui.dialogs.countries.CountriesDialog
 import com.powerly.ui.dialogs.rememberMyDialogState
 import kotlinx.coroutines.launch
+import org.koin.androidx.compose.koinViewModel
 
 private const val TAG = "ProfileScreen"
 
@@ -32,7 +32,7 @@ internal fun ProfileScreen(
     viewModel: ProfileViewModel = koinViewModel(),
     navigateToWelcomeScreen: () -> Unit,
     focusPassword: Boolean = false,
-    onClose: (updateProfile: Boolean) -> Unit,
+    onClose: () -> Unit,
 ) {
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
@@ -43,11 +43,8 @@ internal fun ProfileScreen(
     val signOutDialog = rememberAlertDialogState()
 
     val country by remember { viewModel.userCountry }
-    val user by remember { viewModel.user }
+    val user by viewModel.userFlow.collectAsState()
 
-    BackHandler(enabled = true) {
-        onClose(viewModel.isProfileUpdated())
-    }
 
     CountriesDialog(
         state = countriesDialog,
@@ -107,7 +104,7 @@ internal fun ProfileScreen(
         uiEvents = {
             when (it) {
                 is ProfileEvents.Close -> {
-                    onClose(viewModel.isProfileUpdated())
+                    onClose()
                 }
 
                 is ProfileEvents.SelectCountry -> {

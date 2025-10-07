@@ -10,19 +10,14 @@ import com.powerly.core.model.api.ApiErrorConstants
 import com.powerly.core.model.api.ApiStatus
 import com.powerly.core.model.location.Country
 import com.powerly.core.model.user.EmailCheck
-import com.powerly.core.model.user.EmailLoginBody
-import com.powerly.core.model.user.EmailRegisterBody
 import com.powerly.core.model.user.EmailResetBody
-import com.powerly.core.model.user.User
-import com.powerly.core.model.user.VerificationBody
-import com.powerly.core.data.storage.StorageManager
 import com.powerly.ui.dialogs.loading.initScreenState
-import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.launch
+import org.koin.android.annotation.KoinViewModel
 
 
 @KoinViewModel
-class EmailLoginViewModel (
+class EmailLoginViewModel(
     private val loginRepository: LoginEmailRepository,
 ) : ViewModel() {
 
@@ -59,16 +54,12 @@ class EmailLoginViewModel (
      * Logs in the user with the provided email and password.
      */
     suspend fun emailLogin(email: String, password: String): LoginResult {
-        // Get the device token
         screenState.loading = true
-        val imei = storageManager.imei()
-        val body = EmailLoginBody(email, password, imei)
-        val result = loginRepository.emailLogin(body)
+        val result = loginRepository.emailLogin(email, password)
         screenState.loading = false
         when (result) {
             is ApiStatus.Success -> {
                 Log.i(TAG, "user - ${result.data}")
-                saveLogin(result.data)
                 return LoginResult.SUCCESS
             }
 
@@ -96,15 +87,12 @@ class EmailLoginViewModel (
      * Registers the user with the provided email and password.
      */
     suspend fun register(country: Country): Boolean {
-        // Create the EmailRegisterRequest object
-        val request = EmailRegisterBody(
+        screenState.loading = true
+        val result = loginRepository.emailRegister(
             email = email.value,
             password = password.value,
-            countryId = country.id,
-            deviceImei = storageManager.imei()
+            countryId = country.id
         )
-        screenState.loading = true
-        val result = loginRepository.emailRegister(request)
         screenState.loading = false
         when (result) {
             is ApiStatus.Success -> return true
@@ -120,13 +108,10 @@ class EmailLoginViewModel (
 
     suspend fun emailVerify(pin: String): Boolean {
         screenState.loading = true
-        val request = VerificationBody(code = pin, email = email.value)
-        val result = loginRepository.emailVerify(request)
+        val result = loginRepository.emailVerify(code = pin, email = email.value)
         screenState.loading = false
-        // Handle the different API states.
         when (result) {
             is ApiStatus.Success -> {
-                saveLogin(result.data)
                 return true
             }
 
@@ -230,13 +215,6 @@ class EmailLoginViewModel (
             else -> {}
         }
         return false
-    }
-
-    private fun saveLogin(user: User) {
-        val token = user.accessToken ?: return
-        storageManager.userToken = token
-        storageManager.userDetails = user
-        storageManager.currency = user.currency
     }
 
     companion object {

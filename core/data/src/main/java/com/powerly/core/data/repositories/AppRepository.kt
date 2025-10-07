@@ -2,10 +2,38 @@ package com.powerly.core.data.repositories
 
 import com.powerly.core.data.model.CurrenciesStatus
 import com.powerly.core.model.api.ApiStatus
-import com.powerly.core.model.user.DeviceBody
 import com.powerly.core.model.location.Country
 
 interface AppRepository {
+
+    /**
+     * Determines whether the onboarding screen should be shown once.
+     *
+     * @return `true` if onboarding should be shown, `false` otherwise.
+     */
+    fun showOnBoardingOnce(): Boolean
+
+    /**
+     * Determines whether the registration notification should be shown.
+     * The notification should be shown only for unregistered users.
+     *
+     * @return `true` if the notification should be shown, `false` otherwise.
+     */
+    fun showRegisterNotification(): Boolean
+
+    /**
+     * Retrieves the current language of the app.
+     *
+     * @return A string representing the current language code.
+     */
+    fun getLanguage(): String
+
+    /**
+     * Retrieves the currently selected currency.
+     *
+     * @return The currency code as a [String].
+     */
+    fun getCurrency(): String
 
     /**
      * Retrieves a list of countries.
@@ -30,11 +58,18 @@ interface AppRepository {
     suspend fun getCountryInfo(countryId: Int): ApiStatus<Country>
 
     /**
-     * Updates app information.
+     * Updates app language at the server of the current device.
      *
-     * @param request The [DeviceBody] containing the updated information.
+     * @param language The new device language.
      * @return  [ApiStatus] results indicating the success or failure of the update.
      */
-    suspend fun updateDevice(request: DeviceBody): ApiStatus<Boolean>
+    suspend fun updateAppLanguage(language: String): ApiStatus<Boolean>
+
+    /**
+     * Updates device information at the server of the current device.
+     *
+     * @return  [ApiStatus] results indicating the success or failure of the update.
+     */
+    suspend fun updateDevice(language: String? = null): ApiStatus<Boolean>
 }
 

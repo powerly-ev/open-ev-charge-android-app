@@ -2,14 +2,16 @@ package com.powerly.core.data.repositories
 
 import com.powerly.core.model.api.ApiStatus
 import com.powerly.core.model.user.EmailCheck
-import com.powerly.core.model.user.EmailLoginBody
-import com.powerly.core.model.user.EmailRegisterBody
 import com.powerly.core.model.user.EmailResetBody
 import com.powerly.core.model.user.User
 import com.powerly.core.model.user.UserVerification
-import com.powerly.core.model.user.VerificationBody
+import kotlinx.coroutines.flow.Flow
 
 interface LoginEmailRepository {
+
+    val isLoggedIn: Boolean
+
+    val userFlow: Flow<User?>
 
     /**
      * Checks if an email exists.
@@ -20,28 +22,39 @@ interface LoginEmailRepository {
     suspend fun emailCheck(email: String): ApiStatus<EmailCheck>
 
     /**
-     * Logs in a user with email.
+     * Logs in a user with their email and password.
      *
-     * @param request The [EmailLoginBody] containing login details.
-     * @return  [ApiStatus] results containing the login result.
+     * This function authenticates a user against the backend service.
+     * On successful authentication, it returns the user's profile information.
+     *
+     * @param email the user's email.
+     * @param password the user's password.
+     * @return An [ApiStatus] which on success contains the logged-in [User] object.
      */
-    suspend fun emailLogin(request: EmailLoginBody): ApiStatus<User>
+    suspend fun emailLogin(email: String, password: String): ApiStatus<User>
 
     /**
      * Registers a user with email.
      *
-     * @param request The [EmailRegisterBody] containing registration details.
+     * @param email the user's email.
+     * @param password the user's password.
+     * @param countryId the user's country id.
      * @return  [ApiStatus] results containing the registration result.
      */
-    suspend fun emailRegister(request: EmailRegisterBody): ApiStatus<UserVerification>
+    suspend fun emailRegister(
+        email: String,
+        password: String,
+        countryId: Int
+    ): ApiStatus<UserVerification>
 
     /**
      * Verifies an email.
      *
-     * @param request The [VerificationBody] containing verification details.
+     * @param code The verification code.
+     * @param email The email to verify.
      * @return  [ApiStatus] results containing the verification result.
      */
-    suspend fun emailVerify(request: VerificationBody): ApiStatus<User>
+    suspend fun emailVerify(code: String, email: String): ApiStatus<User>
 
     /**
      * Resends the email verification token.

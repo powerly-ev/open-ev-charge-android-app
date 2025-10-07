@@ -24,10 +24,6 @@ private const val TAG = "PowerSourceScreen"
  * It displays the power source information, user's balance, and handles user interactions
  * such as calling the power source or navigating to it.
  *
- * @param powerSourceId The ID of the power source to display.
- * @param uiState The current UI state of the application, providing access to user location and balance.
- * @param viewModel The ViewModel responsible for fetching and managing power source data.
- * @param onNavigate A callback function to handle navigation events triggered by user interactions.
  */
 @Composable
 fun PowerSourceScreen(
@@ -45,7 +41,7 @@ fun PowerSourceScreen(
     LaunchedEffect(userLocation) {
         Log.i(TAG, "powerSourceId - $powerSourceId")
 
-        if (viewModel.showOnBoardingDialog) {
+        if (viewModel.showOnBoardingOnce()) {
             onNavigate(SourceEvents.HowToCharge)
         }
         // load power source details

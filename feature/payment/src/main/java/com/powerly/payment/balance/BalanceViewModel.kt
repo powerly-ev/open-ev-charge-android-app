@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.core.net.toUri
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.powerly.core.analytics.EVENTS
 import com.powerly.core.analytics.EventsManager
 import com.powerly.core.data.model.BalanceRefillStatus
@@ -15,7 +16,6 @@ import com.powerly.core.model.payment.PaymentRedirect
 import com.powerly.core.model.payment.StripCard
 import com.powerly.core.model.util.Message
 import com.powerly.lib.managers.CountryManager
-import com.powerly.core.data.storage.StorageManager
 import com.powerly.payment.PaymentManager
 import com.powerly.resources.R
 import com.powerly.ui.dialogs.alert.initAlertDialogState
@@ -23,24 +23,34 @@ import com.stripe.android.payments.paymentlauncher.PaymentResult
 import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.launch
 
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
 @KoinViewModel
-class BalanceViewModel (
+class BalanceViewModel(
     private val userRepository: UserRepository,
     private val paymentRepository: PaymentRepository,
     private val eventsManager: EventsManager,
     private val paymentManager: PaymentManager,
     private val countryManager: CountryManager,
-    private val storageManager: StorageManager,
 ) : ViewModel() {
     val paymentFailureDialog = initAlertDialogState()
     val balanceItem = mutableStateOf(BalanceItem())
-    val userBalance: Double get() = storageManager.userDetails?.balance ?: 0.0
-    val userCurrency: String get() = storageManager.userDetails?.currency.orEmpty()
+    val userBalance = mutableStateOf(0.0)
+    val userCurrency = mutableStateOf("")
+
+    init {
+        viewModelScope.launch {
+            userRepository.userFlow.filterNotNull().collect {
+                userBalance.value = it.balance
+                userCurrency.value = it.currency
+            }
+        }
+    }
 
     fun setBalanceItem(item: BalanceItem) {
         this.balanceItem.value = item
@@ -117,11 +127,8 @@ class BalanceViewModel (
     }
 
     suspend fun updateUserDetails() {
-        val result = userRepository.getUserDetails()
-        if (result is ApiStatus.Success) {
-            storageManager.userDetails = result.data
-            delay(500)
-        }
+        userRepository.getUserDetails()
+        delay(500)
     }
 
 

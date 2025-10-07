@@ -2,6 +2,7 @@ package com.powerly.core.network
 
 import android.util.Log
 import com.google.gson.GsonBuilder
+import com.powerly.core.database.StorageManager
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Protocol
@@ -14,16 +15,10 @@ import java.util.concurrent.TimeUnit
 
 class RetrofitClient(
     private val errorMessage: String,
-    private val deviceHelper: DeviceHelper
+    private val deviceHelper: DeviceHelper,
+    private val storageManager: StorageManager
 ) {
     private var serviceClient: RemoteDataSource? = null
-    private var userToken: String = ""
-
-    fun initClients(userToken: String) {
-        Log.i(TAG, "initRetrofitClients")
-        this.userToken = userToken
-        serviceClient = null
-    }
 
     val client: RemoteDataSource
         get() {
@@ -58,7 +53,7 @@ class RetrofitClient(
         val original = chain.request()
         val request = original.newBuilder().apply {
             method(original.method, original.body)
-            val defaultLocale = Locale.getDefault().language
+            val defaultLocale = storageManager.currentLanguage
             val apiSupportedLocales = listOf("en", "ar", "es", "fr")
             val acceptLanguage = if (apiSupportedLocales.contains(defaultLocale)) defaultLocale
             else "en"
@@ -69,6 +64,7 @@ class RetrofitClient(
             header("Device-Type", deviceHelper.deviceType.toString())
             header("Device-Model", deviceHelper.deviceModel())
             header("Device-Version", deviceHelper.deviceVersion)
+            val userToken = storageManager.userToken
             if (userToken.isNotEmpty()) header("Authorization", "Bearer $userToken")
         }.build()
         try {

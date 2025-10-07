@@ -13,4 +13,5 @@ android {
 
 dependencies {
     implementation(projects.core.model)
+    implementation(libs.squareup.converter.gson)
 }

@@ -7,16 +7,14 @@ import com.powerly.core.model.api.ApiErrorConstants
 import com.powerly.core.model.api.ApiStatus
 import com.powerly.core.network.DeviceHelper
 import com.powerly.lib.managers.CountryManager
-import com.powerly.core.data.storage.StorageManager
 import org.koin.android.annotation.KoinViewModel
 
 
 @KoinViewModel
-class SplashViewModel (
+class SplashViewModel(
     private val userRepository: UserRepository,
     private val appRepository: AppRepository,
     private val deviceHelper: DeviceHelper,
-    private val storageManager: StorageManager,
     private val countryManager: CountryManager
 ) : ViewModel() {
 
@@ -41,7 +39,7 @@ class SplashViewModel (
 
             is ApiStatus.Success -> {
                 countryManager.initCountries(it.data)
-                return if (storageManager.isLoggedIn) getUserDetails()
+                return if (userRepository.isLoggedIn) getUserDetails()
                 else SplashAction.OpenWelcomeScreen
             }
 
@@ -50,10 +48,9 @@ class SplashViewModel (
     }
 
     suspend fun getUserDetails(): SplashAction? {
-        val it = userRepository.getUserDetails()
-        return when (it) {
+        return when (val response = userRepository.getUserDetails()) {
             is ApiStatus.Error -> {
-                when (it.msg.code) {
+                when (response.msg.code) {
                     ApiErrorConstants.MAINTENANCE_MODE -> {
                         SplashAction.Maintenance
                     }
@@ -63,23 +60,21 @@ class SplashViewModel (
                     }
 
                     ApiErrorConstants.TOO_MANY_REQUESTS -> {
-                        SplashAction.TryAgain(it.msg.msg)
+                        SplashAction.TryAgain(response.msg.msg)
                     }
 
                     ApiErrorConstants.UNAUTHENTICATED -> {
-                        storageManager.logOutAll()
+                        userRepository.clearLoginData()
                         SplashAction.OpenWelcomeScreen
                     }
 
                     else -> {
-                        SplashAction.TryAgain(it.msg.msg)
+                        SplashAction.TryAgain(response.msg.msg)
                     }
                 }
             }
 
             is ApiStatus.Success -> {
-                val user = it.data
-                storageManager.userDetails = user
                 SplashAction.OpenHomeScreen
             }
 

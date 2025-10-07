@@ -30,7 +30,7 @@ internal fun AddBalanceScreen(
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
     val screenState = rememberScreenState()
-    val currency = remember { viewModel.userCurrency }
+    val currency by remember { viewModel.userCurrency }
     val balanceItem by remember { viewModel.balanceItem }
     var defaultPaymentMethod by remember { paymentViewModel.defaultPaymentMethod }
     val paymentFailureDialog = remember { viewModel.paymentFailureDialog }

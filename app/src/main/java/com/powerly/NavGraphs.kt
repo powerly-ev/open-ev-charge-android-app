@@ -31,7 +31,6 @@ import com.powerly.user.userDestinations
 import com.powerly.vehicles.VehiclesViewModel
 import com.powerly.vehicles.vehiclesDestinations
 
-private const val TAG = "RootGraph"
 
 @Composable
 fun RootGraph(
@@ -66,8 +65,7 @@ fun RootGraph(
         }
 
         splashDestinations(
-            navController = navController,
-            onRefreshUser = { mainViewModel.refreshUser() }
+            navController = navController
         )
 
         composable<AppRoutes.Navigation> {
@@ -82,15 +80,13 @@ fun RootGraph(
         userDestinations(
             navController = navController,
             userViewModel,
-            emailViewModel,
-            onRefreshUser = { mainViewModel.refreshUser() }
+            emailViewModel
         )
 
         powersourceDestinations(
             navController = navController,
             viewModel = psViewModel,
             uiState = mainViewModel.uiState,
-            onRefreshUser = { mainViewModel.getUserDetails() },
             openActiveOrders = {
                 // navigate to tab orders/active section
                 homeTab.value = AppRoutes.Navigation.Orders(OrderTab.ACTIVE)
@@ -105,8 +101,7 @@ fun RootGraph(
         paymentDestinations(
             navController = navController,
             paymentViewModel,
-            balanceViewModel,
-            onRefreshUser = { mainViewModel.refreshUser() }
+            balanceViewModel
         )
 
         vehiclesDestinations(
@@ -115,8 +110,7 @@ fun RootGraph(
         )
 
         accountDestinations(
-            navController = navController,
-            onRefreshUser = { mainViewModel.refreshUser() }
+            navController = navController
         )
     }
 }

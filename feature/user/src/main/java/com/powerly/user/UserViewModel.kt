@@ -5,29 +5,26 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.powerly.core.data.repositories.AppRepository
+import com.powerly.core.data.repositories.UserRepository
 import com.powerly.core.model.location.Country
-import com.powerly.core.model.user.DeviceBody
 import com.powerly.core.network.DeviceHelper
 import com.powerly.lib.managers.CountryManager
-import com.powerly.lib.managers.NotificationsManager
-import com.powerly.core.data.storage.StorageManager
 import com.powerly.user.reminder.ReminderManager
-import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.launch
+import org.koin.android.annotation.KoinViewModel
 
 
 @KoinViewModel
-class UserViewModel (
-    private val countryManager: CountryManager,
+class UserViewModel(
+    private val userRepository: UserRepository,
     private val appRepository: AppRepository,
+    private val countryManager: CountryManager,
     private val reminderManager: ReminderManager,
-    private val notificationsManager: NotificationsManager,
     private val deviceHelper: DeviceHelper,
-    private val storageManager: StorageManager
 ) : ViewModel() {
 
     val country = mutableStateOf<Country?>(null)
-    val isLoggedIn: Boolean get() = storageManager.isLoggedIn
+    val isLoggedIn: Boolean get() = userRepository.isLoggedIn
 
     fun setCountry(country: Country) {
         this.country.value = country
@@ -35,16 +32,7 @@ class UserViewModel (
 
     fun updateDevice() {
         viewModelScope.launch {
-            val body = DeviceBody(
-                imei = storageManager.imei(),
-                lang = storageManager.currentLanguage,
-                token = notificationsManager.getToken(),
-                appVersion = deviceHelper.appVersion,
-                deviceModel = deviceHelper.deviceModel,
-                deviceVersion = deviceHelper.deviceVersion,
-                deiceType = deviceHelper.deviceType
-            )
-            appRepository.updateDevice(body)
+            appRepository.updateDevice()
         }
     }
 
@@ -57,14 +45,13 @@ class UserViewModel (
 
 
     fun cancelRegistrationReminders() {
-        if (storageManager.isLoggedIn)
+        if (userRepository.isLoggedIn)
             reminderManager.cancelRegistrationReminders()
     }
 
     fun initRegistrationReminders() {
-        if (storageManager.showRegisterNotification) {
+        if (appRepository.showRegisterNotification()) {
             reminderManager.initRegistrationReminders()
-            storageManager.showRegisterNotification = false
         }
     }
 

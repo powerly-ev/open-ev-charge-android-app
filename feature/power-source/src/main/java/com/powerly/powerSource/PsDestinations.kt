@@ -22,7 +22,6 @@ fun NavGraphBuilder.powersourceDestinations(
     navController: NavHostController,
     viewModel: PsViewModel,
     uiState: HomeUiState,
-    onRefreshUser: () -> Unit,
     openActiveOrders: () -> Unit,
     openCompletedOrders: () -> Unit
 ) {
@@ -105,8 +104,8 @@ fun NavGraphBuilder.powersourceDestinations(
         composable<AppRoutes.PowerSource.Charging> { backStackEntry ->
             ChargingScreen(
                 openSessionHistory = { session ->
-                    // update user to update balance after charging completion
-                    onRefreshUser()
+                    // update balance after charging completion
+                    viewModel.updateBalance()
                     // back to home tabs screen
                     navController.popBackStack(
                         AppRoutes.Navigation,

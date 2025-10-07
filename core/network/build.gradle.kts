@@ -47,6 +47,7 @@ secrets {
 
 dependencies {
     implementation(projects.core.model)
+    implementation(projects.core.database)
     //for network call
     implementation(libs.squareup.retrofit)
     implementation(libs.squareup.converter.gson)

@@ -9,22 +9,22 @@ import androidx.navigation.toRoute
 import com.powerly.charge.util.ChargingTimerManager
 import com.powerly.charge.util.ChargingTimerState
 import com.powerly.core.data.model.ChargingStatus
+import com.powerly.core.data.repositories.AppRepository
 import com.powerly.core.data.repositories.SessionsRepository
 import com.powerly.core.model.powerly.Session
 import com.powerly.lib.AppRoutes
-import com.powerly.core.data.storage.StorageManager
-import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import org.koin.android.annotation.KoinViewModel
 
 
 @KoinViewModel
-class ChargeViewModel (
+class ChargeViewModel(
     private val sessionsRepository: SessionsRepository,
     private val chargingTimerManager: ChargingTimerManager,
-    private val storageManager: StorageManager,
+    private val appRepository: AppRepository,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
@@ -76,7 +76,7 @@ class ChargeViewModel (
             is ChargingStatus.Success -> {
                 _chargingStatus.value = result
                 session.value = result.session.apply {
-                    currency = storageManager.currency
+                    currency = appRepository.getCurrency()
                 }
                 // Handle cases where the charging session has ended prematurely
                 if (hasActiveSession.not()) {

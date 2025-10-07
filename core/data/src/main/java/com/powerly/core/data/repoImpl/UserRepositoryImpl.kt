@@ -2,7 +2,7 @@ package com.powerly.core.data.repoImpl
 
 import com.powerly.core.data.model.AuthStatus
 import com.powerly.core.data.repositories.UserRepository
-import com.powerly.core.data.storage.StorageManager
+import com.powerly.core.database.StorageManager
 import com.powerly.core.model.api.ApiErrorConstants
 import com.powerly.core.model.api.ApiStatus
 import com.powerly.core.model.user.LogoutBody
@@ -14,12 +14,10 @@ import com.powerly.core.network.asValidationErrorMessage
 import com.powerly.core.network.needToRefreshToken
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.withContext
-import retrofit2.HttpException
 import org.koin.core.annotation.Named
 import org.koin.core.annotation.Single
+import retrofit2.HttpException
 
 @Single
 class UserRepositoryImpl(
@@ -27,8 +25,7 @@ class UserRepositoryImpl(
     private val storageManager: StorageManager,
     @Named("IO") private val ioDispatcher: CoroutineDispatcher
 ) : UserRepository {
-    private val _userFlow = MutableStateFlow<User?>(storageManager.userDetails)
-    override val userFlow: Flow<User?> = _userFlow.asStateFlow()
+    override val userFlow: Flow<User?> = storageManager.userFlow
 
     override val isLoggedIn: Boolean get() = storageManager.isLoggedIn
 
@@ -39,7 +36,7 @@ class UserRepositoryImpl(
             val response = remoteDataSource.updateUser(request)
             if (response.hasData) {
                 val user = response.getData
-                _userFlow.value = user
+                storageManager.userDetails = user
                 if (request.currency != null) {
                     storageManager.pinUserCurrency = true
                 }
@@ -80,6 +77,7 @@ class UserRepositoryImpl(
             val response = remoteDataSource.getUser()
             if (response.hasData) {
                 val user = response.getData
+                storageManager.userDetails = user
                 ApiStatus.Success(user)
             } else ApiStatus.Error(response.getMessage())
         } catch (e: HttpException) {
@@ -110,7 +108,7 @@ class UserRepositoryImpl(
             val request = LogoutBody(imei)
             val response = remoteDataSource.authLogout(request)
             if (response.isSuccessful) {
-                storageManager.logOutAll()
+                storageManager.clearLoginData()
                 storageManager.showRegisterNotification = true
                 ApiStatus.Success(true)
             } else ApiStatus.Error(response.asErrorMessage)
@@ -126,7 +124,7 @@ class UserRepositoryImpl(
         try {
             val response = remoteDataSource.deleteUser()
             if (response.isSuccessful) {
-                storageManager.logOutAll()
+                storageManager.clearLoginData()
                 storageManager.showRegisterNotification = true
                 ApiStatus.Success(true)
             } else ApiStatus.Error(response.asErrorMessage)
@@ -137,4 +135,7 @@ class UserRepositoryImpl(
         }
     }
 
+    override suspend fun clearLoginData() {
+        storageManager.clearLoginData()
+    }
 }

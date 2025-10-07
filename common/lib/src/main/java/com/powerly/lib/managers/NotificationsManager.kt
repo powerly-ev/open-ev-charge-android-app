@@ -13,8 +13,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.google.gson.annotations.SerializedName
 import com.powerly.core.data.repositories.AppRepository
-import com.powerly.core.data.storage.StorageManager
-import com.powerly.core.model.user.DeviceBody
+import com.powerly.core.database.StorageManager
 import com.powerly.lib.MainScreen.setMainScreenHome
 import com.powerly.lib.MyPackages
 import com.powerly.resources.R
@@ -111,11 +110,7 @@ class NotificationsManager(
         storageManager.messagingToken = token
         // update token at server
         if (storageManager.isLoggedIn) {
-            val deviceBody = DeviceBody(
-                imei = storageManager.imei(),
-                token = token
-            )
-            appRepository.updateDevice(deviceBody)
+            appRepository.updateDevice()
         }
     }
 

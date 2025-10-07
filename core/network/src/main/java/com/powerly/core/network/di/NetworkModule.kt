@@ -1,6 +1,7 @@
 package com.powerly.core.network.di
 
 import android.content.Context
+import com.powerly.core.database.StorageManager
 import com.powerly.core.network.DeviceHelper
 import com.powerly.core.network.R
 import com.powerly.core.network.RemoteDataSource
@@ -15,11 +16,13 @@ class NetworkModule {
     @Single
     fun provideRetrofitClient(
         context: Context,
-        deviceHelper: DeviceHelper
+        deviceHelper: DeviceHelper,
+        storageManager: StorageManager
     ): RetrofitClient {
         return RetrofitClient(
             errorMessage = context.getString(R.string.no_internet_message),
-            deviceHelper = deviceHelper
+            deviceHelper = deviceHelper,
+            storageManager = storageManager
         )
     }
 

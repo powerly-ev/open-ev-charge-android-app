@@ -5,23 +5,21 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.powerly.core.data.repositories.FeedbackRepository
+import com.powerly.core.data.repositories.AppRepository
 import com.powerly.core.data.repositories.SessionsRepository
 import com.powerly.core.model.powerly.Session
-import com.powerly.core.data.storage.StorageManager
-import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
+import org.koin.android.annotation.KoinViewModel
 
 
 @KoinViewModel
-class SessionViewModel (
+class SessionViewModel(
     private val sessionsRepository: SessionsRepository,
-    private val feedbackRepository: FeedbackRepository,
-    private val storageManager: StorageManager
+    private val appRepository: AppRepository,
 ) : ViewModel() {
 
-    val currency: String get() = storageManager.currency
+    val currency: String get() = appRepository.getCurrency()
 
     val refresh = mutableStateOf(false)
 
