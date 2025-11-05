@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 
 
 @KoinViewModel
-class MyMapViewModel (
+class MyMapViewModel(
     private val powerSourceRepository: PowerSourceRepository,
     private val locationManager: UserLocationManager,
     private val locationServicesUseCase: LocationServicesUseCase
@@ -55,8 +55,7 @@ class MyMapViewModel (
 
     fun loadPowerSources(latitude: Double, longitude: Double) {
         viewModelScope.launch {
-            val result = powerSourceRepository.getNearPowerSources(latitude, longitude)
-            when (result) {
+            when (val result = powerSourceRepository.getNearPowerSources(latitude, longitude)) {
                 is SourcesStatus.Success -> {
                     displayPowerSources(result.sources)
                 }
@@ -102,12 +101,14 @@ class MyMapViewModel (
         requestManually: Boolean = false,
         onAllowed: () -> Unit
     ) {
-        locationServicesUseCase(
-            permissionsState = permissionsState,
-            activityResult = activityResult,
-            requestManually = requestManually,
-            onAllowed = onAllowed
-        )
+        viewModelScope.launch {
+            locationServicesUseCase(
+                permissionsState = permissionsState,
+                activityResult = activityResult,
+                requestManually = requestManually,
+                onAllowed = onAllowed
+            )
+        }
     }
 
     suspend fun initMap() {

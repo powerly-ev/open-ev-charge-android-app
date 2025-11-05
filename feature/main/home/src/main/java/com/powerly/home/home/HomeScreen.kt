@@ -57,6 +57,15 @@ fun HomeScreen(
     val nearPowerSources = remember { mapViewModel.nearPowerSources }
     var selectedPowerSource by remember { mapViewModel.selectedPowerSource }
 
+    fun requestNotificationsPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            val permission = Manifest.permission.POST_NOTIFICATIONS
+            if (permissionsState.isItGranted(permission).not()) {
+                permissionsState.requestSpecific(permission) {}
+            }
+        }
+    }
+
     fun initMapAndLocation(requestManually: Boolean = false) {
         Log.v(TAG, "initMapAndLocation")
         mapViewModel.requestLocationServices(
@@ -64,7 +73,9 @@ fun HomeScreen(
             activityResult = activityResult,
             requestManually = requestManually,
             onAllowed = {
+                Log.v(TAG, "on-location-allowed")
                 coroutineScope.launch {
+                    requestNotificationsPermission()
                     screenState.loading = true
                     mapViewModel.initMap()
                     if (isLoggedIn) mapViewModel.loadNearPowerSources()
@@ -85,13 +96,6 @@ fun HomeScreen(
         if (doOnce) {
             doOnce = false
             initMapAndLocation(requestManually = false)
-            // request notification permission if not granted
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                val permission = Manifest.permission.POST_NOTIFICATIONS
-                if (permissionsState.isItGranted(permission).not()) {
-                    permissionsState.requestSpecific(permission) {}
-                }
-            }
         }
     }
 

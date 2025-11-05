@@ -21,11 +21,13 @@ class LocationServicesUseCase(
         Log.i(TAG, "Requesting location services")
         // Location service and permissions are enabled, fetch location
         if (locationManager.allEnabled) {
+            Log.v(TAG, "Location services are enabled")
             onAllowed()
         }
         // Location service is disabled or permissions are not granted
         else {
             if (!locationManager.serviceEnabled && requestManually) {
+                Log.v(TAG, "requestManually")
                 val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
                 activityResult.startActivityForResult(intent) {
                     if (locationManager.serviceEnabled) {
@@ -45,7 +47,10 @@ class LocationServicesUseCase(
                     }
                 }
             } else if (!permissionsState.isGranted()) {
+                Log.v(TAG, "permissionsState-request")
                 permissionsState.request { granted ->
+                    Log.v(TAG, "permission - $granted")
+                    Log.v(TAG, "locationManager - ${locationManager.serviceEnabled}")
                     if (granted && locationManager.serviceEnabled) {
                         onAllowed()
                     } else if (requestManually) {
@@ -59,6 +64,6 @@ class LocationServicesUseCase(
     }
 
     companion object {
-        private const val TAG = "RequestLocationServicesUseCase"
+        private const val TAG = "LocationServicesUseCase"
     }
 }
