@@ -41,7 +41,7 @@ private const val TAG = "SplashScreen"
 @Composable
 internal fun SplashScreen(
     viewModel: SplashViewModel = koinViewModel(),
-    openHomeScreen: (extras: Bundle?) -> Unit,
+    openHomeScreen: () -> Unit,
     openWelcomeScreen: () -> Unit,
     openAppUpdate: () -> Unit,
     onClose: () -> Unit
@@ -92,10 +92,7 @@ internal fun SplashScreen(
             }
 
             SplashAction.OpenHomeScreen -> {
-                val intent = context.intent
-                // read deep link data if exists
-                val extras = intent.readAppLinks()
-                openHomeScreen(extras)
+                openHomeScreen()
             }
 
             SplashAction.OpenWelcomeScreen -> openWelcomeScreen()

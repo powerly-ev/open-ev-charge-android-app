@@ -22,7 +22,7 @@ fun NavGraphBuilder.splashDestinations(
                     }
                 }
             },
-            openHomeScreen = { extras ->
+            openHomeScreen = {
                 navController.navigate(AppRoutes.Navigation) {
                     popUpTo(AppRoutes.Splash) {
                         inclusive = true
