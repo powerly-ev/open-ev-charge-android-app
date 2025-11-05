@@ -124,7 +124,7 @@ class PlacesManager(
         Log.i(TAG, "fetchPlaceLocation - $placeId")
 
         // Specify the fields to be retrieved for the place (in this case, only LAT_LNG).
-        val placeFields: List<Place.Field> = listOf(Place.Field.LAT_LNG)
+        val placeFields: List<Place.Field> = listOf(Place.Field.LOCATION)
 
         // Build a FetchPlaceRequest using the Place ID and specified fields.
         val request: FetchPlaceRequest = FetchPlaceRequest

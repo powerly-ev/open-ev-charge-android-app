@@ -1,12 +1,11 @@
 package com.powerly.payment.balance
 
 import android.util.Log
+import androidx.compose.runtime.mutableDoubleStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.core.net.toUri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.powerly.core.analytics.EVENTS
-import com.powerly.core.analytics.EventsManager
 import com.powerly.core.data.model.BalanceRefillStatus
 import com.powerly.core.data.repositories.PaymentRepository
 import com.powerly.core.data.repositories.UserRepository
@@ -20,13 +19,12 @@ import com.powerly.payment.PaymentManager
 import com.powerly.resources.R
 import com.powerly.ui.dialogs.alert.initAlertDialogState
 import com.stripe.android.payments.paymentlauncher.PaymentResult
-import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
-
+import org.koin.android.annotation.KoinViewModel
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
@@ -34,19 +32,18 @@ import kotlin.coroutines.suspendCoroutine
 class BalanceViewModel(
     private val userRepository: UserRepository,
     private val paymentRepository: PaymentRepository,
-    private val eventsManager: EventsManager,
     private val paymentManager: PaymentManager,
     private val countryManager: CountryManager,
 ) : ViewModel() {
     val paymentFailureDialog = initAlertDialogState()
     val balanceItem = mutableStateOf(BalanceItem())
-    val userBalance = mutableStateOf(0.0)
+    val userBalance = mutableDoubleStateOf(0.0)
     val userCurrency = mutableStateOf("")
 
     init {
         viewModelScope.launch {
             userRepository.userFlow.filterNotNull().collect {
-                userBalance.value = it.balance
+                userBalance.doubleValue = it.balance
                 userCurrency.value = it.currency
             }
         }
@@ -64,7 +61,6 @@ class BalanceViewModel(
     }
 
     suspend fun refillBalance(stripCard: StripCard): Boolean {
-        log(EVENTS.BALANCE_REFILL)
         val it = paymentRepository.refillBalance(
             offerId = balanceItem.value.id,
             paymentMethodId = stripCard.id
@@ -131,10 +127,6 @@ class BalanceViewModel(
         delay(500)
     }
 
-
-    fun log(event: String) {
-        eventsManager.log(event)
-    }
 
     companion object {
         private const val TAG = "BalanceViewModel"

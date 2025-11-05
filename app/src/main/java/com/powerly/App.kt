@@ -19,7 +19,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.GlobalContext.startKoin
 import org.koin.core.logger.Level
-import org.koin.ksp.generated.defaultModule
+import org.koin.ksp.generated.com_powerly_di_AppModule
 import org.koin.ksp.generated.module
 
 class App : Application() {
@@ -46,7 +46,7 @@ class App : Application() {
                 VehiclesModule().module,
                 PsModules.psModule,
                 PsModules.chargeModule,
-                defaultModule,
+                com_powerly_di_AppModule
             )
 
         }

@@ -15,8 +15,8 @@ import org.koin.core.annotation.Single
  * location information. It also stores a map of countries with their IDs and ISO codes.
  */
 @Single
-class CountryManager (
-     private val context: Context,
+class CountryManager(
+    private val context: Context,
     private val locationManager: UserLocationManager,
     private val placesManager: PlacesManager,
     private val storageManager: StorageManager
