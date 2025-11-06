@@ -49,11 +49,11 @@ def translate_text(text, target_lang):
         print(f"Error translating with geimin: {e}")
         return None
 
-# python strings_translator.py en ar es fr zh-CN hi de ja ko pt th vi id tr
+# python strings_translator.py en ar es fr zh-rCN hi de ja ko pt th vi in tr
 def main(en_file_path, locales):
     print("Reading English strings...")
     en_strings =open(en_file_path,'r',encoding='utf-8').read()
-    allowed_locales = ['zh-CN', 'hi', 'de', 'ja', 'ko', 'pt', 'th', 'vi', 'id', 'tr']
+    allowed_locales = ['zh-rCN', 'hi', 'de', 'ja', 'ko', 'pt', 'th', 'vi', 'in', 'tr']
     for locale in locales:
         if locale not in allowed_locales:continue
         print(f"Translating to {locale}...")

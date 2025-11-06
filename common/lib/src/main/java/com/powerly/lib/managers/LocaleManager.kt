@@ -3,6 +3,7 @@ package com.powerly.lib.managers
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import com.powerly.core.database.StorageManager
 import com.powerly.lib.MainScreen.setMainScreenHome
 import com.powerly.lib.MainScreen.setMainScreenWelcome
@@ -63,7 +64,18 @@ class LocaleManager(
     //change app language with specific language code
     fun setLocale(context: Context): Context {
         val lang = storageManager.currentLanguage
-        val locale = Locale.forLanguageTag(lang)
+        Log.v(TAG, "setLocale - $lang")
+        val locale = if (lang.contains("-r")) {
+            val (language, region) = lang.split("-r")
+            Locale.Builder()
+                .setLanguage(language)
+                .setRegion(region.uppercase())
+                .build()
+        } else {
+            Locale.Builder()
+                .setLanguage(lang)
+                .build()
+        }
         Locale.setDefault(locale)
         val config = context.resources.configuration
         config.setLocale(locale)
@@ -80,5 +92,8 @@ class LocaleManager(
         activity.startActivity(intent)
     }
 
+    companion object {
+        private const val TAG = "LocaleManager"
+    }
 
 }
