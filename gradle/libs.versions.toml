@@ -1,13 +1,14 @@
 [versions]
 # Plugin verisons
-androidGradlePlugin = "8.13.0"
+androidGradlePlugin = "8.13.1"
 kotlin = "2.2.21"
 kotlinKsp = "2.2.21-2.0.4"
-androidTools = "31.13.0"
+androidTools = "31.13.1"
 googleServices = "4.4.4"
 koin = "4.1.1"
-koinAnnotations = "2.3.0"
+koinAnnotations = "2.3.1"
 firebaseCrashlytics = "3.0.6"
+ktorClient = "3.3.2"
 room = "2.8.3"
 secretsPlugin = "2.0.1"
 # Dependency versions
@@ -15,6 +16,7 @@ secretsPlugin = "2.0.1"
 coreKtx = "1.17.0"
 activityKtx = "1.11.0"
 annotation = "1.9.1"
+annotationExperimental = "1.5.1"
 coreSplashscreen = "1.2.0"
 lifecycleVersion = "2.9.4"
 pagingRuntimeKtx = "3.3.6"
@@ -22,7 +24,7 @@ navigation = "2.9.6"
 workRuntimeKtxVersion = "2.11.0"
 multidex = "2.0.1"
 desugar_jdk_libsVersion = "2.1.5"
-serialization = "1.9.0"
+serialization-json = "1.9.0"
 kotlinDateTime = "0.7.1"
 kotlinCoroutines = "1.10.2"
 material = "1.13.0"
@@ -40,9 +42,6 @@ firebaseBom = "34.5.0"
 firebaseMessaging = "25.0.1"
 googlePlaces = "5.0.0"
 playServicesLocation = "21.3.0"
-## Third Parties
-retrofit = "3.0.0"
-okhttp = "5.3.0"
 
 lottie = "6.7.1"
 stripeAndroid = "22.0.0"
@@ -77,9 +76,10 @@ lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx",
 lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleVersion" }
 paging-runtime-ktx = { module = "androidx.paging:paging-runtime-ktx", version.ref = "pagingRuntimeKtx" }
 androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }
+androidx-annotation-experimental = { module = "androidx.annotation:annotation-experimental", version.ref = "annotationExperimental" }
 work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "workRuntimeKtxVersion" }
 multidex = { module = "androidx.multidex:multidex", version.ref = "multidex" }
-kotlinx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
+serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization-json" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinDateTime" }
 kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinCoroutines" }
 desugar-jdk-libs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar_jdk_libsVersion" }
@@ -113,10 +113,11 @@ firebase-messaging = { module = "com.google.firebase:firebase-messaging", versio
 firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
 
 # Network
-squareup-retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
-squareup-okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
-squareup-logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp" }
-squareup-converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktorClient" }
+ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktorClient" }
+ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktorClient" }
+ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktorClient" }
+ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktorClient" }
 
 # Room database
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }

@@ -1,34 +1,37 @@
 package com.powerly.core.model.powerly
 
 import androidx.annotation.StringRes
-import com.powerly.core.model.api.BaseResponse
-import com.powerly.core.model.api.BaseResponsePaginated
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonNames
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
 
 
+@Serializable
 data class Session(
-    @SerializedName("id") val id: String = "",
-    @SerializedName("connector_number") val connectorNumber: Int? = null,
-    @SerializedName("status") var status: Int = 0,
-    @SerializedName("price") val price: Double = 0.0,
-    @SerializedName("prices") val prices: List<Price>? = null,
-    @SerializedName("unit_price") val unitPrice: Double = 0.0,
-    @SerializedName("app_fees") val appFees: Double = 0.0,
-    @SerializedName("earning") val earning: Double = 0.0,
-    @SerializedName("fees") val fees: Double = 0.0,
-    @SerializedName("charging_session_time") val chargingSessionTime: Double = 0.0,
-    @SerializedName("charging_session_energy") val chargingSessionEnergy: Double = 0.0,
-    @SerializedName("price_unit", alternate = ["unit"]) val priceUnit: String = "minutes",
-    @SerializedName("quantity") val quantity: String? = null,
-    @SerializedName("requested_quantity") val quantityRequested: String = "",
-    @SerializedName("created_at") private val createdAt: String = "",
-    @SerializedName("delivery_date") val deliveryAt: String? = null,
-    @SerializedName("reserved_at") private val reservedAt: String = "",
-    @SerializedName("charge_point") val chargePoint: PowerSource = PowerSource(),
-    @SerializedName("currency") var currency: String = ""
+    @SerialName("id") val id: String = "",
+    @SerialName("connector_number") val connectorNumber: Int? = null,
+    @SerialName("status") var status: Int = 0,
+    @SerialName("price") val price: Double = 0.0,
+    @SerialName("prices") val prices: List<Price>? = null,
+    @SerialName("unit_price") val unitPrice: Double = 0.0,
+    @SerialName("app_fees") val appFees: Double = 0.0,
+    @SerialName("earning") val earning: Double = 0.0,
+    @SerialName("fees") val fees: Double = 0.0,
+    @SerialName("charging_session_time") val chargingSessionTime: Double = 0.0,
+    @SerialName("charging_session_energy") val chargingSessionEnergy: Double = 0.0,
+    @OptIn(ExperimentalSerializationApi::class)
+    @JsonNames("price_unit", "unit") val priceUnit: String = "minutes",
+    @SerialName("quantity") val quantity: String? = null,
+    @SerialName("requested_quantity") val quantityRequested: String = "",
+    @SerialName("created_at") private val createdAt: String = "",
+    @SerialName("delivery_date") val deliveryAt: String? = null,
+    @SerialName("reserved_at") private val reservedAt: String = "",
+    @SerialName("charge_point") val chargePoint: PowerSource = PowerSource(),
+    @SerialName("currency") var currency: String = ""
 ) {
 
     val isActive: Boolean get() = status == 0
@@ -39,7 +42,7 @@ data class Session(
     val chargePointId: String get() = chargePoint.id
     val chargePointName: String get() = chargePoint.title
     val chargePointAddress: String get() = chargePoint.address?.detailedAddress.orEmpty()
-    val chargePointListed: Boolean get() = chargePoint.isListed
+    val chargePointListed: Boolean get() = chargePoint.listed
     val sessionLimit: Int? get() = chargePoint.sessionLimit
 
     val isFull: Boolean
@@ -107,13 +110,14 @@ data class Session(
     }
 }
 
+@Serializable
 data class Price(
-    @SerializedName("id") val id: Int = 0,
-    @SerializedName("quantity") val quantity: Double = 0.0,
-    @SerializedName("price") val price: Double = 0.0,
-    @SerializedName("total") val total: Double = 0.0,
-    @SerializedName("endingTime") val endingTime: String = "",
-    @SerializedName("startingTime") val startingTime: String = "",
+    @SerialName("id") val id: Int = 0,
+    @SerialName("quantity") val quantity: Double = 0.0,
+    @SerialName("price") val price: Double = 0.0,
+    @SerialName("total") val total: Double = 0.0,
+    @SerialName("endingTime") val endingTime: String = "",
+    @SerialName("startingTime") val startingTime: String = "",
 )
 
 private fun String.toLocalTime(format: String): String {
@@ -139,11 +143,3 @@ data class OrderTab(
         const val HISTORY = 1
     }
 }
-
-
-/**
- * Sessions
- */
-class SessionDetailsResponse : BaseResponse<Session?>()
-
-class SessionsResponsePaginated : BaseResponsePaginated<Session>()

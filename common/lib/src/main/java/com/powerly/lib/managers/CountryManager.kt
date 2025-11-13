@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Context.TELEPHONY_SERVICE
 import android.telephony.TelephonyManager
 import android.util.Log
-import com.powerly.core.database.StorageManager
+import com.powerly.core.data.repositories.AppRepository
 import com.powerly.core.model.location.Country
 import org.koin.core.annotation.Single
 
@@ -17,14 +17,12 @@ import org.koin.core.annotation.Single
 @Single
 class CountryManager(
     private val context: Context,
+    private val appRepository: AppRepository,
     private val locationManager: UserLocationManager,
     private val placesManager: PlacesManager,
-    private val storageManager: StorageManager
 ) {
     companion object {
         private const val TAG = "CountryManager"
-        private var countries = HashMap<String, Country>()
-        fun getCountryList() = countries.values.toList()
         private const val DEFAULT_COUNTRY_ISO = "JO" //jordan code two letters
     }
 
@@ -42,12 +40,12 @@ class CountryManager(
             return phoneCountry
         } else {
             // request user location (latitude,longitude)
-            val location = locationManager.requestLocation() ?: return defaultCountry
+            val location = locationManager.requestLocation() ?: return getDefaultCountry()
             // detect geo address by (latitude,longitude) to get country code
             val myAddress = placesManager.detectAddress(location.latitude, location.longitude)
             val countryCode = myAddress?.countryCode.orEmpty()
             // search for country by code
-            val country = getCountryByCode(iso = countryCode) ?: defaultCountry
+            val country = appRepository.getCountryByIso(iso = countryCode) ?: getDefaultCountry()
             return country
         }
     }
@@ -60,19 +58,21 @@ class CountryManager(
      * @param context The Context used for accessing the TelephonyManager.
      * @return The detected Country or the default country if detection fails.
      */
-    fun detectCountry(): Country? {
+    suspend fun detectCountry(): Country? {
         return detectCountryByTelephonyManager()
-            ?: getCountryById(storageManager.countryId)
-            ?: defaultCountry
+            ?: appRepository.getUserCountry()
+            ?: getDefaultCountry()
     }
 
-    fun getSavedCountry(): Country? {
-        val country = getCountryById(storageManager.countryId) ?: detectCountry()
+    suspend fun getSavedCountry(): Country? {
+        val country = appRepository.getUserCountry() ?: detectCountry()
         Log.v(TAG, "getSavedCountry - ${country?.name}")
         return country
     }
 
-    private val defaultCountry: Country? get() = countries[DEFAULT_COUNTRY_ISO]
+    private suspend fun getDefaultCountry(): Country? {
+        return appRepository.getCountryByIso(DEFAULT_COUNTRY_ISO)
+    }
 
     /**
      * Detects the user's country using the TelephonyManager.
@@ -83,33 +83,15 @@ class CountryManager(
      * @param context The Context used for accessing the TelephonyManager.
      * @return The detected Country or null if detection fails.
      */
-    private fun detectCountryByTelephonyManager(): Country? {
+    private suspend fun detectCountryByTelephonyManager(): Country? {
         return try {
             val tm = context.getSystemService(TELEPHONY_SERVICE) as TelephonyManager
             val countryIso = tm.networkCountryIso
             Log.v(TAG, "countryIso - $countryIso")
-            for (country in countries.values) {
-                if (country.iso.equals(countryIso, ignoreCase = true)) {
-                    return country
-                }
-            }
-            return null
+            return appRepository.getCountryByIso(countryIso)
         } catch (e: Exception) {
             e.printStackTrace()
             null
-        }
-    }
-
-    private fun getCountryById(id: Int?): Country? = countries["$id"]
-
-    private fun getCountryByCode(iso: String): Country? =
-        countries.values.firstOrNull { it.iso.equals(iso, ignoreCase = true) }
-
-    fun initCountries(list: List<Country>) {
-        countries.clear()
-        list.forEach { country ->
-            val id = country.id
-            countries[id.toString()] = country
         }
     }
 }

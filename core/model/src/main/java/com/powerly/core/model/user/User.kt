@@ -1,49 +1,50 @@
 package com.powerly.core.model.user
 
-import com.powerly.core.model.api.BaseResponse
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class User(
-    @SerializedName("id") val id: Int = -1,
-    @SerializedName("first_name") val firstName: String = "",
-    @SerializedName("last_name") val lastName: String = "",
-    @SerializedName("currency") val appCurrency: String? = null,
-    @SerializedName("balance") var balance: Double = 0.0,
+    @SerialName("id") val id: Int = -1,
+    @SerialName("first_name") val firstName: String = "",
+    @SerialName("last_name") val lastName: String = "",
+    @SerialName("currency") val appCurrency: String? = null,
+    @SerialName("balance") var balance: Double = 0.0,
 
-    @SerializedName("country_id") val countryId: Int? = null,
+    @SerialName("country_id") val countryId: Int? = null,
 
-    @SerializedName("email") val email: String = "",
-    @SerializedName("email_verified") val emailVerified: Int = 0,
+    @SerialName("email") val email: String = "",
+    @SerialName("email_verified") val emailVerified: Int = 0,
 
-    @SerializedName("vat_id") val vatId: String? = null,
-    @SerializedName("access_token") var accessToken: String? = null
+    @SerialName("vat_id") val vatId: String? = null,
+    @SerialName("access_token") var accessToken: String? = null
 ) {
     val fullName: String get() = "$firstName $lastName"
     val currency: String get() = appCurrency.orEmpty()
 }
 
 
-class UserResponse : BaseResponse<User>()
-
+@Serializable
 data class UserUpdateBody(
-    @SerializedName("first_name") val firstName: String? = null,
-    @SerializedName("last_name") val lastName: String? = null,
-    @SerializedName("email") val email: String? = null,
-    @SerializedName("password") val password: String? = null,
-    @SerializedName("vat_id") val vatId: String? = null,
-    @SerializedName("country_id") val countryId: Int? = null,
-    @SerializedName("currency") val currency: String? = null,
-    @SerializedName("latitude") val latitude: Double? = null,
-    @SerializedName("longitude") val longitude: Double? = null
+    @SerialName("first_name") val firstName: String? = null,
+    @SerialName("last_name") val lastName: String? = null,
+    @SerialName("email") val email: String? = null,
+    @SerialName("password") val password: String? = null,
+    @SerialName("vat_id") val vatId: String? = null,
+    @SerialName("country_id") val countryId: Int? = null,
+    @SerialName("currency") val currency: String? = null,
+    @SerialName("latitude") val latitude: Double? = null,
+    @SerialName("longitude") val longitude: Double? = null
 )
 
-class RefreshTokenResponse : BaseResponse<RefreshToken>()
 
+@Serializable
 data class RefreshToken(
-    @SerializedName("access_token") val accessToken: String? = ""
+    @SerialName("access_token") val accessToken: String? = ""
 )
 
+@Serializable
 data class LogoutBody(
-    @SerializedName("device_imei")
+    @SerialName("device_imei")
     private val imei: String
 )

@@ -8,4 +8,3 @@ sealed class CurrenciesStatus {
     data class Success(val data: List<AppCurrency>) : CurrenciesStatus()
     data object Loading : CurrenciesStatus()
 }
-

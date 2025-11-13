@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
 import org.koin.core.annotation.Named
 import org.koin.core.annotation.Single
-import retrofit2.HttpException
+import io.ktor.client.plugins.ResponseException
 
 @Single
 class FeedbackRepositoryImpl(
@@ -23,14 +23,14 @@ class FeedbackRepositoryImpl(
         try {
             val response = remoteDataSource.reviewOptions()
             emit(
-                if (response.hasData) ReviewOptionsStatus.Success(response.getData!!)
+                if (response.hasData) ReviewOptionsStatus.Success(response.getData())
                 else ReviewOptionsStatus.Error(response.getMessage())
             )
-        } catch (e: HttpException) {
-            emit(ReviewOptionsStatus.Error(e.asErrorMessage))
+        } catch (e: ResponseException) {
+            emit(ReviewOptionsStatus.Error(e.asErrorMessage()))
         } catch (e: Exception) {
             e.printStackTrace()
-            emit(ReviewOptionsStatus.Error(e.asErrorMessage))
+            emit(ReviewOptionsStatus.Error(e.asErrorMessage()))
         }
     }
 
@@ -45,38 +45,38 @@ class FeedbackRepositoryImpl(
                 orderId = orderId,
                 body = body
             )
-            if (response.hasData) ApiStatus.Success(response.getData!!)
+            if (response.hasData) ApiStatus.Success(response.getData())
             else ApiStatus.Error(response.getMessage())
-        } catch (e: HttpException) {
-            ApiStatus.Error(e.asErrorMessage)
+        } catch (e: ResponseException) {
+            ApiStatus.Error(e.asErrorMessage())
         } catch (e: Exception) {
             e.printStackTrace()
-            ApiStatus.Error(e.asErrorMessage)
+            ApiStatus.Error(e.asErrorMessage())
         }
     }
 
     override suspend fun reviewSkip(orderId: String) = withContext(ioDispatcher) {
         try {
             val response = remoteDataSource.reviewSkip(orderId)
-            if (response.hasData) ApiStatus.Success(response.getData!!)
+            if (response.hasData) ApiStatus.Success(response.getData())
             else ApiStatus.Error(response.getMessage())
-        } catch (e: HttpException) {
-            ApiStatus.Error(e.asErrorMessage)
+        } catch (e: ResponseException) {
+            ApiStatus.Error(e.asErrorMessage())
         } catch (e: Exception) {
             e.printStackTrace()
-            ApiStatus.Error(e.asErrorMessage)
+            ApiStatus.Error(e.asErrorMessage())
         }
     }
 
     override suspend fun reviewsList() = withContext(ioDispatcher) {
         try {
             val response = remoteDataSource.reviewPending(limit = 1)
-            if (response.hasData) ApiStatus.Success(response.getData?.getOrNull(0))
+            if (response.hasData) ApiStatus.Success(response.getData().getOrNull(0))
             else ApiStatus.Error(response.getMessage())
-        } catch (e: HttpException) {
-            ApiStatus.Error(e.asErrorMessage)
+        } catch (e: ResponseException) {
+            ApiStatus.Error(e.asErrorMessage())
         } catch (e: Exception) {
-            ApiStatus.Error(e.asErrorMessage)
+            ApiStatus.Error(e.asErrorMessage())
         }
     }
 }

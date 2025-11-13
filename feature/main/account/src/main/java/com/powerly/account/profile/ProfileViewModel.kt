@@ -32,13 +32,16 @@ class ProfileViewModel(
     private val notificationsManager: NotificationsManager,
 ) : ViewModel() {
     val userCountry = mutableStateOf(Country(1))
+    var countries = listOf<Country>()
+        private set
     val screenState = initScreenState()
 
     init {
-        countryManager.getSavedCountry()?.let {
-            userCountry.value = it
+        viewModelScope.launch {
+            countries = appRepository.getCountriesList()
+            countryManager.getSavedCountry()?.let { userCountry.value = it }
+            Log.v(TAG, "userCountry = ${userCountry.value.name}")
         }
-        Log.v(TAG, "userCountry = ${userCountry.value.name}")
     }
 
     /**

@@ -1,6 +1,7 @@
 package com.powerly.user
 
 import android.util.Log
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -25,6 +26,15 @@ class UserViewModel(
 
     val country = mutableStateOf<Country?>(null)
     val isLoggedIn: Boolean get() = userRepository.isLoggedIn
+    val countries = mutableStateListOf<Country>()
+
+    fun getCountries() {
+        viewModelScope.launch {
+            countries.clear()
+            countries.addAll(appRepository.getCountriesList())
+            Log.v(TAG, "getCountries - ${countries.size}")
+        }
+    }
 
     fun setCountry(country: Country) {
         this.country.value = country
@@ -65,4 +75,8 @@ class UserViewModel(
 
     val supportNumber: String get() = deviceHelper.supportNumber
 
+    companion object {
+        private const val TAG = "UserViewModel"
+
+    }
 }

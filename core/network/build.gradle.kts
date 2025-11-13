@@ -48,10 +48,15 @@ secrets {
 dependencies {
     implementation(projects.core.model)
     implementation(projects.core.database)
-    //for network call
-    implementation(libs.squareup.retrofit)
-    implementation(libs.squareup.converter.gson)
-    implementation(libs.squareup.okhttp)
-    implementation(libs.squareup.logging.interceptor)
     implementation(libs.kotlinx.coroutines)
+    //ktor
+    implementation(libs.ktor.client.core)
+    // Android engine (uses OkHttp under the hood)
+    implementation(libs.ktor.client.okhttp)
+    // JSON serialization (Kotlinx)
+    implementation(libs.ktor.serialization.kotlinx.json)
+    // Content negotiation plugin (to parse/serialize JSON automatically)
+    implementation(libs.ktor.client.content.negotiation)
+    // Logging (optional but very useful for debugging)
+    implementation(libs.ktor.client.logging)
 }

@@ -9,7 +9,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import org.koin.core.annotation.Named
 import org.koin.core.annotation.Single
-import retrofit2.HttpException
+import io.ktor.client.plugins.ResponseException
 
 @Single
 class LoginSocialRepositoryImpl(
@@ -20,24 +20,24 @@ class LoginSocialRepositoryImpl(
     override suspend fun googleLogin(request: SocialLoginBody) = withContext(ioDispatcher) {
         try {
             val response = remoteDataSource.socialGoogleLogin(request)
-            if (response.hasData) ApiStatus.Success(response.getData!!)
+            if (response.hasData) ApiStatus.Success(response.getData())
             else ApiStatus.Error(response.getMessage())
-        } catch (e: HttpException) {
-            ApiStatus.Error(e.asErrorMessage)
+        } catch (e: ResponseException) {
+            ApiStatus.Error(e.asErrorMessage())
         } catch (e: Exception) {
-            ApiStatus.Error(e.asErrorMessage)
+            ApiStatus.Error(e.asErrorMessage())
         }
     }
 
     override suspend fun huaweiLogin(request: SocialLoginBody) = withContext(ioDispatcher) {
         try {
             val response = remoteDataSource.socialHuaweiLogin(request)
-            if (response.hasData) ApiStatus.Success(response.getData!!)
+            if (response.hasData) ApiStatus.Success(response.getData())
             else ApiStatus.Error(response.getMessage())
-        } catch (e: HttpException) {
-            ApiStatus.Error(e.asErrorMessage)
+        } catch (e: ResponseException) {
+            ApiStatus.Error(e.asErrorMessage())
         } catch (e: Exception) {
-            ApiStatus.Error(e.asErrorMessage)
+            ApiStatus.Error(e.asErrorMessage())
         }
     }
 }

@@ -40,7 +40,35 @@ interface AppRepository {
      *
      * @return  [ApiStatus] results containing a list of countries.
      */
-    suspend fun getCountries(): ApiStatus<List<Country>>
+    suspend fun updateCountries(): ApiStatus<List<Country>>
+
+    /**
+     * Retrieves the user's country.
+     *
+     * @return The user's country as a [Country] object.
+     */
+    suspend fun getUserCountry(): Country?
+
+    /**
+     * Retrieves a list of countries.
+     *
+     * @return A list of [Country] objects.
+     */
+    suspend fun getCountriesList(): List<Country>
+
+    /**
+     * Retrieves a country by its ID.
+     *
+     * @param id The ID of the country.
+     */
+    suspend fun getCountryById(id: Int): Country?
+
+    /**
+     * Retrieves a country by its ISO code.
+     *
+     * @param iso The ISO code of the country.
+     */
+    suspend fun getCountryByIso(iso: String): Country?
 
     /**
      * Retrieves a list of currencies.

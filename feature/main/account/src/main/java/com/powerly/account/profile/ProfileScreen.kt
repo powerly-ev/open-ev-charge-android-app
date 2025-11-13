@@ -48,6 +48,7 @@ internal fun ProfileScreen(
 
     CountriesDialog(
         state = countriesDialog,
+        countriesList = { viewModel.countries },
         selectedCountry = viewModel::getUserCountry,
         onSelectCountry = viewModel::updateUserCountry
     )

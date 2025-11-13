@@ -41,8 +41,8 @@ internal class PowerSourceUptime(
             hasTime = true
             val isOpen = powerSource.isOpen
             val isOpen24h = powerSource.open24h7
-            val isInUse = powerSource.isInUse
-            val isReserved = powerSource.isReserved
+            val isInUse = powerSource.inUse
+            val isReserved = powerSource.reserved
             val isOffline = powerSource.isOffline
             val selfBooked = powerSource.isReservedByYou
             val selfCharging = powerSource.isInUseByYou

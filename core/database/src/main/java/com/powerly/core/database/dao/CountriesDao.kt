@@ -14,6 +14,12 @@ interface CountriesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(countries: List<CountryEntity>)
 
+    @Query("SELECT * FROM countries WHERE id = :id")
+    suspend fun getCountryById(id: Int): CountryEntity?
+
+    @Query("SELECT * FROM countries WHERE iso = :iso")
+    suspend fun getCountryByIso(iso: String): CountryEntity?
+
     @Query("SELECT * FROM countries")
     suspend fun getCountries(): List<CountryEntity>
 

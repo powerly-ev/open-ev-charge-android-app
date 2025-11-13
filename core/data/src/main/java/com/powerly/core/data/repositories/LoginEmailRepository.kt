@@ -45,7 +45,7 @@ interface LoginEmailRepository {
         email: String,
         password: String,
         countryId: Int
-    ): ApiStatus<UserVerification>
+    ): ApiStatus<User?>
 
     /**
      * Verifies an email.

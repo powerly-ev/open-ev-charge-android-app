@@ -1,6 +1,10 @@
 package com.powerly.user
 
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
@@ -151,8 +155,10 @@ fun NavGraphBuilder.userDestinations(
         }
 
         composable<AppRoutes.User.Email.Country> {
+            LaunchedEffect(Unit) { userViewModel.getCountries() }
             CountriesDialog(
                 onDismiss = { navController.popBackStack() },
+                countriesList = { userViewModel.countries },
                 selectedCountry = { userViewModel.country.value },
                 onSelectCountry = userViewModel::setCountry
             )

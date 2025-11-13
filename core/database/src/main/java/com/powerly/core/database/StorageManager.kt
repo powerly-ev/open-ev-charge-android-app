@@ -2,19 +2,13 @@ package com.powerly.core.database
 
 import android.content.Context
 import androidx.core.content.edit
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import com.google.gson.TypeAdapter
-import com.google.gson.reflect.TypeToken
-import com.google.gson.stream.JsonReader
-import com.google.gson.stream.JsonToken
-import com.google.gson.stream.JsonWriter
 import com.powerly.core.model.user.User
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.withContext
+import kotlinx.serialization.json.Json
 import org.koin.core.annotation.Named
 import org.koin.core.annotation.Single
 import java.util.Locale
@@ -27,10 +21,10 @@ class StorageManager(
     @Named("IO") private val ioDispatcher: CoroutineDispatcher
 ) {
 
-    private val gson: Gson = GsonBuilder()
-        // Register a custom TypeAdapter for Int type to handle null and empty json values
-        .registerTypeAdapter(Int::class.javaObjectType, IntTypeAdapter())
-        .create()
+    private val json = Json {
+        ignoreUnknownKeys = true
+        encodeDefaults = true
+    }
 
     private val _userFlow = MutableStateFlow<User?>(null)
     val userFlow: Flow<User?> = _userFlow.asStateFlow()
@@ -38,12 +32,8 @@ class StorageManager(
     private var _userToken: String? = null
     private var _language: String? = null
 
-    private val preferences = context.getSharedPreferences(
-        USER_PREFERENCES, Context.MODE_PRIVATE
-    )
-    private val appPreferences = context.getSharedPreferences(
-        APP_PREFERENCES, Context.MODE_PRIVATE
-    )
+    private val preferences = context.getSharedPreferences(USER_PREFERENCES, Context.MODE_PRIVATE)
+    private val appPreferences = context.getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
 
     init {
         _userFlow.value = userDetails
@@ -89,15 +79,15 @@ class StorageManager(
         return _uniqueID.orEmpty()
     }
 
-    val isLoggedIn: Boolean get() = userToken.isEmpty().not()
+    val isLoggedIn: Boolean get() = userToken.isNotEmpty()
 
     val countryId: Int? get() = userDetails?.countryId
 
     var userDetails: User?
-        get() = _userFlow.value ?: getPref(USER)
+        get() = _userFlow.value ?: getUser()
         set(data) {
             _userFlow.value = data
-            setPref(USER, data)
+            storeUser(data)
         }
 
     var showRegisterNotification: Boolean
@@ -139,17 +129,21 @@ class StorageManager(
     }
 
 
-    private inline fun <reified T> getPref(key: String): T? {
-        val type = object : TypeToken<T>() {}.type
-        val data = preferences.getString(key, null)
-        return if (!data.isNullOrEmpty()) gson.fromJson(data, type) else null
+    private fun getUser(): User? {
+        val data = preferences.getString(USER, null)
+        return data?.let {
+            try {
+                json.decodeFromString<User>(it)
+            } catch (e: Exception) {
+                null
+            }
+        }
     }
 
-    private fun setPref(key: String, data: Any?) {
-        val userJson = gson.toJson(data)
-        preferences.edit { putString(key, userJson) }
+    private fun storeUser(user: User?) {
+        val jsonData = user?.let { json.encodeToString(it) }
+        preferences.edit { putString(USER, jsonData) }
     }
-
 
     companion object {
         private const val USER_PREFERENCES = "UserStorage"
@@ -164,45 +158,5 @@ class StorageManager(
         private const val REGISTER_NOTIFICATION = "notification"
         private const val ON_BOARDING = "on_boarding"
         private var _uniqueID: String? = null
-    }
-}
-
-
-/**
- * Custom TypeAdapter for the Int?type that handles empty strings as null values.
- */
-class IntTypeAdapter : TypeAdapter<Int?>() {
-
-    /*** Reads a JSON value and converts it to an Int?.
-     *
-     * - If the JSON value is null, returns null.
-     * - If the JSON value is an empty string, returns null.
-     * - Otherwise, attempts to parse the JSON value as an Int and returns the result.
-     *   If the parsing fails, returns null.
-     */
-
-    override fun read(reader: JsonReader): Int? {
-        if (reader.peek() === JsonToken.NULL) {
-            reader.nextNull()
-            return null
-        }
-        val stringValue: String = reader.nextString()
-        if (stringValue.isEmpty()) return null
-        return try {
-            stringValue.toInt()
-        } catch (e: NumberFormatException) {
-            null
-        }
-    }
-
-    /**
-     * Writes an Int? value to a JSON writer.
-     *
-     * - If the value is null, writes a null JSON value.
-     * - Otherwise, writes the value as a JSON number.
-     */
-    override fun write(writer: JsonWriter, value: Int?) {
-        if (value == null) writer.nullValue()
-        else writer.value(value)
     }
 }

@@ -5,6 +5,7 @@ import com.powerly.core.model.api.ApiStatus
 import com.powerly.core.model.user.User
 import com.powerly.core.model.user.UserUpdateBody
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.SharedFlow
 
 interface UserRepository {
 
@@ -56,6 +57,11 @@ interface UserRepository {
      * @return  [ApiStatus] results.
      */
     suspend fun logout(): ApiStatus<Boolean>
+
+    /**
+     * A shared flow that emits a [Boolean] event when the user logs out.
+     */
+    val logoutEvent: SharedFlow<Boolean>
 
     /**
      * Deletes a user.

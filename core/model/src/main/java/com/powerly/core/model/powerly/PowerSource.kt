@@ -1,11 +1,11 @@
 package com.powerly.core.model.powerly
 
 import android.util.Log
-import com.powerly.core.model.api.BaseResponse
-import com.powerly.core.model.api.BaseResponsePaginated
+import com.powerly.core.model.api.FlexibleBooleanSerializer
 import com.powerly.core.model.location.MyAddress
 import com.powerly.core.model.location.Target
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -16,38 +16,49 @@ import kotlin.math.pow
 import kotlin.math.sin
 import kotlin.math.sqrt
 
+@Serializable
 data class PowerSource(
-    @SerializedName("id") val id: String = "",
-    @SerializedName("identifier") val identifier: String = "",
-    @SerializedName("token") val token: String? = null,
-    @SerializedName("category") val category: String = "",
-    @SerializedName("title") var title: String = "",
-    @SerializedName("description") val description: String? = null,
-    @SerializedName("latitude") val latitude: Double? = null,
-    @SerializedName("longitude") val longitude: Double? = null,
-    @SerializedName("image") val image: String? = null,
-    @SerializedName("session_limit_type") val sessionLimitType: String? = null,
-    @SerializedName("session_limit_value") val sessionLimit: Int? = 0,
-    @SerializedName("contact_number") val contactNumber: String? = null,
-    @SerializedName("open_time") private val _openTime: String? = null,
-    @SerializedName("close_time") private val _closeTime: String? = null,
-    @SerializedName("type") val sourceType: SourceType? = null,
-    @SerializedName("price") val price: Double = 0.0,
-    @SerializedName("price_unit") val priceUnit: String? = null,
-    @SerializedName("rating") val rating: Double = 0.0,
-    @SerializedName("online_status") private val onlineStatus: Int = 0,
-    @SerializedName("is_in_use") val inUse: Any = false,
-    @SerializedName("is_reserved") private val reserved: Any = false,
-    @SerializedName("used_by_current_user") val isInUseByYou: Boolean = false,
-    @SerializedName("booked_by_current_user") val isReservedByYou: Boolean = false,
-    @SerializedName("listed") private val listed: Any = true,
-    @SerializedName("connectors") val connectors: List<Connector>? = null,
-    @SerializedName("amenities") val amenities: List<Amenity>? = null,
-    @SerializedName("address") val address: MyAddress? = null,
-    @SerializedName("external") val isExternal: Boolean = false,
-    @SerializedName("media") var media: List<Media> = listOf(),
-    @SerializedName("distance") private var distance: Double? = null,
-    @SerializedName("currency") var currency: String = ""
+    @SerialName("id") val id: String = "",
+    @SerialName("identifier") val identifier: String = "",
+    @SerialName("token") val token: String? = null,
+    @SerialName("category") val category: String = "",
+    @SerialName("title") var title: String = "",
+    @SerialName("description") val description: String? = null,
+    @SerialName("latitude") val latitude: Double? = null,
+    @SerialName("longitude") val longitude: Double? = null,
+    @SerialName("image") val image: String? = null,
+    @SerialName("session_limit_type") val sessionLimitType: String? = null,
+    @SerialName("session_limit_value") val sessionLimit: Int? = 0,
+    @SerialName("contact_number") val contactNumber: String? = null,
+    @SerialName("open_time") private val _openTime: String? = null,
+    @SerialName("close_time") private val _closeTime: String? = null,
+    @SerialName("type") val sourceType: SourceType? = null,
+    @SerialName("price") val price: Double = 0.0,
+    @SerialName("price_unit") val priceUnit: String? = null,
+    @SerialName("rating") val rating: Double = 0.0,
+    @SerialName("online_status") private val onlineStatus: Int = 0,
+    @SerialName("is_in_use")
+    @Serializable(with = FlexibleBooleanSerializer::class)
+    val inUse: Boolean = false,
+    @SerialName("is_reserved")
+    @Serializable(with = FlexibleBooleanSerializer::class)
+    val reserved: Boolean = false,
+    @SerialName("used_by_current_user")
+    @Serializable(with = FlexibleBooleanSerializer::class)
+    val isInUseByYou: Boolean = false,
+    @SerialName("booked_by_current_user")
+    @Serializable(with = FlexibleBooleanSerializer::class)
+    val isReservedByYou: Boolean = false,
+    @SerialName("listed")
+    @Serializable(with = FlexibleBooleanSerializer::class)
+    val listed: Boolean = true,
+    @SerialName("connectors") val connectors: List<Connector>? = null,
+    @SerialName("amenities") val amenities: List<Amenity>? = null,
+    @SerialName("address") val address: MyAddress? = null,
+    @SerialName("external") val isExternal: Boolean = false,
+    @SerialName("media") val media: List<Media> = listOf(),
+    @SerialName("distance") private var distance: Double? = null,
+    @SerialName("currency") var currency: String = ""
 ) {
     companion object {
         const val UNIT_TIME = "minutes"
@@ -95,13 +106,7 @@ data class PowerSource(
 
     val isOffline: Boolean get() = onlineStatus == 0
 
-    val isListed: Boolean get() = listed == 1 || listed == true
-
-    val isInUse: Boolean get() = inUse == 1 || inUse == true
-
-    val isReserved: Boolean get() = reserved == 1 || reserved == true
-
-    val isAvailable: Boolean get() = isOffline.not() && isInUse.not() && isReserved.not()
+    val isAvailable: Boolean get() = isOffline.not() && inUse.not() && reserved.not()
 
     val shareLink: String get() = "https://powerly.app/charging-point?cp_id=$identifier"
 
@@ -214,6 +219,7 @@ data class PowerSource(
 
 }
 
+@Serializable
 data class ChargingQuantity(
     val minutes: Int = -1,
     private val full: Boolean = false,
@@ -237,14 +243,15 @@ data class ChargingQuantity(
 }
 
 
+@Serializable
 data class Connector(
-    @SerializedName("id") val id: Int = 0,
-    @SerializedName("name") val name: String = "",
-    @SerializedName("number") var number: Int = 1,
-    @SerializedName("icon") val icon: String = "",
-    @SerializedName("status") val status: String = "available",
-    @SerializedName("type") val type: String? = "",
-    @SerializedName("max_power") val maxPower: Double = 0.0,
+    @SerialName("id") val id: Int = 0,
+    @SerialName("name") val name: String = "",
+    @SerialName("number") var number: Int = 1,
+    @SerialName("icon") val icon: String = "",
+    @SerialName("status") val status: String = "available",
+    @SerialName("type") val type: String? = "",
+    @SerialName("max_power") val maxPower: Double = 0.0,
 ) {
     val isAvailable: Boolean get() = status.equals("available", ignoreCase = true)
     val booked: Boolean get() = status.equals("booked", ignoreCase = true)
@@ -253,26 +260,29 @@ data class Connector(
     val busyByYou: Boolean get() = status.equals("busy by you", ignoreCase = true)
 }
 
+@Serializable
 data class Pivot(
-    @SerializedName("charge_point_id") val chargePointId: String,
-    @SerializedName("connector_id") val connectorId: String,
-    @SerializedName("order_id") val orderId: String? = null
+    @SerialName("charge_point_id") val chargePointId: String,
+    @SerialName("connector_id") val connectorId: String,
+    @SerialName("order_id") val orderId: String? = null
 )
 
+@Serializable
 data class Amenity(
-    @SerializedName("id") val id: Int = -1,
-    @SerializedName("name") val name: String = "",
-    @SerializedName("icon") val icon: String? = "",
-    @SerializedName("description") val description: String? = "",
-    @SerializedName("pivot") val pivot: Pivot? = null
+    @SerialName("id") val id: Int = -1,
+    @SerialName("name") val name: String = "",
+    @SerialName("icon") val icon: String? = "",
+    @SerialName("description") val description: String? = "",
+    @SerialName("pivot") val pivot: Pivot? = null
 )
 
+@Serializable
 data class SourceType(
-    @SerializedName("id") val id: Int,
-    @SerializedName("name") val name: String = "",
-    @SerializedName("img") val img: String = "",
-    @SerializedName("current_type") val currentType: String = "",
-    @SerializedName("max_power") val maxPower: Double = 0.0
+    @SerialName("id") val id: Int,
+    @SerialName("name") val name: String = "",
+    @SerialName("img") val img: String = "",
+    @SerialName("current_type") val currentType: String = "",
+    @SerialName("max_power") val maxPower: Double = 0.0
 ) {
     companion object {
         const val AC = "AC"
@@ -286,10 +296,3 @@ enum class SourceCategory {
     SMART_METER
 }
 
-
-class PowerSourceResponse : BaseResponse<PowerSource?>()
-class PowerSourcesResponse : BaseResponsePaginated<PowerSource>()
-
-data class VisitedSources(
-    @SerializedName("data") val data: List<PowerSource> = emptyList()
-)

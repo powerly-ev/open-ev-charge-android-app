@@ -1,17 +1,16 @@
 package com.powerly.core.model.user
 
-import com.powerly.core.model.api.BaseResponse
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-class UpdateDeviceResponse : BaseResponse<Any?>()
-
+@Serializable
 data class DeviceBody(
-    @SerializedName("device_imei") private val deviceImei: String? = null,
-    @SerializedName("device_token") private val deviceToken: String? = null,
-    @SerializedName("device_type") private val deiceType: Int? = null,
-    @SerializedName("device_model") private val deviceModel: String? = null,
-    @SerializedName("device_version") private val deviceVersion: String? = null,
-    @SerializedName("app_version") private val appVersion: String? = null,
-    @SerializedName("lang") private val lang: String? = null
+    @SerialName("device_imei") private val deviceImei: String? = null,
+    @SerialName("device_token") private val deviceToken: String? = null,
+    @SerialName("device_type") private val deiceType: Int? = null,
+    @SerialName("device_model") private val deviceModel: String? = null,
+    @SerialName("device_version") private val deviceVersion: String? = null,
+    @SerialName("app_version") private val appVersion: String? = null,
+    @SerialName("lang") private val lang: String? = null
 )
 

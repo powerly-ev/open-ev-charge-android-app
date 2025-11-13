@@ -1,6 +1,7 @@
 package com.powerly.core.model.user
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /**
  * Data class representing the request body for social media login.
@@ -11,9 +12,10 @@ import com.google.gson.annotations.SerializedName
  * @property countryId User Country Id.
 
  */
+@Serializable
 data class SocialLoginBody(
-    @SerializedName("jwt_token") val jwtToken: String,
-    @SerializedName("device_token") val deviceToken: String,
-    @SerializedName("device_imei") val deviceImei: String,
-    @SerializedName("country_id") val countryId: Int?
+    @SerialName("jwt_token") val jwtToken: String,
+    @SerialName("device_token") val deviceToken: String,
+    @SerialName("device_imei") val deviceImei: String,
+    @SerialName("country_id") val countryId: Int?
 )
