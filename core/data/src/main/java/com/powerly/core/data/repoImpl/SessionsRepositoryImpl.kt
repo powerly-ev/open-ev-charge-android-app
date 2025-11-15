@@ -11,12 +11,12 @@ import com.powerly.core.network.RemoteDataSource
 import com.powerly.core.network.asErrorMessage
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
-import retrofit2.HttpException
+import io.ktor.client.plugins.ResponseException
 import org.koin.core.annotation.Named
 import org.koin.core.annotation.Single
 
 @Single
-class SessionsRepositoryImpl (
+class SessionsRepositoryImpl(
     private val remoteDataSource: RemoteDataSource,
     @Named("IO") private val ioDispatcher: CoroutineDispatcher
 ) : SessionsRepository {
@@ -37,13 +37,13 @@ class SessionsRepositoryImpl (
                 connector = connector
             )
             val response = remoteDataSource.startCharging(request)
-            if (response.hasOnlyData) ChargingStatus.Success(response.getData!!)
+            if (response.isSuccess || response.hasData) ChargingStatus.Success(response.getData())
             else ChargingStatus.Error(response.getMessage())
-        } catch (e: HttpException) {
-            ChargingStatus.Error(e.asErrorMessage)
+        } catch (e: ResponseException) {
+            ChargingStatus.Error(e.asErrorMessage())
         } catch (e: Exception) {
             e.printStackTrace()
-            ChargingStatus.Error(e.asErrorMessage)
+            ChargingStatus.Error(e.asErrorMessage())
         }
     }
 
@@ -59,13 +59,13 @@ class SessionsRepositoryImpl (
                 connector = connector
             )
             val response = remoteDataSource.stopCharging(request)
-            if (response.hasData) ChargingStatus.Stop(response.getData!!)
+            if (response.hasData) ChargingStatus.Stop(response.getData())
             else ChargingStatus.Error(response.getMessage())
-        } catch (e: HttpException) {
-            ChargingStatus.Error(e.asErrorMessage)
+        } catch (e: ResponseException) {
+            ChargingStatus.Error(e.asErrorMessage())
         } catch (e: Exception) {
             e.printStackTrace()
-            ChargingStatus.Error(e.asErrorMessage)
+            ChargingStatus.Error(e.asErrorMessage())
         }
     }
 
@@ -76,13 +76,13 @@ class SessionsRepositoryImpl (
     override suspend fun sessionDetails(orderId: String) = withContext(ioDispatcher) {
         try {
             val response = remoteDataSource.sessionDetails(orderId)
-            if (response.hasData) ChargingStatus.Success(response.getData!!)
+            if (response.hasData) ChargingStatus.Success(response.getData())
             else ChargingStatus.Error(response.getMessage())
-        } catch (e: HttpException) {
-            ChargingStatus.Error(e.asErrorMessage)
+        } catch (e: ResponseException) {
+            ChargingStatus.Error(e.asErrorMessage())
         } catch (e: Exception) {
             e.printStackTrace()
-            ChargingStatus.Error(e.asErrorMessage)
+            ChargingStatus.Error(e.asErrorMessage())
         }
     }
 

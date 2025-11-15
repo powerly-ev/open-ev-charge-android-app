@@ -1,23 +1,29 @@
 package com.powerly.core.data.repoImpl
 
+import android.util.Log
 import com.powerly.core.data.model.AuthStatus
 import com.powerly.core.data.repositories.UserRepository
 import com.powerly.core.database.StorageManager
-import com.powerly.core.model.api.ApiErrorConstants
+import com.powerly.core.model.api.ApiResponse
 import com.powerly.core.model.api.ApiStatus
 import com.powerly.core.model.user.LogoutBody
 import com.powerly.core.model.user.User
 import com.powerly.core.model.user.UserUpdateBody
 import com.powerly.core.network.RemoteDataSource
 import com.powerly.core.network.asErrorMessage
-import com.powerly.core.network.asValidationErrorMessage
+import com.powerly.core.network.isSuccessful
 import com.powerly.core.network.needToRefreshToken
+import io.ktor.client.call.body
+import io.ktor.client.plugins.ResponseException
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.withContext
 import org.koin.core.annotation.Named
 import org.koin.core.annotation.Single
-import retrofit2.HttpException
 
 @Single
 class UserRepositoryImpl(
@@ -26,8 +32,22 @@ class UserRepositoryImpl(
     @Named("IO") private val ioDispatcher: CoroutineDispatcher
 ) : UserRepository {
     override val userFlow: Flow<User?> = storageManager.userFlow
+    override val currencyFlow: Flow<String> = storageManager.currencyFlow
+    override val languageFlow = storageManager.languageFlow
 
-    override val isLoggedIn: Boolean get() = storageManager.isLoggedIn
+    override val loggedInFlow = storageManager.loggedInFlow
+
+    override suspend fun isLoggedIn(): Boolean {
+        return storageManager.isLoggedIn()
+    }
+
+    override suspend fun getCurrency(): String {
+        return storageManager.getCurrency()
+    }
+
+    override suspend fun getLanguage(): String {
+        return storageManager.getCurrentLanguage()
+    }
 
     override suspend fun updateUserDetails(
         request: UserUpdateBody
@@ -35,24 +55,17 @@ class UserRepositoryImpl(
         try {
             val response = remoteDataSource.updateUser(request)
             if (response.hasData) {
-                val user = response.getData
-                storageManager.userDetails = user
+                val user = response.getData()
+                storageManager.saveUser(user)
                 if (request.currency != null) {
-                    storageManager.pinUserCurrency = true
+                    storageManager.setPinUserCurrency(true)
                 }
                 ApiStatus.Success(user)
             } else ApiStatus.Error(response.getMessage())
-        } catch (e: HttpException) {
-            val msg = if (e.code() == ApiErrorConstants.VALIDATION) {
-                e.asValidationErrorMessage
-            } else {
-                e.asErrorMessage
-            }
-            ApiStatus.Error(msg)
-        } catch (e: HttpException) {
-            ApiStatus.Error(e.asErrorMessage)
+        } catch (e: ResponseException) {
+            ApiStatus.Error(e.asErrorMessage())
         } catch (e: Exception) {
-            ApiStatus.Error(e.asErrorMessage)
+            ApiStatus.Error(e.asErrorMessage())
         }
     }
 
@@ -61,13 +74,13 @@ class UserRepositoryImpl(
         try {
             val response = remoteDataSource.refreshToken()
             if (response.hasData) {
-                val token = response.getData.accessToken.orEmpty()
+                val token = response.getData().accessToken.orEmpty()
                 ApiStatus.Success(token)
             } else ApiStatus.Error(response.getMessage())
-        } catch (e: HttpException) {
-            ApiStatus.Error(e.asErrorMessage)
+        } catch (e: ResponseException) {
+            ApiStatus.Error(e.asErrorMessage())
         } catch (e: Exception) {
-            ApiStatus.Error(e.asErrorMessage)
+            ApiStatus.Error(e.asErrorMessage())
         }
     }
 
@@ -75,15 +88,17 @@ class UserRepositoryImpl(
     override suspend fun getUserDetails() = withContext(ioDispatcher) {
         try {
             val response = remoteDataSource.getUser()
+            Log.v("UserRepository", response.toString())
             if (response.hasData) {
-                val user = response.getData
-                storageManager.userDetails = user
+                val user = response.getData()
+                storageManager.saveUser(user)
                 ApiStatus.Success(user)
             } else ApiStatus.Error(response.getMessage())
-        } catch (e: HttpException) {
-            ApiStatus.Error(e.asErrorMessage)
+        } catch (e: ResponseException) {
+            ApiStatus.Error(e.asErrorMessage())
         } catch (e: Exception) {
-            ApiStatus.Error(e.asErrorMessage)
+            e.printStackTrace()
+            ApiStatus.Error(e.asErrorMessage())
         }
     }
 
@@ -91,31 +106,38 @@ class UserRepositoryImpl(
         try {
             val response = remoteDataSource.authCheck()
             if (response.isSuccessful) {
-                val body = response.body()!!
-                val headers = response.headers()
-                if (headers.needToRefreshToken) AuthStatus.RefreshToken
-                else if (body.hasData) AuthStatus.Success(body.getData)
+                val body = response.body<ApiResponse<User>>()
+                if (response.headers.needToRefreshToken()) AuthStatus.RefreshToken
+                else if (body.hasData) AuthStatus.Success(body.getData())
                 else AuthStatus.Error(body.getMessage())
-            } else AuthStatus.Error(response.asErrorMessage)
+            } else AuthStatus.Error(response.asErrorMessage())
         } catch (e: Exception) {
-            AuthStatus.Error(e.asErrorMessage)
+            AuthStatus.Error(e.asErrorMessage())
         }
     }
 
+    private val _logoutEvent = MutableSharedFlow<Boolean>(
+        replay = 0,
+        extraBufferCapacity = 1,
+        onBufferOverflow = BufferOverflow.DROP_OLDEST
+    )
+    override val logoutEvent: SharedFlow<Boolean> = _logoutEvent.asSharedFlow()
+
     override suspend fun logout() = withContext(ioDispatcher) {
         try {
-            val imei = storageManager.imei()
+            val imei = storageManager.getUniqueId()
             val request = LogoutBody(imei)
             val response = remoteDataSource.authLogout(request)
             if (response.isSuccessful) {
+                _logoutEvent.emit(true)
                 storageManager.clearLoginData()
-                storageManager.showRegisterNotification = true
+                storageManager.setShowRegisterNotification(true)
                 ApiStatus.Success(true)
-            } else ApiStatus.Error(response.asErrorMessage)
-        } catch (e: HttpException) {
-            ApiStatus.Error(e.asErrorMessage)
+            } else ApiStatus.Error(response.asErrorMessage())
+        } catch (e: ResponseException) {
+            ApiStatus.Error(e.asErrorMessage())
         } catch (e: Exception) {
-            ApiStatus.Error(e.asErrorMessage)
+            ApiStatus.Error(e.asErrorMessage())
         }
     }
 
@@ -125,13 +147,13 @@ class UserRepositoryImpl(
             val response = remoteDataSource.deleteUser()
             if (response.isSuccessful) {
                 storageManager.clearLoginData()
-                storageManager.showRegisterNotification = true
+                storageManager.setShowRegisterNotification(true)
                 ApiStatus.Success(true)
-            } else ApiStatus.Error(response.asErrorMessage)
-        } catch (e: HttpException) {
-            ApiStatus.Error(e.asErrorMessage)
+            } else ApiStatus.Error(response.asErrorMessage())
+        } catch (e: ResponseException) {
+            ApiStatus.Error(e.asErrorMessage())
         } catch (e: Exception) {
-            ApiStatus.Error(e.asErrorMessage)
+            ApiStatus.Error(e.asErrorMessage())
         }
     }
 

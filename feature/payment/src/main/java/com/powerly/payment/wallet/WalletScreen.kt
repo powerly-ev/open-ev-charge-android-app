@@ -30,7 +30,7 @@ internal fun WalletScreen(
     val coroutineScope = rememberCoroutineScope()
     val screenState = rememberScreenState()
     val deleteCardDialog = rememberAlertDialogState()
-    var walletOptionsDialog = rememberMyDialogState()
+    val walletOptionsDialog = rememberMyDialogState()
     val paymentMethods = remember { viewModel.paymentMethods }
     var selectedCard by remember { mutableStateOf<StripCard?>(null) }
 

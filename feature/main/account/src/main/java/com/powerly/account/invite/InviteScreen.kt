@@ -17,7 +17,7 @@ import org.koin.androidx.compose.koinViewModel
 import com.github.alexzhirkevich.customqrgenerator.QrData
 import com.github.alexzhirkevich.customqrgenerator.vector.QrCodeDrawable
 import com.powerly.resources.R
-import com.powerly.ui.extensions.safeStartActivity
+import com.powerly.ui.theme.LocalMainActivity
 
 /**
  * Composable function that displays the Invite screen.
@@ -32,6 +32,7 @@ internal fun InviteScreen(
     onBack: () -> Unit
 ) {
     val context = LocalContext.current
+    val activity = LocalMainActivity.current
     // State to hold the QR code drawable
     var drawable by remember { mutableStateOf<Drawable?>(null) }
     // LaunchedEffect to generate the QR code once
@@ -53,7 +54,11 @@ internal fun InviteScreen(
             putExtra(Intent.EXTRA_TEXT, viewModel.appLink)
 
         }
-        context.safeStartActivity(Intent.createChooser(shareIntent, null))
+        try {
+            activity?.startActivity(Intent.createChooser(shareIntent, null))
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     /**

@@ -1,11 +1,9 @@
 package com.powerly.core.network.di
 
 import android.content.Context
-import com.powerly.core.database.StorageManager
 import com.powerly.core.network.DeviceHelper
-import com.powerly.core.network.R
+import com.powerly.core.network.KtorClient
 import com.powerly.core.network.RemoteDataSource
-import com.powerly.core.network.RetrofitClient
 import org.koin.core.annotation.ComponentScan
 import org.koin.core.annotation.Module
 import org.koin.core.annotation.Single
@@ -14,23 +12,10 @@ import org.koin.core.annotation.Single
 @ComponentScan("com.powerly.core.network")
 class NetworkModule {
     @Single
-    fun provideRetrofitClient(
-        context: Context,
-        deviceHelper: DeviceHelper,
-        storageManager: StorageManager
-    ): RetrofitClient {
-        return RetrofitClient(
-            errorMessage = context.getString(R.string.no_internet_message),
-            deviceHelper = deviceHelper,
-            storageManager = storageManager
-        )
-    }
-
-    @Single
-    fun provideRemoteDataSource(
-        retrofitClient: RetrofitClient
+    fun provideNewRemoteDataSource(
+        ktorClient: KtorClient
     ): RemoteDataSource {
-        return retrofitClient.client
+        return RemoteDataSource(ktorClient.client)
     }
 
     @Single

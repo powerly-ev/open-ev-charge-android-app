@@ -1,20 +1,19 @@
 package com.powerly.core.model.powerly
 
-import com.powerly.core.model.api.BaseResponse
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-
-class ChargingResponse : BaseResponse<Session?>()
-
+@Serializable
 class StartChargingBody(
-    @SerializedName("power_source_id") private val powersourceId: String,
-    @SerializedName("quantity") private val quantity: String,
-    @SerializedName("connector") private val connector: Int?
+    @SerialName("power_source_id") private val powersourceId: String,
+    @SerialName("quantity") private val quantity: String,
+    @SerialName("connector") private val connector: Int? = null
 )
 
+@Serializable
 class StopChargingBody(
-    @SerializedName("order_id") private val orderId: String,
-    @SerializedName("power_source_id") private val powersourceId: String,
-    @SerializedName("connector") private val connector: Int?
+    @SerialName("order_id") private val orderId: String,
+    @SerialName("power_source_id") private val powersourceId: String,
+    @SerialName("connector") private val connector: Int? = null
 )
 

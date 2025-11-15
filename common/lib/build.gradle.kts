@@ -22,16 +22,15 @@ dependencies {
     //--------- core
     api(platform(libs.kotlin.bom))
     api(libs.core.ktx)
-    api(libs.activity.ktx)
-    api(libs.lifecycle.viewmodel.ktx)
     api(libs.work.runtime.ktx)
     api(libs.androidx.annotation)
     api(libs.kotlinx.datetime)
+
     implementation(libs.navigation.compose)
-
-    gmsImplementation(libs.firebase.messaging)
-
+    implementation(libs.pusher.client)
     // Search places
     implementation(libs.google.places)
     implementation(libs.play.services.location)
+    gmsImplementation(libs.firebase.messaging)
+
 }

@@ -1,22 +1,24 @@
 package com.powerly.core.model.api
 
 import com.powerly.core.model.util.Message
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /**
  * Base class for deserializing paginated response for api v3
  */
-open class BaseResponsePaginated<T> {
-    @SerializedName("success")
+@Serializable
+ class BaseResponsePaginated<T> {
+    @SerialName("success")
     private val success: Int? = null
 
-    @SerializedName("message")
+    @SerialName("message")
     private val message: String? = null
 
-    @SerializedName(value = "data")
+    @SerialName(value = "data")
     val data: List<T>? = null
 
-    @SerializedName(value = "meta")
+    @SerialName(value = "meta")
     val meta: PaginationMeta? = null
 
     fun getMessage(): Message = Message(
@@ -29,12 +31,12 @@ open class BaseResponsePaginated<T> {
 
 }
 
-
+@Serializable
 data class PaginationMeta(
-    @SerializedName("current_page") val currentPage: Int,
-    @SerializedName("last_page") val lastPage: Int,
-    @SerializedName("per_page") val pageSize: Int,
-    @SerializedName("total") val total: Int,
+    @SerialName("current_page") val currentPage: Int,
+    @SerialName("last_page") val lastPage: Int,
+    @SerialName("per_page") val pageSize: Int,
+    @SerialName("total") val total: Int,
 )
 
 data class ValidationErrorResponse(

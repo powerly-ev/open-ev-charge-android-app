@@ -88,7 +88,7 @@ internal fun CountriesDialogContent(
             items(filteredCountries) { country ->
                 ItemOptionsMenu(
                     title = country.name,
-                    image = country.image,
+                    image = "",
                     selected = { selected?.id == country.id },
                     onSelect = {
                         selected = country

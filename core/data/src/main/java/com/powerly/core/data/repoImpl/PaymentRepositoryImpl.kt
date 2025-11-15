@@ -9,13 +9,13 @@ import com.powerly.core.network.RemoteDataSource
 import com.powerly.core.network.asErrorMessage
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
-import retrofit2.HttpException
+import io.ktor.client.plugins.ResponseException
 import org.koin.core.annotation.Named
 import org.koin.core.annotation.Single
 
 
 @Single
-class PaymentRepositoryImpl (
+class PaymentRepositoryImpl(
     private val remoteDataSource: RemoteDataSource,
     @Named("IO") private val ioDispatcher: CoroutineDispatcher
 ) : PaymentRepository {
@@ -23,12 +23,12 @@ class PaymentRepositoryImpl (
     override suspend fun cardList() = withContext(ioDispatcher) {
         try {
             val response = remoteDataSource.cardList()
-            if (response.hasData) ApiStatus.Success(response.getData)
+            if (response.hasData) ApiStatus.Success(response.getData())
             else ApiStatus.Error(response.getMessage())
-        } catch (e: HttpException) {
-            ApiStatus.Error(e.asErrorMessage)
+        } catch (e: ResponseException) {
+            ApiStatus.Error(e.asErrorMessage())
         } catch (e: Exception) {
-            ApiStatus.Error(e.asErrorMessage)
+            ApiStatus.Error(e.asErrorMessage())
         }
     }
 
@@ -38,10 +38,10 @@ class PaymentRepositoryImpl (
             val response = remoteDataSource.cardAdd(request)
             if (response.isSuccess) ApiStatus.Success(true)
             else ApiStatus.Error(response.getMessage())
-        } catch (e: HttpException) {
-            ApiStatus.Error(e.asErrorMessage)
+        } catch (e: ResponseException) {
+            ApiStatus.Error(e.asErrorMessage())
         } catch (e: Exception) {
-            ApiStatus.Error(e.asErrorMessage)
+            ApiStatus.Error(e.asErrorMessage())
         }
     }
 
@@ -50,10 +50,10 @@ class PaymentRepositoryImpl (
             val response = remoteDataSource.cardDefault(id)
             if (response.isSuccess) ApiStatus.Success(true)
             else ApiStatus.Error(response.getMessage())
-        } catch (e: HttpException) {
-            ApiStatus.Error(e.asErrorMessage)
+        } catch (e: ResponseException) {
+            ApiStatus.Error(e.asErrorMessage())
         } catch (e: Exception) {
-            ApiStatus.Error(e.asErrorMessage)
+            ApiStatus.Error(e.asErrorMessage())
         }
     }
 
@@ -62,10 +62,10 @@ class PaymentRepositoryImpl (
             val response = remoteDataSource.cardDelete(id)
             if (response.isSuccess) ApiStatus.Success(true)
             else ApiStatus.Error(response.getMessage())
-        } catch (e: HttpException) {
-            ApiStatus.Error(e.asErrorMessage)
+        } catch (e: ResponseException) {
+            ApiStatus.Error(e.asErrorMessage())
         } catch (e: Exception) {
-            ApiStatus.Error(e.asErrorMessage)
+            ApiStatus.Error(e.asErrorMessage())
         }
     }
 
@@ -75,7 +75,7 @@ class PaymentRepositoryImpl (
                 val body = BalanceRefillBody(offerId, paymentMethodId)
                 val response = remoteDataSource.refillBalance(body)
                 if (response.hasData) {
-                    val result = response.getData
+                    val result = response.getData()
                     val balance = result.newBalance
                     val message = response.getMessage()
                     if (result.hasRedirectUrl)
@@ -83,10 +83,12 @@ class PaymentRepositoryImpl (
                     else
                         BalanceRefillStatus.Success(balance, message)
                 } else BalanceRefillStatus.Error(response.getMessage())
-            } catch (e: HttpException) {
-                BalanceRefillStatus.Error(e.asErrorMessage)
+            } catch (e: ResponseException) {
+                e.printStackTrace()
+                BalanceRefillStatus.Error(e.asErrorMessage())
             } catch (e: Exception) {
-                BalanceRefillStatus.Error(e.asErrorMessage)
+                e.printStackTrace()
+                BalanceRefillStatus.Error(e.asErrorMessage())
             }
         }
 
@@ -94,24 +96,24 @@ class PaymentRepositoryImpl (
     override suspend fun getBalanceItems(countryId: Int?) = withContext(ioDispatcher) {
         try {
             val response = remoteDataSource.getBalanceItems(countryId)
-            if (response.isSuccess) ApiStatus.Success(response.getData)
+            if (response.isSuccess) ApiStatus.Success(response.getData())
             else ApiStatus.Error(response.getMessage())
-        } catch (e: HttpException) {
-            ApiStatus.Error(e.asErrorMessage)
+        } catch (e: ResponseException) {
+            ApiStatus.Error(e.asErrorMessage())
         } catch (e: Exception) {
-            ApiStatus.Error(e.asErrorMessage)
+            ApiStatus.Error(e.asErrorMessage())
         }
     }
 
     override suspend fun walletList() = withContext(ioDispatcher) {
         try {
             val response = remoteDataSource.walletList()
-            if (response.hasData) ApiStatus.Success(response.getData)
+            if (response.hasData) ApiStatus.Success(response.getData())
             else ApiStatus.Error(response.getMessage())
-        } catch (e: HttpException) {
-            ApiStatus.Error(e.asErrorMessage)
+        } catch (e: ResponseException) {
+            ApiStatus.Error(e.asErrorMessage())
         } catch (e: Exception) {
-            ApiStatus.Error(e.asErrorMessage)
+            ApiStatus.Error(e.asErrorMessage())
         }
     }
 
@@ -120,10 +122,10 @@ class PaymentRepositoryImpl (
             val response = remoteDataSource.walletPayout()
             if (response.isSuccess) ApiStatus.Success(response.getMessage())
             else ApiStatus.Error(response.getMessage())
-        } catch (e: HttpException) {
-            ApiStatus.Error(e.asErrorMessage)
+        } catch (e: ResponseException) {
+            ApiStatus.Error(e.asErrorMessage())
         } catch (e: Exception) {
-            ApiStatus.Error(e.asErrorMessage)
+            ApiStatus.Error(e.asErrorMessage())
         }
     }
 }

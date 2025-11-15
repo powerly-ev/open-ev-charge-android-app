@@ -1,14 +1,16 @@
 package com.powerly.core.model.location
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class MyAddress(
-    @SerializedName("address_line_1") var addressLine1: String? = "",
-    @SerializedName("address_line_2") val addressLine2: String? = "",
-    @SerializedName("address_line_3") var addressLine3: String? = "",
-    @SerializedName("city") var city: String? = "",
-    @SerializedName("state") var state: String? = "",
-    @SerializedName("zipcode") var zipcode: String? = "",
+    @SerialName("address_line_1") var addressLine1: String? = "",
+    @SerialName("address_line_2") val addressLine2: String? = "",
+    @SerialName("address_line_3") var addressLine3: String? = "",
+    @SerialName("city") var city: String? = "",
+    @SerialName("state") var state: String? = "",
+    @SerialName("zipcode") var zipcode: String? = "",
     var countryCode: String? = null
 ) {
     override fun toString(): String = addressLine1.orEmpty()

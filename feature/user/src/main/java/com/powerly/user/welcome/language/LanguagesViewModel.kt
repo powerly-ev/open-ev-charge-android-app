@@ -1,22 +1,25 @@
 package com.powerly.user.welcome.language
 
-import android.app.Activity
 import androidx.lifecycle.ViewModel
-import com.powerly.lib.managers.LocaleManager
+import androidx.lifecycle.viewModelScope
+import com.powerly.core.data.repositories.AppRepository
+import kotlinx.coroutines.NonCancellable
+import kotlinx.coroutines.launch
 import org.koin.android.annotation.KoinViewModel
 
-
 @KoinViewModel
-class LanguagesViewModel (
-    private val localeManager: LocaleManager
+class LanguagesViewModel(
+    private val appRepository: AppRepository
 ) : ViewModel() {
 
-    val language: String get() = localeManager.currentLanguage
-    val languageName: String get() = localeManager.getLanguageName()
+    val language = appRepository.languageFlow
 
-    fun changeAppLanguage(lang: String, activity: Activity) {
-        if (lang != localeManager.currentLanguage) {
-            localeManager.changeLanguage(lang, activity)
+    fun changeAppLanguage(lang: String) {
+        viewModelScope.launch(NonCancellable) {
+            if (lang != appRepository.getLanguage()) {
+                appRepository.setLanguage(lang)
+            }
         }
     }
+
 }

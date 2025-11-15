@@ -3,6 +3,7 @@ package com.powerly.core.data.repoImpl
 import com.powerly.core.data.repositories.LoginEmailRepository
 import com.powerly.core.database.StorageManager
 import com.powerly.core.model.api.ApiErrorConstants
+import com.powerly.core.model.api.ApiResponse
 import com.powerly.core.model.api.ApiStatus
 import com.powerly.core.model.user.EmailCheckBody
 import com.powerly.core.model.user.EmailForgetBody
@@ -14,13 +15,14 @@ import com.powerly.core.model.user.User
 import com.powerly.core.model.user.VerificationBody
 import com.powerly.core.network.RemoteDataSource
 import com.powerly.core.network.asErrorMessage
-import com.powerly.core.network.asValidationErrorMessage
+import com.powerly.core.network.code
+import io.ktor.client.call.body
+import io.ktor.client.plugins.ResponseException
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import org.koin.core.annotation.Named
 import org.koin.core.annotation.Single
-import retrofit2.HttpException
 
 @Single
 class LoginEmailRepositoryImpl(
@@ -31,18 +33,16 @@ class LoginEmailRepositoryImpl(
 
     override val userFlow: Flow<User?> = storageManager.userFlow
 
-    override val isLoggedIn: Boolean get() = storageManager.isLoggedIn
-
     override suspend fun emailCheck(email: String) = withContext(ioDispatcher) {
         try {
             val request = EmailCheckBody(email)
             val response = remoteDataSource.emailCheck(request)
-            if (response.hasData) ApiStatus.Success(response.getData!!)
+            if (response.hasData) ApiStatus.Success(response.getData())
             else ApiStatus.Error(response.getMessage())
-        } catch (e: HttpException) {
-            ApiStatus.Error(e.asErrorMessage)
+        } catch (e: ResponseException) {
+            ApiStatus.Error(e.asErrorMessage())
         } catch (e: Exception) {
-            ApiStatus.Error(e.asErrorMessage)
+            ApiStatus.Error(e.asErrorMessage())
         }
     }
 
@@ -51,20 +51,24 @@ class LoginEmailRepositoryImpl(
         password: String
     ) = withContext(ioDispatcher) {
         try {
-            val imei = storageManager.imei()
+            val imei = storageManager.getUniqueId()
             val body = EmailLoginBody(email, password, imei)
             val response = remoteDataSource.emailLogin(body)
-            if (response.hasData) {
-                val user = response.getData!!
+            val responseBody = response.body<ApiResponse<User>>()
+            if (responseBody.hasData) {
+                val user = responseBody.getData()
                 storageManager.saveLogin(user)
                 ApiStatus.Success(user)
-            } else ApiStatus.Error(response.getMessage())
-        } catch (e: HttpException) {
-            val msg = if (e.code() == ApiErrorConstants.VALIDATION) e.asValidationErrorMessage
-            else e.asErrorMessage
-            ApiStatus.Error(msg)
+            } else {
+                val code = response.status.value
+                ApiStatus.Error(responseBody.getMessage(code))
+            }
+        } catch (e: ResponseException) {
+            e.printStackTrace()
+            ApiStatus.Error(e.asErrorMessage())
         } catch (e: Exception) {
-            ApiStatus.Error(e.asErrorMessage)
+            e.printStackTrace()
+            ApiStatus.Error(e.asErrorMessage())
         }
     }
 
@@ -78,17 +82,15 @@ class LoginEmailRepositoryImpl(
                 email = email,
                 password = password,
                 countryId = countryId,
-                deviceImei = storageManager.imei()
+                deviceImei = storageManager.getUniqueId()
             )
             val response = remoteDataSource.emailRegister(body)
-            if (response.hasData) ApiStatus.Success(response.getData!!)
+            if (response.hasData) ApiStatus.Success(response.getData())
             else ApiStatus.Error(response.getMessage())
-        } catch (e: HttpException) {
-            val msg = if (e.code() == ApiErrorConstants.VALIDATION) e.asValidationErrorMessage
-            else e.asErrorMessage
-            ApiStatus.Error(msg)
+        } catch (e: ResponseException) {
+            ApiStatus.Error(e.asErrorMessage())
         } catch (e: Exception) {
-            ApiStatus.Error(e.asErrorMessage)
+            ApiStatus.Error(e.asErrorMessage())
         }
     }
 
@@ -100,16 +102,14 @@ class LoginEmailRepositoryImpl(
             val body = VerificationBody(code, email)
             val response = remoteDataSource.emailVerify(body)
             if (response.hasData) {
-                val user = response.getData!!
+                val user = response.getData()
                 storageManager.saveLogin(user)
                 ApiStatus.Success(user)
             } else ApiStatus.Error(response.getMessage())
-        } catch (e: HttpException) {
-            val msg = if (e.code() == ApiErrorConstants.VALIDATION) e.asValidationErrorMessage
-            else e.asErrorMessage
-            ApiStatus.Error(msg)
+        } catch (e: ResponseException) {
+            ApiStatus.Error(e.asErrorMessage())
         } catch (e: Exception) {
-            ApiStatus.Error(e.asErrorMessage)
+            ApiStatus.Error(e.asErrorMessage())
         }
     }
 
@@ -117,12 +117,12 @@ class LoginEmailRepositoryImpl(
         try {
             val request = EmailVerifyResendBody(verificationToken)
             val response = remoteDataSource.emailVerifyResend(request)
-            if (response.hasData) ApiStatus.Success(response.getData!!)
+            if (response.hasData) ApiStatus.Success(response.getData())
             else ApiStatus.Error(response.getMessage())
-        } catch (e: HttpException) {
-            ApiStatus.Error(e.asErrorMessage)
+        } catch (e: ResponseException) {
+            ApiStatus.Error(e.asErrorMessage())
         } catch (e: Exception) {
-            ApiStatus.Error(e.asErrorMessage)
+            ApiStatus.Error(e.asErrorMessage())
         }
     }
 
@@ -130,12 +130,12 @@ class LoginEmailRepositoryImpl(
         try {
             val request = EmailForgetBody(email)
             val response = remoteDataSource.emailPasswordForget(request)
-            if (response.hasData) ApiStatus.Success(response.getData!!)
+            if (response.hasData) ApiStatus.Success(response.getData())
             else ApiStatus.Error(response.getMessage())
-        } catch (e: HttpException) {
-            ApiStatus.Error(e.asErrorMessage)
+        } catch (e: ResponseException) {
+            ApiStatus.Error(e.asErrorMessage())
         } catch (e: Exception) {
-            ApiStatus.Error(e.asErrorMessage)
+            ApiStatus.Error(e.asErrorMessage())
         }
     }
 
@@ -145,10 +145,10 @@ class LoginEmailRepositoryImpl(
                 val response = remoteDataSource.emailPasswordReset(request)
                 if (response.isSuccess) ApiStatus.Success(true)
                 else ApiStatus.Error(response.getMessage())
-            } catch (e: HttpException) {
-                ApiStatus.Error(e.asErrorMessage)
+            } catch (e: ResponseException) {
+                ApiStatus.Error(e.asErrorMessage())
             } catch (e: Exception) {
-                ApiStatus.Error(e.asErrorMessage)
+                ApiStatus.Error(e.asErrorMessage())
             }
         }
 
@@ -156,12 +156,12 @@ class LoginEmailRepositoryImpl(
         try {
             val request = EmailVerifyResendBody(email)
             val response = remoteDataSource.emailPasswordResetResend(request)
-            if (response.hasData) ApiStatus.Success(response.getData!!)
+            if (response.hasData) ApiStatus.Success(response.getData())
             else ApiStatus.Error(response.getMessage())
-        } catch (e: HttpException) {
-            ApiStatus.Error(e.asErrorMessage)
+        } catch (e: ResponseException) {
+            ApiStatus.Error(e.asErrorMessage())
         } catch (e: Exception) {
-            ApiStatus.Error(e.asErrorMessage)
+            ApiStatus.Error(e.asErrorMessage())
         }
     }
 }

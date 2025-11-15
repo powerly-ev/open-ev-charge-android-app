@@ -61,7 +61,7 @@ private fun MapSlidePreview() {
         connectors = listOf(Connector(maxPower = 60.0, name = "Mennekes")),
         amenities = listOf(Amenity(id = 1, name = "Park")),
         inUse = false,
-        reserved = 0,
+        reserved = false,
         onlineStatus = 1,
         isExternal = false,
         latitude = 25.0,
@@ -84,9 +84,9 @@ private fun MapSlidePreview() {
             // busy by you
             ItemMapPowerSource(ps.copy(inUse = true, isInUseByYou = true))
             // booked
-            ItemMapPowerSource(ps.copy(reserved = 1))
+            ItemMapPowerSource(ps.copy(reserved = true))
             // booked by you
-            ItemMapPowerSource(ps.copy(reserved = 1, isReservedByYou = true))
+            ItemMapPowerSource(ps.copy(reserved = true, isReservedByYou = true))
         }
     }
 }
@@ -185,7 +185,7 @@ private fun ItemMapPowerSource(
                     if (powerSource.isOffline) MapChip(
                         text = stringResource(R.string.station_unavailable),
                         image = R.drawable.unavailable
-                    ) else if (powerSource.isReserved) MapChip(
+                    ) else if (powerSource.reserved) MapChip(
                         text = stringResource(
                             if (powerSource.isReservedByYou)
                                 R.string.station_status_self_booked
@@ -194,7 +194,7 @@ private fun ItemMapPowerSource(
                         ),
                         icon = R.drawable.station_busy,
                         iconTint = MyColors.red500
-                    ) else if (powerSource.isInUse) MapChip(
+                    ) else if (powerSource.inUse) MapChip(
                         text = stringResource(
                             if (powerSource.isInUseByYou)
                                 R.string.station_status_self_charging

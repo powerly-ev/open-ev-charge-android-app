@@ -2,6 +2,7 @@ package com.powerly.orders.active
 
 import android.util.Log
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -53,7 +54,7 @@ fun SessionActiveScreen(
 ) {
     val dialogState = rememberAlertDialogState()
     val coroutineScope = rememberCoroutineScope()
-    val currency = remember { viewModel.currency }
+    val currency by viewModel.currency.collectAsState("")
     var selectedSession by remember { mutableStateOf<Session?>(null) }
 
     /**

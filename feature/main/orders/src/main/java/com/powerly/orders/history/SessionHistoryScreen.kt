@@ -1,6 +1,8 @@
 package com.powerly.orders.history
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import com.powerly.core.model.powerly.Session
 import com.powerly.orders.SessionViewModel
@@ -38,8 +40,7 @@ fun SessionHistoryScreen(
     openPowerSource: (String) -> Unit,
     openSessionDetails: (Session) -> Unit
 ) {
-    val currency = remember { viewModel.currency }
-
+    val currency by viewModel.currency.collectAsState("")
     SessionHistoryScreenContent(
         sessions = viewModel.completedOrders,
         refresh = viewModel.refresh,

@@ -8,6 +8,7 @@ import com.powerly.core.data.model.ReviewOptionsStatus
 import com.powerly.core.data.repositories.FeedbackRepository
 import com.powerly.core.model.api.ApiStatus
 import com.powerly.lib.AppRoutes
+import kotlinx.coroutines.NonCancellable
 import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.flow
@@ -16,7 +17,7 @@ import kotlinx.coroutines.launch
 
 
 @KoinViewModel
-class FeedbackViewModel (
+class FeedbackViewModel(
     private val feedbackRepository: FeedbackRepository,
     savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
@@ -43,7 +44,7 @@ class FeedbackViewModel (
     }
 
     fun skipReview() {
-        viewModelScope.launch {
+        viewModelScope.launch(NonCancellable) {
             feedbackRepository.reviewSkip(feedback.sessionId)
         }
     }

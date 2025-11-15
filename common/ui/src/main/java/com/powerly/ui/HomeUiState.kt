@@ -8,7 +8,6 @@ class HomeUiState(deviceHelper: DeviceHelper? = null) {
         "Version : %s %s", deviceHelper?.buildType, deviceHelper?.appVersion
     )
     val languageCode = mutableStateOf("en")
-    val languageName = mutableStateOf("english")
     val isLoggedIn = mutableStateOf(false)
     val supportMap = mutableStateOf(deviceHelper?.supportMap ?: false)
     val userName = mutableStateOf("")

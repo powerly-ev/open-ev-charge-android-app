@@ -201,7 +201,8 @@ class EmailLoginViewModel(
         val body = EmailResetBody(
             code = pin,
             email = email.value,
-            password = password
+            password = password,
+            password2 = password
         )
         val result = loginRepository.emailResetPassword(body)
         screenState.loading = false

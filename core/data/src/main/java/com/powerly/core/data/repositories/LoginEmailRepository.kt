@@ -9,8 +9,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface LoginEmailRepository {
 
-    val isLoggedIn: Boolean
-
     val userFlow: Flow<User?>
 
     /**
@@ -45,7 +43,7 @@ interface LoginEmailRepository {
         email: String,
         password: String,
         countryId: Int
-    ): ApiStatus<UserVerification>
+    ): ApiStatus<User?>
 
     /**
      * Verifies an email.

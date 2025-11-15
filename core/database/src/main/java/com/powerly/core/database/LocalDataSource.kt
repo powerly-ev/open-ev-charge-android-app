@@ -8,7 +8,7 @@ import com.powerly.core.model.location.Country
 import org.koin.core.annotation.Single
 
 @Single
-class LocalDataSource (
+class LocalDataSource(
     private val countriesDao: CountriesDao
 ) {
     suspend fun getCountries(): List<Country>? {
@@ -16,6 +16,24 @@ class LocalDataSource (
             if (countriesDao.getCount() > 0)
                 countriesDao.getCountries().map(CountryEntity::asCountry)
             else null
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
+
+    suspend fun getCountryById(id: Int): Country? {
+        return try {
+            countriesDao.getCountryById(id)?.asCountry()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
+
+    suspend fun getCountryByIso(iso: String): Country? {
+        return try {
+            countriesDao.getCountryByIso(iso)?.asCountry()
         } catch (e: Exception) {
             e.printStackTrace()
             null

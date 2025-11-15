@@ -71,7 +71,7 @@ private fun MapScreenPreview() {
         ),
         amenities = listOf(Amenity(id = 1, name = "Park")),
         inUse = false,
-        reserved = 0,
+        reserved = false,
         onlineStatus = 1,
         isExternal = false,
     )

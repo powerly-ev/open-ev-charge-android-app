@@ -1,426 +1,371 @@
 package com.powerly.core.network
 
-
-import com.powerly.core.model.location.CountriesResponse
-import com.powerly.core.model.location.CountryResponse
-import com.powerly.core.model.location.CurrenciesResponse
+import com.powerly.core.model.api.ApiResponse
+import com.powerly.core.model.api.BaseResponsePaginated
+import com.powerly.core.model.location.AppCurrency
+import com.powerly.core.model.location.Country
 import com.powerly.core.model.payment.AddCardBody
+import com.powerly.core.model.payment.BalanceItem
+import com.powerly.core.model.payment.BalanceRefill
 import com.powerly.core.model.payment.BalanceRefillBody
-import com.powerly.core.model.payment.BalanceRefillResponse
-import com.powerly.core.model.payment.BalancesResponse
-import com.powerly.core.model.payment.CardUpdateResponse
-import com.powerly.core.model.payment.CardsResponse
-import com.powerly.core.model.payment.WalletsResponse
-import com.powerly.core.model.payment.WithdrawResponse
-import com.powerly.core.model.powerly.ChargingResponse
-import com.powerly.core.model.powerly.ConnectorsResponse
-import com.powerly.core.model.powerly.MakesResponse
-import com.powerly.core.model.powerly.MediaResponse
-import com.powerly.core.model.powerly.ModelsResponse
-import com.powerly.core.model.powerly.PowerSourceResponse
-import com.powerly.core.model.powerly.PowerSourcesResponse
-import com.powerly.core.model.powerly.ReviewAddResponse
+import com.powerly.core.model.payment.StripCard
+import com.powerly.core.model.payment.Wallet
+import com.powerly.core.model.powerly.Connector
+import com.powerly.core.model.powerly.Media
+import com.powerly.core.model.powerly.PowerSource
+import com.powerly.core.model.powerly.Review
 import com.powerly.core.model.powerly.ReviewBody
-import com.powerly.core.model.powerly.ReviewOptionsResponse
-import com.powerly.core.model.powerly.ReviewResponse
-import com.powerly.core.model.powerly.ReviewsResponse
-import com.powerly.core.model.powerly.SessionDetailsResponse
-import com.powerly.core.model.powerly.SessionsResponsePaginated
+import com.powerly.core.model.powerly.Session
 import com.powerly.core.model.powerly.StartChargingBody
 import com.powerly.core.model.powerly.StopChargingBody
+import com.powerly.core.model.powerly.Vehicle
 import com.powerly.core.model.powerly.VehicleAddBody
-import com.powerly.core.model.powerly.VehicleAddResponse
-import com.powerly.core.model.powerly.VehiclesResponse
-import com.powerly.core.model.user.AuthenticationResponse
+import com.powerly.core.model.powerly.VehicleMaker
+import com.powerly.core.model.powerly.VehicleModel
 import com.powerly.core.model.user.DeviceBody
+import com.powerly.core.model.user.EmailCheck
 import com.powerly.core.model.user.EmailCheckBody
-import com.powerly.core.model.user.EmailCheckResponse
 import com.powerly.core.model.user.EmailForgetBody
-import com.powerly.core.model.user.EmailForgetResponse
 import com.powerly.core.model.user.EmailLoginBody
-import com.powerly.core.model.user.EmailLoginResponse
 import com.powerly.core.model.user.EmailRegisterBody
-import com.powerly.core.model.user.EmailRegisterResponse
 import com.powerly.core.model.user.EmailResetBody
 import com.powerly.core.model.user.EmailVerifyResendBody
-import com.powerly.core.model.user.EmailVerifyResendResponse
 import com.powerly.core.model.user.LogoutBody
-import com.powerly.core.model.user.RefreshTokenResponse
+import com.powerly.core.model.user.RefreshToken
 import com.powerly.core.model.user.SocialLoginBody
-import com.powerly.core.model.user.UpdateDeviceResponse
-import com.powerly.core.model.user.UserResponse
+import com.powerly.core.model.user.User
 import com.powerly.core.model.user.UserUpdateBody
+import com.powerly.core.model.user.UserVerification
 import com.powerly.core.model.user.VerificationBody
-import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.Headers
-import retrofit2.http.POST
-import retrofit2.http.PUT
-import retrofit2.http.Path
-import retrofit2.http.Query
+import io.ktor.client.HttpClient
+import io.ktor.client.call.body
+import io.ktor.client.request.delete
+import io.ktor.client.request.get
+import io.ktor.client.request.parameter
+import io.ktor.client.request.post
+import io.ktor.client.request.put
+import io.ktor.client.request.setBody
+import io.ktor.client.statement.HttpResponse
+import io.ktor.http.ContentType
+import io.ktor.http.contentType
 
-private object ApiEndPoints {
+class RemoteDataSource(private val client: HttpClient) {
 
-    const val COUNTRIES = "countries"
-    const val COUNTRY = "countries/{id}"
-    const val COUNTRIES_CURRENCIES = "countries/currencies"
-    const val DEVICE = "device"
+    suspend fun getCountries(): ApiResponse<List<Country>> {
+        return client.get(ApiEndPoints.COUNTRIES).body()
+    }
 
-    const val PAYMENT_CARDS = "payment-cards"
-    const val PAYMENT_CARD_DEFAULT = "payment-cards/default/{id}"
-    const val PAYMENT_CARD_DELETE = "payment-cards/{id}"
+    suspend fun getCurrencies(): ApiResponse<List<AppCurrency>> {
+        return client.get(ApiEndPoints.COUNTRIES_CURRENCIES).body()
+    }
 
+    suspend fun getCountry(id: Int): ApiResponse<Country> {
+        val endpoint = ApiEndPoints.COUNTRY.replace("{id}", id.toString())
+        return client.get(endpoint).body()
+    }
 
-    const val BALANCE_OFFERS = "balance/offers"
-    const val BALANCE_REFILL = "balance/top-up"
+    suspend fun updateDevice(body: DeviceBody): HttpResponse {
+        return client.put(ApiEndPoints.DEVICE) {
+            contentType(ContentType.Application.Json)
+            setBody(body)
+        }
+    }
 
-    const val PAYOUTS = "payouts"
-    const val PAYOUTS_REQUEST = "payouts/request-payout"
+    // Authentication
+    suspend fun authLogout(request: LogoutBody): HttpResponse {
+        return client.post(ApiEndPoints.AUTH_LOGOUT) {
+            contentType(ContentType.Application.Json)
+            setBody(request)
+        }
+    }
 
-    /**
-     * Authentication & User
-     */
+    suspend fun refreshToken(): ApiResponse<RefreshToken> {
+        return client.get(ApiEndPoints.AUTH_TOKEN_REFRESH).body()
+    }
 
-    const val USER_ME = "users/me"
+    suspend fun emailCheck(request: EmailCheckBody): ApiResponse<EmailCheck?> {
+        return client.post(ApiEndPoints.AUTH_EMAIL_CHECK) {
+            contentType(ContentType.Application.Json)
+            setBody(request)
+        }.body()
+    }
 
-    const val AUTH_TOKEN_REFRESH = "auth/token/refresh"
-    const val AUTH_CHECK = "auth/check"
-    const val AUTH_PASSWORD_FORGET = "auth/password/forgot"
-    const val AUTH_PASSWORD_RESET = "auth/password/reset"
-    const val AUTH_PASSWORD_RESET_RESEND = "auth/password/reset/resend"
-    const val AUTH_PASSWORD_RESET_VERIFY = "auth/password/reset/verify"
-    const val AUTH_EMAIL_CHECK = "auth/email/check"
-    const val AUTH_EMAIL_LOGIN = "auth/login"
-    const val AUTH_EMAIL_REGISTER = "auth/register"
-    const val AUTH_EMAIL_VERIFY = "auth/email/verify"
-    const val AUTH_EMAIL_VERIFY_RESEND = "auth/resend-verification"
-    const val AUTH_GOOGLE = "auth/google"
-    const val AUTH_HUAWEI = "auth/huawei"
-    const val AUTH_LOGOUT = "auth/logout"
+    suspend fun emailLogin(request: EmailLoginBody): HttpResponse {
+        return client.post(ApiEndPoints.AUTH_EMAIL_LOGIN) {
+            contentType(ContentType.Application.Json)
+            setBody(request)
+        }
+    }
 
-    /**
-     * Powerly
-     */
+    suspend fun emailRegister(request: EmailRegisterBody): ApiResponse<User?> {
+        return client.post(ApiEndPoints.AUTH_EMAIL_REGISTER) {
+            contentType(ContentType.Application.Json)
+            setBody(request)
+        }.body()
+    }
 
-    const val POWER_SOURCE = "stations"
-    const val POWER_SOURCE_ACTION = "stations/{id}"
-    const val POWER_SOURCE_MEDIA = "stations/{id}/media"
-    const val POWER_SOURCE_REVIEWS = "stations/{id}/reviews"
-    const val POWER_SOURCE_TOKEN = "stations/token/{identifier}"
+    suspend fun emailVerify(request: VerificationBody): ApiResponse<User?> {
+        return client.post(ApiEndPoints.AUTH_EMAIL_VERIFY) {
+            contentType(ContentType.Application.Json)
+            setBody(request)
+        }.body()
+    }
 
-    const val POWER_SOURCE_ORDER_DETAILS = "orders/{orderId}"
-    const val POWER_SOURCE_ORDERS = "orders"
-    const val POWER_SOURCE_CHARGING_STOP = "orders/stop"
+    suspend fun emailVerifyResend(request: EmailVerifyResendBody): ApiResponse<UserVerification?> {
+        return client.post(ApiEndPoints.AUTH_EMAIL_VERIFY_RESEND) {
+            contentType(ContentType.Application.Json)
+            setBody(request)
+        }.body()
+    }
 
-    const val REVIEWS = "reviews"
-    const val REVIEW_OPTIONS = "reviews/options"
-    const val REVIEW_SKIP = "orders/{order_id}/review/skip"
-    const val REVIEW_ADD = "orders/{order_id}/review"
+    suspend fun emailPasswordForget(request: EmailForgetBody): ApiResponse<UserVerification?> {
+        return client.post(ApiEndPoints.AUTH_PASSWORD_FORGET) {
+            contentType(ContentType.Application.Json)
+            setBody(request)
+        }.body()
+    }
 
-    const val VEHICLES = "vehicles"
-    const val VEHICLES_ACTION = "vehicles/{id}"
-    const val VEHICLE_MAKES = "vehicles/makes"
-    const val VEHICLE_MODELS = "vehicles/models/{make_id}"
-    const val VEHICLE_CONNECTORS = "vehicles/connectors"
+    suspend fun emailPasswordReset(request: EmailResetBody): ApiResponse<User?> {
+        return client.post(ApiEndPoints.AUTH_PASSWORD_RESET) {
+            contentType(ContentType.Application.Json)
+            setBody(request)
+        }.body()
+    }
 
-}
+    suspend fun emailPasswordResetResend(request: EmailVerifyResendBody): ApiResponse<UserVerification?> {
+        return client.post(ApiEndPoints.AUTH_PASSWORD_RESET_RESEND) {
+            contentType(ContentType.Application.Json)
+            setBody(request)
+        }.body()
+    }
 
+    // Device account social
+    suspend fun socialGoogleLogin(request: SocialLoginBody): ApiResponse<User?> {
+        return client.post(ApiEndPoints.AUTH_GOOGLE) {
+            contentType(ContentType.Application.Json)
+            setBody(request)
+        }.body()
+    }
 
-interface RemoteDataSource {
+    suspend fun socialHuaweiLogin(request: SocialLoginBody): ApiResponse<User?> {
+        return client.post(ApiEndPoints.AUTH_HUAWEI) {
+            contentType(ContentType.Application.Json)
+            setBody(request)
+        }.body()
+    }
 
-    @GET(ApiEndPoints.COUNTRIES)
-    suspend fun getCountries(): CountriesResponse
+    // User
+    suspend fun deleteUser(): HttpResponse {
+        return client.delete(ApiEndPoints.USER_ME)
+    }
 
-    @GET(ApiEndPoints.COUNTRIES_CURRENCIES)
-    suspend fun getCurrencies(): CurrenciesResponse
+    suspend fun updateUser(request: UserUpdateBody): ApiResponse<User> {
+        return client.put(ApiEndPoints.USER_ME) {
+            contentType(ContentType.Application.Json)
+            setBody(request)
+        }.body()
+    }
 
-    @GET(ApiEndPoints.COUNTRY)
-    suspend fun getCountry(@Path("id") id: Int): CountryResponse
+    suspend fun getUser(): ApiResponse<User> {
+        return client.get(ApiEndPoints.USER_ME).body()
+    }
 
-    @Headers("Content-Type: application/json")
-    @PUT(ApiEndPoints.DEVICE)
-    suspend fun updateDevice(
-        @Body body: DeviceBody
-    ): UpdateDeviceResponse
+    suspend fun authCheck(): HttpResponse {
+        return client.get(ApiEndPoints.USER_ME)
+    }
 
+    // Power sources
+    suspend fun getPowerSource(id: String): ApiResponse<PowerSource?> {
+        val endpoint = ApiEndPoints.POWER_SOURCE_ACTION.replace("{id}", id)
+        return client.get(endpoint).body()
+    }
 
-    /**
-     * Authentication
-     */
-
-    @Headers("Content-Type: application/json")
-    @POST(ApiEndPoints.AUTH_LOGOUT)
-    suspend fun authLogout(@Body request: LogoutBody): Response<Any>
-
-    @Headers("Content-Type: application/json")
-    @GET(ApiEndPoints.AUTH_TOKEN_REFRESH)
-    suspend fun refreshToken(): RefreshTokenResponse
-
-    /////////email
-    @Headers("Content-Type: application/json")
-    @POST(ApiEndPoints.AUTH_EMAIL_CHECK)
-    suspend fun emailCheck(
-        @Body request: EmailCheckBody,
-    ): EmailCheckResponse
-
-    @Headers("Content-Type: application/json")
-    @POST(ApiEndPoints.AUTH_EMAIL_LOGIN)
-    suspend fun emailLogin(
-        @Body request: EmailLoginBody
-    ): EmailLoginResponse
-
-    @Headers("Content-Type: application/json")
-    @POST(ApiEndPoints.AUTH_EMAIL_REGISTER)
-    suspend fun emailRegister(
-        @Body request: EmailRegisterBody
-    ): EmailRegisterResponse
-
-    @Headers("Content-Type: application/json")
-    @POST(ApiEndPoints.AUTH_EMAIL_VERIFY)
-    suspend fun emailVerify(
-        @Body request: VerificationBody
-    ): AuthenticationResponse
-
-    @Headers("Content-Type: application/json")
-    @POST(ApiEndPoints.AUTH_EMAIL_VERIFY_RESEND)
-    suspend fun emailVerifyResend(
-        @Body request: EmailVerifyResendBody
-    ): EmailVerifyResendResponse
-
-    @Headers("Content-Type: application/json")
-    @POST(ApiEndPoints.AUTH_PASSWORD_FORGET)
-    suspend fun emailPasswordForget(
-        @Body request: EmailForgetBody
-    ): EmailForgetResponse
-
-    @Headers("Content-Type: application/json")
-    @POST(ApiEndPoints.AUTH_PASSWORD_RESET)
-    suspend fun emailPasswordReset(
-        @Body request: EmailResetBody
-    ): AuthenticationResponse
-
-    @Headers("Content-Type: application/json")
-    @POST(ApiEndPoints.AUTH_PASSWORD_RESET_RESEND)
-    suspend fun emailPasswordResetResend(
-        @Body request: EmailVerifyResendBody
-    ): EmailVerifyResendResponse
-
-
-    ///////////////////// device account
-    @Headers("Content-Type: application/json")
-    @POST(ApiEndPoints.AUTH_GOOGLE)
-    suspend fun socialGoogleLogin(
-        @Body request: SocialLoginBody
-    ): AuthenticationResponse
-
-    @Headers("Content-Type: application/json")
-    @POST(ApiEndPoints.AUTH_HUAWEI)
-    suspend fun socialHuaweiLogin(
-        @Body request: SocialLoginBody
-    ): AuthenticationResponse
-
-
-    /**
-     * User
-     */
-
-    @Headers("Content-Type: application/json")
-    @DELETE(ApiEndPoints.USER_ME)
-    suspend fun deleteUser(): Response<Any>
-
-    @Headers("Content-Type: application/json")
-    @PUT(ApiEndPoints.USER_ME)
-    suspend fun updateUser(
-        @Body request: UserUpdateBody
-    ): UserResponse
-
-    @Headers("Content-Type: application/json")
-    @GET(ApiEndPoints.USER_ME)
-    suspend fun getUser(): UserResponse
-
-    @Headers("Content-Type: application/json")
-    @GET(ApiEndPoints.USER_ME)
-    suspend fun authCheck(): Response<UserResponse>
-
-    /**
-     * Power sources
-     */
-
-    @Headers("Content-Type: application/json")
-    @GET(ApiEndPoints.POWER_SOURCE_ACTION)
-    suspend fun getPowerSource(
-        @Path("id") id: String
-    ): PowerSourceResponse
-
-
-    @Headers("Content-Type: application/json")
-    @GET(ApiEndPoints.POWER_SOURCE)
     suspend fun getNearPowerSources(
-        @Query("latitude") latitude: Double,
-        @Query("longitude") longitude: Double,
-        @Query("search") search: String?
-    ): PowerSourcesResponse
+        latitude: Double,
+        longitude: Double,
+        search: String?
+    ): BaseResponsePaginated<PowerSource> {
+        return client.get(ApiEndPoints.POWER_SOURCE) {
+            parameter("latitude", latitude)
+            parameter("longitude", longitude)
+            if (search != null) parameter("search", search)
+        }.body()
+    }
 
+    suspend fun getMedia(id: String): ApiResponse<List<Media>?> {
+        val endpoint = ApiEndPoints.POWER_SOURCE_MEDIA.replace("{id}", id)
+        return client.get(endpoint).body()
+    }
 
-    @Headers("Content-Type: application/json")
-    @GET(ApiEndPoints.POWER_SOURCE_MEDIA)
-    suspend fun getMedia(
-        @Path("id") id: String
-    ): MediaResponse
-
-    @Headers("Content-Type: application/json")
-    @GET(ApiEndPoints.POWER_SOURCE_REVIEWS)
     suspend fun getReviews(
-        @Path("id") id: String,
-        @Query("page") page: Int,
-        @Query("limit") limit: Int = 15
-    ): ReviewResponse
+        id: String, page: Int, limit: Int = 15
+    ): BaseResponsePaginated<Review> {
+        val endpoint = ApiEndPoints.POWER_SOURCE_REVIEWS.replace("{id}", id)
+        return client.get(endpoint) {
+            parameter("page", page)
+            parameter("limit", limit)
+        }.body()
+    }
 
-    @Headers("Content-Type: application/json")
-    @POST(ApiEndPoints.POWER_SOURCE_ORDERS)
-    suspend fun startCharging(
-        @Body body: StartChargingBody
-    ): ChargingResponse
+    suspend fun startCharging(body: StartChargingBody): ApiResponse<Session?> {
+        return client.post(ApiEndPoints.POWER_SOURCE_ORDERS) {
+            contentType(ContentType.Application.Json)
+            setBody(body)
+        }.body()
+    }
 
-    @Headers("Content-Type: application/json")
-    @POST(ApiEndPoints.POWER_SOURCE_CHARGING_STOP)
-    suspend fun stopCharging(
-        @Body body: StopChargingBody
-    ): ChargingResponse
+    suspend fun stopCharging(body: StopChargingBody): ApiResponse<Session?> {
+        return client.post(ApiEndPoints.POWER_SOURCE_CHARGING_STOP) {
+            contentType(ContentType.Application.Json)
+            setBody(body)
+        }.body()
+    }
 
+    suspend fun powerSourceDetails(identifier: String): ApiResponse<PowerSource?> {
+        val endpoint = ApiEndPoints.POWER_SOURCE_TOKEN.replace("{identifier}", identifier)
+        return client.get(endpoint).body()
+    }
 
-    @Headers("Content-Type: application/json")
-    @GET(ApiEndPoints.POWER_SOURCE_TOKEN)
-    suspend fun powerSourceDetails(
-        @Path("identifier") identifier: String
-    ): PowerSourceResponse
+    // Sessions
+    suspend fun sessionDetails(orderId: String): ApiResponse<Session?> {
+        val endpoint = ApiEndPoints.POWER_SOURCE_ORDER_DETAILS.replace("{orderId}", orderId)
+        return client.get(endpoint).body()
+    }
 
-
-    /**
-     * Sessions
-     */
-    @Headers("Content-Type: application/json")
-    @GET(ApiEndPoints.POWER_SOURCE_ORDER_DETAILS)
-    suspend fun sessionDetails(
-        @Path("orderId") orderId: String
-    ): SessionDetailsResponse
-
-
-    @Headers("Content-Type: application/json")
-    @GET(ApiEndPoints.POWER_SOURCE_ORDERS)
     suspend fun getActiveOrders(
-        @Query("page") page: Int,
-        @Query("status") status: String = "active",
-        @Query("limit") limit: Int = 15
-    ): SessionsResponsePaginated
+        page: Int,
+        status: String = "active",
+        limit: Int = 15
+    ): BaseResponsePaginated<Session> {
+        return client.get(ApiEndPoints.POWER_SOURCE_ORDERS) {
+            parameter("page", page)
+            parameter("status", status)
+            parameter("limit", limit)
+        }.body()
+    }
 
-    @Headers("Content-Type: application/json")
-    @GET(ApiEndPoints.POWER_SOURCE_ORDERS)
     suspend fun getCompleteOrders(
-        @Query("page") page: Int,
-        @Query("status") status: String = "complete",
-        @Query("limit") limit: Int = 15
-    ): SessionsResponsePaginated
+        page: Int,
+        status: String = "complete",
+        limit: Int = 15
+    ): BaseResponsePaginated<Session> {
+        return client.get(ApiEndPoints.POWER_SOURCE_ORDERS) {
+            parameter("page", page)
+            parameter("status", status)
+            parameter("limit", limit)
+        }.body()
+    }
 
-    /**
-     * FEEDBACK
-     */
+    // Feedback
+    suspend fun reviewOptions(): ApiResponse<Map<String, List<String>>?> {
+        return client.get(ApiEndPoints.REVIEW_OPTIONS).body()
+    }
 
-    @Headers("Content-Type: application/json")
-    @GET(ApiEndPoints.REVIEW_OPTIONS)
-    suspend fun reviewOptions(): ReviewOptionsResponse
+    suspend fun reviewPending(limit: Int): ApiResponse<List<Session>?> {
+        return client.get(ApiEndPoints.REVIEWS) {
+            parameter("limit", limit)
+        }.body()
+    }
 
-    @Headers("Content-Type: application/json")
-    @GET(ApiEndPoints.REVIEWS)
-    suspend fun reviewPending(
-        @Query("limit") limit: Int
-    ): ReviewsResponse
+    suspend fun reviewAdd(orderId: String, body: ReviewBody): ApiResponse<Session?> {
+        val endpoint = ApiEndPoints.REVIEW_ADD.replace("{order_id}", orderId)
+        return client.post(endpoint) {
+            contentType(ContentType.Application.Json)
+            setBody(body)
+        }.body()
+    }
 
-    @Headers("Content-Type: application/json")
-    @POST(ApiEndPoints.REVIEW_ADD)
-    suspend fun reviewAdd(
-        @Path("order_id") orderId: String,
-        @Body body: ReviewBody
-    ): ReviewAddResponse
+    suspend fun reviewSkip(orderId: String): ApiResponse<Session?> {
+        val endpoint = ApiEndPoints.REVIEW_SKIP.replace("{order_id}", orderId)
+        return client.post(endpoint).body()
+    }
 
-    @POST(ApiEndPoints.REVIEW_SKIP)
-    suspend fun reviewSkip(
-        @Path("order_id") orderId: String
-    ): ReviewAddResponse
+    // Vehicles
+    suspend fun vehicleAdd(request: VehicleAddBody): ApiResponse<Vehicle?> {
+        return client.post(ApiEndPoints.VEHICLES) {
+            contentType(ContentType.Application.Json)
+            setBody(request)
+        }.body()
+    }
 
-    /**
-     * Vehicles
-     */
+    suspend fun vehicleUpdate(id: Int, request: VehicleAddBody): ApiResponse<Vehicle?> {
+        val endpoint = ApiEndPoints.VEHICLES_ACTION.replace("{id}", id.toString())
+        return client.put(endpoint) {
+            contentType(ContentType.Application.Json)
+            setBody(request)
+        }.body()
+    }
 
-    @Headers("Content-Type: application/json")
-    @POST(ApiEndPoints.VEHICLES)
-    suspend fun vehicleAdd(@Body request: VehicleAddBody): VehicleAddResponse
+    suspend fun vehicleDelete(id: Int): ApiResponse<Vehicle?> {
+        val endpoint = ApiEndPoints.VEHICLES_ACTION.replace("{id}", id.toString())
+        return client.delete(endpoint).body()
+    }
 
-    @Headers("Content-Type: application/json")
-    @PUT(ApiEndPoints.VEHICLES_ACTION)
-    suspend fun vehicleUpdate(
-        @Path("id") id: Int,
-        @Body request: VehicleAddBody
-    ): VehicleAddResponse
+    suspend fun vehiclesList(): ApiResponse<List<Vehicle>?> {
+        return client.get(ApiEndPoints.VEHICLES).body()
+    }
 
-    @Headers("Content-Type: application/json")
-    @DELETE(ApiEndPoints.VEHICLES_ACTION)
-    suspend fun vehicleDelete(@Path("id") id: Int): VehicleAddResponse
+    suspend fun vehiclesMakes(): ApiResponse<List<VehicleMaker>?> {
+        return client.get(ApiEndPoints.VEHICLE_MAKES).body()
+    }
 
-    @Headers("Content-Type: application/json")
-    @GET(ApiEndPoints.VEHICLES)
-    suspend fun vehiclesList(): VehiclesResponse
+    suspend fun vehiclesModels(makeId: Int? = null): ApiResponse<List<VehicleModel>?> {
+        val endpoint = if (makeId != null) {
+            ApiEndPoints.VEHICLE_MODELS.replace("{make_id}", makeId.toString())
+        } else {
+            ApiEndPoints.VEHICLE_MODELS
+        }
+        return client.get(endpoint).body()
+    }
 
-    @Headers("Content-Type: application/json")
-    @GET(ApiEndPoints.VEHICLE_MAKES)
-    suspend fun vehiclesMakes(): MakesResponse
+    suspend fun vehiclesConnectors(): ApiResponse<List<Connector>?> {
+        return client.get(ApiEndPoints.VEHICLE_CONNECTORS).body()
+    }
 
-    @Headers("Content-Type: application/json")
-    @GET(ApiEndPoints.VEHICLE_MODELS)
-    suspend fun vehiclesModels(
-        @Path("make_id") makeId: Int? = null
-    ): ModelsResponse
+    // Payment
+    suspend fun cardList(): ApiResponse<List<StripCard>> {
+        return client.get(ApiEndPoints.PAYMENT_CARDS).body()
+    }
 
-    @Headers("Content-Type: application/json")
-    @GET(ApiEndPoints.VEHICLE_CONNECTORS)
-    suspend fun vehiclesConnectors(
-    ): ConnectorsResponse
+    suspend fun cardAdd(request: AddCardBody): ApiResponse<List<StripCard>?> {
+        return client.post(ApiEndPoints.PAYMENT_CARDS) {
+            contentType(ContentType.Application.Json)
+            setBody(request)
+        }.body()
+    }
 
-    /**
-     * Payment
-     */
+    suspend fun cardDefault(cardId: String): ApiResponse<StripCard?> {
+        val endpoint = ApiEndPoints.PAYMENT_CARD_DEFAULT.replace("{id}", cardId)
+        return client.post(endpoint).body()
+    }
 
-    @Headers("Content-Type: application/json")
-    @GET(ApiEndPoints.PAYMENT_CARDS)
-    suspend fun cardList(): CardsResponse
+    suspend fun cardDelete(cardId: String): ApiResponse<StripCard?> {
+        val endpoint = ApiEndPoints.PAYMENT_CARD_DELETE.replace("{id}", cardId)
+        return client.delete(endpoint).body()
+    }
 
-    @Headers("Content-Type: application/json")
-    @POST(ApiEndPoints.PAYMENT_CARDS)
-    suspend fun cardAdd(@Body request: AddCardBody): CardUpdateResponse
+    suspend fun refillBalance(request: BalanceRefillBody): ApiResponse<BalanceRefill> {
+        return client.post(ApiEndPoints.BALANCE_REFILL) {
+            contentType(ContentType.Application.Json)
+            setBody(request)
+        }.body()
+    }
 
-    @Headers("Content-Type: application/json")
-    @POST(ApiEndPoints.PAYMENT_CARD_DEFAULT)
-    suspend fun cardDefault(@Path("id") cardId: String): CardUpdateResponse
+    suspend fun getBalanceItems(countryId: Int?): ApiResponse<List<BalanceItem>> {
+        return client.get(ApiEndPoints.BALANCE_OFFERS) {
+            if (countryId != null) parameter("country_id", countryId)
+        }.body()
+    }
 
-    @Headers("Content-Type: application/json")
-    @DELETE(ApiEndPoints.PAYMENT_CARD_DELETE)
-    suspend fun cardDelete(@Path("id") cardId: String): CardUpdateResponse
+    suspend fun walletList(): ApiResponse<List<Wallet>> {
+        return client.get(ApiEndPoints.PAYOUTS).body()
+    }
 
-    @POST(ApiEndPoints.BALANCE_REFILL)
-    suspend fun refillBalance(
-        @Body request: BalanceRefillBody
-    ): BalanceRefillResponse
+    suspend fun walletPayout(): ApiResponse<*> {
+        return client.post(ApiEndPoints.PAYOUTS_REQUEST).body()
+    }
 
-    @GET(ApiEndPoints.BALANCE_OFFERS)
-    suspend fun getBalanceItems(
-        @Query("country_id") countryId: Int?
-    ): BalancesResponse
-
-    @GET(ApiEndPoints.PAYOUTS)
-    suspend fun walletList(): WalletsResponse
-
-    @POST(ApiEndPoints.PAYOUTS_REQUEST)
-    suspend fun walletPayout(): WithdrawResponse
+    companion object {
+        private const val TAG = "NewRemoteDataSource"
+    }
 }

@@ -1,22 +1,21 @@
 package com.powerly.splash.update
 
-import android.content.Intent
 import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
-import androidx.core.net.toUri
-import org.koin.androidx.compose.koinViewModel
+import androidx.compose.ui.platform.LocalUriHandler
 import com.powerly.resources.R
 import com.powerly.splash.SplashViewModel
 import com.powerly.ui.dialogs.MyScreenBottomSheet
-import com.powerly.ui.extensions.safeStartActivity
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 internal fun UpdateAppDialog(
     viewModel: SplashViewModel = koinViewModel()
 ) {
     val context = LocalContext.current
+    val uriHandler= LocalUriHandler.current
     // Remember the app version string
     val appVersion = remember {
         String.format(
@@ -33,8 +32,7 @@ internal fun UpdateAppDialog(
      */
     fun updateApp() {
         val appLink = viewModel.appLink
-        val intent = Intent(Intent.ACTION_VIEW, appLink.toUri())
-        context.safeStartActivity(intent)
+        uriHandler.openUri(appLink)
     }
 
 

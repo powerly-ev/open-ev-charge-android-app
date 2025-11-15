@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.powerly.core.data.repositories.UserRepository
 import com.powerly.core.model.user.User
 import com.powerly.core.network.DeviceHelper
-import com.powerly.lib.managers.LocaleManager
+import com.powerly.lib.managers.PusherManager
 import com.powerly.payment.PaymentManager
 import com.powerly.ui.HomeUiState
 import kotlinx.coroutines.launch
@@ -16,8 +16,8 @@ import org.koin.android.annotation.KoinViewModel
 @KoinViewModel
 class MainViewModel(
     private val userRepository: UserRepository,
-    private val localeManager: LocaleManager,
     private val paymentManager: PaymentManager,
+    private val pusherManager: PusherManager,
     private val deviceHelper: DeviceHelper
 ) : ViewModel() {
 
@@ -26,12 +26,15 @@ class MainViewModel(
     init {
         viewModelScope.launch {
             with(uiState) {
-                languageName.value = localeManager.getLanguageName()
-                languageCode.value = localeManager.currentLanguage
-                isLoggedIn.value = userRepository.isLoggedIn
+                languageCode.value = userRepository.getLanguage()
+                isLoggedIn.value = userRepository.isLoggedIn()
             }
+        }
+
+        viewModelScope.launch {
             userRepository.userFlow.collect { user ->
                 if (user != null) {
+                    Log.v(TAG, "user-updated = $user")
                     updateUserState(user)
                 } else {
                     uiState.isLoggedIn.value = false
@@ -39,10 +42,29 @@ class MainViewModel(
                 }
             }
         }
+
+        viewModelScope.launch {
+            userRepository.loggedInFlow.collect { loggedIn ->
+                Log.v(TAG, "user-logged-in = $loggedIn")
+                uiState.isLoggedIn.value = loggedIn
+                if (loggedIn) {
+                    pusherManager.initPusherManager()
+                } else {
+                    pusherManager.unsubscribeAll()
+                    pusherManager.disconnect()
+                }
+            }
+        }
+
+        viewModelScope.launch {
+            userRepository.languageFlow.collect {
+                Log.v(TAG, "language-changed = $it")
+                uiState.languageCode.value = it
+            }
+        }
     }
 
     private fun updateUserState(details: User) {
-        Log.v(TAG, "user-balance ${details.balance}")
         with(uiState) {
             isLoggedIn.value = true
             userName.value = details.firstName
@@ -59,6 +81,6 @@ class MainViewModel(
     }
 
     companion object {
-        private const val TAG = "HomeViewModel"
+        private const val TAG = "MainViewModel"
     }
 }

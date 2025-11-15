@@ -1,18 +1,16 @@
 package com.powerly.core.model.payment
 
-import com.powerly.core.model.api.BaseResponse
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-class WithdrawResponse : BaseResponse<Any>()
-
-class WalletsResponse : BaseResponse<List<Wallet>>()
+@Serializable
 data class Wallet(
-    @SerializedName("id") val id: Int,
-    @SerializedName("name") val name: String,
-    @SerializedName("balance") val balance: Double,
-    @SerializedName("currency") var currency: String = "",
-    @SerializedName("type") val type: String = "",
-    @SerializedName("payable") val payable: Boolean = false,
-    @SerializedName("rechargeable") val rechargeable: Boolean = false,
-    @SerializedName("withdrawable") val withdrawable: Boolean = false
+    @SerialName("id") val id: Int,
+    @SerialName("name") val name: String,
+    @SerialName("balance") val balance: Double,
+    @SerialName("currency") var currency: String = "",
+    @SerialName("type") val type: String = "",
+    @SerialName("payable") val payable: Boolean = false,
+    @SerialName("rechargeable") val rechargeable: Boolean = false,
+    @SerialName("withdrawable") val withdrawable: Boolean = false
 )

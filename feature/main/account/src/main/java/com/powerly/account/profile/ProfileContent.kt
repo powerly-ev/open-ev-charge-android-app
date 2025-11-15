@@ -79,16 +79,14 @@ private fun ProfileScreenPreview() {
     )
     val status = CurrenciesStatus.Success(currencies)
     AppTheme {
-        AppTheme {
-            ProfileScreenContent(
-                user = user,
-                country = { "Egypt" },
-                screenState = rememberScreenState(),
-                currenciesFlow = flow { emit(status) },
-                focusPassword = false,
-                uiEvents = {}
-            )
-        }
+        ProfileScreenContent(
+            user = user,
+            country = { "Egypt" },
+            screenState = rememberScreenState(),
+            currenciesFlow = flow { emit(status) },
+            focusPassword = false,
+            uiEvents = {}
+        )
     }
 }
 

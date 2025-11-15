@@ -3,6 +3,7 @@ package com.powerly.core.data.repositories
 import com.powerly.core.data.model.CurrenciesStatus
 import com.powerly.core.model.api.ApiStatus
 import com.powerly.core.model.location.Country
+import kotlinx.coroutines.flow.Flow
 
 interface AppRepository {
 
@@ -11,7 +12,7 @@ interface AppRepository {
      *
      * @return `true` if onboarding should be shown, `false` otherwise.
      */
-    fun showOnBoardingOnce(): Boolean
+    suspend fun showOnBoardingOnce(): Boolean
 
     /**
      * Determines whether the registration notification should be shown.
@@ -19,28 +20,43 @@ interface AppRepository {
      *
      * @return `true` if the notification should be shown, `false` otherwise.
      */
-    fun showRegisterNotification(): Boolean
+    suspend fun showRegisterNotification(): Boolean
 
-    /**
-     * Retrieves the current language of the app.
-     *
-     * @return A string representing the current language code.
-     */
-    fun getLanguage(): String
-
-    /**
-     * Retrieves the currently selected currency.
-     *
-     * @return The currency code as a [String].
-     */
-    fun getCurrency(): String
 
     /**
      * Retrieves a list of countries.
      *
      * @return  [ApiStatus] results containing a list of countries.
      */
-    suspend fun getCountries(): ApiStatus<List<Country>>
+    suspend fun updateCountries(): ApiStatus<List<Country>>
+
+    /**
+     * Retrieves the user's country.
+     *
+     * @return The user's country as a [Country] object.
+     */
+    suspend fun getUserCountry(): Country?
+
+    /**
+     * Retrieves a list of countries.
+     *
+     * @return A list of [Country] objects.
+     */
+    suspend fun getCountriesList(): List<Country>
+
+    /**
+     * Retrieves a country by its ID.
+     *
+     * @param id The ID of the country.
+     */
+    suspend fun getCountryById(id: Int): Country?
+
+    /**
+     * Retrieves a country by its ISO code.
+     *
+     * @param iso The ISO code of the country.
+     */
+    suspend fun getCountryByIso(iso: String): Country?
 
     /**
      * Retrieves a list of currencies.
@@ -64,6 +80,25 @@ interface AppRepository {
      * @return  [ApiStatus] results indicating the success or failure of the update.
      */
     suspend fun updateAppLanguage(language: String): ApiStatus<Boolean>
+
+    /**
+     * Sets the current language.
+     *
+     * @param language The language to set.
+     */
+    suspend fun setLanguage(language: String)
+
+    /**
+     * Retrieves the current language.
+     *
+     * @return The current language as a [String].
+     */
+    suspend fun getLanguage(): String
+
+    /**
+     * A flow that emits the current language.
+     */
+    val languageFlow: Flow<String>
 
     /**
      * Updates device information at the server of the current device.

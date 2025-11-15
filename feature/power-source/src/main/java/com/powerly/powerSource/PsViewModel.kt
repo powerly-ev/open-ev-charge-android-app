@@ -9,15 +9,14 @@ import com.powerly.core.data.repositories.AppRepository
 import com.powerly.core.data.repositories.PowerSourceRepository
 import com.powerly.core.data.repositories.UserRepository
 import com.powerly.core.model.api.ApiStatus
-import com.powerly.core.model.powerly.Media
 import com.powerly.core.model.powerly.PowerSource
 import com.powerly.core.model.powerly.Review
 import com.powerly.lib.managers.UserLocationManager
-import org.koin.android.annotation.KoinViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import org.koin.android.annotation.KoinViewModel
 
 
 /**
@@ -34,8 +33,6 @@ class PsViewModel(
     private val userRepository: UserRepository,
     private val appRepository: AppRepository,
 ) : ViewModel() {
-
-    private var cachedMedia: Pair<String, List<Media>>? = null
 
     /**
      * The currently selected or active power source.
@@ -67,16 +64,8 @@ class PsViewModel(
             val result = powerSourceRepository.getPowerSource(id)
             if (result is SourceStatus.Success) {
                 val powerSource = result.powerSource
-                val media = if (cachedMedia?.first == id) {
-                    cachedMedia!!.second
-                } else {
-                    val it = powerSourceRepository.getMedia(id)
-                    cachedMedia = Pair(id, it)
-                    it
-                }
                 powerSource.apply {
-                    this.currency = appRepository.getCurrency()
-                    this.media = media
+                    this.currency = userRepository.getCurrency()
                     this.distance(latitude, longitude)
                 }
                 this@PsViewModel.powerSource = powerSource
@@ -96,7 +85,7 @@ class PsViewModel(
         ).cachedIn(viewModelScope)
 
 
-    fun showOnBoardingOnce() = appRepository.showOnBoardingOnce()
+    suspend fun showOnBoardingOnce() = appRepository.showOnBoardingOnce()
 
     fun navigateToMap(latitude: Double, longitude: Double) {
         locationManager.navigateToMap(latitude, longitude)

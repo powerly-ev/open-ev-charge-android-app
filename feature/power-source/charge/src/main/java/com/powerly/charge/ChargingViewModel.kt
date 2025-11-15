@@ -9,10 +9,11 @@ import androidx.navigation.toRoute
 import com.powerly.charge.util.ChargingTimerManager
 import com.powerly.charge.util.ChargingTimerState
 import com.powerly.core.data.model.ChargingStatus
-import com.powerly.core.data.repositories.AppRepository
 import com.powerly.core.data.repositories.SessionsRepository
+import com.powerly.core.data.repositories.UserRepository
 import com.powerly.core.model.powerly.Session
 import com.powerly.lib.AppRoutes
+import com.powerly.lib.managers.PusherManager
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -24,16 +25,17 @@ import org.koin.android.annotation.KoinViewModel
 class ChargeViewModel(
     private val sessionsRepository: SessionsRepository,
     private val chargingTimerManager: ChargingTimerManager,
-    private val appRepository: AppRepository,
+    private val pusherManager: PusherManager,
+    private val userRepository: UserRepository,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     private val charger = savedStateHandle.toRoute<AppRoutes.PowerSource.Charging>()
 
+    val timerState = ChargingTimerState(0, 0)
     val session = mutableStateOf<Session?>(null)
     private var pendingSessionId: String = ""
     private var lastSessionUpdateTime: Int = 0
-
     private val _chargingStatus = MutableStateFlow<ChargingStatus>(ChargingStatus.Loading)
     val chargingStatus = _chargingStatus.asStateFlow()
 
@@ -43,7 +45,6 @@ class ChargeViewModel(
             else -> false
         }
 
-    val timerState = ChargingTimerState(0, 0)
 
     suspend fun startCharging() {
         val chargePointId = charger.chargePointId
@@ -71,12 +72,12 @@ class ChargeViewModel(
         initSession(result)
     }
 
-    private fun initSession(result: ChargingStatus) {
+    private suspend fun initSession(result: ChargingStatus) {
         when (result) {
             is ChargingStatus.Success -> {
                 _chargingStatus.value = result
                 session.value = result.session.apply {
-                    currency = appRepository.getCurrency()
+                    currency = userRepository.getCurrency()
                 }
                 // Handle cases where the charging session has ended prematurely
                 if (hasActiveSession.not()) {
@@ -93,10 +94,15 @@ class ChargeViewModel(
     }
 
     fun stopCharging() {
+        Log.v(TAG, "stopCharging")
         val sessionId = session.value?.id
         // to prevent calling stop charging multiple times..
         if (sessionId == null || sessionId == pendingSessionId) return
         pendingSessionId = sessionId
+
+        pusherManager.unbindConsumption(sessionId)
+        pusherManager.unsubscribeSession(sessionId)
+        pusherManager.disconnect()
 
         viewModelScope.launch {
             _chargingStatus.emit(ChargingStatus.Loading)
@@ -105,23 +111,10 @@ class ChargeViewModel(
                 chargePointId = charger.chargePointId,
                 connector = charger.connector
             )
-            _chargingStatus.emit(result)
+            _chargingStatus.emit(ChargingStatus.Stop(session.value!!))
             pendingSessionId = ""
         }
     }
-
-    private suspend fun forceStopCharging() {
-        val session = session.value ?: return
-        Log.i(TAG, "forceStopCharging - ${session.id}")
-        _chargingStatus.emit(ChargingStatus.Loading)
-        sessionsRepository.stopCharging(
-            orderId = session.id,
-            chargePointId = charger.chargePointId,
-            connector = charger.connector
-        )
-        _chargingStatus.emit(ChargingStatus.Stop(session))
-    }
-
 
     /**
      * Initializes the charging timer and sets up the charging session.
@@ -133,7 +126,7 @@ class ChargeViewModel(
      * @param session The current charging session.
      */
     private fun initChargingTimer(session: Session) {
-        Log.i(TAG, "initCharging")
+        Log.i(TAG, "UpdateChargingTime")
         // Initialize the charging timer
         chargingTimerManager.initTimer(
             isFull = session.isFull,
@@ -142,26 +135,60 @@ class ChargeViewModel(
             onUpdate = { elapsed, remaining ->
                 Log.v(TAG, "elapsed = $elapsed s")
                 timerState.update(elapsed, remaining)
-                // update session details from server each 120 seconds
-                if (elapsed > 0 && elapsed % 120 == 0 && elapsed != lastSessionUpdateTime) {
-                    lastSessionUpdateTime = elapsed
-                    Log.v(TAG, "sessionUpdateTime - $lastSessionUpdateTime")
-                    viewModelScope.launch {
-                        updateSessionDetails(session.id)
-                    }
-                }
             },
             onDone = {
+                Log.v(TAG, "onDone")
+                // Stop charging when the timer is completed after n seconds
                 viewModelScope.launch {
-                    delay(5 * 1000)
-                    forceStopCharging()
+                    delay(10 * 1000)
+                    stopCharging()
                 }
             }
         )
     }
 
+    /**
+     * Initializes the socket event listener for session updates and completion.
+     *
+     * This function connects to Pusher, subscribes to session events for the given sessionId,
+     * and handles real-time updates for session consumption and completion.
+     *
+     */
+    suspend fun initSocketEvent() {
+        val sessionId = session.value?.id ?: return
+        Log.i(TAG, "initSocketEvent - $sessionId")
+        pusherManager.connect()
+        // subscribe in session consumption/charging event
+        // collect result in local coroutine scope
+        pusherManager.subscribeConsumption(
+            sessionId = sessionId,
+            onUpdate = {
+                Log.i(TAG, "onReceiveConsumption - $it")
+                viewModelScope.launch {
+                    initSession(ChargingStatus.Success(it))
+                }
+            }
+        )
+
+        delay(5000)
+        // subscribe in session completion socket event
+        // and collect response from any screen with [PusherManager.sessionCompletionFlow]
+        pusherManager.subscribeSessionCompletion(sessionId)
+        viewModelScope.launch {
+            pusherManager.sessionCompletionFlow.collect { session ->
+                if (session != null && session.id == sessionId) {
+                    Log.i(TAG, "sessionCompletionFlow - $session")
+                    _chargingStatus.emit(ChargingStatus.Stop(session))
+                }
+            }
+        }
+    }
+
     fun release() {
         chargingTimerManager.release()
+        session.value?.id?.let {
+            pusherManager.unbindConsumption(it)
+        }
     }
 
     companion object {

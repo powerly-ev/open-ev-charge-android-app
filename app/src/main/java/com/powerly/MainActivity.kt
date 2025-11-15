@@ -7,11 +7,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.powerly.lib.MainScreen.getMainDestination
-import com.powerly.lib.managers.LocaleManager
 import com.powerly.ui.theme.AppTheme
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : ComponentActivity() {
@@ -20,15 +20,14 @@ class MainActivity : ComponentActivity() {
         const val TAG = "MainActivity"
     }
 
-    private val localeManager: LocaleManager by inject()
-
     private val viewModel: MainViewModel by viewModel()
 
     @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            AppTheme {
+            val language by remember { viewModel.uiState.languageCode }
+            AppTheme(language = language) {
                 RootGraph(
                     startDestination = intent.getMainDestination(),
                     modifier = Modifier.systemBarsPadding(),
@@ -43,7 +42,11 @@ class MainActivity : ComponentActivity() {
 
 
     override fun attachBaseContext(base: Context) {
-        super.attachBaseContext(localeManager.setLocale(base))
+        val config = base.resources.configuration.apply {
+            fontScale = 1f
+        }
+        val ctx = base.createConfigurationContext(config)
+        super.attachBaseContext(ctx)
     }
 }
 

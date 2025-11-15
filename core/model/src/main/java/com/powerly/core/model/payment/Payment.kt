@@ -1,16 +1,14 @@
 package com.powerly.core.model.payment
 
-import com.powerly.core.model.api.BaseResponse
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-class CardsResponse : BaseResponse<List<StripCard>>()
-class CardUpdateResponse : BaseResponse<Any>()
-
+@Serializable
 data class StripCard(
-    @SerializedName("id") val id: String,
-    @SerializedName("card_number") val cardNumber: String?,
-    @SerializedName("payment_option") val paymentOption: String,
-    @SerializedName("default") val default: Boolean
+    @SerialName("id") val id: String,
+    @SerialName("card_number") val cardNumber: String?,
+    @SerialName("payment_option") val paymentOption: String,
+    @SerialName("default") val default: Boolean
 ) {
     val paymentType: Int get() = 1
     val isCard: Boolean get() = true
@@ -35,4 +33,5 @@ data class StripCard(
     }
 }
 
+@Serializable
 data class AddCardBody(val token: String)

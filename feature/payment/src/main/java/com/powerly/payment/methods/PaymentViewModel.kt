@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.powerly.core.data.repositories.PaymentRepository
+import com.powerly.core.data.repositories.UserRepository
 import com.powerly.core.model.api.ApiStatus
 import com.powerly.core.model.payment.StripCard
 import com.powerly.core.model.util.asErrorMessage
@@ -19,7 +20,8 @@ import kotlinx.coroutines.launch
 
 
 @KoinViewModel
-class PaymentViewModel (
+class PaymentViewModel(
+    private val userRepository: UserRepository,
     private val paymentRepository: PaymentRepository,
     private val paymentManager: PaymentManager
 ) : ViewModel() {
@@ -28,10 +30,21 @@ class PaymentViewModel (
     val paymentMethods = mutableStateListOf<StripCard>()
     val defaultPaymentMethod = mutableStateOf<StripCard?>(null)
 
+    init {
+        /**
+         * When the user logs out, clear the payment methods
+         */
+        viewModelScope.launch {
+            userRepository.logoutEvent.collect {
+                paymentMethods.clear()
+                defaultPaymentMethod.value = null
+            }
+        }
+    }
+
     suspend fun loadPaymentMethods(forceUpdate: Boolean = false) {
         if (paymentMethods.isEmpty() || forceUpdate) {
-            val it = paymentRepository.cardList()
-            when (it) {
+            when (val it = paymentRepository.cardList()) {
                 is ApiStatus.Success -> {
                     paymentMethods.clear()
                     paymentMethods.addAll(it.data)
@@ -47,8 +60,7 @@ class PaymentViewModel (
 
     suspend fun setDefaultCard(card: StripCard): Boolean {
         if (card.default) return true
-        val result = paymentRepository.setDefaultCard(card.id)
-        when (result) {
+        when (val result = paymentRepository.setDefaultCard(card.id)) {
             is ApiStatus.Error -> screenState.showMessage(result.msg)
             is ApiStatus.Success -> {
                 loadPaymentMethods(forceUpdate = true)
@@ -70,8 +82,7 @@ class PaymentViewModel (
             parms = parms,
             onSuccess = { result ->
                 viewModelScope.launch {
-                    val result = paymentRepository.addCard(result.id)
-                    when (result) {
+                    when (val result = paymentRepository.addCard(result.id)) {
                         is ApiStatus.Error -> {
                             screenState.loading = false
                             screenState.showMessage(result.msg, onDismiss)
@@ -90,15 +101,14 @@ class PaymentViewModel (
             onError = {
                 screenState.loading = false
                 screenState.showMessage(it.asErrorMessage) {
-                    onDismiss()
+                    //onDismiss()
                 }
             }
         )
     }
 
     suspend fun deleteCard(cardId: String): Boolean {
-        val result = paymentRepository.deleteCard(cardId)
-        when (result) {
+        when (val result = paymentRepository.deleteCard(cardId)) {
             is ApiStatus.Error -> screenState.showMessage(result.msg)
             is ApiStatus.Success -> {
                 loadPaymentMethods(forceUpdate = true)

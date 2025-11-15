@@ -1,21 +1,20 @@
 package com.powerly.core.model.powerly
 
-import com.powerly.core.model.api.BaseResponse
-import com.powerly.core.model.api.BaseResponsePaginated
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-class ReviewResponse : BaseResponsePaginated<Review>()
 
+@Serializable
 data class Review(
-    @SerializedName("id") val id: Int,
-    @SerializedName("user") val user: Reviewer,
-    @SerializedName("order_id") val orderId: Int,
-    @SerializedName("content") val content: String?,
-    @SerializedName("rating") val rating: Double,
-    @SerializedName("created_at") val createdAt: String,
-    @SerializedName("updated_at") val updatedAt: String = ""
+    @SerialName("id") val id: Int,
+    @SerialName("user") val user: Reviewer,
+    @SerialName("order_id") val orderId: Int,
+    @SerialName("content") val content: String?,
+    @SerialName("rating") val rating: Double,
+    @SerialName("created_at") val createdAt: String,
+    @SerialName("updated_at") val updatedAt: String = ""
 ) {
     fun createdAt(): String = try {
         // Define the input and output date formats
@@ -31,25 +30,21 @@ data class Review(
     }
 }
 
+@Serializable
 data class Reviewer(
-    @SerializedName("id") val id: Int,
-    @SerializedName("first_name") val firstName: String,
-    @SerializedName("last_name") val lastName: String
+    @SerialName("id") val id: Int,
+    @SerialName("first_name") val firstName: String,
+    @SerialName("last_name") val lastName: String
 ) {
     val userName: String get() = "$firstName $lastName"
     val photoAlt: String
-        get() = if (userName.isNotBlank()) userName.substring(0, 1).uppercase()
+        get() = if (userName.isNotBlank()) userName[0].uppercase()
         else "P"
 }
 
-
-class ReviewOptionsResponse : BaseResponse<Map<String, List<String>>?>()
-
-class ReviewsResponse : BaseResponse<List<Session>?>()
-
-class ReviewAddResponse : BaseResponse<Session?>()
+@Serializable
 data class ReviewBody(
-    @SerializedName("rating") val rating: Double,
-    @SerializedName("content") val msg: String,
+    @SerialName("rating") val rating: Double,
+    @SerialName("content") val msg: String,
 )
 

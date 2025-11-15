@@ -11,7 +11,7 @@ import com.powerly.core.network.RemoteDataSource
 import com.powerly.core.network.asErrorMessage
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
-import retrofit2.HttpException
+import io.ktor.client.plugins.ResponseException
 import org.koin.core.annotation.Named
 import org.koin.core.annotation.Single
 
@@ -24,14 +24,14 @@ class VehiclesRepositoryImpl (
     override suspend fun vehiclesList() = withContext(ioDispatcher) {
         try {
             val response = remoteDataSource.vehiclesList()
-            if (response.hasData) ApiStatus.Success(response.getData.orEmpty())
+            if (response.hasData) ApiStatus.Success(response.getData().orEmpty())
             else ApiStatus.Error(response.getMessage())
-        } catch (e: HttpException) {
+        } catch (e: ResponseException) {
             e.printStackTrace()
-            ApiStatus.Error(e.asErrorMessage)
+            ApiStatus.Error(e.asErrorMessage())
         } catch (e: Exception) {
             e.printStackTrace()
-            ApiStatus.Error(e.asErrorMessage)
+            ApiStatus.Error(e.asErrorMessage())
         }
     }
 
@@ -58,12 +58,12 @@ class VehiclesRepositoryImpl (
 
             if (response.hasData) ApiStatus.Success(true)
             else ApiStatus.Error(response.getMessage())
-        } catch (e: HttpException) {
+        } catch (e: ResponseException) {
             e.printStackTrace()
-            ApiStatus.Error(e.asErrorMessage)
+            ApiStatus.Error(e.asErrorMessage())
         } catch (e: Exception) {
             e.printStackTrace()
-            ApiStatus.Error(e.asErrorMessage)
+            ApiStatus.Error(e.asErrorMessage())
         }
     }
 
@@ -72,31 +72,31 @@ class VehiclesRepositoryImpl (
             val response = remoteDataSource.vehicleDelete(vehicleId)
             if (response.isSuccess) ApiStatus.Success(true)
             else ApiStatus.Error(response.getMessage())
-        } catch (e: HttpException) {
+        } catch (e: ResponseException) {
             e.printStackTrace()
-            ApiStatus.Error(e.asErrorMessage)
+            ApiStatus.Error(e.asErrorMessage())
         } catch (e: Exception) {
             e.printStackTrace()
-            ApiStatus.Error(e.asErrorMessage)
+            ApiStatus.Error(e.asErrorMessage())
         }
     }
 
     override suspend fun vehiclesMakes() = withContext(ioDispatcher) {
         try {
             val response = remoteDataSource.vehiclesMakes()
-            val makers = response.getData.orEmpty()
+            val makers = response.getData().orEmpty()
             val makersMap: Map<String, List<VehicleMaker>> = makers
                 .sortedBy { it.name.lowercase() }
                 .groupBy { it.name.first().toString() }
 
             if (response.hasData) MakersStatus.Success(makersMap)
             else MakersStatus.Error(response.getMessage())
-        } catch (e: HttpException) {
+        } catch (e: ResponseException) {
             e.printStackTrace()
-            MakersStatus.Error(e.asErrorMessage)
+            MakersStatus.Error(e.asErrorMessage())
         } catch (e: Exception) {
             e.printStackTrace()
-            MakersStatus.Error(e.asErrorMessage)
+            MakersStatus.Error(e.asErrorMessage())
         }
     }
 
@@ -104,14 +104,14 @@ class VehiclesRepositoryImpl (
         try {
             val response = remoteDataSource.vehiclesModels(makeId)
             if (response.hasData)
-                ModelsStatus.Success(response.getData.orEmpty().sortedBy { it.name })
+                ModelsStatus.Success(response.getData().orEmpty().sortedBy { it.name })
             else ModelsStatus.Error(response.getMessage())
-        } catch (e: HttpException) {
+        } catch (e: ResponseException) {
             e.printStackTrace()
-            ModelsStatus.Error(e.asErrorMessage)
+            ModelsStatus.Error(e.asErrorMessage())
         } catch (e: Exception) {
             e.printStackTrace()
-            ModelsStatus.Error(e.asErrorMessage)
+            ModelsStatus.Error(e.asErrorMessage())
         }
     }
 }

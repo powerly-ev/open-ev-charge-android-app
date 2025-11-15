@@ -1,6 +1,7 @@
 package com.powerly.user
 
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
@@ -10,7 +11,6 @@ import androidx.navigation.toRoute
 import com.powerly.lib.AppRoutes
 import com.powerly.ui.dialogs.countries.CountriesDialog
 import com.powerly.ui.dialogs.signIn.SignInOptions
-import com.powerly.ui.extensions.openCall
 import com.powerly.user.email.EmailLoginViewModel
 import com.powerly.user.email.login.EmailLoginScreen
 import com.powerly.user.email.password.create.EmailPasswordCreateScreen
@@ -31,13 +31,12 @@ fun NavGraphBuilder.userDestinations(
         loggedIn: Boolean = false,
         openProfile: Boolean = false
     ) {
-        val isLoggedIn = userViewModel.isLoggedIn
         if (loggedIn) {
             userViewModel.cancelRegistrationReminders()
             userViewModel.updateDevice()
         }
         navController.navigate(AppRoutes.Navigation) {
-            if (isLoggedIn) popUpTo(AppRoutes.User) { inclusive = true }
+            if (loggedIn) popUpTo(AppRoutes.User) { inclusive = true }
         }
         if (openProfile) navController.navigate(AppRoutes.Account.Profile)
     }
@@ -139,10 +138,10 @@ fun NavGraphBuilder.userDestinations(
         }
 
         composable<AppRoutes.User.Email.Verification> {
-            val context = LocalContext.current
+            val uriHandler = LocalUriHandler.current
             RegisterVerificationScreen(
                 viewModel = emailViewModel,
-                callSupport = { context.openCall(userViewModel.supportNumber) },
+                callSupport = { uriHandler.openUri(userViewModel.supportNumber) },
                 navigateToHome = {
                     navigateToHome(loggedIn = true)
                 },
@@ -151,8 +150,10 @@ fun NavGraphBuilder.userDestinations(
         }
 
         composable<AppRoutes.User.Email.Country> {
+            LaunchedEffect(Unit) { userViewModel.getCountries() }
             CountriesDialog(
                 onDismiss = { navController.popBackStack() },
+                countriesList = { userViewModel.countries },
                 selectedCountry = { userViewModel.country.value },
                 onSelectCountry = userViewModel::setCountry
             )

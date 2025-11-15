@@ -19,7 +19,7 @@ class HomeViewModel(
     private val deviceHelper: DeviceHelper,
 ) : ViewModel() {
 
-    val isLoggedIn: Boolean get() = userRepository.isLoggedIn
+    suspend fun isLoggedIn() = userRepository.isLoggedIn()
 
     suspend fun getPowerSourceFromDeepLink(intent: Intent): PowerSource? {
         return if (intent.hasExtra(POWER_SOURCE_ID)) {
@@ -31,8 +31,6 @@ class HomeViewModel(
             else null
         } else null
     }
-
-    fun getSupportNumber(): String? = deviceHelper.supportNumber
 
     companion object {
         private const val TAG = "HomeViewModel"

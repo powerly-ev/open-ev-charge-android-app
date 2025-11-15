@@ -1,30 +1,22 @@
 package com.powerly.core.model.api
 
 import com.powerly.core.model.util.Message
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonNames
 
-/**
- * Base class for deserializing json response for api v1
- */
-open class BaseResponse<T> {
-    @SerializedName("success")
-    private val success: Int? = null
-
-    @SerializedName("message", alternate = ["msg"])
-    private val message: String? = null
-
-    @SerializedName(value = "data", alternate = ["results"])
-    private val data: T? = null
-
-    fun getMessage(): Message = Message(
+@Serializable
+open class ApiResponse<T>(
+    @JsonNames("data", "results")  private val data: T? = null,
+    private val success: Int = 0,
+    @JsonNames("message", "msg") private val message: String? = null
+) {
+    val hasData: Boolean get() = this.data != null
+    val isSuccess get() = this.success == 1
+    fun getData() = this.data!!
+    fun getMessage(code: Int? = null): Message = Message(
         msg = message.orEmpty(),
-        type = if (isSuccess) Message.SUCCESS else Message.ERROR
+        type = if (isSuccess) Message.SUCCESS else Message.ERROR,
+        code = code
     )
-
-    val isSuccess: Boolean get() = success == 1
-    val hasData: Boolean get() = isSuccess && data != null
-    val hasOnlyData: Boolean get() = data != null && (success == null || success == 1)
-
-    val getData: T get() = data!!
 }
 

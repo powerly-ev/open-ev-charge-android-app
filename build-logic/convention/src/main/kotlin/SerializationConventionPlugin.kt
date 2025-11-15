@@ -9,7 +9,7 @@ class SerializationConventionPlugin : Plugin<Project> {
         with(target) {
             pluginManager.apply("org.jetbrains.kotlin.plugin.serialization")
             dependencies {
-                add("implementation", libs.findLibrary("kotlinx-serialization").get())
+                add("implementation", libs.findLibrary("serialization-json").get())
             }
         }
     }

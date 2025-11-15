@@ -7,7 +7,7 @@ import com.powerly.core.database.model.CountryEntity
 
 @Database(
     entities = [CountryEntity::class],
-    version = 1,
+    version = 2,
     exportSchema = true,
 )
 abstract class AppDatabase : RoomDatabase() {

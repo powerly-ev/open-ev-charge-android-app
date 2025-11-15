@@ -137,7 +137,7 @@ private fun CardInput(
     var inputWidget by remember { mutableStateOf<CardInputWidget?>(null) }
     var cardComplete by remember { mutableStateOf(false) }
     var cvcComplete by remember { mutableStateOf(false) }
-    var codeComplete by remember { mutableStateOf(false) }
+    var yearComplete by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) {
         cardNumber.collect { card ->
             Log.v(TAG, "cardNumber = $card")
@@ -146,13 +146,11 @@ private fun CardInput(
         }
     }
 
-    LaunchedEffect(
-        cardComplete,
-        cvcComplete,
-        codeComplete
-    ) {
-        if (cardComplete && cvcComplete && codeComplete) {
+    fun cardUpdatedEvent() {
+        if (cardComplete && cvcComplete && yearComplete) {
+            Log.v(TAG, "cardUpdatedEvent")
             inputWidget?.paymentMethodCreateParams?.let {
+                Log.i(TAG, "onFillCard = $it")
                 onFillCard(it)
             }
         } else onFillCard(null)
@@ -167,14 +165,19 @@ private fun CardInput(
                 setCardInputListener(object : CardInputListener {
                     override fun onCardComplete() {
                         cardComplete = true
+                        cardUpdatedEvent()
                     }
 
                     override fun onCvcComplete() {
+                        Log.v(TAG, "onCvcComplete")
                         cvcComplete = true
+                        cardUpdatedEvent()
                     }
 
                     override fun onExpirationComplete() {
-                        codeComplete = true
+                        Log.v(TAG, "onExpirationComplete")
+                        yearComplete = true
+                        cardUpdatedEvent()
                     }
 
                     override fun onFocusChange(focusField: CardInputListener.FocusField) {

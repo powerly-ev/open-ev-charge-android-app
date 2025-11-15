@@ -14,11 +14,11 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import org.koin.core.annotation.Named
 import org.koin.core.annotation.Single
-import retrofit2.HttpException
+import io.ktor.client.plugins.ResponseException
 
 
 @Single
-class PowerSourceRepositoryImpl (
+class PowerSourceRepositoryImpl(
     private val remoteDataSource: RemoteDataSource,
     @Named("IO") private val ioDispatcher: CoroutineDispatcher
 ) : PowerSourceRepository {
@@ -31,21 +31,21 @@ class PowerSourceRepositoryImpl (
             val response = remoteDataSource.getNearPowerSources(latitude, longitude, null)
             if (response.hasData) SourcesStatus.Success(response.data.orEmpty())
             else SourcesStatus.Error(response.getMessage())
-        } catch (e: HttpException) {
+        } catch (e: ResponseException) {
             e.printStackTrace()
-            SourcesStatus.Error(e.asErrorMessage)
+            SourcesStatus.Error(e.asErrorMessage())
         } catch (e: Exception) {
             e.printStackTrace()
-            SourcesStatus.Error(e.asErrorMessage)
+            SourcesStatus.Error(e.asErrorMessage())
         }
     }
 
     override suspend fun getMedia(id: String): List<Media> = withContext(ioDispatcher) {
         try {
             val response = remoteDataSource.getMedia(id)
-            if (response.hasData) response.getData.orEmpty()
+            if (response.hasData) response.getData()
             else emptyList<Media>()
-        } catch (e: HttpException) {
+        } catch (e: ResponseException) {
             e.printStackTrace()
             emptyList<Media>()
         } catch (e: Exception) {
@@ -68,12 +68,12 @@ class PowerSourceRepositoryImpl (
         withContext(ioDispatcher) {
             try {
                 val response = remoteDataSource.getPowerSource(id = id)
-                if (response.hasData) SourceStatus.Success(response.getData!!)
+                if (response.hasData) SourceStatus.Success(response.getData())
                 else SourceStatus.Error(response.getMessage())
-            } catch (e: HttpException) {
-                SourceStatus.Error(e.asErrorMessage)
+            } catch (e: ResponseException) {
+                SourceStatus.Error(e.asErrorMessage())
             } catch (e: Exception) {
-                SourceStatus.Error(e.asErrorMessage)
+                SourceStatus.Error(e.asErrorMessage())
             }
         }
 
@@ -81,13 +81,13 @@ class PowerSourceRepositoryImpl (
     override suspend fun connectors() = withContext(ioDispatcher) {
         try {
             val response = remoteDataSource.vehiclesConnectors()
-            if (response.hasData) ApiStatus.Success(response.getData.orEmpty())
+            if (response.hasData) ApiStatus.Success(response.getData())
             else ApiStatus.Error(response.getMessage())
-        } catch (e: HttpException) {
-            ApiStatus.Error(e.asErrorMessage)
+        } catch (e: ResponseException) {
+            ApiStatus.Error(e.asErrorMessage())
         } catch (e: Exception) {
             e.printStackTrace()
-            ApiStatus.Error(e.asErrorMessage)
+            ApiStatus.Error(e.asErrorMessage())
         }
     }
 
@@ -96,14 +96,14 @@ class PowerSourceRepositoryImpl (
         withContext(ioDispatcher) {
             try {
                 val response = remoteDataSource.powerSourceDetails(identifier)
-                if (response.hasData) SourceStatus.Success(response.getData!!)
+                if (response.hasData) SourceStatus.Success(response.getData())
                 else SourceStatus.Error(response.getMessage())
-            } catch (e: HttpException) {
+            } catch (e: ResponseException) {
                 e.printStackTrace()
-                SourceStatus.Error(e.asErrorMessage)
+                SourceStatus.Error(e.asErrorMessage())
             } catch (e: Exception) {
                 e.printStackTrace()
-                SourceStatus.Error(e.asErrorMessage)
+                SourceStatus.Error(e.asErrorMessage())
             }
         }
 

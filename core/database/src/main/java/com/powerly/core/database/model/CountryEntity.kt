@@ -8,21 +8,18 @@ import com.powerly.core.model.location.Country
 data class CountryEntity(
     @PrimaryKey val id: Int,
     val name: String,
-    val iso: String,
-    val image: String?
+    val iso: String
 )
 
 fun CountryEntity.asCountry() = Country(
     id = id,
     name = name,
-    iso = iso,
-    image = image
+    iso = iso
 )
 
 
 fun Country.asEntity() = CountryEntity(
     id = id,
     name = name,
-    iso = iso,
-    image = image
+    iso = iso
 )
