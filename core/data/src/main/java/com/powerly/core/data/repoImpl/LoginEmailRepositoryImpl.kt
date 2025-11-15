@@ -33,8 +33,6 @@ class LoginEmailRepositoryImpl(
 
     override val userFlow: Flow<User?> = storageManager.userFlow
 
-    override val isLoggedIn: Boolean get() = storageManager.isLoggedIn
-
     override suspend fun emailCheck(email: String) = withContext(ioDispatcher) {
         try {
             val request = EmailCheckBody(email)
@@ -53,7 +51,7 @@ class LoginEmailRepositoryImpl(
         password: String
     ) = withContext(ioDispatcher) {
         try {
-            val imei = storageManager.imei()
+            val imei = storageManager.getUniqueId()
             val body = EmailLoginBody(email, password, imei)
             val response = remoteDataSource.emailLogin(body)
             val responseBody = response.body<ApiResponse<User>>()
@@ -84,7 +82,7 @@ class LoginEmailRepositoryImpl(
                 email = email,
                 password = password,
                 countryId = countryId,
-                deviceImei = storageManager.imei()
+                deviceImei = storageManager.getUniqueId()
             )
             val response = remoteDataSource.emailRegister(body)
             if (response.hasData) ApiStatus.Success(response.getData())

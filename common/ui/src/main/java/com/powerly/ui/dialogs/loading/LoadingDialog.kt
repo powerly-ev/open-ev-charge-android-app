@@ -24,13 +24,15 @@ import com.powerly.ui.theme.AppTheme
 @Composable
 fun LoadingScreenPreview() {
     val state = rememberLoadingState(visible = true)
-    Scaffold {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(it)
-        ) {
-            LoadingDialog(state = state)
+    AppTheme() {
+        Scaffold {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(it)
+            ) {
+                LoadingDialog(state = state)
+            }
         }
     }
 }
@@ -45,29 +47,27 @@ fun LoadingDialog(
     dismissOnClickOutside: Boolean = false
 ) {
     if (state.isVisible) {
-        AppTheme {
-            Popup(
-                alignment = Alignment.Center,
-                properties = PopupProperties(
-                    focusable = true,
-                    dismissOnBackPress = dismissOnBackPress,
-                    dismissOnClickOutside = dismissOnClickOutside,
-                    usePlatformDefaultWidth = false
-                )
+        Popup(
+            alignment = Alignment.Center,
+            properties = PopupProperties(
+                focusable = true,
+                dismissOnBackPress = dismissOnBackPress,
+                dismissOnClickOutside = dismissOnClickOutside,
+                usePlatformDefaultWidth = false
+            )
+        ) {
+            Surface(
+                color = Color.Transparent,
+                modifier = Modifier.fillMaxSize()
             ) {
-                Surface(
-                    color = Color.Transparent,
-                    modifier = Modifier.fillMaxSize()
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center,
                 ) {
-                    Box(
-                        modifier = Modifier.fillMaxSize(),
-                        contentAlignment = Alignment.Center,
-                    ) {
-                        CircularProgressIndicator(
-                            modifier = Modifier.size(dialogSize),
-                            color = MaterialTheme.colorScheme.secondary,
-                        )
-                    }
+                    CircularProgressIndicator(
+                        modifier = Modifier.size(dialogSize),
+                        color = MaterialTheme.colorScheme.secondary,
+                    )
                 }
             }
         }

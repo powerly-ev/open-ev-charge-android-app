@@ -150,6 +150,8 @@ dependencies {
     implementation(projects.feature.vehicles)
 
     //--------- core
+    implementation(libs.activity.ktx)
+    implementation(libs.lifecycle.viewmodel.ktx)
     coreLibraryDesugaring(libs.desugar.jdk.libs)
     implementation(libs.multidex)
 

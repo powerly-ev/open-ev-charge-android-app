@@ -65,7 +65,7 @@ class PsViewModel(
             if (result is SourceStatus.Success) {
                 val powerSource = result.powerSource
                 powerSource.apply {
-                    this.currency = appRepository.getCurrency()
+                    this.currency = userRepository.getCurrency()
                     this.distance(latitude, longitude)
                 }
                 this@PsViewModel.powerSource = powerSource
@@ -85,7 +85,7 @@ class PsViewModel(
         ).cachedIn(viewModelScope)
 
 
-    fun showOnBoardingOnce() = appRepository.showOnBoardingOnce()
+    suspend fun showOnBoardingOnce() = appRepository.showOnBoardingOnce()
 
     fun navigateToMap(latitude: Double, longitude: Double) {
         locationManager.navigateToMap(latitude, longitude)

@@ -32,8 +32,22 @@ class UserRepositoryImpl(
     @Named("IO") private val ioDispatcher: CoroutineDispatcher
 ) : UserRepository {
     override val userFlow: Flow<User?> = storageManager.userFlow
+    override val currencyFlow: Flow<String> = storageManager.currencyFlow
+    override val languageFlow = storageManager.languageFlow
 
-    override val isLoggedIn: Boolean get() = storageManager.isLoggedIn
+    override val loggedInFlow = storageManager.loggedInFlow
+
+    override suspend fun isLoggedIn(): Boolean {
+        return storageManager.isLoggedIn()
+    }
+
+    override suspend fun getCurrency(): String {
+        return storageManager.getCurrency()
+    }
+
+    override suspend fun getLanguage(): String {
+        return storageManager.getCurrentLanguage()
+    }
 
     override suspend fun updateUserDetails(
         request: UserUpdateBody
@@ -42,9 +56,9 @@ class UserRepositoryImpl(
             val response = remoteDataSource.updateUser(request)
             if (response.hasData) {
                 val user = response.getData()
-                storageManager.userDetails = user
+                storageManager.saveUser(user)
                 if (request.currency != null) {
-                    storageManager.pinUserCurrency = true
+                    storageManager.setPinUserCurrency(true)
                 }
                 ApiStatus.Success(user)
             } else ApiStatus.Error(response.getMessage())
@@ -77,7 +91,7 @@ class UserRepositoryImpl(
             Log.v("UserRepository", response.toString())
             if (response.hasData) {
                 val user = response.getData()
-                storageManager.userDetails = user
+                storageManager.saveUser(user)
                 ApiStatus.Success(user)
             } else ApiStatus.Error(response.getMessage())
         } catch (e: ResponseException) {
@@ -111,13 +125,13 @@ class UserRepositoryImpl(
 
     override suspend fun logout() = withContext(ioDispatcher) {
         try {
-            val imei = storageManager.imei()
+            val imei = storageManager.getUniqueId()
             val request = LogoutBody(imei)
             val response = remoteDataSource.authLogout(request)
             if (response.isSuccessful) {
                 _logoutEvent.emit(true)
                 storageManager.clearLoginData()
-                storageManager.showRegisterNotification = true
+                storageManager.setShowRegisterNotification(true)
                 ApiStatus.Success(true)
             } else ApiStatus.Error(response.asErrorMessage())
         } catch (e: ResponseException) {
@@ -133,7 +147,7 @@ class UserRepositoryImpl(
             val response = remoteDataSource.deleteUser()
             if (response.isSuccessful) {
                 storageManager.clearLoginData()
-                storageManager.showRegisterNotification = true
+                storageManager.setShowRegisterNotification(true)
                 ApiStatus.Success(true)
             } else ApiStatus.Error(response.asErrorMessage())
         } catch (e: ResponseException) {

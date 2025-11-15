@@ -36,7 +36,7 @@ class SplashViewModel(
             }
 
             is ApiStatus.Success -> {
-                return if (userRepository.isLoggedIn) getUserDetails()
+                return if (userRepository.isLoggedIn()) getUserDetails()
                 else SplashAction.OpenWelcomeScreen
             }
 

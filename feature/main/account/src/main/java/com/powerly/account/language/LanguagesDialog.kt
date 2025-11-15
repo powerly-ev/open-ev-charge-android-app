@@ -1,13 +1,14 @@
 package com.powerly.account.language
 
-import androidx.activity.compose.LocalActivity
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import org.koin.androidx.compose.koinViewModel
 import com.powerly.ui.dialogs.languages.LanguagesDialogContent
 import com.powerly.ui.dialogs.loading.LoadingDialog
 import kotlinx.coroutines.launch
+import org.koin.androidx.compose.koinViewModel
 
 /**
  * Displays a dialog allowing the user to change the app's language.
@@ -20,11 +21,9 @@ internal fun LanguagesDialog(
     viewModel: LanguagesViewModel = koinViewModel(),
     onDismiss: () -> Unit
 ) {
-    val activity = LocalActivity.current!!
     val coroutineScope = rememberCoroutineScope()
     val screenState = remember { viewModel.screenState }
-    val selectedLanguage = remember { viewModel.selectedLanguage }
-
+    val selectedLanguage by viewModel.language.collectAsState("en")
 
     LoadingDialog(state = screenState.loadingState!!)
 
@@ -33,11 +32,7 @@ internal fun LanguagesDialog(
         onSelect = { newLang ->
             if (newLang == selectedLanguage) onDismiss()
             else coroutineScope.launch {
-                viewModel.updateAppLanguage(
-                    activity = activity,
-                    lang = newLang,
-                    onDismiss = onDismiss
-                )
+                viewModel.updateAppLanguage(lang = newLang, onDismiss = onDismiss)
             }
         },
         onDismiss = onDismiss

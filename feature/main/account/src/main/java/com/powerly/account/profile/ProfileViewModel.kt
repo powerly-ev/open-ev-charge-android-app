@@ -127,7 +127,7 @@ class ProfileViewModel(
      */
     suspend fun logout(): Boolean {
         Log.i(TAG, "logout")
-        if (userRepository.isLoggedIn) {
+        if (userRepository.isLoggedIn()) {
             screenState.loading = true
             val it = userRepository.logout()
             screenState.loading = false

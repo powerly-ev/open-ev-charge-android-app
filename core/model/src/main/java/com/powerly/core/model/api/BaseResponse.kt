@@ -6,7 +6,7 @@ import kotlinx.serialization.json.JsonNames
 
 @Serializable
 open class ApiResponse<T>(
-    private val data: T? = null,
+    @JsonNames("data", "results")  private val data: T? = null,
     private val success: Int = 0,
     @JsonNames("message", "msg") private val message: String? = null
 ) {

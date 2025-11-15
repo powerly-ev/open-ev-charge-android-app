@@ -26,25 +26,17 @@ class AppRepositoryImpl(
     @Named("IO") private val ioDispatcher: CoroutineDispatcher
 ) : AppRepository {
 
-    override fun showOnBoardingOnce(): Boolean {
-        val show = storageManager.showOnBoarding
-        if (show) storageManager.showOnBoarding = false
+    override suspend fun showOnBoardingOnce(): Boolean {
+        val show = storageManager.shouldShowOnBoarding()
+        if (show) storageManager.setShowOnBoarding(false)
         return show
     }
 
-    override fun showRegisterNotification(): Boolean {
-        return if (storageManager.showRegisterNotification) {
-            storageManager.showRegisterNotification = false
+    override suspend fun showRegisterNotification(): Boolean {
+        return if (storageManager.shouldShowRegisterNotification()) {
+            storageManager.setShowRegisterNotification(false)
             true
         } else false
-    }
-
-    override fun getLanguage(): String {
-        return storageManager.currentLanguage
-    }
-
-    override fun getCurrency(): String {
-        return storageManager.currency
     }
 
     override suspend fun updateCountries() = withContext(ioDispatcher) {
@@ -90,7 +82,7 @@ class AppRepositoryImpl(
     }
 
     override suspend fun getUserCountry(): Country? {
-        val countryId = storageManager.countryId ?: return null
+        val countryId = storageManager.getCountryId() ?: return null
         return getCountryById(countryId)
     }
 
@@ -121,9 +113,9 @@ class AppRepositoryImpl(
     override suspend fun updateDevice(language: String?) = withContext(ioDispatcher) {
         try {
             val body = DeviceBody(
-                lang = language ?: storageManager.currentLanguage,
-                deviceImei = storageManager.imei(),
-                deviceToken = storageManager.messagingToken.ifEmpty { null },
+                lang = language ?: storageManager.getCurrentLanguage(),
+                deviceImei = storageManager.getUniqueId(),
+                deviceToken = storageManager.getMessagingToken().ifEmpty { null },
                 appVersion = deviceHelper.appVersion,
                 deviceModel = deviceHelper.deviceModel,
                 deviceVersion = deviceHelper.deviceVersion,
@@ -142,30 +134,40 @@ class AppRepositoryImpl(
     }
 
     override suspend fun updateAppLanguage(language: String) = withContext(ioDispatcher) {
+        val oldLanguage = storageManager.getCurrentLanguage()
         try {
-            val oldLanguage = storageManager.currentLanguage
-            storageManager.currentLanguage = language
+            storageManager.setCurrentLanguage(language)
             val status = updateDevice(language)
             //if (status !is ApiStatus.Success) { }
             val userResponse = remoteDataSource.getUser()
             if (userResponse.hasData) {
                 val user = userResponse.getData()
-                storageManager.userDetails = user
-                storageManager.currency = user.currency
+                storageManager.saveUser(user)
                 storageManager.clearCountry()
                 ApiStatus.Success(true)
             } else {
-                storageManager.currentLanguage = oldLanguage
+                storageManager.setCurrentLanguage(oldLanguage)
                 ApiStatus.Error(userResponse.getMessage())
             }
         } catch (e: ResponseException) {
             e.printStackTrace()
+            storageManager.setCurrentLanguage(oldLanguage)
             ApiStatus.Error(e.asErrorMessage())
         } catch (e: Exception) {
+            storageManager.setCurrentLanguage(oldLanguage)
             e.printStackTrace()
             ApiStatus.Error(e.asErrorMessage())
         }
     }
 
+    override suspend fun setLanguage(language: String) {
+        storageManager.setCurrentLanguage(language)
+    }
+
+    override suspend fun getLanguage(): String {
+        return storageManager.getCurrentLanguage()
+    }
+
+    override val languageFlow = storageManager.languageFlow
 
 }

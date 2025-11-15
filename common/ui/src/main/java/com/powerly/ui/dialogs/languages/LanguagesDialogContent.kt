@@ -55,7 +55,7 @@ fun LanguagesDialogContent(
 ) {
     val languages = stringArrayResource(R.array.available_languages)
     val codes = stringArrayResource(R.array.available_language_codes)
-    var selected by remember { mutableStateOf(selectedLanguage) }
+    var selected by remember(selectedLanguage) { mutableStateOf(selectedLanguage) }
 
     MyBottomSheet(
         state = state,

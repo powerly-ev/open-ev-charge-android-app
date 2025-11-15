@@ -25,7 +25,6 @@ class UserViewModel(
 ) : ViewModel() {
 
     val country = mutableStateOf<Country?>(null)
-    val isLoggedIn: Boolean get() = userRepository.isLoggedIn
     val countries = mutableStateListOf<Country>()
 
     fun getCountries() {
@@ -55,13 +54,17 @@ class UserViewModel(
 
 
     fun cancelRegistrationReminders() {
-        if (userRepository.isLoggedIn)
-            reminderManager.cancelRegistrationReminders()
+        viewModelScope.launch {
+            if (userRepository.isLoggedIn())
+                reminderManager.cancelRegistrationReminders()
+        }
     }
 
     fun initRegistrationReminders() {
-        if (appRepository.showRegisterNotification()) {
-            reminderManager.initRegistrationReminders()
+        viewModelScope.launch {
+            if (appRepository.showRegisterNotification()) {
+                reminderManager.initRegistrationReminders()
+            }
         }
     }
 

@@ -1,19 +1,18 @@
 package com.powerly.splash
 
-import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import com.powerly.lib.AppRoutes
 import com.powerly.splash.update.UpdateAppDialog
-import com.powerly.ui.extensions.finish
+import com.powerly.ui.theme.LocalMainActivity
 
 fun NavGraphBuilder.splashDestinations(
     navController: NavHostController
 ) {
     composable<AppRoutes.Splash> {
-        val context = LocalContext.current
+        val activity = LocalMainActivity.current
         SplashScreen(
             openWelcomeScreen = {
                 navController.navigate(AppRoutes.User.Welcome) {
@@ -30,7 +29,7 @@ fun NavGraphBuilder.splashDestinations(
                 }
             },
             openAppUpdate = { navController.navigate(AppRoutes.Splash.UpdateApp) },
-            onClose = { context.finish() }
+            onClose = { activity?.finish() }
         )
     }
 

@@ -2,6 +2,7 @@ package com.powerly.payment.balance.withdraw
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -36,9 +37,9 @@ internal fun WithdrawScreen(
     val paymentDialog = rememberAlertDialogState()
     val screenState = remember { viewModel.screenState }
     val wallets = remember { viewModel.wallets }
-    val currency = remember { viewModel.currency }
+    val currency by viewModel.currency.collectAsState(initial = "en")
     var webViewPage by remember { mutableStateOf<WebViewPage?>(null) }
-    var webViewDialog = rememberMyDialogState()
+    val webViewDialog = rememberMyDialogState()
 
     // Fetch the list of wallets when the screen is launched.
     LaunchedEffect(Unit) {

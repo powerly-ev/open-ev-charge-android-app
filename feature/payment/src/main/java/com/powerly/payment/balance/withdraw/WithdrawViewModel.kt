@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.powerly.core.data.repositories.AppRepository
 import com.powerly.core.data.repositories.PaymentRepository
+import com.powerly.core.data.repositories.UserRepository
 import com.powerly.core.model.api.ApiStatus
 import com.powerly.core.model.payment.Wallet
 import com.powerly.ui.dialogs.loading.LoadingState
@@ -14,21 +15,19 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import org.koin.android.annotation.KoinViewModel
 
-
 @KoinViewModel
 class WithdrawViewModel(
     private val paymentRepository: PaymentRepository,
-    private val appRepository: AppRepository,
+    private val userRepository: UserRepository
 ) : ViewModel() {
     val screenState = initBasicScreenState(LoadingState(), MessageState())
     val wallets = mutableStateListOf<Wallet>()
-    val currency: String get() = appRepository.getCurrency()
+    val currency = userRepository.currencyFlow
 
     fun loadWallets() {
         viewModelScope.launch {
             screenState.loading = true
-            val it = paymentRepository.walletList()
-            when (it) {
+            when (val it = paymentRepository.walletList()) {
                 is ApiStatus.Error -> screenState.showMessage(it.msg)
                 is ApiStatus.Success -> wallets.addAll(it.data)
                 else -> {}

@@ -18,20 +18,21 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.powerly.ui.HomeUiState
 import com.powerly.resources.R
+import com.powerly.ui.HomeUiState
 import com.powerly.ui.components.ButtonSmall
-import com.powerly.ui.containers.MyColumn
 import com.powerly.ui.components.MyIcon
-import com.powerly.ui.containers.MyRow
-import com.powerly.ui.screen.MyScreen
 import com.powerly.ui.components.SectionBalance
+import com.powerly.ui.containers.MyColumn
+import com.powerly.ui.containers.MyRow
 import com.powerly.ui.extensions.isArabic
+import com.powerly.ui.screen.MyScreen
 import com.powerly.ui.theme.AppTheme
 import com.powerly.ui.theme.MyColors
 
@@ -53,11 +54,19 @@ internal fun AccountScreenContent(
     uiState: HomeUiState,
     uiEvents: (AccountEvents) -> Unit
 ) {
+    val context = LocalContext.current
     val isLoggedIn by remember { uiState.isLoggedIn }
     val userName by remember { uiState.userName }
     val balance by remember { uiState.balance }
     val currency by remember { uiState.currency }
-    val language by remember { uiState.languageName }
+    val code = uiState.languageCode.value
+    val languageName = remember(code) {
+        val localeMap: HashMap<String, String> = HashMap()
+        val names = context.resources.getStringArray(R.array.available_languages)
+        val codes = context.resources.getStringArray(R.array.available_language_codes)
+        for (i in names.indices) localeMap[codes[i]] = names[i]
+        localeMap[code].orEmpty()
+    }
     val appVersion = remember { uiState.appVersion }
 
     MyScreen(
@@ -99,7 +108,7 @@ internal fun AccountScreenContent(
         SectionTab(
             icon = R.drawable.ic_sd_language,
             title = R.string.language,
-            actionButton = language,
+            actionButton = languageName,
             onClick = { uiEvents(AccountEvents.LanguageDialog) }
         )
 

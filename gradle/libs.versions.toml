@@ -10,6 +10,7 @@ koinAnnotations = "2.3.1"
 firebaseCrashlytics = "3.0.6"
 ktorClient = "3.3.2"
 room = "2.8.3"
+datastore = "1.1.7"
 secretsPlugin = "2.0.1"
 # Dependency versions
 ## Android Core
@@ -49,6 +50,7 @@ stripeCardScanner = "21.29.2"
 zxingCore = "3.5.3"
 zxingAndroidembedded = "4.3.0"
 customQrGeneratorVersion = "1.6.2"
+pusherClient = "2.4.4"
 ## Test
 espressoCoreVersion = "3.7.0"
 mockitoCore = "5.20.0"
@@ -119,6 +121,9 @@ ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "k
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktorClient" }
 ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktorClient" }
 
+# Data store
+androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
+androidx-datastore-core = { module = "androidx.datastore:datastore-core", version.ref = "datastore" }
 # Room database
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
@@ -131,6 +136,7 @@ custom-qr-generator = { module = "com.github.alexzhirkevich:custom-qr-generator"
 lottie-compose = { module = "com.airbnb.android:lottie-compose", version.ref = "lottie" }
 stripe-android = { module = "com.stripe:stripe-android", version.ref = "stripeAndroid" }
 stripe-card-scan = { module = "com.stripe:stripecardscan", version.ref = "stripeCardScanner" }
+pusher-client = { module = "com.pusher:pusher-java-client", version.ref = "pusherClient" }
 
 #koin
 koin-bom = { group = "io.insert-koin", name = "koin-bom", version.ref = "koin" }

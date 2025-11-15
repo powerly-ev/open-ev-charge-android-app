@@ -7,13 +7,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalUriHandler
 import com.powerly.core.data.model.SourceStatus
 import com.powerly.core.model.powerly.PowerSource
 import com.powerly.powerSource.PsViewModel
 import com.powerly.ui.HomeUiState
 import com.powerly.ui.dialogs.loading.rememberScreenState
-import com.powerly.ui.extensions.openCall
 
 private const val TAG = "PowerSourceScreen"
 
@@ -32,7 +31,7 @@ fun PowerSourceScreen(
     viewModel: PsViewModel,
     onNavigate: (SourceEvents) -> Unit
 ) {
-    val context = LocalContext.current
+    val uriHandler = LocalUriHandler.current
     val screenState = rememberScreenState()
     val userLocation = remember { viewModel.userLocation() }
     var powerSource by remember { mutableStateOf<PowerSource?>(null) }
@@ -78,7 +77,7 @@ fun PowerSourceScreen(
         uiEvents = { event ->
             when (event) {
                 is SourceEvents.CAll -> {
-                    context.openCall(event.contact)
+                    uriHandler.openUri(event.contact.orEmpty())
                 }
 
                 is SourceEvents.DriveToStation -> {

@@ -21,7 +21,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
-import com.powerly.ui.theme.AppTheme
 import kotlinx.coroutines.launch
 
 /**
@@ -111,43 +110,41 @@ fun MyAlertDialog(
                 dragHandle = { if (properties.showDrag) BottomSheetDefaults.DragHandle() },
                 scrimColor = BottomSheetDefaults.ScrimColor
             ) {
-                AppTheme {
-                    Box(modifier = Modifier.padding(0.dp)) {
-                        AlertDialogContent(
-                            title = title ?: state.title.value,
-                            showClose = properties.showClose,
-                            showDrag = properties.showDrag,
-                            onClose = {
-                                hideDialog()
-                                scope.launch { sheetState.hide() }.invokeOnCompletion {
-                                    closeButtonClick?.invoke()
-                                }
-                            },
-                            icon = icon,
-                            message = message ?: state.message.value,
-                            spannedMessage = spannedMessage,
-                            messageAlign = if (properties.messageJustify) TextAlign.Justify else properties.messageAlign,
-                            subMessage = subMessage,
-                            subSpannedMessage = spannedSubMessage,
-                            subMessageAlign = properties.subMessageAlign,
-                            positiveButtonTitle = positiveButton,
-                            hasPositiveButton = positiveButton != null || positiveButtonClick != null,
-                            positiveButtonCallback = {
-                                hideDialog()
-                                scope.launch { sheetState.hide() }.invokeOnCompletion {
-                                    positiveButtonClick?.invoke()
-                                }
-                            },
-                            negativeButtonTitle = negativeButton,
-                            hasNegativeButton = negativeButton != null || negativeButtonClick != null,
-                            negativeButtonCallback = {
-                                hideDialog()
-                                scope.launch { sheetState.hide() }.invokeOnCompletion {
-                                    negativeButtonClick?.invoke()
-                                }
+                Box(modifier = Modifier.padding(0.dp)) {
+                    AlertDialogContent(
+                        title = title ?: state.title.value,
+                        showClose = properties.showClose,
+                        showDrag = properties.showDrag,
+                        onClose = {
+                            hideDialog()
+                            scope.launch { sheetState.hide() }.invokeOnCompletion {
+                                closeButtonClick?.invoke()
                             }
-                        )
-                    }
+                        },
+                        icon = icon,
+                        message = message ?: state.message.value,
+                        spannedMessage = spannedMessage,
+                        messageAlign = if (properties.messageJustify) TextAlign.Justify else properties.messageAlign,
+                        subMessage = subMessage,
+                        subSpannedMessage = spannedSubMessage,
+                        subMessageAlign = properties.subMessageAlign,
+                        positiveButtonTitle = positiveButton,
+                        hasPositiveButton = positiveButton != null || positiveButtonClick != null,
+                        positiveButtonCallback = {
+                            hideDialog()
+                            scope.launch { sheetState.hide() }.invokeOnCompletion {
+                                positiveButtonClick?.invoke()
+                            }
+                        },
+                        negativeButtonTitle = negativeButton,
+                        hasNegativeButton = negativeButton != null || negativeButtonClick != null,
+                        negativeButtonCallback = {
+                            hideDialog()
+                            scope.launch { sheetState.hide() }.invokeOnCompletion {
+                                negativeButtonClick?.invoke()
+                            }
+                        }
+                    )
                 }
             }
         }
@@ -170,37 +167,35 @@ fun MyAlertDialog(
                     .fillMaxWidth(),
                 properties = dialogProperties
             ) {
-                AppTheme {
-                    Box {
-                        AlertDialogContent(
-                            title = title ?: state.title.value,
-                            showClose = properties.showClose,
-                            showDrag = false,
-                            onClose = {
-                                hideDialog()
-                                closeButtonClick?.invoke()
-                            },
-                            icon = icon,
-                            message = message ?: state.message.value,
-                            spannedMessage = spannedMessage,
-                            messageAlign = if (properties.messageJustify) TextAlign.Justify else properties.messageAlign,
-                            subMessage = subMessage,
-                            subSpannedMessage = spannedSubMessage,
-                            subMessageAlign = properties.subMessageAlign,
-                            positiveButtonTitle = positiveButton,
-                            hasPositiveButton = positiveButton != null || positiveButtonClick != null,
-                            positiveButtonCallback = {
-                                hideDialog()
-                                positiveButtonClick?.invoke()
-                            },
-                            hasNegativeButton = negativeButton != null || negativeButtonClick != null,
-                            negativeButtonTitle = negativeButton,
-                            negativeButtonCallback = {
-                                hideDialog()
-                                negativeButtonClick?.invoke()
-                            }
-                        )
-                    }
+                Box {
+                    AlertDialogContent(
+                        title = title ?: state.title.value,
+                        showClose = properties.showClose,
+                        showDrag = false,
+                        onClose = {
+                            hideDialog()
+                            closeButtonClick?.invoke()
+                        },
+                        icon = icon,
+                        message = message ?: state.message.value,
+                        spannedMessage = spannedMessage,
+                        messageAlign = if (properties.messageJustify) TextAlign.Justify else properties.messageAlign,
+                        subMessage = subMessage,
+                        subSpannedMessage = spannedSubMessage,
+                        subMessageAlign = properties.subMessageAlign,
+                        positiveButtonTitle = positiveButton,
+                        hasPositiveButton = positiveButton != null || positiveButtonClick != null,
+                        positiveButtonCallback = {
+                            hideDialog()
+                            positiveButtonClick?.invoke()
+                        },
+                        hasNegativeButton = negativeButton != null || negativeButtonClick != null,
+                        negativeButtonTitle = negativeButton,
+                        negativeButtonCallback = {
+                            hideDialog()
+                            negativeButtonClick?.invoke()
+                        }
+                    )
                 }
             }
         }

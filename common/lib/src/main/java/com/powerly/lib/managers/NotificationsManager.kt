@@ -107,9 +107,9 @@ class NotificationsManager(
     suspend fun saveToken(token: String) {
         Log.i(TAG, "saveMessagingToken - $token")
         // store token locally
-        storageManager.messagingToken = token
+        storageManager.setMessagingToken(token)
         // update token at server
-        if (storageManager.isLoggedIn) {
+        if (storageManager.isLoggedIn()) {
             appRepository.updateDevice()
         }
     }
@@ -121,7 +121,7 @@ class NotificationsManager(
 
     suspend fun getToken(): String {
         val token = MessagingService.getToken()
-        storageManager.messagingToken = token
+        storageManager.setMessagingToken(token)
         return token
     }
 }

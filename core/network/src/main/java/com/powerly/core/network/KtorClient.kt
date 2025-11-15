@@ -84,11 +84,11 @@ class KtorClient(
         }
 
         client.sendPipeline.intercept(HttpSendPipeline.State) {
-            val userToken = storageManager.userToken
+            val userToken = storageManager.getUserToken()
             if (userToken.isNotEmpty()) {
                 context.headers.append("Authorization", "Bearer $userToken")
             }
-            val defaultLocale = storageManager.currentLanguage
+            val defaultLocale = storageManager.getCurrentLanguage()
             val apiSupportedLocales = listOf("en", "ar", "es", "fr")
             val acceptLanguage = if (apiSupportedLocales.contains(defaultLocale)) defaultLocale
             else "en"

@@ -1,7 +1,5 @@
 package com.powerly.orders
 
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
@@ -12,6 +10,7 @@ import com.powerly.orders.active.SessionActiveScreen
 import com.powerly.orders.history.SessionHistoryScreen
 import com.powerly.resources.R
 import com.powerly.ui.dialogs.loading.rememberScreenState
+import com.powerly.ui.theme.LocalMainActivity
 import org.koin.androidx.compose.koinViewModel
 
 private const val TAG = "OrdersScreen"
@@ -45,7 +44,7 @@ fun OrdersScreen(
     openPowerSource: (String) -> Unit,
     openOrderDetails: (Session) -> Unit
 ) {
-    val activity = LocalActivity.current as ComponentActivity
+    val activity = LocalMainActivity.current!!
     val chargerViewModel: ChargerViewModel = koinViewModel(viewModelStoreOwner = activity)
     val screenState = rememberScreenState()
 
