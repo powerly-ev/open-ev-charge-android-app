@@ -36,8 +36,10 @@ class DeviceHelper(private val context: Context) {
     val deviceModel: String get() = deviceModel()
     val deviceType: Int = 1
     val buildType: String get() = BuildConfig.BUILD_TYPE
-    val apiKey = BuildConfig.API_API_KEY
+    val apiKey = BuildConfig.API_KEY
     val apiBaseUrl = BuildConfig.API_BASE_URL
+    val pusherHost = BuildConfig.PUSHER_HOST
+    val pusherKey = BuildConfig.PUSHER_APP_KEY
     val privacyPolicyUrl = BuildConfig.PRIVACY_POLICY_URL
     val termsAndConditionsUrl = BuildConfig.TERMS_AND_CONDITIONS_URL
     val supportNumber = BuildConfig.SUPPORT_NUMBER

@@ -1,8 +1,6 @@
 package com.powerly.main
 
 import android.util.Log
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.LocalActivity
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.core.LinearEasing
@@ -21,7 +19,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -44,11 +41,10 @@ import com.powerly.orders.history.details.DeliveredOrderScreen
 import com.powerly.resources.R
 import com.powerly.scan.ScannerScreen
 import com.powerly.ui.HomeUiState
-import com.powerly.ui.extensions.intent
+import com.powerly.ui.theme.LocalMainActivity
 import com.powerly.ui.util.rememberActivityResultState
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import org.koin.compose.viewmodel.koinActivityViewModel
 import org.koin.compose.viewmodel.koinViewModel
 
 private const val TAG = "HomeGraph"
@@ -62,9 +58,10 @@ fun HomeGraph(
     innerNavController: NavHostController,
 ) {
     val context = LocalContext.current
-    val activity = LocalActivity.current as ComponentActivity
+    val activity = LocalMainActivity.current!!
     val uriHandler = LocalUriHandler.current
     val coroutineScope = rememberCoroutineScope()
+    //val navBackStackEntry = rootNavController.getBackStackEntry(route = AppRoutes.Navigation)
     val mapViewModel: MyMapViewModel = koinViewModel(viewModelStoreOwner = activity)
     val homeViewModel: HomeViewModel = koinViewModel(viewModelStoreOwner = activity)
     var doOnce by rememberSaveable { mutableStateOf(true) }
@@ -97,14 +94,10 @@ fun HomeGraph(
         }
     }
 
-    fun openSupport() {
-        uriHandler.openUri(context.getString(R.string.community_link))
-    }
-
     // open a power source passed in a deep link
     LaunchedEffect(Unit) {
-        if (homeViewModel.isLoggedIn.not()) return@LaunchedEffect
-        val powerSource = homeViewModel.getPowerSourceFromDeepLink(context.intent)
+        if (homeViewModel.isLoggedIn().not()) return@LaunchedEffect
+        val powerSource = homeViewModel.getPowerSourceFromDeepLink(activity.intent)
         if (powerSource != null) {
             rootNavController.navigate(NavigationEvents.SourceDetails(powerSource))
         }
@@ -118,6 +111,19 @@ fun HomeGraph(
             }
         }
     }
+
+    LaunchedEffect(Unit) {
+        sessionsViewModel.sessionCompletionFlow.collect { session ->
+            Log.v(TAG, "sessionCompletionFlow - ${session.id}")
+            sessionFeedBack(session)
+        }
+    }
+
+
+    fun openSupport() {
+        uriHandler.openUri(context.getString(R.string.community_link))
+    }
+
 
     NavHost(
         innerNavController,

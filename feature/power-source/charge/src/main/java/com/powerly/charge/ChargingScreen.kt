@@ -77,6 +77,7 @@ fun ChargingScreen(
     LifecycleResumeEffect(LocalLifecycleOwner) {
         coroutineScope.launch {
             viewModel.startCharging()
+            viewModel.initSocketEvent()
         }
         onPauseOrDispose {
             viewModel.release()
