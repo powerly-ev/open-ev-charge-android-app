@@ -27,14 +27,6 @@ class UserViewModel(
     val country = mutableStateOf<Country?>(null)
     val countries = mutableStateListOf<Country>()
 
-    fun getCountries() {
-        viewModelScope.launch {
-            countries.clear()
-            countries.addAll(appRepository.getCountriesList())
-            Log.v(TAG, "getCountries - ${countries.size}")
-        }
-    }
-
     fun setCountry(country: Country) {
         this.country.value = country
     }
@@ -47,8 +39,11 @@ class UserViewModel(
 
     fun detectCountry() {
         viewModelScope.launch {
-            country.value = countryManager.detectActualCountry()
-            Log.v("UserViewModel", "country - ${country.value}")
+            countries.clear()
+            countries.addAll(appRepository.getCountriesList())
+            Log.v(TAG, "getCountries - ${countries.size}")
+            country.value = countryManager.detectCountry()
+            Log.v(TAG, "country - ${country.value}")
         }
     }
 

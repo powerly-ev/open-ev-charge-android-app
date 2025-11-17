@@ -12,7 +12,6 @@ import com.powerly.core.model.location.Country
 import com.powerly.core.model.user.User
 import com.powerly.core.model.user.UserUpdateBody
 import com.powerly.core.network.DeviceHelper
-import com.powerly.lib.managers.CountryManager
 import com.powerly.lib.managers.NotificationsManager
 import com.powerly.ui.dialogs.loading.initScreenState
 import org.koin.android.annotation.KoinViewModel
@@ -28,7 +27,6 @@ class ProfileViewModel(
     private val userRepository: UserRepository,
     private val appRepository: AppRepository,
     private val deviceHelper: DeviceHelper,
-    private val countryManager: CountryManager,
     private val notificationsManager: NotificationsManager,
 ) : ViewModel() {
     val userCountry = mutableStateOf(Country(1))
@@ -39,7 +37,7 @@ class ProfileViewModel(
     init {
         viewModelScope.launch {
             countries = appRepository.getCountriesList()
-            countryManager.getSavedCountry()?.let { userCountry.value = it }
+            appRepository.getUserCountry()?.let { userCountry.value = it }
             Log.v(TAG, "userCountry = ${userCountry.value.name}")
         }
     }

@@ -6,6 +6,7 @@ import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -30,7 +31,9 @@ class MainActivity : ComponentActivity() {
             AppTheme(language = language) {
                 RootGraph(
                     startDestination = intent.getMainDestination(),
-                    modifier = Modifier.systemBarsPadding(),
+                    modifier = Modifier
+                        .systemBarsPadding()
+                        .imePadding(),
                 )
             }
         }

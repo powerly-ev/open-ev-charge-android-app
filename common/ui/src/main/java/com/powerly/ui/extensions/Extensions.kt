@@ -6,12 +6,16 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.platform.UriHandler
 import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.unit.Dp
+import com.powerly.core.model.util.Message
+import com.powerly.core.network.asErrorMessage
 import com.powerly.ui.theme.MyColors
 
 @Composable
 fun isArabic(): Boolean = Locale.current.language.contains("ar")
+
 @Composable
 fun isPreview(): Boolean = LocalInspectionMode.current
 fun isArabic2(): Boolean = java.util.Locale.getDefault().language.contains("ar")
@@ -32,3 +36,14 @@ val Dp.asPadding: PaddingValues get() = PaddingValues(this)
 val Dp.asBorder: BorderStroke get() = BorderStroke(this, MyColors.borderColor)
 
 
+fun UriHandler.openUriSafely(
+    uri: String,
+    onError: ((Message) -> Unit)? = null
+) {
+    try {
+        this.openUri(uri)
+    } catch (e: Exception) {
+        onError?.invoke(e.asErrorMessage())
+        e.printStackTrace()
+    }
+}

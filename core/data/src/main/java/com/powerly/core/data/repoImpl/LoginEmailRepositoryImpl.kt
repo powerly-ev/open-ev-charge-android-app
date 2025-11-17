@@ -2,7 +2,6 @@ package com.powerly.core.data.repoImpl
 
 import com.powerly.core.data.repositories.LoginEmailRepository
 import com.powerly.core.database.StorageManager
-import com.powerly.core.model.api.ApiErrorConstants
 import com.powerly.core.model.api.ApiResponse
 import com.powerly.core.model.api.ApiStatus
 import com.powerly.core.model.user.EmailCheckBody
@@ -12,10 +11,11 @@ import com.powerly.core.model.user.EmailRegisterBody
 import com.powerly.core.model.user.EmailResetBody
 import com.powerly.core.model.user.EmailVerifyResendBody
 import com.powerly.core.model.user.User
+import com.powerly.core.model.user.UserVerification
 import com.powerly.core.model.user.VerificationBody
 import com.powerly.core.network.RemoteDataSource
 import com.powerly.core.network.asErrorMessage
-import com.powerly.core.network.code
+import com.powerly.core.network.asTypedErrorMessage
 import io.ktor.client.call.body
 import io.ktor.client.plugins.ResponseException
 import kotlinx.coroutines.CoroutineDispatcher
@@ -107,7 +107,7 @@ class LoginEmailRepositoryImpl(
                 ApiStatus.Success(user)
             } else ApiStatus.Error(response.getMessage())
         } catch (e: ResponseException) {
-            ApiStatus.Error(e.asErrorMessage())
+            ApiStatus.Error(e.asTypedErrorMessage<UserVerification?>())
         } catch (e: Exception) {
             ApiStatus.Error(e.asErrorMessage())
         }
