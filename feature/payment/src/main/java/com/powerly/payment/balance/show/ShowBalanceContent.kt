@@ -6,8 +6,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,9 +24,10 @@ import androidx.compose.ui.unit.sp
 import com.powerly.core.model.api.ApiStatus
 import com.powerly.core.model.payment.BalanceItem
 import com.powerly.resources.R
+import com.powerly.ui.containers.MyColumn
+import com.powerly.ui.containers.MyRefreshBox
 import com.powerly.ui.containers.MySurfaceRow
 import com.powerly.ui.dialogs.ProgressView
-import com.powerly.ui.screen.MyScreen
 import com.powerly.ui.screen.ScreenHeader
 import com.powerly.ui.theme.AppTheme
 import com.powerly.ui.theme.MyColors
@@ -41,7 +45,8 @@ private fun ShowBalanceScreenPreview() {
             currency = "SAR",
             balance = 150.0,
             onClose = {},
-            onAddBalance = {}
+            onAddBalance = {},
+            onRefreshBalance = {}
         )
     }
 }
@@ -52,38 +57,47 @@ internal fun ShowBalanceScreenContent(
     currency: String,
     balance: Double,
     onAddBalance: (BalanceItem) -> Unit,
+    onRefreshBalance: () -> Unit,
     onClose: () -> Unit
 ) {
-    MyScreen(
-        modifier = Modifier.padding(16.dp),
-        horizontalAlignment = Alignment.Start,
-        background = Color.White,
-        verticalScroll = true,
-        header = {
+    Scaffold(
+        containerColor = Color.White,
+        topBar = {
             ScreenHeader(
                 title = stringResource(R.string.balance_show),
                 onClose = onClose
             )
         }
     ) {
-        SectionBalanceAvailable(
-            balance = balance,
-            currency = currency
-        )
-        Spacer(Modifier.height(8.dp))
-        when (balanceState) {
-            is ApiStatus.Loading -> ProgressView()
-            is ApiStatus.Success -> {
-                SectionBalanceList(
-                    currency = currency,
-                    balanceItems = balanceState.data,
-                    onAddBalance = onAddBalance
+        MyRefreshBox(
+            modifier = Modifier.padding(it),
+            onRefresh = onRefreshBalance
+        ) {
+            MyColumn(
+                modifier = Modifier
+                    .padding(16.dp)
+                    .verticalScroll(rememberScrollState()),
+                horizontalAlignment = Alignment.Start,
+            ) {
+                SectionBalanceAvailable(
+                    balance = balance,
+                    currency = currency
                 )
+                Spacer(Modifier.height(8.dp))
+                when (balanceState) {
+                    is ApiStatus.Loading -> ProgressView()
+                    is ApiStatus.Success -> {
+                        SectionBalanceList(
+                            currency = currency,
+                            balanceItems = balanceState.data,
+                            onAddBalance = onAddBalance
+                        )
+                    }
+
+                    else -> {}
+                }
             }
-
-            else -> {}
         }
-
     }
 }
 

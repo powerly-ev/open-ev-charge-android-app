@@ -74,7 +74,7 @@ fun SessionActiveScreen(
                 }
 
                 is ChargingStatus.Error -> {
-                    screenState.showMessage(result.msg)
+                    screenState.showMessage(result.message)
                 }
 
                 else -> {}

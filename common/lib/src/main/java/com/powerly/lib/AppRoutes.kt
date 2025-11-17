@@ -19,7 +19,7 @@ object AppRoutes {
     ) : Route() {
         val asMessage: Message
             get() = Message(
-                msg = message,
+                value = message,
                 type = when {
                     isError -> Message.ERROR
                     else -> Message.SUCCESS
@@ -72,12 +72,7 @@ object AppRoutes {
         data object ChargingDialog
 
         @Serializable
-        data class Charging(
-            val chargePointId: String,
-            val quantity: String,
-            val connector: Int?,
-            val orderId: String
-        )
+        data class Charging(val orderId: String)
 
         @Serializable
         data class Feedback(
@@ -176,7 +171,7 @@ object AppRoutes {
 }
 
 fun NavHostController.showMessage(message: Message) {
-    this.navigate(AppRoutes.MessageDialog(message.msg, message.isError))
+    this.navigate(AppRoutes.MessageDialog(message.value, message.isError))
 }
 
 fun NavHostController.showMessage(message: String, isError: Boolean = false) {

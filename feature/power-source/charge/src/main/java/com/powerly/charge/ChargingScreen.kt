@@ -63,7 +63,7 @@ fun ChargingScreen(
                 }
 
                 is ChargingStatus.Error -> {
-                    screenState.showMessage(state.msg) {
+                    screenState.showMessage(state.message) {
                         onBack()
                     }
                 }
@@ -76,8 +76,7 @@ fun ChargingScreen(
 
     LifecycleResumeEffect(LocalLifecycleOwner) {
         coroutineScope.launch {
-            viewModel.startCharging()
-            viewModel.initSocketEvent()
+            viewModel.initSession()
         }
         onPauseOrDispose {
             viewModel.release()

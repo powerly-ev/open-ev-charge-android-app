@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.colorResource
@@ -37,30 +38,9 @@ fun AppTheme(
 ) {
     ConfigureSystemBars(darkTheme)
 
+    val isPreview = LocalInspectionMode.current
     val context = LocalContext.current
-    val activity = LocalActivity.current as ComponentActivity
-    LaunchedEffect(language) {
-        Log.v("AppTheme", "language = $language")
-    }
-    val locale = language.toLocale()
-    val localizedContext = remember(locale) {
-        val config = Configuration(context.resources.configuration)
-        config.setLocale(locale)
-        config.setLayoutDirection(locale)
-        config.fontScale = 1f
-        Locale.setDefault(locale)
-        context.createConfigurationContext(config)
-    }
-
-    val layoutDirection = if (language == "ar") LayoutDirection.Rtl else LayoutDirection.Ltr
-    val density = Density(density = LocalDensity.current.density, fontScale = 1f)
-    CompositionLocalProvider(
-        LocalActivityResultRegistryOwner provides activity,
-        LocalMainActivity provides activity,
-        LocalDensity provides density,
-        LocalContext provides localizedContext,
-        LocalLayoutDirection provides layoutDirection
-    ) {
+    if (isPreview) {
         MaterialTheme(
             colorScheme = lightColorScheme(
                 primary = colorResource(R.color.colorPrimary),
@@ -79,6 +59,49 @@ fun AppTheme(
             typography = myTypography(isArabic()),
             content = content
         )
+    } else {
+        LaunchedEffect(language) {
+            Log.v("AppTheme", "language = $language")
+        }
+        val locale = language.toLocale()
+        val localizedContext = remember(locale) {
+            val config = Configuration(context.resources.configuration)
+            config.setLocale(locale)
+            config.setLayoutDirection(locale)
+            config.fontScale = 1f
+            Locale.setDefault(locale)
+            context.createConfigurationContext(config)
+        }
+
+        val activity = LocalActivity.current as ComponentActivity
+        val layoutDirection = if (language == "ar") LayoutDirection.Rtl else LayoutDirection.Ltr
+        val density = Density(density = LocalDensity.current.density, fontScale = 1f)
+        CompositionLocalProvider(
+            LocalActivityResultRegistryOwner provides activity,
+            LocalMainActivity provides activity,
+            LocalDensity provides density,
+            LocalContext provides localizedContext,
+            LocalLayoutDirection provides layoutDirection
+        ) {
+            MaterialTheme(
+                colorScheme = lightColorScheme(
+                    primary = colorResource(R.color.colorPrimary),
+                    onPrimary = ColorGuide1.onPrimary,
+                    secondary = colorResource(R.color.colorSecondary),
+                    onSecondary = ColorGuide1.onSecondary,
+                    tertiary = colorResource(R.color.colorTertiary),
+                    onTertiary = ColorGuide1.onTertiary,
+                    background = ColorGuide1.background,
+                    onBackground = ColorGuide1.onBackground,
+                    surface = ColorGuide1.surface,
+                    onSurface = ColorGuide1.onSurface,
+                    onError = colorResource(R.color.colorSecondary),
+                    error = ColorGuide1.errorColor
+                ),
+                typography = myTypography(isArabic()),
+                content = content
+            )
+        }
     }
 }
 

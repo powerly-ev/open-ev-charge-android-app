@@ -49,6 +49,11 @@ import com.powerly.ui.containers.MyColumn
 import com.powerly.ui.containers.MySurfaceRow
 import com.powerly.ui.components.MyIcon
 import com.powerly.ui.components.NetworkImage
+import com.powerly.ui.containers.MySurfaceColumn
+import com.powerly.ui.dialogs.loading.LoadingDialog
+import com.powerly.ui.dialogs.loading.ScreenState
+import com.powerly.ui.dialogs.message.MessageDialog
+import com.powerly.ui.dialogs.success.SuccessDialog
 import com.powerly.ui.extensions.thenIf
 import kotlinx.coroutines.launch
 
@@ -83,6 +88,60 @@ fun MyDialog(
     ) {
         Box(Modifier.fillMaxWidth()) {
             MyCardColum(spacing = 16.dp) {
+                header?.invoke()
+                Column(
+                    horizontalAlignment = horizontalAlignment,
+                    verticalArrangement = Arrangement.spacedBy(spacing),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp)
+                        .then(modifier),
+                    content = content
+                )
+            }
+        }
+    }
+}
+
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun MyDialog(
+    state: MyDialogState? = null,
+    screenState: ScreenState? = null,
+    modifier: Modifier = Modifier,
+    spacing: Dp = 8.dp,
+    dismissOnClickOutside: Boolean = true,
+    dismissOnBackPress: Boolean = true,
+    horizontalAlignment: Alignment.Horizontal = Alignment.CenterHorizontally,
+    onDismiss: () -> Unit = {},
+    header: (@Composable () -> Unit)? = null,
+    content: @Composable ColumnScope.() -> Unit
+) {
+    if (state != null && state.visible.not()) return
+    BasicAlertDialog(
+        onDismissRequest = {
+            onDismiss()
+            state?.dismiss()
+        },
+        modifier = Modifier.fillMaxSize(),
+        properties = DialogProperties(
+            usePlatformDefaultWidth = false,
+            dismissOnClickOutside = dismissOnClickOutside,
+            dismissOnBackPress = dismissOnBackPress
+        )
+    ) {
+        Box(Modifier.fillMaxSize()) {
+            screenState?.successState?.let { SuccessDialog(state = it) }
+            screenState?.messageState?.let { MessageDialog(state = it) }
+            screenState?.loadingState?.let { LoadingDialog(state = it) }
+            MySurfaceColumn(
+                spacing = 16.dp,
+                surfaceModifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxWidth()
+                    .align(Alignment.Center)
+            ) {
                 header?.invoke()
                 Column(
                     horizontalAlignment = horizontalAlignment,

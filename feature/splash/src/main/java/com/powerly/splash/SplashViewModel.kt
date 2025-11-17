@@ -30,7 +30,7 @@ class SplashViewModel(
                     }
 
                     else -> {
-                        SplashAction.TryAgain(it.msg.msg)
+                        SplashAction.TryAgain(it.msg.value)
                     }
                 }
             }
@@ -59,7 +59,7 @@ class SplashViewModel(
                     }
 
                     ApiErrorConstants.TOO_MANY_REQUESTS -> {
-                        SplashAction.TryAgain(response.msg.msg)
+                        SplashAction.TryAgain(response.msg.value)
                     }
 
                     ApiErrorConstants.UNAUTHENTICATED -> {
@@ -68,7 +68,7 @@ class SplashViewModel(
                     }
 
                     else -> {
-                        SplashAction.TryAgain(response.msg.msg)
+                        SplashAction.TryAgain(response.msg.value)
                     }
                 }
             }

@@ -50,7 +50,7 @@ internal fun FeedbackDialog(
                     }
 
                     is ApiStatus.Error -> {
-                        Toast.makeText(context, it.msg.msg, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, it.msg.value, Toast.LENGTH_SHORT).show()
                     }
 
                     else -> {}
