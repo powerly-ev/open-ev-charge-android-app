@@ -170,12 +170,7 @@ fun HomeGraph(
                 sessionsViewModel = sessionsViewModel,
                 openHistoryScreen = { sessionFeedBack(it) },
                 openChargingScreen = {
-                    val route = AppRoutes.PowerSource.Charging(
-                        chargePointId = it.chargePointId,
-                        connector = it.connectorNumber,
-                        orderId = it.id,
-                        quantity = ""
-                    )
+                    val route = AppRoutes.PowerSource.Charging(orderId = it.id)
                     rootNavController.navigate(route)
                 },
                 openPowerSource = { chargePointId ->

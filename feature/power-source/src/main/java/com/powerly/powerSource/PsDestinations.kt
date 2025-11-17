@@ -6,13 +6,13 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import androidx.navigation.navigation
 import androidx.navigation.toRoute
-import com.powerly.charge.ChargingDialog
 import com.powerly.charge.ChargingScreen
 import com.powerly.lib.AppRoutes
 import com.powerly.lib.showMessage
 import com.powerly.powerSource.boarding.OnBoardingDialog
 import com.powerly.powerSource.details.PowerSourceScreen
 import com.powerly.powerSource.details.SourceEvents
+import com.powerly.powerSource.details.activate.ActivateChargerDialog
 import com.powerly.powerSource.media.MediaScreen
 import com.powerly.powerSource.reviews.create.FeedbackDialog
 import com.powerly.powerSource.reviews.list.ReviewScreen
@@ -66,7 +66,7 @@ fun NavGraphBuilder.powersourceDestinations(
             )
         }
 
-        dialog<AppRoutes.PowerSource.Reviews> { backStackEntry ->
+        dialog<AppRoutes.PowerSource.Reviews> { _ ->
             ReviewScreen(
                 viewModel = viewModel,
                 onBack = { navController.popBackStack() }
@@ -85,17 +85,11 @@ fun NavGraphBuilder.powersourceDestinations(
         }
 
         dialog<AppRoutes.PowerSource.ChargingDialog> {
-            ChargingDialog(
+            ActivateChargerDialog(
                 powerSource = { viewModel.powerSource },
                 onDismiss = { navController.popBackStack() },
-                onError = { message -> navController.showMessage(message, isError = true) },
-                onStartCharging = { chargePointId, time, connector ->
-                    val route = AppRoutes.PowerSource.Charging(
-                        chargePointId = chargePointId,
-                        quantity = time.toQuantity,
-                        connector = connector?.number,
-                        orderId = ""
-                    )
+                onOpenChargingScreen = { orderId ->
+                    val route = AppRoutes.PowerSource.Charging(orderId)
                     navController.navigate(route)
                 }
             )

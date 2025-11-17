@@ -37,8 +37,9 @@ class SessionsRepositoryImpl(
                 connector = connector
             )
             val response = remoteDataSource.startCharging(request)
-            if (response.isSuccess || response.hasData) ChargingStatus.Success(response.getData())
-            else ChargingStatus.Error(response.getMessage())
+            if (response.getSafeData()?.id.isNullOrEmpty().not()) {
+                ChargingStatus.Success(response.getData())
+            } else ChargingStatus.Error(response.getMessage())
         } catch (e: ResponseException) {
             ChargingStatus.Error(e.asErrorMessage())
         } catch (e: Exception) {

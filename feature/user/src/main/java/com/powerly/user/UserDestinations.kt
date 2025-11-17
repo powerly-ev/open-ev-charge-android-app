@@ -1,6 +1,5 @@
 package com.powerly.user
 
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -11,6 +10,7 @@ import androidx.navigation.toRoute
 import com.powerly.lib.AppRoutes
 import com.powerly.ui.dialogs.countries.CountriesDialog
 import com.powerly.ui.dialogs.signIn.SignInOptions
+import com.powerly.ui.extensions.openUriSafely
 import com.powerly.user.email.EmailLoginViewModel
 import com.powerly.user.email.login.EmailLoginScreen
 import com.powerly.user.email.password.create.EmailPasswordCreateScreen
@@ -141,7 +141,10 @@ fun NavGraphBuilder.userDestinations(
             val uriHandler = LocalUriHandler.current
             RegisterVerificationScreen(
                 viewModel = emailViewModel,
-                callSupport = { uriHandler.openUri(userViewModel.supportNumber) },
+                callSupport = {
+                    val url = "tel:${userViewModel.supportNumber}"
+                    uriHandler.openUriSafely(url)
+                },
                 navigateToHome = {
                     navigateToHome(loggedIn = true)
                 },
@@ -150,7 +153,6 @@ fun NavGraphBuilder.userDestinations(
         }
 
         composable<AppRoutes.User.Email.Country> {
-            LaunchedEffect(Unit) { userViewModel.getCountries() }
             CountriesDialog(
                 onDismiss = { navController.popBackStack() },
                 countriesList = { userViewModel.countries },

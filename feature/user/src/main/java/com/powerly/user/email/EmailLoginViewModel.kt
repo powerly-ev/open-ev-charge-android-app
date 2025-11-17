@@ -70,10 +70,17 @@ class EmailLoginViewModel(
                 // when email verification is required
                 if (message.code == ApiErrorConstants.UNAUTHENTICATED) {
                     // resend a verification code to the email
-                    val result = loginRepository.emailVerifyResend(email)
-                    if (result.isSuccessful) {
-                        this.email.value = email
-                        return LoginResult.VERIFICATION_REQUIRED
+                    when (val result = loginRepository.emailVerifyResend(email)) {
+                        is ApiStatus.Success -> {
+                            this.email.value = email
+                            return LoginResult.VERIFICATION_REQUIRED
+                        }
+
+                        is ApiStatus.Error -> {
+                            screenState.showMessage(result.msg)
+                        }
+
+                        else -> {}
                     }
                 }
             }

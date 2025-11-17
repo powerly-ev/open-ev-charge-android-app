@@ -86,7 +86,7 @@ class CountryManager(
     private suspend fun detectCountryByTelephonyManager(): Country? {
         return try {
             val tm = context.getSystemService(TELEPHONY_SERVICE) as TelephonyManager
-            val countryIso = tm.networkCountryIso
+            val countryIso = tm.networkCountryIso.uppercase()
             Log.v(TAG, "countryIso - $countryIso")
             return appRepository.getCountryByIso(countryIso)
         } catch (e: Exception) {
