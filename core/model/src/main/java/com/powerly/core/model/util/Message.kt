@@ -1,7 +1,7 @@
 package com.powerly.core.model.util
 
 data class Message(
-    val msg: String = "",
+    val value: String = "",
     val type: Int = SUCCESS,
     var code: Int? = null
 ) {

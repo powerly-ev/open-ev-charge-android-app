@@ -6,7 +6,7 @@ import kotlinx.serialization.json.JsonNames
 
 @Serializable
 open class ApiResponse<T>(
-    @JsonNames("data", "results")  private val data: T? = null,
+    @JsonNames("data", "results") private val data: T? = null,
     private val success: Int = 0,
     @JsonNames("message", "msg") private val message: String? = null
 ) {
@@ -14,7 +14,7 @@ open class ApiResponse<T>(
     val isSuccess get() = this.success == 1
     fun getData() = this.data!!
     fun getMessage(code: Int? = null): Message = Message(
-        msg = message.orEmpty(),
+        value = message.orEmpty(),
         type = if (isSuccess) Message.SUCCESS else Message.ERROR,
         code = code
     )

@@ -1,5 +1,6 @@
 package com.powerly.core.database
 
+import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
@@ -23,6 +24,7 @@ import kotlin.uuid.Uuid
  * This class handles interactions with DataStore for preferences and a local database,
  * providing a centralized point of access for session data, user details, and app settings.
  *
+ * @property context Application context for accessing system resources.
  * @property tokenEncryption Service for encrypting and decrypting sensitive data like user tokens.
  * @property userDataStore DataStore instance for storing user-specific preferences.
  * @property appDataStore DataStore instance for storing application-wide preferences.
@@ -30,6 +32,7 @@ import kotlin.uuid.Uuid
  * @property ioDispatcher Coroutine dispatcher for performing I/O operations off the main thread.
  */
 class StorageManager(
+    private val context: Context,
     private val tokenEncryption: TokenEncryption,
     private val userDataStore: DataStore<Preferences>,
     private val appDataStore: DataStore<Preferences>,
@@ -182,7 +185,6 @@ class StorageManager(
     }
 
 
-
     /**
      * A quick, non-suspending check to see if a user token is present in the in-memory cache.
      * Useful for synchronous checks after the token has likely been loaded.
@@ -203,7 +205,6 @@ class StorageManager(
     val loggedInFlow: Flow<Boolean> = userDataStore.data
         .map { it[UserKeys.USER_TOKEN].orEmpty().isNotEmpty() }
         .distinctUntilChanged()
-
 
 
     /**
@@ -228,7 +229,7 @@ class StorageManager(
      * @return The language code (e.g., "en").
      */
     suspend fun getCurrentLanguage(): String = withContext(ioDispatcher) {
-        appDataStore.data.first()[AppKeys.LANGUAGE] ?: getDefaultLocale()
+        appDataStore.data.first()[AppKeys.LANGUAGE] ?: getDefaultAppLocale(context)
     }
 
     /**
@@ -244,7 +245,7 @@ class StorageManager(
      * Falls back to the default locale.
      */
     val languageFlow: Flow<String> = appDataStore.data
-        .map { it[AppKeys.LANGUAGE] ?: getDefaultLocale() }
+        .map { it[AppKeys.LANGUAGE] ?: getDefaultAppLocale(context) }
         .distinctUntilChanged()
 
     /**

@@ -1,4 +1,4 @@
-package com.powerly.charge
+package com.powerly.powerSource.details.activate
 
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -30,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import com.powerly.core.model.powerly.ChargingQuantity
 import com.powerly.core.model.powerly.Connector
 import com.powerly.core.model.powerly.PowerSource
+import com.powerly.core.model.util.asErrorMessage
 import com.powerly.core.network.BuildConfig
 import com.powerly.resources.R
 import com.powerly.ui.components.ButtonLarge
@@ -38,6 +39,8 @@ import com.powerly.ui.components.StationIcon
 import com.powerly.ui.containers.MyRow
 import com.powerly.ui.containers.MySurfaceRow
 import com.powerly.ui.dialogs.MyDialog
+import com.powerly.ui.dialogs.loading.ScreenState
+import com.powerly.ui.dialogs.loading.rememberScreenState
 import com.powerly.ui.screen.DialogHeader
 import com.powerly.ui.theme.AppTheme
 import com.powerly.ui.theme.MyColors
@@ -51,14 +54,14 @@ private val connectors = listOf(
 
 @Preview
 @Composable
-private fun ChargingDialogMinutesNearPreview() {
+private fun ActivateChargerDialogContentMinutesNearPreview() {
     val ps = PowerSource(
         id = "0", priceUnit = "minutes", distance = 0.1,
         connectors = connectors, sessionLimit = 180, price = 1.0,
         currency = "USD"
     )
     AppTheme {
-        ChargingDialog(
+        ActivateChargerDialogContent(
             powerSource = { ps },
             onStartCharging = { _, _, _ -> }
         )
@@ -67,13 +70,13 @@ private fun ChargingDialogMinutesNearPreview() {
 
 @Preview
 @Composable
-private fun ChargingDialogMinutesFrPreview() {
+private fun ActivateChargerDialogContentMinutesFrPreview() {
     val ps = PowerSource(
         id = "0", priceUnit = "minutes", distance = 1000.0,
         connectors = connectors, sessionLimit = 180, price = 1.0,
     ).apply { currency = "USD" }
     AppTheme {
-        ChargingDialog(
+        ActivateChargerDialogContent(
             powerSource = { ps },
             onStartCharging = { _, _, _ -> }
         )
@@ -82,13 +85,13 @@ private fun ChargingDialogMinutesFrPreview() {
 
 @Preview
 @Composable
-private fun ChargingDialogEnergyPreview() {
+private fun ActivateChargerDialogContentEnergyPreview() {
     val ps = PowerSource(
         id = "0", priceUnit = "energy", distance = 0.1,
         connectors = connectors, sessionLimit = 180, price = 1.0,
     ).apply { currency = "USD" }
     AppTheme {
-        ChargingDialog(
+        ActivateChargerDialogContent(
             powerSource = { ps },
             onDismiss = {},
             onStartCharging = { _, _, _ -> }
@@ -98,14 +101,14 @@ private fun ChargingDialogEnergyPreview() {
 
 
 @Composable
-fun ChargingDialog(
+internal fun ActivateChargerDialogContent(
+    screenState: ScreenState = rememberScreenState(),
     powerSource: () -> PowerSource?,
     onStartCharging: (
-        chargerPointId: String,
-        time: ChargingQuantity,
-        connector: Connector?
+        chargePointId: String,
+        time: String,
+        connector: Int?
     ) -> Unit,
-    onError: (String) -> Unit = {},
     onDismiss: () -> Unit = {}
 ) {
     val ps = powerSource() ?: return
@@ -113,20 +116,8 @@ fun ChargingDialog(
     var selectedTime by remember { mutableStateOf(ChargingQuantity()) }
     var selectedConnector by remember { mutableStateOf<Connector?>(null) }
 
-    fun startCharging() {
-        if (ps.hasConnectors && selectedConnector == null) {
-            val message = context.getString(R.string.station_charging_start_error)
-            onError(message)
-        } else {
-            onStartCharging(
-                ps.id,
-                selectedTime,
-                selectedConnector
-            )
-        }
-    }
-
     MyDialog(
+        screenState = screenState,
         header = {
             DialogHeader(
                 title = stringResource(id = R.string.station_charging_activate),
@@ -137,30 +128,7 @@ fun ChargingDialog(
         spacing = 16.dp,
         onDismiss = onDismiss
     ) {
-
-        if (ps.isNear) Text(
-            text = stringResource(id = R.string.station_charging_msg_1),
-            style = MaterialTheme.typography.bodyLarge,
-            color = MaterialTheme.colorScheme.secondary
-        ) else {
-            Text(
-                text = stringResource(id = R.string.station_charging_msg_2),
-                style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.secondary
-            )
-            Text(
-                text = stringResource(id = R.string.station_charging_msg_3),
-                style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.secondary
-            )
-            Text(
-                text = stringResource(id = R.string.station_charging_msg_4),
-                style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.secondary
-            )
-        }
-
-
+        SectionDescription(ps)
         //charging price
         SectionPrice(
             powerSource = ps,
@@ -188,10 +156,46 @@ fun ChargingDialog(
             icon = R.drawable.charge,
             layoutDirection = LayoutDirection.Rtl,
             modifier = Modifier.fillMaxWidth(),
-            onClick = ::startCharging
+            onClick = {
+                if (ps.hasConnectors && selectedConnector == null) {
+                    val message = context.getString(R.string.station_charging_start_error)
+                    screenState.showMessage(message.asErrorMessage)
+                } else {
+                    onStartCharging(
+                        ps.id,
+                        selectedTime.toQuantity,
+                        selectedConnector?.number
+                    )
+                }
+            }
         )
-
     }
+}
+
+@Composable
+private fun SectionDescription(powerSource: PowerSource) {
+    if (powerSource.isNear) Text(
+        text = stringResource(id = R.string.station_charging_msg_1),
+        style = MaterialTheme.typography.bodyLarge,
+        color = MaterialTheme.colorScheme.secondary
+    ) else {
+        Text(
+            text = stringResource(id = R.string.station_charging_msg_2),
+            style = MaterialTheme.typography.bodyLarge,
+            color = MaterialTheme.colorScheme.secondary
+        )
+        Text(
+            text = stringResource(id = R.string.station_charging_msg_3),
+            style = MaterialTheme.typography.bodyLarge,
+            color = MaterialTheme.colorScheme.secondary
+        )
+        Text(
+            text = stringResource(id = R.string.station_charging_msg_4),
+            style = MaterialTheme.typography.bodyLarge,
+            color = MaterialTheme.colorScheme.secondary
+        )
+    }
+
 }
 
 @Composable

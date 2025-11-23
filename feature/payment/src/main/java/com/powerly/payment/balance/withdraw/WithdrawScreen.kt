@@ -56,12 +56,12 @@ internal fun WithdrawScreen(
                 when (it) {
                     is ApiStatus.Error -> paymentDialog.show(
                         title = context.getString(R.string.wallet_withdraw_failed),
-                        message = it.msg.msg
+                        message = it.msg.value
                     )
 
                     is ApiStatus.Success -> paymentDialog.show(
                         title = context.getString(R.string.wallet_withdraw_successful),
-                        message = it.data.msg
+                        message = it.data.value
                     )
 
                     else -> {}

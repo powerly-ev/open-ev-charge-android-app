@@ -30,12 +30,12 @@ class ChargeViewModel(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val charger = savedStateHandle.toRoute<AppRoutes.PowerSource.Charging>()
+    private val orderId = savedStateHandle.toRoute<AppRoutes.PowerSource.Charging>().orderId
 
     val timerState = ChargingTimerState(0, 0)
     val session = mutableStateOf<Session?>(null)
     private var pendingSessionId: String = ""
-    private var lastSessionUpdateTime: Int = 0
+
     private val _chargingStatus = MutableStateFlow<ChargingStatus>(ChargingStatus.Loading)
     val chargingStatus = _chargingStatus.asStateFlow()
 
@@ -46,33 +46,22 @@ class ChargeViewModel(
         }
 
 
-    suspend fun startCharging() {
-        val chargePointId = charger.chargePointId
-        val quantity = charger.quantity
-        val sessionId = session.value?.id ?: charger.orderId
-        // Update session details on-resume to sync with the server
-        if (sessionId.isNotEmpty()) {
-            updateSessionDetails(sessionId)
-        }
-        // Start charging when session_id is null
-        else {
-            Log.v(TAG, "charging cp = $chargePointId, quantity = $quantity")
-            val result = sessionsRepository.startCharging(
-                chargePointId = chargePointId,
-                quantity = quantity,
-                connector = charger.connector
-            )
-            initSession(result)
-        }
-    }
-
-    private suspend fun updateSessionDetails(sessionId: String) {
-        Log.i(TAG, "updateSessionDetails sessionId $sessionId")
+    /**
+     * Retrieves the details of a charging session using the provided session ID.
+     *
+     */
+    private suspend fun getSessionDetails(sessionId: String) {
+        Log.i(TAG, "getSessionDetails sessionId $sessionId")
         val result = sessionsRepository.sessionDetails(sessionId)
-        initSession(result)
+        updateSession(result)
     }
 
-    private suspend fun initSession(result: ChargingStatus) {
+    /**
+     * Updates the charging session with the provided result.
+     *
+     * @param result The charging status result to update the session with.
+     */
+    private suspend fun updateSession(result: ChargingStatus) {
         when (result) {
             is ChargingStatus.Success -> {
                 _chargingStatus.value = result
@@ -93,25 +82,26 @@ class ChargeViewModel(
         }
     }
 
+
     fun stopCharging() {
         Log.v(TAG, "stopCharging")
-        val sessionId = session.value?.id
+        val session = session.value ?: return
         // to prevent calling stop charging multiple times..
-        if (sessionId == null || sessionId == pendingSessionId) return
-        pendingSessionId = sessionId
+        if (session.id == pendingSessionId) return
+        pendingSessionId = session.id
 
-        pusherManager.unbindConsumption(sessionId)
-        pusherManager.unsubscribeSession(sessionId)
+        pusherManager.unbindConsumption(session.id)
+        pusherManager.unsubscribeSession(session.id)
         pusherManager.disconnect()
 
         viewModelScope.launch {
             _chargingStatus.emit(ChargingStatus.Loading)
-            val result = sessionsRepository.stopCharging(
-                orderId = sessionId,
-                chargePointId = charger.chargePointId,
-                connector = charger.connector
+            sessionsRepository.stopCharging(
+                orderId = session.id,
+                chargePointId = session.chargePointId,
+                connector = session.connectorNumber
             )
-            _chargingStatus.emit(ChargingStatus.Stop(session.value!!))
+            _chargingStatus.emit(ChargingStatus.Stop(session))
             pendingSessionId = ""
         }
     }
@@ -154,8 +144,7 @@ class ChargeViewModel(
      * and handles real-time updates for session consumption and completion.
      *
      */
-    suspend fun initSocketEvent() {
-        val sessionId = session.value?.id ?: return
+    suspend fun initSocketEvent(sessionId: String) {
         Log.i(TAG, "initSocketEvent - $sessionId")
         pusherManager.connect()
         // subscribe in session consumption/charging event
@@ -165,7 +154,7 @@ class ChargeViewModel(
             onUpdate = {
                 Log.i(TAG, "onReceiveConsumption - $it")
                 viewModelScope.launch {
-                    initSession(ChargingStatus.Success(it))
+                    updateSession(ChargingStatus.Success(it))
                 }
             }
         )
@@ -184,11 +173,16 @@ class ChargeViewModel(
         }
     }
 
+    fun initSession() {
+        viewModelScope.launch {
+            getSessionDetails(orderId)
+            initSocketEvent(orderId)
+        }
+    }
+
     fun release() {
         chargingTimerManager.release()
-        session.value?.id?.let {
-            pusherManager.unbindConsumption(it)
-        }
+        pusherManager.unbindConsumption(orderId)
     }
 
     companion object {

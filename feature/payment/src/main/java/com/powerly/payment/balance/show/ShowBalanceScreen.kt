@@ -5,9 +5,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import com.powerly.core.model.api.ApiStatus
 import com.powerly.core.model.payment.BalanceItem
 import com.powerly.payment.balance.BalanceViewModel
+import kotlinx.coroutines.launch
 
 private const val TAG = "ShowBalanceScreen"
 
@@ -18,6 +20,7 @@ internal fun ShowBalanceScreen(
     onBack: () -> Unit
 ) {
     val balanceItems = viewModel.balanceItems.collectAsState(initial = ApiStatus.Loading)
+    val coroutineScope = rememberCoroutineScope()
     val currency by remember { viewModel.userCurrency }
     val balance by remember { viewModel.userBalance }
 
@@ -28,6 +31,9 @@ internal fun ShowBalanceScreen(
         currency = currency,
         balance = balance,
         onAddBalance = onAddBalance,
+        onRefreshBalance = {
+            coroutineScope.launch { viewModel.updateUserDetails() }
+        },
         onClose = onBack
     )
 }

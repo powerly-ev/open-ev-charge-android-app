@@ -67,7 +67,7 @@ class BalanceViewModel(
         )
         when (it) {
             is BalanceRefillStatus.Error -> {
-                paymentFailureDialog.show(it.msg.msg)
+                paymentFailureDialog.show(it.msg.value)
                 return false
             }
 

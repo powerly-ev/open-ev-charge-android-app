@@ -22,7 +22,7 @@ import kotlinx.serialization.Serializable
     val meta: PaginationMeta? = null
 
     fun getMessage(): Message = Message(
-        msg = message.orEmpty(),
+        value = message.orEmpty(),
         type = if (isSuccess) Message.SUCCESS else Message.ERROR
     )
 

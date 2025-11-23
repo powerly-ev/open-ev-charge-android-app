@@ -73,7 +73,7 @@ fun MessageDialog(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(
-                    text = message.msg,
+                    text = message.value,
                     style = MaterialTheme.typography.bodyLarge,
                     color = Color.White,
                     modifier = Modifier
@@ -123,7 +123,7 @@ fun MessageDialog(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(
-                    text = message.msg,
+                    text = message.value,
                     style = MaterialTheme.typography.bodyLarge,
                     color = Color.White,
                     modifier = Modifier

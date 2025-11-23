@@ -38,6 +38,7 @@ class DatabaseModule {
         localDataSource: LocalDataSource
     ): StorageManager {
         return StorageManager(
+            context = context,
             tokenEncryption = tokenEncryption,
             userDataStore = createUserDataStore(context),
             appDataStore = createAppDataStore(context),
