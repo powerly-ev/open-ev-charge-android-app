@@ -1,0 +1,300 @@
+<resources>
+    <!-- HOME -->
+    <string name="home">Accueil</string>
+    <string name="scan">Scanner</string>
+    <string name="scan_qr_code">Scanner pour Activer</string>
+    <string name="orders">Commandes</string>
+    <string name="account">Compte</string>
+    <string name="home_help">Aide</string>
+
+    <!-- Side Menu -->
+    <string name="language">Langue</string>
+    <string name="support">Support</string>
+    <string name="account_vehicles">Véhicules</string>
+    <string name="invite">Inviter</string>
+    <string name="invite_link_copied">Lien copié</string>
+    <string name="invite_QR_description">Invitez vos amis à télécharger notre incroyable application</string>
+    <string name="logout_title">Déconnexion</string>
+    <string name="logout_confirmation">Êtes-vous sûr de vouloir vous déconnecter ?</string>
+    <string name="select_language">Sélectionnez une langue</string>
+
+    <!-- Update-->
+    <string name="update_required">Mise à jour requise</string>
+    <string name="update_force_desc1">Une mise à jour importante incluant des fonctionnalités supplémentaires, des mises à jour de sécurité et des améliorations est nécessaire.</string>
+    <string name="update_force_desc2">Veuillez mettre à jour l\'application pour continuer.</string>
+
+    <!-- Profile Screen -->
+    <string name="profile_email">E-mail</string>
+    <string name="profile">Mon Profil</string>
+    <string name="profile_select_country">Choisissez le pays</string>
+    <string name="profile_require_email_address">Un e-mail est requis pour mettre à jour votre profil</string>
+    <string name="profile_confirm_delete_account">Êtes-vous sûr de vouloir supprimer votre compte ?</string>
+    <string name="profile_delete_account_description">Votre compte sera immédiatement désactivé. Après 30 jours, il sera définitivement supprimé, et tous les crédits, promotions ou récompenses inutilisés seront supprimés.</string>
+    <string name="profile_guest">Welo</string>
+    <string name="profile_see">Voir le Profil</string>
+    <string name="profile_select_country_please">Veuillez sélectionner un pays</string>
+
+    <!-- Welcome Screen-->
+    <string name="welcome">Bienvenue :)</string>
+    <string name="welcome_description">Bienvenue dans le futur de la recharge de véhicules électriques ! Commençons par configurer votre application, tout d\'abord choisissez votre langue.</string>
+    <string name="welcome_user_agreement">En utilisant %s, vous consentez à notre</string>
+    <string name="welcome_privacy_policy">Politique de confidentialité.</string>
+    <string name="welcome_and">Et</string>
+    <string name="welcome_terms_of_service">Conditions d\'utilisation</string>
+    <string name="welcome_terms_condition">Conditions générales</string>
+
+    <!-- Login-->
+    <string name="login_select_country">Sélectionnez votre pays</string>
+    <string name="login_resend_code_in">Renvoyer le code dans</string>
+    <string name="login_first_name">Prénom</string>
+    <string name="login_last_name">Nom de famille</string>
+    <string name="login_password">Mot de passe</string>
+    <string name="login_enter_first_name">Veuillez entrer votre prénom</string>
+    <string name="login_Verification_title">Vérification</string>
+    <string name="login_resend_code">Renvoyer le code</string>
+    <string name="login_need_help">J\'ai besoin d\'aide</string>
+    <string name="login_enter_code">Entrez le code à 4 chiffres que nous vous avons envoyé</string>
+    <string name="login_option_title">Se connecter</string>
+    <string name="login_option_google">Connectez-vous avec Google</string>
+    <string name="login_option_email">Connectez-vous avec l\'e-mail</string>
+    <string name="login_option_guest">Continuer en tant qu\'invité</string>
+    <string name="login_option_other">Explorez d\'autres options de connexion</string>
+    <string name="login_email">E-mail</string>
+    <string name="login_email_title">Connectez-vous ou créez un compte</string>
+    <string name="login_email_enter">Entrer votre Email</string>
+    <string name="login_email_enter_msg">Veuillez entrer votre Email. Nous vous enverrons un code de vérification pour sécuriser votre compte.</string>
+    <string name="login_email_error_msg">Adresse e-mail incorrecte</string>
+    <string name="login_email_password">Mot de passe</string>
+    <string name="login_email_password_enter">Entrez un mot de passe</string>
+    <string name="login_email_password_new">Nouveau mot de passe</string>
+    <string name="login_email_password_confirm">Confirmez le mot de passe</string>
+    <string name="login_email_password_create_title">Connectez-vous avec votre adresse e-mail</string>
+    <string name="login_email_password_create">Créez un mot de passe</string>
+    <string name="login_email_password_create_msg">Créez un mot de passe fort que vous utiliserez pour vous connecter</string>
+    <string name="login_email_password_length_msg">Le mot de passe doit contenir au moins %d caractères.</string>
+    <string name="login_email_password_not_matched">Les mots de passe ne sont pas identiques</string>
+    <string name="login_email_password_forget">Mot de passe oublié ?</string>
+    <string name="login_email_password_forget_msg">Pas de problème ! Nous allons envoyer un mot de passe à usage unique (OTP) à %s. Une fois reçu, vous pouvez utiliser l\'OTP pour vous connecter et réinitialiser votre mot de passe.</string>
+    <string name="login_email_password_weak">Faible</string>
+    <string name="login_email_password_medium">Moyen</string>
+    <string name="login_email_password_strong">Fort</string>
+
+    <!-- ACTIONS -->
+    <string name="retry">Réessayer</string>
+    <string name="save">Enregistrer</string>
+    <string name="done">Terminé</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="dialog_cancel">Annuler</string>
+    <string name="dialog_ok">OK</string>
+    <string name="update_now">Mettre à jour maintenant</string>
+    <string name="remove">Supprimer</string>
+    <string name="add_a_note">Ajouter une note</string>
+    <string name="delete_account">Supprimer le compte</string>
+    <string name="share_code">Partager le Lien de Parrainage</string>
+    <string name="copy_code">Copier le Lien de Parrainage</string>
+    <string name="agree_and_continue">Accepter et Continuer</string>
+    <string name="update">Mise à jour</string>
+    <string name="edit">Modifier</string>
+    <string name="next">Suivant</string>
+    <string name="skip">Sauter</string>
+    <string name="delete">Supprimer</string>
+    <string name="select">Sélectionner</string>
+    <string name="change">Changer</string>
+    <string name="add">Ajouter</string>
+    <string name="continue_">Continuer</string>
+
+    <!-- Payment -->
+    <string name="payment_method_add">Ajouter un Mode de Paiement</string>
+    <string name="payment_card_add">Ajouter une carte</string>
+    <string name="payment_card_scan">Scanner la Carte</string>
+    <string name="payment_default">Méthode par Défaut</string>
+    <string name="payment_paypal">Paypal</string>
+    <string name="payment_point_checkout">Point Checkout</string>
+    <string name="payment_failed">Paiement Échoué</string>
+    <string name="payment_add_new_card">Ajouter une Nouvelle Carte</string>
+    <string name="payment_cash_on_delivery">Paiement à la Livraison</string>
+    <string name="payment_delete_card_message">Êtes-vous sûr de vouloir supprimer ce mode de paiement ?</string>
+    <string name="payment_card">Carte</string>
+    <string name="payment_make_default">Définir comme par Défaut</string>
+
+    <!--Wallet-->
+    <string name="wallet">Portefeuille</string>
+    <string name="wallet_withdraw_from">Retirer de:</string>
+    <string name="wallet_withdraw_agree">Accepter et Retirer</string>
+    <string name="wallet_withdraw_successful">Retrait Réussi</string>
+    <string name="wallet_withdraw_failed">Échec du Retrait</string>
+    <string name="wallet_policy">Politique de Retrait</string>
+    <string name="wallet_policy_read_our">Lisez notre</string>
+    <string name="wallet_policy_tab_withdraw">. Appuyez sur "Accepter et Retirer" pour accepter</string>
+    <string name="wallet_policy_terms">Conditions de service</string>
+
+    <!-- Balance -->
+    <string name="balance">Solde</string>
+    <string name="balance_show">Afficher le Solde</string>
+    <string name="balance_available">Solde Disponible</string>
+    <string name="balance_add">Ajouter un Solde</string>
+    <string name="balance_popular">Populaire</string>
+    <string name="balance_non_refundable">Le solde avec réduction n\'est pas remboursable, veuillez appuyer sur Continuer pour accepter</string>
+    <string name="balance_refill_select_method">Veuillez sélectionner un mode de paiement.</string>
+    <string name="balance_add_message">Nous ajouterons à votre solde</string>
+
+    <!-- Location -->
+    <string name="location_search_address">Rechercher une Adresse</string>
+    <string name="location_search_for">Rechercher un Lieu</string>
+    <string name="location_search">Rechercher un Lieu</string>
+    <string name="location_delivery_address">Adresse de livraison</string>
+
+    <!-- Messages -->
+    <string name="no_internet_message">Veuillez vous assurer d\'être connecté à Internet</string>
+    <string name="internet_connection_error">Désolé, cette application nécessite une connexion Internet pour fonctionner correctement. Veuillez vérifier votre connexion Internet et réessayer.</string>
+    <string name="maintenance_mode_error">Le service est actuellement indisponible pour maintenance. Veuillez revenir plus tard. Désolé pour le désagrément.</string>
+    <string name="camera_permission_message">Veuillez autoriser l\'autorisation de la caméra</string>
+    <string name="reminder_message">Veuillez compléter l\'inscription pour recevoir nos offres et réductions</string>
+
+    <!-- Feedback -->
+    <string name="feedback_msg">Comment était votre expérience ?</string>
+    <string name="feedback_terrible">Horrible</string>
+    <string name="feedback_bad">Mauvaise</string>
+    <string name="feedback_fine">Correcte</string>
+    <string name="feedback_good">Bonne</string>
+    <string name="feedback_excellent">Excellente</string>
+
+    <!-- Stations -->
+    <string name="station_location_allow">Autoriser</string>
+    <string name="station_number">Station #%s</string>
+    <string name="station_new">Nouvelle</string>
+    <string name="station_drive">Se rendre à la station</string>
+    <string name="station_unit_price_per_minute_total">%s %s/minute X %s</string>
+    <string name="station_unit_price_per_kwh_total">%s %s/kwh X %s</string>
+    <string name="station_per_minute">Par minute</string>
+    <string name="station_per_kwh">Par kWh</string>
+    <string name="station_per">Par</string>
+    <string name="station_kwh">kWh</string>
+    <string name="station_km_value">%s km</string>
+    <string name="station_kwh_value">%s kWh</string>
+    <string name="station_km_away">%.1f À km</string>
+
+    <string name="station_status_open24">Ouvert 24 heures sur 24</string>
+    <string name="station_status_open">Ouvert</string>
+    <string name="station_unavailable">Indisponible</string>
+    <string name="station_status_busy">Occupé</string>
+    <string name="station_status_self_charging">Occupé par toi</string>
+    <string name="station_status_self_booked">Réservé par vous</string>
+    <string name="station_status_booked">Réservé</string>
+    <string name="station_open_in">Ouvert dans %s</string>
+    <string name="station_close_in">Ferme dans %s</string>
+
+    <string name="station_max_power">Max %s kWh</string>
+    <string name="station_max">Max</string>
+    <string name="station_max_value">(%s Max)</string>
+    <string name="station_reviews">Évaluations et avis</string>
+    <string name="station_reviews_helpful">Utile</string>
+    <string name="station_charging_activate">Activation du chargeur</string>
+    <string name="station_charging">En Charge</string>
+    <string name="station_charging_start">Démarrer la charge</string>
+    <string name="station_charging_start_error">Veuillez sélectionner les connecteurs avant de lancer la charge.</string>
+    <string name="station_charging_how_to">Comment facturer</string>
+    <string name="station_charging_stop">Arrêter la Charge</string>
+    <string name="station_charging_stop_msg">Assurez-vous de déconnecter la prise de votre véhicule électrique avant d\'arrêter la charge.</string>
+    <string name="station_charging_full">PLEIN</string>
+    <string name="station_charging_minute">m</string>
+    <string name="station_charging_hour">h</string>
+
+    <string name="station_charging_msg_1">"Vous êtes prêt à activer le chargeur. Sélectionnez la durée de charge et appuyez sur \'Démarrer la Charge\' pour commencer."</string>
+    <string name="station_charging_msg_2">"Avant de commencer la charge, veuillez garder à l\'esprit:"</string>
+    <string name="station_charging_msg_3">"Si vous n\'êtes pas actuellement près de la station de charge, la session de charge commencera quand même si vous continuez.</string>
+    <string name="station_charging_msg_4">"Si vous êtes déjà à la station de charge et prêt à activer le chargeur, choisissez la durée de charge et appuyez sur \'Démarrer la charge\' pour lancer la procédure."</string>
+    <string name="station_total_price">Prix total </string>
+    <string name="station_charged">Chargé</string>
+    <string name="station_recharge">Recharge</string>
+    <string name="station_time">Heure</string>
+    <string name="station_price">Prix</string>
+    <string name="station_app_fees">Frais App</string>
+
+    <string name="onboarding1_title1">En Sécurité</string>
+    <string name="onboarding1_title2">Conduire à la Station</string>
+    <string name="onboarding1_description">Localisez votre chargeur avec notre application et dirigez-vous vers son emplacement. La carte vous guidera pour une navigation facile.</string>
+    <string name="onboarding2_title">Identifier le Chargeur</string>
+    <string name="onboarding2_description1">Dans les zones avec plusieurs chargeurs, identifiez votre chargeur en utilisant son identifiant unique ou son nom, particulièrement utile si vous avez</string>
+    <string name="onboarding2_description2">réservé à l\'avance.</string>
+    <string name="onboarding2_description3">.</string>
+    <string name="onboarding3_title">Démarrer le Chargeur</string>
+    <string name="onboarding3_description1">D\'abord, connectez votre véhicule au chargeur. Ensuite,</string>
+    <string name="onboarding3_description2">Ensuite, scannez le code QR sur le chargeur pour</string>
+    <string name="onboarding3_description3">démarrer la charge</string>
+    <string name="onboarding3_description4">du processus.</string>
+    <string name="onboarding4_title1">Attendre</string>
+    <string name="onboarding4_title2">pour la Charge</string>
+    <string name="onboarding4_description">Configuration terminée ! Un compte à rebours indiquera combien de temps il reste avant que votre véhicule soit complètement chargé. Détendez-vous ou prenez un moment pour vous en attendant.</string>
+
+    <!-- My Power Sources -->
+    <string name="station_plugs">Prises</string>
+    <string name="station_plug_type">Type de prise</string>
+    <string name="station_plug_add">Ajouter une Prise</string>
+    <string name="station_details_plug">Prise: %d</string>
+    <string name="station_details_parking">Stationnement</string>
+    <string name="station_details_amenities">Équipements</string>
+    <string name="station_details_title">titre</string>
+    <string name="station_details_descriptions">Description</string>
+    <string name="station_save_next">Enregistrer et continuer</string>
+
+    <!-- Vehicles -->
+    <string name="vehicle_title">Mes Véhicules</string>
+    <string name="vehicle_make">Marque</string>
+    <string name="vehicle_model">Modèle</string>
+    <string name="vehicle_model_search">Rechercher un modèle</string>
+    <string name="vehicle_version">Version</string>
+    <string name="vehicle_add">Ajouter un véhicule</string>
+    <string name="vehicle_delete">Supprimer le véhicule ?</string>
+    <string name="vehicle_delete_message">Êtes-vous sûr de vouloir supprimer ce véhicule ?</string>
+    <string name="vehicle_manufacturer">Fabricant</string>
+    <string name="vehicle_manufacturer_search">Rechercher un fabricant</string>
+    <string name="vehicle_details">Détails</string>
+    <string name="vehicle_details_color">Couleur</string>
+    <string name="vehicle_details_color_custom">Couleur personnalisée</string>
+    <string name="vehicle_details_year">Année (%s)</string>
+    <string name="vehicle_details_fuel">Type de carburant (%s)</string>
+    <string name="vehicle_details_charging">Type de charge</string>
+
+    <string name="fuel_fuel">Carburant</string>
+    <string name="fuel_hybrid">Hybride</string>
+    <string name="fuel_plug_in_hybrid">Hybride rechargeable</string>
+    <string name="fuel_electric">Électrique</string>
+    <string name="fuel_other">Autre</string>
+
+    <!-- Orders-->
+    <string name="sessions_active">Session Active</string>
+    <string name="sessions_scheduled">Planifié</string>
+    <string name="sessions_booking_id">Identifiant de Réservation</string>
+    <string name="sessions_history">Historique</string>
+    <string name="sessions_completed">Complété</string>
+    <string name="sessions_active_empty">Aucune commande en cours</string>
+    <string name="sessions_history_empty">Aucune commande terminée</string>
+    <string name="sessions_charging_stop_msg">Êtes-vous sûr(e) de vouloir arrêter la charge ?</string>
+
+    <string name="station_closed">Fermé</string>
+    <string name="order_Id">ID de Commande</string>
+    <string name="order_selected_product">Produit</string>
+    <string name="order_discount">Réduction</string>
+    <string name="order_vatId">ID TVA</string>
+    <string name="order_subtotal">Sous-total : </string>
+    <string name="order_total">Total</string>
+    <string name="order_payment_method">Méthode de Paiement</string>
+    <string name="order_payment_methods">Méthodes de Paiement</string>
+    <string name="order_total_price">Prix Total</string>
+    <string name="order_vat">TVA</string>
+
+    <string name="time_h">h</string>
+    <string name="time_m">m</string>
+    <string name="time_s">s</string>
+
+    <!-- Home Slider -->
+    <array name="slider_title">
+        <item>Prêt à partir</item>
+    </array>
+
+    <array name="slider_message">
+        <item>Trouvez une borne, faites le plein d’énergie, et prenez la route.</item>
+    </array>
+</resources>

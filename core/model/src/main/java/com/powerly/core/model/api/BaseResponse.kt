@@ -13,7 +13,6 @@ open class ApiResponse<T>(
     val hasData: Boolean get() = this.data != null
     val isSuccess get() = this.success == 1
     fun getData() = this.data!!
-    fun getSafeData() = this.data
     fun getMessage(code: Int? = null): Message = Message(
         value = message.orEmpty(),
         type = if (isSuccess) Message.SUCCESS else Message.ERROR,

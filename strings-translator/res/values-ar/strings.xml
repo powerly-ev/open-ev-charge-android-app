@@ -1,0 +1,300 @@
+<resources>
+    <!-- HOME -->
+    <string name="home">الرئيسية</string>
+    <string name="scan">امسح</string>
+    <string name="scan_qr_code">امسح للتفعيل</string>
+    <string name="orders">الطلبات</string>
+    <string name="account">الحساب</string>
+    <string name="home_help">المساعدة</string>
+
+    <!--Side Menu-->
+    <string name="language">اللغة</string>
+    <string name="support">خدمة العملاء</string>
+    <string name="account_vehicles">المركبات</string>
+    <string name="invite">دعوة الأصدقاء</string>
+    <string name="invite_link_copied">تم نسخ رابط الدعوة</string>
+    <string name="invite_QR_description">قم بدعوة أصدقائك لتنزيل تطبيقنا المذهل</string>
+    <string name="logout_title">الخروج</string>
+    <string name="logout_confirmation">هل أنت متأكد من أنك تريد تسجيل الخروج؟</string>
+    <string name="select_language">اختار اللغة</string>
+
+    <!-- Update-->
+    <string name="update_required">تحديث الطبيق</string>
+    <string name="update_force_desc1">يجب إجراء تحديث مهم يتضمن ميزات إضافية وتحديثات أمان وتحسينات.</string>
+    <string name="update_force_desc2">يرجى تحديث التطبيق للمتابعة.</string>
+
+    <!--Profile Screen-->
+    <string name="profile_email">البريد الإلكتروني</string>
+    <string name="profile">ملفي الشخصي</string>
+    <string name="profile_select_country">اختر بلدك</string>
+    <string name="profile_require_email_address">البريد الإلكتروني مطلوب لتحديث ملفك الشخصي</string>
+    <string name="profile_confirm_delete_account">هل أنت متأكد من حذف الحساب؟</string>
+    <string name="profile_delete_account_description">سيتم إيقاف حسابك على الفور. بعد 30 يومًا ، سيتم حذفه نهائيًا ، وستتم إزالة أي أرصدة أو عروض ترويجية أو مكافآت غير مستخدمة.</string>
+    <string name="profile_guest">ضيف</string>
+    <string name="profile_see">الملف الشخصي</string>
+    <string name="profile_select_country_please">يرجى اختيار الدولة</string>
+
+    <!-- Welcome Screen-->
+    <string name="welcome">مرحباً :)</string>
+    <string name="welcome_description">مرحبًا بكم في مستقبل شحن السيارات الكهربائية! دعونا نبدأ بإعدادك، أولاً اختر لغتك.</string>
+    <string name="welcome_user_agreement">باستخدامك %s فانك توافق علي</string>
+    <string name="welcome_privacy_policy">سياسة الخصوصية.</string>
+    <string name="welcome_and">و</string>
+    <string name="welcome_terms_of_service">شروط الخدمة</string>
+    <string name="welcome_terms_condition">الشروط والأحكام</string>
+
+    <!-- Login-->
+    <string name="login_select_country">حدد بلدك</string>
+    <string name="login_resend_code_in">إعادة ارسال الكود في</string>
+    <string name="login_first_name">الاسم</string>
+    <string name="login_last_name">العائلة</string>
+    <string name="login_password">كلمة المرور</string>
+    <string name="login_enter_first_name">يرجى إدخال الاسم</string>
+    <string name="login_Verification_title">التحقق</string>
+    <string name="login_resend_code">إعادة إرسال الرمز</string>
+    <string name="login_need_help">أحتاج إلى مساعدة</string>
+    <string name="login_enter_code">أدخل الرمز المكون من 4 أرقام الذي أرسلناه إليك</string>
+    <string name="login_option_title">تسجيل الدخول"</string>
+    <string name="login_option_google">تسجيل الدخول عبر جوجل</string>
+    <string name="login_option_email">تسجيل الدخول عبر البريد الالكتروني</string>
+    <string name="login_option_guest">الاستمرار كضيف</string>
+    <string name="login_option_other">اكتشف خيارات تسجيل الدخول</string>
+    <string name="login_email">البريد الالكتروني</string>
+    <string name="login_email_title">تسجيل الدخول أو إنشاء حساب</string>
+    <string name="login_email_enter">أدخل بريدك الالكتروني</string>
+    <string name="login_email_enter_msg">يرجى إدخال بريدك الالكتروني. سنرسل لك رمز تحقق للحفاظ على أمان حسابك.</string>
+    <string name="login_email_error_msg">عنوان البريد الالكتروني غير صحيح</string>
+    <string name="login_email_password">كلمة المرور</string>
+    <string name="login_email_password_enter">أدخل كلمه السر</string>
+    <string name="login_email_password_new">كلمة المرور الجديدة</string>
+    <string name="login_email_password_confirm">أعد تأكيد كلمة المرور</string>
+    <string name="login_email_password_create_title">تسجيل الدخول باستخدام عنوان البريد الإلكتروني</string>
+    <string name="login_email_password_create">إنشاء كلمه السر</string>
+    <string name="login_email_password_create_msg">قم بإنشاء كلمة مرور قوية ستستخدمها لتسجيل الدخول</string>
+    <string name="login_email_password_length_msg">يجب أن تتكون كلمة المرور من %d حرفًا على الأقل.</string>
+    <string name="login_email_password_not_matched">كلمات المرور ليست متطابقة</string>
+    <string name="login_email_password_forget">نسيت كلمة المرور ؟</string>
+    <string name="login_email_password_forget_msg">لا مشكلة! سنرسل كلمة مرور لمرة واحدة (OTP) إلى %s. بمجرد استلامها، يمكنك استخدام كلمة المرور لمرة واحدة لتسجيل الدخول وإعادة تعيين كلمة المرور الخاصة بك</string>
+    <string name="login_email_password_weak">ضعيف</string>
+    <string name="login_email_password_medium">متوسط</string>
+    <string name="login_email_password_strong">قوي</string>
+
+    <!-- ACTIONS -->
+    <string name="retry">إعادة المحاولة</string>
+    <string name="save">حفظ</string>
+    <string name="done">تاكيد</string>
+    <string name="yes">نعم</string>
+    <string name="no">لا</string>
+    <string name="dialog_cancel">إلغاء</string>
+    <string name="dialog_ok">موافق</string>
+    <string name="update_now">التحديث الآن</string>
+    <string name="remove">حذف</string>
+    <string name="add_a_note">أضف ملاحظة</string>
+    <string name="delete_account">حذف الحساب</string>
+    <string name="share_code">مشاركة رابط الإحالة</string>
+    <string name="copy_code">نسخ رابط الإحالة</string>
+    <string name="agree_and_continue">موافقة ومتابعة</string>
+    <string name="update">تحديث</string>
+    <string name="edit">تعديل</string>
+    <string name="next">التالي</string>
+    <string name="skip">تخطي</string>
+    <string name="delete">حذف</string>
+    <string name="select">اختار</string>
+    <string name="change">تغيير</string>
+    <string name="add">إضافة</string>
+    <string name="continue_">استمر</string>
+
+    <!--Payment-->
+    <string name="payment_method_add">إضافة طريقة الدفع</string>
+    <string name="payment_card_add">أضف بطاقة</string>
+    <string name="payment_card_scan">مسح البطاقة</string>
+    <string name="payment_default">الطريقة الافتراضية</string>
+    <string name="payment_paypal">Paypal</string>
+    <string name="payment_point_checkout">Point Checkout</string>
+    <string name="payment_failed">فشل الدفع</string>
+    <string name="payment_add_new_card">إضافة بطاقة جديدة</string>
+    <string name="payment_cash_on_delivery">الدفع نقداً</string>
+    <string name="payment_delete_card_message">هل انت متأكد من حذف طريقة الدفع هذه؟</string>
+    <string name="payment_card">بطاقة ائتمانية</string>
+    <string name="payment_make_default">الافتراضي</string>
+
+    <!--Wallet-->
+    <string name="wallet">محفظة</string>
+    <string name="wallet_withdraw_from">السحب من:</string>
+    <string name="wallet_withdraw_agree">الموافقة والسحب</string>
+    <string name="wallet_withdraw_successful">تم السحب بنجاح</string>
+    <string name="wallet_withdraw_failed">فشل السحب</string>
+    <string name="wallet_policy">سياسة السحب</string>
+    <string name="wallet_policy_read_our">اقرأ</string>
+    <string name="wallet_policy_tab_withdraw">. اضغط "الموافقة والسحب" للقبول</string>
+    <string name="wallet_policy_terms">شروط الخدمة</string>
+
+    <!-- balance-->
+    <string name="balance">الرصيد</string>
+    <string name="balance_show">إظهار الرصيد</string>
+    <string name="balance_available">الرصيد المتاح</string>
+    <string name="balance_add">إضافة رصيد</string>
+    <string name="balance_popular">شائع</string>
+    <string name="balance_non_refundable">الرصيد مع الخصم غير قابل للاسترداد ، يرجى النقر فوق متابعة للموافقة</string>
+    <string name="balance_add_message">سوف نضيف الي رصيدك</string>
+    <string name="balance_refill_select_method">من فضلك اختر بطاقة الدفع.</string>
+
+    <!-- Location -->
+    <string name="location_search_address">البحث عن العنوان</string>
+    <string name="location_search_for">البحث عن الموقع</string>
+    <string name="location_search">البحث عن الموقع</string>
+    <string name="location_delivery_address">عنوان التسليم</string>
+
+    <!--Messages-->
+    <string name="no_internet_message">من فضلك تأكد من الإتصال بالإنترنت.</string>
+    <string name="internet_connection_error">عذرًا ، يحتاج هذا التطبيق إلى اتصال بالإنترنت للعمل بشكل صحيح. يرجى التحقق من اتصالك بالإنترنت وإعادة المحاولة.</string>
+    <string name="maintenance_mode_error">الخدمة غير متاحة حاليًا للصيانة. يرجى التحقق مرة أخرى لاحقًا. نأسف على الإزعاج.</string>
+    <string name="camera_permission_message">يرجى السماح بإذن الكاميرا.</string>
+    <string name="reminder_message">يرجى إكمال التسجيل لتلقي عروضنا وخصوماتنا</string>
+
+    <!-- Feedback-->
+    <string name="feedback_msg">كيف كانت تجربتك ؟</string>
+    <string name="feedback_terrible">فظيعة</string>
+    <string name="feedback_bad">سيئة</string>
+    <string name="feedback_fine">متوسطة</string>
+    <string name="feedback_good">جيدة</string>
+    <string name="feedback_excellent">ممتازة</string>
+
+    <!-- Stations -->
+    <string name="station_location_allow">السماح</string>
+    <string name="station_number">المحطة #%s</string>
+    <string name="station_new">جديد</string>
+    <string name="station_drive">الانتقال إلى المحطة</string>
+    <string name="station_unit_price_per_minute_total">%s %s / دقيقة × %s</string>
+    <string name="station_unit_price_per_kwh_total">%s %s / ك.و.س - %s</string>
+    <string name="station_per_minute">لكل دقيقة</string>
+    <string name="station_per_kwh">لكل كيلوواط في الساعة</string>
+    <string name="station_per">لكل</string>
+    <string name="station_kwh">ك.و.س</string>
+    <string name="station_km_value">%s كم</string>
+    <string name="station_kwh_value">%s ك.و.س</string>
+    <string name="station_km_away">على بعد %.1f كم</string>
+
+    <string name="station_status_open24">مفتوح 24 ساعة</string>
+    <string name="station_status_open">متاح</string>
+    <string name="station_unavailable">غير متاح</string>
+    <string name="station_status_busy">مشغول</string>
+    <string name="station_status_self_charging">مشغول من قبلك</string>
+    <string name="station_status_self_booked">محجوز من قبلك</string>
+    <string name="station_status_booked">محجوز</string>
+    <string name="station_open_in">يفتح في %s</string>
+    <string name="station_close_in">يغلق في %s</string>
+
+    <string name="station_max_power">الحد الأقصي %s ك.و.س</string>
+    <string name="station_max">الحد الأقصي</string>
+    <string name="station_max_value">(%s الحد الأقصي)</string>
+    <string name="station_reviews">التقييمات والمراجعات</string>
+    <string name="station_reviews_helpful">مفيد</string>
+    <string name="station_charging_activate">تفعيل الشاحن</string>
+    <string name="station_charging">الشحن</string>
+    <string name="station_charging_start">بدء الشحن</string>
+    <string name="station_charging_start_error">الرجاء تحديد المقابس قبل بدء الشحن.</string>
+    <string name="station_charging_how_to">كيف تشحن</string>
+    <string name="station_charging_stop">إيقاف الشحن</string>
+    <string name="station_charging_stop_msg">يرجى التأكد من فصل القابس من مركبتك الكهربائية قبل إيقاف الشحن.</string>
+    <string name="station_charging_full">كامل</string>
+    <string name="station_charging_minute">" دقيقة"</string>
+    <string name="station_charging_hour">" ساعة"</string>
+
+    <string name="station_charging_msg_1">"أنت مستعد لتنشيط الشاحن. حدد وقت الشحن الخاص بك واضغط على 'بدء الشحن' للبدء."</string>
+    <string name="station_charging_msg_2">"قبل أن تبدأ الشحن، يرجى أن تتذكر:"</string>
+    <string name="station_charging_msg_3">"Iإذا لم تكن بالقرب من محطة الشحن حاليًا، ستبدأ الجلسة الشحن ما زالت إذا قررت المتابعة."</string>
+    <string name="station_charging_msg_4">"إذا كنت بالفعل في محطة الشحن وجاهزًا لتنشيط الشاحن، اختر مدة الشحن الخاصة بك واضغط على 'بدء الشحن' للبدء.</string>
+    <string name="station_total_price">السعر الإجمالي</string>
+    <string name="station_charged">تم الشحن</string>
+    <string name="station_recharge">إعادة الشحن</string>
+    <string name="station_time">الوقت</string>
+    <string name="station_price">السعر</string>
+    <string name="station_app_fees">رسوم التطبيق</string>
+
+    <string name="onboarding1_title1">بأمان الله</string>
+    <string name="onboarding1_title2">اتجه الي الشاحن</string>
+    <string name="onboarding1_description">استخدم التطبيق للعثور علي الشاحن وتوجه ألي موقعه. ستوجّهك الخريطة إلي الموقع</string>
+    <string name="onboarding2_title">حدد الشاحن</string>
+    <string name="onboarding2_description1">في المناطق التي تحتوي عدة شواحن, حدد شاحنك باستخدام الرقم التعريفي الفريد أو الاسم,</string>
+    <string name="onboarding2_description2">ينصح بالحجز المسبق</string>
+    <string name="onboarding2_description3">من خلال التطبيق.</string>
+    <string name="onboarding3_title">تشغيل الشاحن</string>
+    <string name="onboarding3_description1">أولاً, قم بتوصيل سيارتك بالشاحن. ثم</string>
+    <string name="onboarding3_description2">قم بمسح رمز الاستجابة السريعة </string>
+    <string name="onboarding3_description3">لبدء عملية الشحن</string>
+    <string name="onboarding3_description4">, ثم اضغط علي بدء الشحن من التطبيق.</string>
+    <string name="onboarding4_title1">انتظر</string>
+    <string name="onboarding4_title2">حتي تتم عملية الشحن</string>
+    <string name="onboarding4_description">كل شئ جاهز! سيظهر مؤقت العد التنازلي لتعرف متي سيتم شحن سيارتك بالكامل. استرخ أو خذ قسطاً من الراحة في الوقت بينهما.</string>
+
+    <!-- My Power Sources -->
+    <string name="station_plugs">مقابس</string>
+    <string name="station_plug_type">نوع المقبس</string>
+    <string name="station_plug_add">أضف مقبسًا</string>
+    <string name="station_details_plug">مقبس: %d</string>
+    <string name="station_details_parking">موقف السيارات</string>
+    <string name="station_details_amenities">وسائل الراحة</string>
+    <string name="station_details_title">عنوان</string>
+    <string name="station_details_descriptions">الوصف</string>
+    <string name="station_save_next">حفظ والتالي</string>
+
+    <!-- Vehicles -->
+    <string name="vehicle_title">مركباتي</string>
+    <string name="vehicle_make">الصانع</string>
+    <string name="vehicle_model">الطراز</string>
+    <string name="vehicle_model_search">البحث عن الموديل</string>
+    <string name="vehicle_version">الإصدار</string>
+    <string name="vehicle_add">إضافة مركبة</string>
+    <string name="vehicle_delete">حذف المركبة؟</string>
+    <string name="vehicle_delete_message">هل أنت متأكد من رغبتك في حذف هذه المركبة؟</string>
+    <string name="vehicle_manufacturer">الشركة المصنعة</string>
+    <string name="vehicle_manufacturer_search">البحث عن الشركة المصنعة</string>
+    <string name="vehicle_details">التفاصيل</string>
+    <string name="vehicle_details_color">اللون</string>
+    <string name="vehicle_details_color_custom">لون مخصص</string>
+    <string name="vehicle_details_year">السنة (%s)</string>
+    <string name="vehicle_details_fuel">نوع الوقود (%s)</string>
+    <string name="vehicle_details_charging">نوع الشحن</string>
+
+    <string name="fuel_fuel">وقود</string>
+    <string name="fuel_hybrid">هجين</string>
+    <string name="fuel_plug_in_hybrid">هجين قابل للشحن</string>
+    <string name="fuel_electric">كهربائي</string>
+    <string name="fuel_other">أخرى</string>
+
+    <!-- Orders-->
+    <string name="sessions_active">الجلسة النشطة</string>
+    <string name="sessions_scheduled">مجدولة</string>
+    <string name="sessions_booking_id">رقم الحجز</string>
+    <string name="sessions_history">السجل</string>
+    <string name="sessions_completed">مكتمل</string>
+    <string name="sessions_active_empty">لا يوجد طلبات نشطة</string>
+    <string name="sessions_history_empty">لا يوجد طلبات مكتملة</string>
+    <string name="sessions_charging_stop_msg">هل أنت متأكد من أنك تريد إيقاف الشحن؟</string>
+
+    <string name="station_closed">مغلق</string>
+    <string name="order_Id">رقم الطلب</string>
+    <string name="order_selected_product">منتج</string>
+    <string name="order_discount">الخصم</string>
+    <string name="order_vatId">الرقم الضريبي</string>
+    <string name="order_subtotal">المجموع الفرعي</string>
+    <string name="order_total">الإجمالي</string>
+    <string name="order_payment_method">طريقة الدفع</string>
+    <string name="order_payment_methods">طرق الدفع</string>
+    <string name="order_total_price">السعر الإجمالي</string>
+    <string name="order_vat">ضريبة القيمة المضافة</string>
+
+    <string name="time_h">س</string>
+    <string name="time_m">د</string>
+    <string name="time_s">ث</string>
+
+    <!-- Home Slider -->
+    <array name="slider_title">
+        <item>جاهز للانطلاق</item>
+    </array>
+
+    <array name="slider_message">
+        <item> دورلك على شاحن، اشحن، وانطلق بأمان.</item>
+    </array>
+</resources>
