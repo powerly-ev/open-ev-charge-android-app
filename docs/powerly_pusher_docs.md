@@ -20,10 +20,10 @@ This document describes how to connect [Pusher](https://pusher.com/docs/beams/re
 
 | Parameter       | Value                                                             |
 |-----------------|-------------------------------------------------------------------|
-| Host            | `test-api.powerly.app`                                            |
-| App Key         | `34322323232`                                                     |
+| Host            | `api.powerly.app`                                            |
+| App Key         | `8735473`                                                     |
 | WSS Port        | `443`                                                             |
-| Auth Endpoint   | `https://test-api.powerly.app/broadcasting/auth`                 |
+| Auth Endpoint   | `https://api.powerly.app/broadcasting/auth`                 |
 
 ---
 
@@ -129,16 +129,16 @@ import com.pusher.client.util.HttpChannelAuthorizer
 val userToken = "your_bearer_token"
 val orderId = .....
 
-val channelAuthorizer = HttpChannelAuthorizer("https://test-api.powerly.app/broadcasting/auth")
+val channelAuthorizer = HttpChannelAuthorizer("https://api.powerly.app/broadcasting/auth")
 channelAuthorizer.setHeaders(mapOf("Authorization" to "Bearer $userToken"))
 
 val options = PusherOptions()
-    .setHost("test-api.powerly.app")
+    .setHost("api.powerly.app")
     .setWssPort(443)
     .setEncrypted(true)
     .setChannelAuthorizer(channelAuthorizer)
 
-val pusher = Pusher("34322323232", options)
+val pusher = Pusher("8735473", options)
 val channel = pusher.subscribePrivate("private-orders.$orderId")
 
 channel.bind("App\\Events\\ChargePointConsumption") { event ->
