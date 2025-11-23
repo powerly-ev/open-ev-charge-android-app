@@ -9,9 +9,9 @@ import com.powerly.core.model.powerly.StartChargingBody
 import com.powerly.core.model.powerly.StopChargingBody
 import com.powerly.core.network.RemoteDataSource
 import com.powerly.core.network.asErrorMessage
+import io.ktor.client.plugins.ResponseException
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
-import io.ktor.client.plugins.ResponseException
 import org.koin.core.annotation.Named
 import org.koin.core.annotation.Single
 
@@ -37,7 +37,7 @@ class SessionsRepositoryImpl(
                 connector = connector
             )
             val response = remoteDataSource.startCharging(request)
-            if (response.getSafeData()?.id.isNullOrEmpty().not()) {
+            if (response.isSuccess && response.hasData) {
                 ChargingStatus.Success(response.getData())
             } else ChargingStatus.Error(response.getMessage())
         } catch (e: ResponseException) {
