@@ -13,6 +13,7 @@ import com.powerly.core.model.powerly.PowerSource
 import com.powerly.powerSource.PsViewModel
 import com.powerly.ui.HomeUiState
 import com.powerly.ui.dialogs.loading.rememberScreenState
+import com.powerly.ui.extensions.openUriSafely
 
 private const val TAG = "PowerSourceScreen"
 
@@ -77,14 +78,13 @@ fun PowerSourceScreen(
         uiEvents = { event ->
             when (event) {
                 is SourceEvents.CAll -> {
-                    uriHandler.openUri(event.contact.orEmpty())
+                    uriHandler.openUriSafely(event.contact.orEmpty())
                 }
 
                 is SourceEvents.DriveToStation -> {
-                    viewModel.navigateToMap(
-                        latitude = event.target.latitude,
-                        longitude = event.target.longitude
-                    )
+                    val directionsUri =
+                        "http://maps.google.com/maps?daddr=${powerSource?.latitude},${powerSource?.longitude}"
+                    uriHandler.openUriSafely(directionsUri)
                 }
 
                 else -> onNavigate(event)

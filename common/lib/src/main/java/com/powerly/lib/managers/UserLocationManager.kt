@@ -93,15 +93,6 @@ class UserLocationManager(
         }
     }
 
-    /**
-     * Opens the map application to navigate to the specified latitude and longitude.
-     *
-     * @param latitude The latitude of the destination.
-     * @param longitude The longitude of the destination.
-     */
-    fun navigateToMap(latitude: Double, longitude: Double) {
-        locationProvider.navigateInMap(latitude, longitude)
-    }
 
     companion object {
         private const val TAG = "LOCATION_MANAGER"
