@@ -87,10 +87,6 @@ class PsViewModel(
 
     suspend fun showOnBoardingOnce() = appRepository.showOnBoardingOnce()
 
-    fun navigateToMap(latitude: Double, longitude: Double) {
-        locationManager.navigateToMap(latitude, longitude)
-    }
-
     fun updateBalance() {
         viewModelScope.launch {
             userRepository.getUserDetails()

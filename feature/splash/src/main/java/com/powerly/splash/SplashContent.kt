@@ -89,7 +89,7 @@ internal fun SplashScreenContent(
                 )
                 AppSlogan(show = { showSlogan })
             }
-            Text(
+            /*Text(
                 text = stringResource(R.string.app_powered_by),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.tertiary,
@@ -97,7 +97,7 @@ internal fun SplashScreenContent(
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
                     .padding(bottom = 16.dp)
-            )
+            )*/
         }
     }
 }
