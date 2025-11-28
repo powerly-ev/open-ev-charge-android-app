@@ -393,7 +393,7 @@ private fun SectionCharging(
             spacing = 0.dp
         ) {
 
-            StationIcon(icon = R.drawable.ic_sd_wallet)
+            StationIcon(icon = R.drawable.wallet)
 
             Spacer(modifier = Modifier.weight(1f))
 

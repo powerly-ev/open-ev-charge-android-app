@@ -17,7 +17,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -38,9 +37,9 @@ import com.powerly.lib.Route
 import com.powerly.orders.OrdersScreen
 import com.powerly.orders.SessionViewModel
 import com.powerly.orders.history.details.DeliveredOrderScreen
-import com.powerly.resources.R
 import com.powerly.scan.ScannerScreen
 import com.powerly.ui.HomeUiState
+import com.powerly.ui.extensions.openUriSafely
 import com.powerly.ui.theme.LocalMainActivity
 import com.powerly.ui.util.rememberActivityResultState
 import kotlinx.coroutines.delay
@@ -57,11 +56,9 @@ fun HomeGraph(
     rootNavController: NavHostController,
     innerNavController: NavHostController,
 ) {
-    val context = LocalContext.current
     val activity = LocalMainActivity.current!!
     val uriHandler = LocalUriHandler.current
     val coroutineScope = rememberCoroutineScope()
-    //val navBackStackEntry = rootNavController.getBackStackEntry(route = AppRoutes.Navigation)
     val mapViewModel: MyMapViewModel = koinViewModel(viewModelStoreOwner = activity)
     val homeViewModel: HomeViewModel = koinViewModel(viewModelStoreOwner = activity)
     var doOnce by rememberSaveable { mutableStateOf(true) }
@@ -121,7 +118,7 @@ fun HomeGraph(
 
 
     fun openSupport() {
-        uriHandler.openUri(context.getString(R.string.community_link))
+        uriHandler.openUriSafely("tel: ${homeViewModel.supportNumber}")
     }
 
 

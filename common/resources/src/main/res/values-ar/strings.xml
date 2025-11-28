@@ -203,7 +203,7 @@
 
     <string name="station_charging_msg_1">"أنت مستعد لتنشيط الشاحن. حدد وقت الشحن الخاص بك واضغط على 'بدء الشحن' للبدء."</string>
     <string name="station_charging_msg_2">"قبل أن تبدأ الشحن، يرجى أن تتذكر:"</string>
-    <string name="station_charging_msg_3">"Iإذا لم تكن بالقرب من محطة الشحن حاليًا، ستبدأ الجلسة الشحن ما زالت إذا قررت المتابعة."</string>
+    <string name="station_charging_msg_3">"إذا لم تكن بالقرب من محطة الشحن حاليًا، ستبدأ الجلسة الشحن ما زالت إذا قررت المتابعة."</string>
     <string name="station_charging_msg_4">"إذا كنت بالفعل في محطة الشحن وجاهزًا لتنشيط الشاحن، اختر مدة الشحن الخاصة بك واضغط على 'بدء الشحن' للبدء.</string>
     <string name="station_total_price">السعر الإجمالي</string>
     <string name="station_charged">تم الشحن</string>

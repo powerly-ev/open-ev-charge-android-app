@@ -172,6 +172,7 @@ internal fun HomeScreenContent(
         header = {
             Header(
                 loggedIn = isLoggedIn,
+                hasSupportNumber = uiState.hasSupportNumber,
                 balance = { uiState.balance.value },
                 currency = { uiState.currency.value },
                 onLogin = { uiEvents(HomeEvents.OnLogin) },
@@ -290,8 +291,9 @@ internal fun MapPlaceHolder() {
  * Header
  */
 @Composable
-fun Header(
+private fun Header(
     loggedIn: Boolean,
+    hasSupportNumber: Boolean,
     balance: () -> String,
     currency: () -> String,
     onLogin: () -> Unit,
@@ -336,9 +338,9 @@ fun Header(
                 )
             }
             // support button
-            ButtonSmall(
+            if (hasSupportNumber) ButtonSmall(
                 text = stringResource(id = R.string.home_help),
-                icon = R.drawable.ic_baseline_support_agent_24,
+                icon = R.drawable.support,
                 layoutDirection = LayoutDirection.Rtl,
                 cornerRadius = 8.dp,
                 padding = PaddingValues(horizontal = 8.dp),
