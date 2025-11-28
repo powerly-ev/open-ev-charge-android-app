@@ -58,7 +58,7 @@ private fun ActivateChargerDialogContentMinutesNearPreview() {
     val ps = PowerSource(
         id = "0", priceUnit = "minutes", distance = 0.1,
         connectors = connectors, sessionLimit = 180, price = 1.0,
-        currency = "USD"
+        currency = "USD", category = "EV_CHARGER"
     )
     AppTheme {
         ActivateChargerDialogContent(

@@ -86,7 +86,7 @@ internal fun AccountScreenContent(
     ) {
         HorizontalDivider(color = MyColors.dividerColor)
         if (isLoggedIn) SectionTab(
-            icon = R.drawable.ic_sd_wallet,
+            icon = R.drawable.wallet,
             title = R.string.wallet,
             onClick = { uiEvents(AccountEvents.OpenWallet) }
         )
@@ -95,18 +95,18 @@ internal fun AccountScreenContent(
             title = R.string.account_vehicles,
             onClick = { uiEvents(AccountEvents.OpenVehicles) }
         )
-        SectionTab(
-            icon = R.drawable.ic_baseline_support_agent_24,
+        if (uiState.hasSupportNumber) SectionTab(
+            icon = R.drawable.support,
             title = R.string.support,
             onClick = { uiEvents(AccountEvents.OpenSupport) }
         )
         if (isLoggedIn) SectionTab(
-            icon = R.drawable.ic_sd_invite,
+            icon = R.drawable.invite,
             title = R.string.invite,
             onClick = { uiEvents(AccountEvents.OpenInvite) }
         )
         SectionTab(
-            icon = R.drawable.ic_sd_language,
+            icon = R.drawable.language,
             title = R.string.language,
             actionButton = languageName,
             onClick = { uiEvents(AccountEvents.LanguageDialog) }

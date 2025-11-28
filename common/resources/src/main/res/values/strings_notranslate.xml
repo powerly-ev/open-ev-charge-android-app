@@ -3,5 +3,4 @@
     <string name="app_slogan" translatable="false">Smart Charge. Anywhere.</string>
     <string name="app_powered_by" translatable="false">By Powerly.app</string>
     <string name="select_app_language" translatable="false">Select language |  اخْتَار اللُّغَة | Choisir la langue | Seleccione el idioma</string>
-    <string name="community_link" translatable="false">https://community.powerly.app/</string>
 </resources>

@@ -43,6 +43,7 @@ import com.powerly.core.model.powerly.Connector
 import com.powerly.core.model.powerly.PowerSource
 import com.powerly.home.home.MapPlaceHolder
 import com.powerly.resources.R
+import com.powerly.ui.HomeUiState
 import com.powerly.ui.map.MyMapScreen
 import com.powerly.ui.map.PowerSourceMarker
 import com.powerly.ui.components.ButtonSmall
@@ -85,8 +86,7 @@ private fun MapScreenPreview() {
                 initialPage = 0,
                 pageCount = { 0 }
             ),
-            balance = { "40.0" },
-            currency = { "SAR" },
+            uiState = HomeUiState(),
             selectedPowerSource = { null },
             nearPowerSources = { nearSources },
             uiEvents = {},
@@ -98,8 +98,7 @@ private fun MapScreenPreview() {
 internal fun MapScreenContent(
     mapState: MapViewState,
     pagerState: PagerState,
-    balance: () -> String,
-    currency: () -> String,
+    uiState: HomeUiState,
     selectedPowerSource: () -> PowerSource?,
     nearPowerSources: () -> List<PowerSource>,
     uiEvents: (MapEvents) -> Unit,
@@ -107,8 +106,9 @@ internal fun MapScreenContent(
     Scaffold(
         topBar = {
             Header(
-                balance = balance,
-                currency = currency,
+                balance = { uiState.balance.value },
+                currency = { uiState.currency.value },
+                hasSupport = uiState.hasSupportNumber,
                 onBack = { uiEvents(MapEvents.OnBack) },
                 onBalance = { uiEvents(MapEvents.OpenBalance) },
                 onSupport = { uiEvents(MapEvents.OpenSupport) }
@@ -169,6 +169,7 @@ internal fun MapScreenContent(
 private fun Header(
     balance: () -> String,
     currency: () -> String,
+    hasSupport: Boolean,
     onBack: () -> Unit,
     onBalance: () -> Unit,
     onSupport: () -> Unit
@@ -201,9 +202,9 @@ private fun Header(
                 )
 
                 Spacer(modifier = Modifier.weight(1f))
-                ButtonSmall(
+                if (hasSupport) ButtonSmall(
                     text = stringResource(id = R.string.home_help),
-                    icon = R.drawable.ic_baseline_support_agent_24,
+                    icon = R.drawable.support,
                     layoutDirection = LayoutDirection.Rtl,
                     cornerRadius = 8.dp,
                     padding = PaddingValues(horizontal = 8.dp),
