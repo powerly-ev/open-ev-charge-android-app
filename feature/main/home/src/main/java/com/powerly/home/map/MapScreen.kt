@@ -42,11 +42,8 @@ fun MapScreen(
     onBack: () -> Unit
 ) {
     val coroutineScope = rememberCoroutineScope()
-    val balance by remember { uiState.balance }
-    val currency by remember { uiState.currency }
     val locationSearchDialog = rememberMyDialogState()
     val mapState = remember { viewModel.mapState }
-    val userLocation by remember { viewModel.userLocation }
     val powerSources = remember { viewModel.nearPowerSources }
     var selectedPowerSource by remember { viewModel.selectedPowerSource }
 
@@ -146,8 +143,7 @@ fun MapScreen(
     MapScreenContent(
         mapState = mapState,
         pagerState = pageState,
-        balance = { balance },
-        currency = { currency },
+        uiState = uiState,
         selectedPowerSource = { selectedPowerSource },
         nearPowerSources = { powerSources },
         uiEvents = ::uiEvents

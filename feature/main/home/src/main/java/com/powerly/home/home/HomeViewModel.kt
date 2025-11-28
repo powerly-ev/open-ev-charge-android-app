@@ -32,6 +32,8 @@ class HomeViewModel(
         } else null
     }
 
+    val supportNumber: String get() = deviceHelper.supportNumber
+
     companion object {
         private const val TAG = "HomeViewModel"
     }

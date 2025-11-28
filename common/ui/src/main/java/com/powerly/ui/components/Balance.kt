@@ -58,7 +58,7 @@ fun SectionBalance(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 MyIcon(
-                    icon = R.drawable.ic_sd_wallet,
+                    icon = R.drawable.wallet,
                     modifier = Modifier.size(20.dp)
                 )
                 Text(

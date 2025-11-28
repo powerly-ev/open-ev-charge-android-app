@@ -7,6 +7,7 @@ import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.DefaultRequest
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.client.plugins.logging.DEFAULT
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
@@ -62,11 +63,23 @@ class KtorClient(
 
             // ✅ Logging (similar to HttpLoggingInterceptor)
             install(Logging) {
-                level = if (BuildConfig.DEBUG) LogLevel.ALL else LogLevel.NONE
-                logger = object : Logger {
-                    override fun log(message: String) {
-                        Log.i("Ktor", message)
+                if (BuildConfig.DEBUG) {
+                    level = LogLevel.ALL
+                    logger = object : Logger {
+                        override fun log(message: String) {
+                            val maxLogLength = 4000
+                            val chunks = message.length / maxLogLength
+
+                            for (i in 0..chunks) {
+                                val start = i * maxLogLength
+                                val end = minOf(start + maxLogLength, message.length)
+                                Log.i("Ktor", message.substring(start, end))
+                            }
+                        }
                     }
+                } else {
+                    level = LogLevel.NONE
+                    logger = Logger.DEFAULT
                 }
             }
 
