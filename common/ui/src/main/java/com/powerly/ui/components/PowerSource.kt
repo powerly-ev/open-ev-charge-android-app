@@ -30,6 +30,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.powerly.core.model.powerly.Connector
+import com.powerly.core.model.powerly.ConnectorStatus
 import com.powerly.resources.R
 import com.powerly.ui.containers.MyRow
 import com.powerly.ui.containers.MySurface
@@ -54,7 +55,7 @@ fun ItemConnectorPreview() {
                     name = "Connector 1",
                     icon = "https://example.com/icon.png",
                     maxPower = 150.0,
-                    status = "Available"
+                    status = ConnectorStatus.Available
                 )
                 ItemConnector(connector = connector)
             }
@@ -64,7 +65,7 @@ fun ItemConnectorPreview() {
                     name = "Connector 1",
                     icon = "https://example.com/icon.png",
                     maxPower = 150.0,
-                    status = "Unavailable"
+                    status = ConnectorStatus.Unavailable
                 )
                 ItemConnector(connector = connector)
             }
@@ -75,7 +76,7 @@ fun ItemConnectorPreview() {
                     name = "Connector 1",
                     icon = "https://example.com/icon.png",
                     maxPower = 150.0,
-                    status = "Booked"
+                    status = ConnectorStatus.Booked
 
                 )
                 ItemConnector(connector = connector)
@@ -86,7 +87,7 @@ fun ItemConnectorPreview() {
                     name = "Connector 1",
                     icon = "https://example.com/icon.png",
                     maxPower = 150.0,
-                    status = "Booked by you"
+                    status = ConnectorStatus.BookedByYou
                 )
                 ItemConnector(connector = connector)
             }
@@ -97,7 +98,7 @@ fun ItemConnectorPreview() {
                     name = "Connector 1",
                     icon = "https://example.com/icon.png",
                     maxPower = 150.0,
-                    status = "Busy"
+                    status = ConnectorStatus.Busy
 
                 )
                 ItemConnector(connector = connector)
@@ -109,7 +110,7 @@ fun ItemConnectorPreview() {
                     name = "Connector 1",
                     icon = "https://example.com/icon.png",
                     maxPower = 150.0,
-                    status = "Busy By You"
+                    status = ConnectorStatus.BusyByYou
 
                 )
                 ItemConnector(connector = connector)
@@ -180,7 +181,7 @@ fun ItemConnector(
             modifier = Modifier.padding(8.dp)
         ) {
             MyTextDynamic(
-                text = connector.status,
+                text = connector.statusLabel,
                 style = MaterialTheme.typography.bodyMedium,
                 color = when {
                     connector.isAvailable -> MaterialTheme.colorScheme.primary

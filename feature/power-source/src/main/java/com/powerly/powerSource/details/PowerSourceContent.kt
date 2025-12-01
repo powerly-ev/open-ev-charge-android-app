@@ -45,6 +45,7 @@ import androidx.compose.ui.unit.dp
 import com.powerly.core.model.location.MyAddress
 import com.powerly.core.model.powerly.Amenity
 import com.powerly.core.model.powerly.Connector
+import com.powerly.core.model.powerly.ConnectorStatus
 import com.powerly.core.model.powerly.Media
 import com.powerly.core.model.powerly.PowerSource
 import com.powerly.resources.R
@@ -85,7 +86,7 @@ private val powerSource = PowerSource(
         Connector(
             name = "Type 1",
             maxPower = 120.0,
-            status = "available"
+            status = ConnectorStatus.Available
         )
     ),
     address = MyAddress("Egypt"),
