@@ -14,15 +14,12 @@ import com.pusher.client.connection.ConnectionEventListener
 import com.pusher.client.connection.ConnectionState
 import com.pusher.client.connection.ConnectionStateChange
 import com.pusher.client.util.HttpChannelAuthorizer
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import org.koin.core.annotation.Single
-
 
 @Single
 class PusherManager(
@@ -34,12 +31,12 @@ class PusherManager(
     companion object {
         private const val TAG = "PusherManager"
         private const val PORT = 443
-        private val subscriptions = mutableMapOf<String, PrivateChannel>()
-        private val events = mutableMapOf<String, PrivateChannelEventListener>()
         private const val CHANNEL_CHARGING = "private-orders"
         private const val EVENT_CHARGING_COMPLETED = "App\\Events\\ChargePointOrderCompleted"
         private const val EVENT_CHARGING = "App\\Events\\ChargePointConsumption"
     }
+
+    private val subscriptions = mutableMapOf<String, Subscription>()
 
     /**
      * Initializes the Pusher manager with the necessary configuration.
@@ -67,66 +64,43 @@ class PusherManager(
      */
     val isConnected: Boolean get() = pusher?.connection?.state == ConnectionState.CONNECTED
 
-    /**
-     * Connects to the Pusher server with optional error and status callbacks.
-     *
-     * @param onError A callback to be invoked when an error occurs during connection.
-     * @param status A callback to be invoked when the connection state changes.
-     */
-    fun connect(
-        onError: ((String) -> Unit)? = null,
-        status: ((ConnectionState) -> Unit)? = null,
-    ) {
-        Log.i(TAG, "attempt to connected")
-        pusher?.connect(object : ConnectionEventListener {
-            override fun onConnectionStateChange(change: ConnectionStateChange) {
-                val state = change.currentState
-                status?.invoke(state)
-                Log.i(TAG, "onConnectionStateChange = $state")
-            }
+    private val connectionEvent = object : ConnectionEventListener {
+        override fun onConnectionStateChange(change: ConnectionStateChange) {
+            val state = change.currentState
+            Log.i(TAG, "onConnectionStateChange = $state")
+        }
 
-            override fun onError(message: String?, code: String?, e: Exception?) {
-                onError?.invoke(message.orEmpty())
-                Log.e(TAG, "onError - $message - $code - ${e?.message}")
-                e?.printStackTrace()
-            }
-        }, ConnectionState.ALL)
+        override fun onError(message: String?, code: String?, e: Exception?) {
+            Log.e(TAG, "onError - $message - $code - ${e?.message}")
+            e?.printStackTrace()
+        }
     }
 
     /**
-     * Connects to the Pusher server.
+     * Connects to the Pusher server .
      */
     fun connect() {
         Log.i(TAG, "attempt to connected")
-        pusher?.connect(object : ConnectionEventListener {
-            override fun onConnectionStateChange(change: ConnectionStateChange) {
-                // Handle connection state changes if needed
-                Log.v(TAG, "onConnectionStateChange - ${change.currentState.name}")
-            }
-
-            override fun onError(message: String?, code: String?, e: Exception?) {
-                // Handle connection errors if needed
-                Log.e(TAG, "$message - ${e?.message.orEmpty()}")
-                e?.printStackTrace()
-            }
-        }, ConnectionState.CONNECTED)
+        pusher?.connect(connectionEvent, ConnectionState.ALL)
     }
 
+    /**
+     * Disconnects from the Pusher server if no subscriptions are active.
+     */
+    fun disconnectIfIdle() {
+        if (subscriptions.isEmpty()) {
+            pusher?.disconnect()
+            Log.i(TAG, "disconnectIfIdle")
+        }
+    }
 
     /**
      * Disconnects from the Pusher server.
      */
     fun disconnect() {
         pusher?.disconnect()
+        subscriptions.clear()
         Log.i(TAG, "disconnect")
-    }
-
-    /**
-     * Reconnects to the Pusher server.
-     */
-    fun reconnect() {
-        pusher?.connect()
-        Log.i(TAG, "reconnect")
     }
 
 ///////////////////////////////////////////////////
@@ -135,6 +109,8 @@ class PusherManager(
     private val _sessionCompletion = MutableStateFlow<Session?>(null)
     val sessionCompletionFlow = _sessionCompletion.asStateFlow()
 
+    private val _sessionConsumption = MutableStateFlow<Session?>(null)
+    val sessionConsumptionFlow = _sessionConsumption.asStateFlow()
 
     /*private val _sessionCompletion = MutableSharedFlow<Session?>(replay = 0)
     val sessionCompletionFlow = _sessionCompletion.asSharedFlow()*/
@@ -146,16 +122,16 @@ class PusherManager(
      */
     fun subscribeSessionCompletion(sessionId: String) {
         _sessionCompletion.tryEmit(null)
-        subscribeEvent(
+        subscribe(
             channelName = "$CHANNEL_CHARGING.$sessionId",
             eventName = EVENT_CHARGING_COMPLETED,
             onReceive = {
                 val session: Session? = it.asSession()
                 Log.i(TAG, "onReceiveSessionCompletion - ${session?.id}")
                 _sessionCompletion.tryEmit(session)
-                unbindConsumption(sessionId)
-                unsubscribeSession(sessionId)
-                disconnect()
+                unsubscribeSessionConsumption(sessionId)
+                unsubscribeSessionCompletion(sessionId)
+                disconnectIfIdle()
             }
         )
     }
@@ -165,11 +141,11 @@ class PusherManager(
      *
      * @param sessionId The ID of the session to unsubscribe from.
      */
-    fun unsubscribeSession(sessionId: String) {
-        val channelName = "$CHANNEL_CHARGING.$sessionId"
-        val eventName = EVENT_CHARGING_COMPLETED
-        unbindEvent(channelName, eventName)
-        unsubscribeChannel(channelName)
+    fun unsubscribeSessionCompletion(sessionId: String) {
+        unbindEvent(
+            eventName = EVENT_CHARGING_COMPLETED,
+            channelName = "$CHANNEL_CHARGING.$sessionId"
+        )
     }
 
 ///////////////////////////////////////////////////
@@ -184,11 +160,11 @@ class PusherManager(
         sessionId: String,
         onUpdate: (Session) -> Unit
     ) {
-        subscribeEvent(
+        subscribe(
             channelName = "$CHANNEL_CHARGING.$sessionId",
             eventName = EVENT_CHARGING,
             onReceive = {
-                val session = it.asSession() ?: return@subscribeEvent
+                val session = it.asSession() ?: return@subscribe
                 onUpdate(session)
             }
         )
@@ -201,7 +177,7 @@ class PusherManager(
      * We unbind but don't make unsubscribe consumption,
      * cause it use the same channel of session completion.
      */
-    fun unbindConsumption(sessionId: String) {
+    fun unsubscribeSessionConsumption(sessionId: String) {
         unbindEvent(
             channelName = "$CHANNEL_CHARGING.$sessionId",
             eventName = EVENT_CHARGING,
@@ -209,8 +185,6 @@ class PusherManager(
     }
 
 ///////////////////////////////////////////
-
-
     /**
      * Subscribes to a specific event on a private channel.
      *
@@ -218,89 +192,80 @@ class PusherManager(
      * @param eventName The name of the event to listen for.
      * @param onReceive A callback to be invoked when the event is received.
      * @param onSuccess A callback to be invoked when the subscription succeeds.
-     * @param onError A callback to be invoked when an error occurs during subscription.
      */
-    private fun subscribeEvent(
+    private fun subscribe(
         channelName: String,
         eventName: String,
         onReceive: (PusherEvent) -> Unit,
-        onSuccess: (() -> Unit)? = null,
-        onError: ((String) -> Unit)? = null
+        onSuccess: (() -> Unit)? = null
     ) {
-        if (pusher == null) return
+        val pusher = pusher ?: return
         Log.i(TAG, "attempt-to-subscribe - $eventName - $channelName")
+
+        val eventListener = object : PrivateChannelEventListener {
+            override fun onEvent(event: PusherEvent?) {
+                Log.v(TAG, "bind-onEvent - $event.")
+                event?.let { onReceive(event) }
+            }
+
+            override fun onSubscriptionSucceeded(channelName: String?) {
+                onSuccess?.invoke()
+                Log.i(TAG, "onSubscriptionSucceeded: channel = $channelName - $eventName")
+            }
+
+            override fun onAuthenticationFailure(message: String?, e: Exception?) {
+                val msg = message.orEmpty().ifEmpty { e?.message.orEmpty() }
+                Log.e(TAG, "onAuthenticationFailure - $msg")
+            }
+        }
+
         try {
-            val channel = if (subscriptions.contains(channelName)) {
-                subscriptions[channelName]!!
+            if (subscriptions.contains(channelName)) {
+                Log.v(TAG, "already subscribed to channel - $channelName")
+                val subscription = subscriptions[channelName]!!
+                if (subscription.events.containsKey(eventName)) {
+                    Log.v(TAG, "already bound to $eventName")
+                } else {
+                    subscription.privateChannel.bind(eventName, eventListener)
+                    subscriptions[channelName]?.events[eventName] = eventListener
+                }
             } else {
-                val newChannel: PrivateChannel =
-                    pusher!!.subscribePrivate(channelName, object : PrivateChannelEventListener {
-                        override fun onEvent(event: PusherEvent?) {}
-                        override fun onSubscriptionSucceeded(channelName: String?) {
-                            Log.v(TAG, "onSubscriptionSucceeded - $channelName")
-                        }
-
-                        override fun onAuthenticationFailure(message: String?, e: Exception?) {
-                            val msg = message.orEmpty().ifEmpty { e?.message.orEmpty() }
-                            onError?.invoke(msg)
-                            Log.e(TAG, "onAuthenticationFailure - $msg")
-                            e?.printStackTrace()
-                        }
-
-                    })
-                subscriptions[channelName] = newChannel
-                newChannel
-            }
-
-            if (events.contains(eventName)) {
-                Log.w(TAG, "eventName - $eventName already bound")
-                val eventListener = events[eventName]
+                val channel = pusher.subscribePrivate(channelName, eventListener)
                 channel.bind(eventName, eventListener)
-                return
+                val subscription = Subscription(
+                    privateChannel = channel,
+                    events = mutableMapOf(eventName to eventListener)
+                )
+                subscriptions[channelName] = subscription
             }
-
-            val eventListener = object : PrivateChannelEventListener {
-                override fun onEvent(event: PusherEvent?) {
-                    Log.v(TAG, "bind-onEvent - $event.")
-                    event?.let { onReceive(event) }
-                }
-
-                override fun onSubscriptionSucceeded(channelName: String?) {
-                    onSuccess?.invoke()
-                    Log.i(TAG, "onSubscriptionSucceeded: channel = $channelName - $eventName")
-                }
-
-                override fun onAuthenticationFailure(message: String?, e: Exception?) {
-                    val msg = message.orEmpty().ifEmpty { e?.message.orEmpty() }
-                    Log.e(TAG, "onAuthenticationFailure - $msg")
-                }
-            }
-            channel.bind(eventName, eventListener)
-            events[eventName] = eventListener
         } catch (e: Exception) {
             e.printStackTrace()
             Log.e(TAG, e.message.orEmpty())
         }
     }
 
+
     /**
      * Unbinds the event listener from the specified channel.
      *
-     * @param channelName The name of the channel.
      * @param eventName The name of the event.
+     * @param channelName The name of the channel.
      */
-    private fun unbindEvent(
-        channelName: String,
-        eventName: String
-    ) {
+    private fun unbindEvent(eventName: String, channelName: String) {
+        if (subscriptions.isEmpty()) return
+        Log.v(TAG, "subscriptions = $subscriptions")
         try {
-            val privateChannel = subscriptions[channelName]
-            val eventListener = events[eventName]
-            if (privateChannel != null && eventListener != null) {
-                privateChannel.unbind(eventName, eventListener)
-                events.remove(eventName)
-                Log.i(TAG, "unbindEvent $eventName")
+            val subscription = subscriptions[channelName] ?: return
+            val eventListener = subscription.events[eventName] ?: return
+            subscription.privateChannel.unbind(eventName, eventListener)
+            subscription.events.remove(eventName)
+            Log.i(TAG, "unbindEvent $eventName")
+            if (subscription.events.isEmpty()) {
+                pusher?.unsubscribe(channelName)
+                subscriptions.remove(channelName)
+                Log.v(TAG, "unsubscribe $channelName")
             }
+
         } catch (e: Exception) {
             Log.e(TAG, "unbindEvent - ${e.message}")
             e.printStackTrace()
@@ -311,34 +276,21 @@ class PusherManager(
      * Unsubscribes from all currently subscribed channels.
      */
     fun unsubscribeAll() {
-        if (pusher == null) return
-        subscriptions.forEach { (channelName, _) ->
-            pusher!!.unsubscribe(channelName)
+        subscriptions.keys.forEach { channelName ->
+            pusher?.unsubscribe(channelName)
         }
         subscriptions.clear()
-    }
-
-    /**
-     * Unsubscribes from the given channel.
-     *
-     * This method removes the channel from the list of subscriptions and unsubscribes from the channel
-     * using the `pusher` object.
-     *
-     * @param channelName The name of the channel to unsubscribe from.
-     */
-    private fun unsubscribeChannel(channelName: String) {
-        if (pusher == null) return
-        if (subscriptions.contains(channelName)) {
-            Log.v(TAG, "unsubscribeChannel - $channelName")
-            pusher!!.unsubscribe(channelName)
-            subscriptions.remove(channelName)
-        }
     }
 }
 
 /**
  * Data
  */
+
+data class Subscription(
+    val privateChannel: PrivateChannel,
+    val events: MutableMap<String, PrivateChannelEventListener>
+)
 
 private val json = Json {
     ignoreUnknownKeys = true
