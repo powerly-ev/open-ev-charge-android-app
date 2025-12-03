@@ -15,7 +15,7 @@
     <string name="invite_link_copied">Link copiado</string>
     <string name="invite_QR_description">Convide seus amigos para baixar nosso incrível aplicativo</string>
     <string name="logout_title">Sair</string>
-    <string name="logout_confirmation">Tem certeza que deseja sair?</string>
+    <string name="logout_confirmation">Tem certeza de que deseja sair?</string>
     <string name="select_language">Selecione o idioma</string>
 
     <!-- Update-->
@@ -28,15 +28,15 @@
     <string name="profile">Meu Perfil</string>
     <string name="profile_select_country">Selecione o País</string>
     <string name="profile_require_email_address">O email é obrigatório para atualizar seu perfil</string>
-    <string name="profile_confirm_delete_account">Tem certeza que deseja remover sua conta?</string>
+    <string name="profile_confirm_delete_account">Tem certeza de que deseja remover sua conta?</string>
     <string name="profile_delete_account_description">Sua conta será desativada imediatamente. Após 30 dias, ela será permanentemente excluída e quaisquer créditos, promoções ou recompensas não utilizados serão removidos.</string>
-    <string name="profile_guest">Convidado</string>
+    <string name="profile_guest">Visitante</string>
     <string name="profile_see">Ver Perfil</string>
     <string name="profile_select_country_please">Por favor, selecione o país</string>
 
     <!-- Welcome Screen-->
     <string name="welcome">Olá :)</string>
-    <string name="welcome_description">Bem-vindo ao futuro do carregamento de EV! Vamos configurá-lo, primeiro sua preferência de idioma.</string>
+    <string name="welcome_description">Bem-vindo ao futuro do carregamento de VE! Vamos configurar, primeiro sua preferência de idioma.</string>
     <string name="welcome_user_agreement">Ao usar %s, você concorda com nossa</string>
     <string name="welcome_privacy_policy">Política de Privacidade.</string>
     <string name="welcome_and">e</string>
@@ -47,21 +47,21 @@
     <string name="login_select_country">Selecione seu país</string>
     <string name="login_resend_code_in">Reenviar código em</string>
     <string name="login_first_name">Primeiro nome</string>
-    <string name="login_last_name">Sobrenome</string>
+    <string name="login_last_name">Último nome</string>
     <string name="login_password">Senha</string>
     <string name="login_enter_first_name">Por favor, insira seu primeiro nome</string>
     <string name="login_Verification_title">Verificação</string>
     <string name="login_resend_code">Reenviar código</string>
     <string name="login_need_help">Preciso de ajuda</string>
-    <string name="login_enter_code">Digite o código de 4 dígitos que enviamos para você</string>
+    <string name="login_enter_code">Insira o código de 4 dígitos que enviamos para você</string>
     <string name="login_option_title">Entrar</string>
     <string name="login_option_google">Entrar com o Google</string>
     <string name="login_option_email">Entrar com email</string>
-    <string name="login_option_guest">Continuar como Convidado</string>
+    <string name="login_option_guest">Continuar como Visitante</string>
     <string name="login_option_other">Explorar outras opções de login</string>
     <string name="login_email">Email</string>
     <string name="login_email_title">Entrar ou criar conta</string>
-    <string name="login_email_enter">Digite seu email</string>
+    <string name="login_email_enter">Insira seu email</string>
     <string name="login_email_enter_msg">Por favor, insira seu endereço de email. Enviaremos um código de verificação para manter sua conta segura.</string>
     <string name="login_email_error_msg">Endereço de email incorreto</string>
     <string name="login_email_password">Senha</string>
@@ -74,13 +74,13 @@
     <string name="login_email_password_length_msg">A senha deve ter pelo menos %d caracteres.</string>
     <string name="login_email_password_not_matched">As senhas não são idênticas</string>
     <string name="login_email_password_forget">Esqueceu sua senha?</string>
-    <string name="login_email_password_forget_msg">Sem problemas! Enviaremos uma senha de uso único (OTP) para %s. Depois de recebê-la, você pode usar a OTP para fazer login e redefinir sua senha</string>
+    <string name="login_email_password_forget_msg">Sem problemas! Enviaremos uma senha de uso único (OTP) para %s. Assim que você receber, poderá usar a OTP para entrar e redefinir sua senha</string>
     <string name="login_email_password_weak">Fraca</string>
     <string name="login_email_password_medium">Média</string>
     <string name="login_email_password_strong">Forte</string>
 
     <!-- ACTIONS -->
-    <string name="retry">Tentar Novamente</string>
+    <string name="retry">Tentar novamente</string>
     <string name="save">Salvar</string>
     <string name="done">Concluído</string>
     <string name="yes">Sim</string>
@@ -110,11 +110,11 @@
     <string name="payment_card_scan">Escanear Cartão</string>
     <string name="payment_default">Método Padrão</string>
     <string name="payment_paypal">Paypal</string>
-    <string name="payment_point_checkout">Finalização de Ponto</string>
+    <string name="payment_point_checkout">Point Checkout</string>
     <string name="payment_failed">Pagamento Falhou</string>
     <string name="payment_add_new_card">Adicionar Novo Cartão</string>
     <string name="payment_cash_on_delivery">Dinheiro na Entrega</string>
-    <string name="payment_delete_card_message">Tem certeza que deseja excluir este método de pagamento?</string>
+    <string name="payment_delete_card_message">Tem certeza de que deseja excluir este método de pagamento?</string>
     <string name="payment_card">Cartão</string>
     <string name="payment_make_default">Tornar Padrão</string>
 
@@ -126,7 +126,7 @@
     <string name="wallet_withdraw_failed">Retirada Falhou</string>
     <string name="wallet_policy">Política de Retirada</string>
     <string name="wallet_policy_read_our">Leia nossos</string>
-    <string name="wallet_policy_tab_withdraw">. Clique em "Concordar e Retirar" para aceitar</string>
+    <string name="wallet_policy_tab_withdraw">. Toque em "Concordar e Retirar" para aceitar</string>
     <string name="wallet_policy_terms">Termos de Serviço</string>
 
     <!-- balance-->
@@ -135,20 +135,20 @@
     <string name="balance_available">Saldo Disponível</string>
     <string name="balance_add">Adicionar Saldo</string>
     <string name="balance_popular">Popular</string>
-    <string name="balance_non_refundable">O saldo com desconto não é reembolsável, por favor, clique em continuar para concordar</string>
+    <string name="balance_non_refundable">O saldo com desconto não é reembolsável, toque em continuar para concordar</string>
     <string name="balance_refill_select_method">Por favor, selecione um método de pagamento.</string>
     <string name="balance_add_message">Adicionaremos ao seu saldo</string>
 
     <!-- Location -->
     <string name="location_search_address">Pesquisar Endereço</string>
-    <string name="location_search_for">Pesquisar Localização</string>
+    <string name="location_search_for">Pesquisar por Localização</string>
     <string name="location_search">Pesquisar Localização</string>
     <string name="location_delivery_address">Endereço de Entrega</string>
 
     <!--Messages-->
-    <string name="no_internet_message">Certifique-se de que está conectado à internet</string>
-    <string name="internet_connection_error">Desculpe, este aplicativo precisa de uma conexão com a internet para funcionar corretamente. Por favor, verifique sua conexão com a internet e tente novamente.</string>
-    <string name="maintenance_mode_error">O serviço está atualmente indisponível para manutenção. Por favor, volte mais tarde. Desculpe o inconveniente</string>
+    <string name="no_internet_message">Por favor, verifique se você está conectado à internet</string>
+    <string name="internet_connection_error">Desculpe, este aplicativo precisa de uma conexão com a internet para funcionar corretamente. Verifique sua conexão com a internet e tente novamente.</string>
+    <string name="maintenance_mode_error">O serviço está temporariamente indisponível para manutenção. Por favor, verifique novamente mais tarde. Desculpe o inconveniente</string>
     <string name="camera_permission_message">Por favor, permita a permissão da câmera</string>
     <string name="reminder_message">Por favor, complete o registro para receber nossas ofertas e descontos</string>
 
@@ -157,16 +157,16 @@
     <string name="feedback_terrible">Terrível</string>
     <string name="feedback_bad">Ruim</string>
     <string name="feedback_fine">Boa</string>
-    <string name="feedback_good">Bom</string>
+    <string name="feedback_good">Boa</string>
     <string name="feedback_excellent">Excelente</string>
 
     <!-- Stations -->
     <string name="station_location_allow">Permitir</string>
     <string name="station_number">Estação #%s</string>
     <string name="station_new">Novo</string>
-    <string name="station_drive">Dirigir até a Estação</string>
-    <string name="station_unit_price_per_minute_total">%s %s/minuto X %s</string> <!-- ex: 1.0 SR/minute X 1m 20 s -->
-    <string name="station_unit_price_per_kwh_total">%s %s/kWh X %s</string> <!-- ex: 1.0 SR/kWh X 50 -->
+    <string name="station_drive">Dirigir para a Estação</string>
+    <string name="station_unit_price_per_minute_total">%1$s %2$s/minuto X %3$s</string>
+    <string name="station_unit_price_per_kwh_total">%1$s %2$s/kWh X %3$s</string>
     <string name="station_per_minute">Por minuto</string>
     <string name="station_per_kwh">Por kWh</string>
     <string name="station_per">Por</string>
@@ -182,27 +182,27 @@
     <string name="station_status_self_charging">Ocupado por você</string>
     <string name="station_status_self_booked">Reservado por você</string>
     <string name="station_status_booked">Reservado</string>
-    <string name="station_open_in">Aberto às %s</string>
+    <string name="station_open_in">Abre às %s</string>
     <string name="station_close_in">Fecha às %s</string>
 
     <string name="station_max_power">Máx. %s kWh</string>
     <string name="station_max">Máx.</string>
     <string name="station_max_value">(%s Máx.)</string>
-    <string name="station_reviews">Avaliações</string>
+    <string name="station_reviews">Avaliações e Opiniões</string>
     <string name="station_reviews_helpful">Útil</string>
     <string name="station_charging_activate">Ativação do Carregador</string>
     <string name="station_charging">Carregando</string>
     <string name="station_charging_start">Iniciar Carregamento</string>
-    <string name="station_charging_start_error">Por favor, selecione os plugues antes de iniciar o carregamento.</string>
+    <string name="station_charging_start_error">Por favor, selecione os conectores antes de iniciar o carregamento.</string>
     <string name="station_charging_how_to">Como carregar</string>
     <string name="station_charging_stop">Parar Carregamento</string>
-    <string name="station_charging_stop_msg">Certifique-se de que o plugue esteja desconectado do seu EV antes de interromper o carregamento.</string>
-    <string name="station_charging_full">Completo</string>
+    <string name="station_charging_stop_msg">Certifique-se de que o conector esteja desconectado do seu VE antes de parar o carregamento.</string>
+    <string name="station_charging_full">Cheio</string>
     <string name="station_charging_minute">m</string>
     <string name="station_charging_hour">h</string>
 
-    <string name="station_charging_msg_1">"Você está pronto para ativar o carregador.\nSelecione seu tempo de carregamento e toque em \'Iniciar Carregamento\' para começar."</string>
-    <string name="station_charging_msg_2">"Antes de começar a carregar, lembre-se de:"</string>
+    <string name="station_charging_msg_1">"Você está pronto para ativar o carregador.\nSelecione seu tempo de carregamento e toque em \'Iniciar Carregamento\' para iniciar."</string>
+    <string name="station_charging_msg_2">"Antes de começar a carregar, lembre-se:"</string>
     <string name="station_charging_msg_3">"Se você não estiver perto da estação de carregamento, a sessão de carregamento ainda começará se você prosseguir.</string>
     <string name="station_charging_msg_4">"Se você já estiver na estação de carregamento e pronto para ativar o carregador, escolha a duração do carregamento e toque em \'Iniciar Carregamento\' para iniciar."</string>
     <string name="station_total_price">Preço Total</string>
@@ -212,9 +212,9 @@
     <string name="station_price">Preço</string>
     <string name="station_app_fees">Taxas do Aplicativo</string>
 
-    <string name="onboarding1_title1">Dirija</string>
-    <string name="onboarding1_title2">com Segurança até a Estação</string>
-    <string name="onboarding1_description">Localize seu carregador com nosso aplicativo e siga para o local. O mapa irá guiá-lo para facilitar a navegação.</string>
+    <string name="onboarding1_title1">Com segurança</string>
+    <string name="onboarding1_title2">Dirija para a Estação</string>
+    <string name="onboarding1_description">Localize seu carregador com nosso aplicativo e siga para sua localização. O mapa irá guiá-lo para facilitar a navegação.</string>
     <string name="onboarding2_title">Identifique o Carregador</string>
     <string name="onboarding2_description1">Em áreas com vários carregadores, identifique seu carregador usando seu ID ou nome exclusivo, especialmente útil se você tiver</string>
     <string name="onboarding2_description2">reservado com antecedência</string>
@@ -225,14 +225,14 @@
     <string name="onboarding3_description3">iniciar o carregamento</string>
     <string name="onboarding3_description4">processo.</string>
     <string name="onboarding4_title1">Espere</string>
-    <string name="onboarding4_title2">o Carregamento</string>
-    <string name="onboarding4_description">Configuração concluída! Um cronômetro mostrará quanto tempo falta para o seu veículo estar totalmente carregado. Relaxe ou aproveite um momento para si enquanto isso.</string>
+    <string name="onboarding4_title2">pelo Carregamento</string>
+    <string name="onboarding4_description">Configuração completa! Um cronômetro mostrará quanto tempo falta para que seu veículo esteja totalmente carregado. Relaxe ou tire um momento para si no ínterim.</string>
 
     <!-- My Power Sources -->
-    <string name="station_plugs">Plugues</string>
-    <string name="station_plug_type">Tipo de Plugue</string>
-    <string name="station_plug_add">Adicionar Plugue</string>
-    <string name="station_details_plug">Plugue: %d</string>
+    <string name="station_plugs">Conectores</string>
+    <string name="station_plug_type">Tipo de Conector</string>
+    <string name="station_plug_add">Adicionar Conector</string>
+    <string name="station_details_plug">Conector: %d</string>
     <string name="station_details_parking">Estacionamento</string>
     <string name="station_details_amenities">Comodidades</string>
     <string name="station_details_title">Título</string>
@@ -247,7 +247,7 @@
     <string name="vehicle_version">Versão</string>
     <string name="vehicle_add">Adicionar Veículo</string>
     <string name="vehicle_delete">Excluir veículo?</string>
-    <string name="vehicle_delete_message">Tem certeza que deseja excluir este veículo?</string>
+    <string name="vehicle_delete_message">Tem certeza de que deseja excluir este veículo?</string>
     <string name="vehicle_manufacturer">Fabricante</string>
     <string name="vehicle_manufacturer_search">Pesquisar Fabricante</string>
     <string name="vehicle_details">Detalhes</string>
@@ -266,19 +266,19 @@
     <!-- Orders-->
     <string name="sessions_active">Sessão Ativa</string>
     <string name="sessions_scheduled">Agendado</string>
-    <string name="sessions_booking_id">Id de Reserva</string>
+    <string name="sessions_booking_id">Id da Reserva</string>
     <string name="sessions_history">Histórico</string>
     <string name="sessions_completed">Concluído</string>
     <string name="sessions_active_empty">Nenhum pedido ativo</string>
     <string name="sessions_history_empty">Nenhum pedido concluído</string>
-    <string name="sessions_charging_stop_msg">Tem certeza que deseja parar o carregamento.</string>
+    <string name="sessions_charging_stop_msg">Tem certeza de que deseja parar o carregamento?</string>
 
     <string name="station_closed">Fechado</string>
     <string name="order_Id">Id do Pedido</string>
     <string name="order_selected_product">Produto</string>
     <string name="order_discount">Desconto</string>
-    <string name="order_vatId">ID IVA</string>
-    <string name="order_subtotal">Subtotal:</string>
+    <string name="order_vatId">ID do IVA</string>
+    <string name="order_subtotal">Subtotal : </string>
     <string name="order_total">Total</string>
     <string name="order_payment_method">Método de Pagamento</string>
     <string name="order_payment_methods">Métodos de Pagamento</string>
@@ -291,7 +291,7 @@
 
     <!-- Home Slider -->
     <array name="slider_title">
-        <item>Tudo Pronto para Partir</item>
+        <item>Tudo Pronto Para Ir</item>
     </array>
 
     <array name="slider_message">

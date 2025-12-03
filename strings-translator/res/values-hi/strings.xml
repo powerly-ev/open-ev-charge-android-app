@@ -12,57 +12,57 @@
     <string name="support">समर्थन</string>
     <string name="account_vehicles">वाहन</string>
     <string name="invite">आमंत्रित करें</string>
-    <string name="invite_link_copied">लिंक कॉपी किया गया</string>
+    <string name="invite_link_copied">लिंक कॉपी हो गया</string>
     <string name="invite_QR_description">हमारे अद्भुत ऐप को डाउनलोड करने के लिए अपने दोस्तों को आमंत्रित करें</string>
     <string name="logout_title">साइन आउट</string>
     <string name="logout_confirmation">क्या आप निश्चित रूप से साइन आउट करना चाहते हैं?</string>
     <string name="select_language">भाषा चुनें</string>
 
     <!-- Update-->
-    <string name="update_required">अपडेट आवश्यक</string>
-    <string name="update_force_desc1">एक महत्वपूर्ण अपडेट जिसमें अतिरिक्त विशेषताएं, सुरक्षा अपडेट और सुधार शामिल हैं, आवश्यक है।</string>
-    <string name="update_force_desc2">जारी रखने के लिए कृपया ऐप को अपडेट करें।</string>
+    <string name="update_required">अपडेट आवश्यक है</string>
+    <string name="update_force_desc1">एक महत्वपूर्ण अपडेट जिसमें अतिरिक्त सुविधाएँ, सुरक्षा अपडेट और सुधार शामिल हैं, आवश्यक है।</string>
+    <string name="update_force_desc2">जारी रखने के लिए कृपया ऐप अपडेट करें।</string>
 
     <!--Profile Screen-->
     <string name="profile_email">ईमेल</string>
-    <string name="profile">मेरी प्रोफ़ाइल</string>
+    <string name="profile">मेरी प्रोफाइल</string>
     <string name="profile_select_country">देश चुनें</string>
     <string name="profile_require_email_address">अपनी प्रोफ़ाइल अपडेट करने के लिए ईमेल आवश्यक है</string>
-    <string name="profile_confirm_delete_account">क्या आप निश्चित रूप से अपना खाता हटाना चाहते हैं?</string>
-    <string name="profile_delete_account_description">आपका खाता तुरंत निष्क्रिय कर दिया जाएगा। 30 दिनों के बाद इसे स्थायी रूप से हटा दिया जाएगा, और किसी भी अप्रयुक्त क्रेडिट, प्रोमोशन या पुरस्कारों को हटा दिया जाएगा।</string>
+    <string name="profile_confirm_delete_account">क्या आप निश्चित रूप से अपना अकाउंट हटाना चाहते हैं?</string>
+    <string name="profile_delete_account_description">आपका अकाउंट तुरंत निष्क्रिय कर दिया जाएगा. 30 दिनों के बाद इसे स्थायी रूप से हटा दिया जाएगा, और किसी भी अप्रयुक्त क्रेडिट, प्रचार या पुरस्कार को हटा दिया जाएगा.</string>
     <string name="profile_guest">अतिथि</string>
-    <string name="profile_see">प्रोफ़ाइल देखें</string>
+    <string name="profile_see">प्रोफाइल देखें</string>
     <string name="profile_select_country_please">कृपया देश चुनें</string>
 
     <!-- Welcome Screen-->
     <string name="welcome">नमस्ते :)</string>
-    <string name="welcome_description">EV चार्जिंग के भविष्य में आपका स्वागत है! आइए आपको सेट करते हैं, पहले आपकी भाषा प्राथमिकता।</string>
+    <string name="welcome_description">ईवी चार्जिंग के भविष्य में आपका स्वागत है! चलिए आपको सेट करते हैं, पहले आपकी भाषा प्राथमिकता।</string>
     <string name="welcome_user_agreement">%s का उपयोग करके, आप हमारी सहमति देते हैं</string>
-    <string name="welcome_privacy_policy">गोपनीयता नीति।</string>
+    <string name="welcome_privacy_policy">गोपनीयता नीति.</string>
     <string name="welcome_and">और</string>
     <string name="welcome_terms_of_service">सेवा की शर्तें</string>
     <string name="welcome_terms_condition">नियम और शर्तें</string>
 
     <!-- Login-->
     <string name="login_select_country">अपना देश चुनें</string>
-    <string name="login_resend_code_in">में कोड फिर से भेजें</string>
+    <string name="login_resend_code_in">फिर से कोड भेजें</string>
     <string name="login_first_name">पहला नाम</string>
     <string name="login_last_name">अंतिम नाम</string>
     <string name="login_password">पासवर्ड</string>
     <string name="login_enter_first_name">कृपया अपना पहला नाम दर्ज करें</string>
     <string name="login_Verification_title">सत्यापन</string>
-    <string name="login_resend_code">कोड फिर से भेजें</string>
+    <string name="login_resend_code">फिर से कोड भेजें</string>
     <string name="login_need_help">मुझे मदद चाहिए</string>
     <string name="login_enter_code">हमने आपको जो 4 अंकों का कोड भेजा है, उसे दर्ज करें</string>
     <string name="login_option_title">साइन इन करें</string>
     <string name="login_option_google">Google से साइन इन करें</string>
     <string name="login_option_email">ईमेल से साइन इन करें</string>
     <string name="login_option_guest">अतिथि के रूप में जारी रखें</string>
-    <string name="login_option_other">अन्य साइन-इन विकल्प देखें</string>
+    <string name="login_option_other">अन्य साइन-इन विकल्प एक्सप्लोर करें</string>
     <string name="login_email">ईमेल</string>
-    <string name="login_email_title">साइन इन करें या खाता बनाएं</string>
+    <string name="login_email_title">साइन इन करें या अकाउंट बनाएं</string>
     <string name="login_email_enter">अपना ईमेल दर्ज करें</string>
-    <string name="login_email_enter_msg">कृपया अपना ईमेल पता दर्ज करें। हम आपके खाते को सुरक्षित रखने के लिए आपको एक सत्यापन कोड भेजेंगे।</string>
+    <string name="login_email_enter_msg">कृपया अपना ईमेल पता दर्ज करें. हम आपके अकाउंट को सुरक्षित रखने के लिए आपको एक सत्यापन कोड भेजेंगे.</string>
     <string name="login_email_error_msg">ईमेल पता गलत है</string>
     <string name="login_email_password">पासवर्ड</string>
     <string name="login_email_password_enter">एक पासवर्ड दर्ज करें</string>
@@ -71,11 +71,11 @@
     <string name="login_email_password_create_title">ईमेल पते से साइन-इन करें</string>
     <string name="login_email_password_create">एक पासवर्ड बनाएं</string>
     <string name="login_email_password_create_msg">एक मजबूत पासवर्ड बनाएं जिसका उपयोग आप साइन इन करने के लिए करेंगे</string>
-    <string name="login_email_password_length_msg">पासवर्ड कम से कम %d अक्षरों का होना चाहिए।</string>
+    <string name="login_email_password_length_msg">पासवर्ड कम से कम %d अक्षरों का होना चाहिए.</string>
     <string name="login_email_password_not_matched">पासवर्ड समान नहीं हैं</string>
     <string name="login_email_password_forget">अपना पासवर्ड भूल गए हैं?</string>
-    <string name="login_email_password_forget_msg">कोई बात नहीं! हम %s पर एक वन-टाइम पासवर्ड (OTP) भेजेंगे। एक बार जब आप इसे प्राप्त कर लेते हैं, तो आप OTP का उपयोग करके लॉग इन कर सकते हैं और अपना पासवर्ड रीसेट कर सकते हैं</string>
-    <string name="login_email_password_weak">कमजोर</string>
+    <string name="login_email_password_forget_msg">कोई समस्या नहीं! हम %s पर एक वन-टाइम पासवर्ड (ओटीपी) भेजेंगे. एक बार जब आप इसे प्राप्त कर लेते हैं, तो आप ओटीपी का उपयोग लॉग इन करने और अपना पासवर्ड रीसेट करने के लिए कर सकते हैं</string>
+    <string name="login_email_password_weak">कमज़ोर</string>
     <string name="login_email_password_medium">मध्यम</string>
     <string name="login_email_password_strong">मजबूत</string>
 
@@ -90,11 +90,11 @@
     <string name="update_now">अभी अपडेट करें</string>
     <string name="remove">हटाएं</string>
     <string name="add_a_note">एक नोट जोड़ें</string>
-    <string name="delete_account">खाता हटाएं</string>
-    <string name="share_code">रेफ़रल लिंक साझा करें</string>
-    <string name="copy_code">रेफ़रल लिंक कॉपी करें</string>
+    <string name="delete_account">अकाउंट हटाएं</string>
+    <string name="share_code">रेफरल लिंक शेयर करें</string>
+    <string name="copy_code">रेफरल लिंक कॉपी करें</string>
     <string name="agree_and_continue">सहमत हों और जारी रखें</string>
-    <string name="update">अपडेट</string>
+    <string name="update">अपडेट करें</string>
     <string name="edit">संपादित करें</string>
     <string name="next">अगला</string>
     <string name="skip">छोड़ें</string>
@@ -113,30 +113,30 @@
     <string name="payment_point_checkout">प्वाइंट चेकआउट</string>
     <string name="payment_failed">भुगतान विफल</string>
     <string name="payment_add_new_card">नया कार्ड जोड़ें</string>
-    <string name="payment_cash_on_delivery">कैश ऑन डिलीवरी</string>
+    <string name="payment_cash_on_delivery">डिलीवरी पर नकद</string>
     <string name="payment_delete_card_message">क्या आप वाकई इस भुगतान विधि को हटाना चाहते हैं?</string>
     <string name="payment_card">कार्ड</string>
     <string name="payment_make_default">डिफ़ॉल्ट बनाएं</string>
 
     <!--Wallet-->
     <string name="wallet">वॉलेट</string>
-    <string name="wallet_withdraw_from">से निकालें:</string>
+    <string name="wallet_withdraw_from">यहां से निकालें:</string>
     <string name="wallet_withdraw_agree">सहमत हों और निकालें</string>
     <string name="wallet_withdraw_successful">निकासी सफल</string>
     <string name="wallet_withdraw_failed">निकासी विफल</string>
     <string name="wallet_policy">निकासी नीति</string>
     <string name="wallet_policy_read_our">हमारी पढ़ें</string>
-    <string name="wallet_policy_tab_withdraw">। स्वीकार करने के लिए "सहमत हों और निकालें" टैब करें</string>
+    <string name="wallet_policy_tab_withdraw">. स्वीकार करने के लिए "सहमत और निकालें" टैब करें</string>
     <string name="wallet_policy_terms">सेवा की शर्तें</string>
 
     <!-- balance-->
     <string name="balance">बैलेंस</string>
-    <string name="balance_show">बैलेंस दिखाएँ</string>
+    <string name="balance_show">बैलेंस दिखाएं</string>
     <string name="balance_available">उपलब्ध बैलेंस</string>
     <string name="balance_add">बैलेंस जोड़ें</string>
     <string name="balance_popular">लोकप्रिय</string>
-    <string name="balance_non_refundable">छूट के साथ बैलेंस गैर-वापसी योग्य है, कृपया सहमत होने के लिए जारी रखें पर टैब करें</string>
-    <string name="balance_refill_select_method">कृपया भुगतान विधि चुनें।</string>
+    <string name="balance_non_refundable">छूट के साथ बैलेंस गैर-वापसी योग्य है, कृपया सहमत होने के लिए जारी रखने के लिए टैब करें</string>
+    <string name="balance_refill_select_method">कृपया भुगतान विधि चुनें.</string>
     <string name="balance_add_message">हम आपके बैलेंस में जोड़ेंगे</string>
 
     <!-- Location -->
@@ -148,15 +148,15 @@
     <!--Messages-->
     <string name="no_internet_message">कृपया सुनिश्चित करें कि आप इंटरनेट से जुड़े हैं</string>
     <string name="internet_connection_error">क्षमा करें, इस एप्लिकेशन को ठीक से काम करने के लिए इंटरनेट कनेक्शन की आवश्यकता है। कृपया अपना इंटरनेट कनेक्शन जांचें और पुनः प्रयास करें।</string>
-    <string name="maintenance_mode_error">सेवा वर्तमान में रखरखाव के लिए अनुपलब्ध है। कृपया बाद में पुनः प्रयास करें। असुविधा के लिए खेद है</string>
+    <string name="maintenance_mode_error">सेवा वर्तमान में रखरखाव के लिए अनुपलब्ध है। कृपया बाद में फिर से जांच करें. असुविधा के लिए खेद है</string>
     <string name="camera_permission_message">कृपया कैमरा अनुमति दें</string>
     <string name="reminder_message">हमारे ऑफ़र और छूट प्राप्त करने के लिए कृपया पंजीकरण पूरा करें</string>
 
     <!-- Feedback-->
     <string name="feedback_msg">आपका अनुभव कैसा रहा?</string>
     <string name="feedback_terrible">भयानक</string>
-    <string name="feedback_bad">खराब</string>
-    <string name="feedback_fine">ठीक है</string>
+    <string name="feedback_bad">बुरा</string>
+    <string name="feedback_fine">ठीक</string>
     <string name="feedback_good">अच्छा</string>
     <string name="feedback_excellent">उत्कृष्ट</string>
 
@@ -165,15 +165,15 @@
     <string name="station_number">स्टेशन #%s</string>
     <string name="station_new">नया</string>
     <string name="station_drive">स्टेशन तक ड्राइव करें</string>
-    <string name="station_unit_price_per_minute_total">%s %s/मिनट X %s</string> <!-- ex: 1.0 SR/minute X 1m 20 s -->
-    <string name="station_unit_price_per_kwh_total">%s %s/kWh X %s</string> <!-- ex: 1.0 SR/kWh X 50 -->
+    <string name="station_unit_price_per_minute_total">%1$s %2$s/मिनट X %3$s</string>
+    <string name="station_unit_price_per_kwh_total">%1$s %2$s/kWh X %3$s</string>
     <string name="station_per_minute">प्रति मिनट</string>
     <string name="station_per_kwh">प्रति kWh</string>
     <string name="station_per">प्रति</string>
     <string name="station_kwh">kWh</string>
-    <string name="station_km_value">%s किमी</string>
+    <string name="station_km_value">%s कि.मी</string>
     <string name="station_kwh_value">%s kWh</string>
-    <string name="station_km_away">%.1f किमी दूर</string>
+    <string name="station_km_away">%.1f कि.मी दूर</string>
 
     <string name="station_status_open24">24 घंटे खुला</string>
     <string name="station_status_open">खुला</string>
@@ -181,56 +181,56 @@
     <string name="station_status_busy">व्यस्त</string>
     <string name="station_status_self_charging">आपके द्वारा व्यस्त</string>
     <string name="station_status_self_booked">आपके द्वारा बुक किया गया</string>
-    <string name="station_status_booked">बुक किया गया</string>
+    <string name="station_status_booked">बुक्ड</string>
     <string name="station_open_in">%s पर खुलता है</string>
     <string name="station_close_in">%s पर बंद होता है</string>
 
     <string name="station_max_power">अधिकतम %s kWh</string>
     <string name="station_max">अधिकतम</string>
     <string name="station_max_value">(%s अधिकतम)</string>
-    <string name="station_reviews">रेटिंग और समीक्षाएँ</string>
-    <string name="station_reviews_helpful">सहायक</string>
+    <string name="station_reviews">रेटिंग और समीक्षाएं</string>
+    <string name="station_reviews_helpful">मददगार</string>
     <string name="station_charging_activate">चार्जर सक्रियण</string>
     <string name="station_charging">चार्जिंग</string>
-    <string name="station_charging_start">चार्ज करना शुरू करें</string>
-    <string name="station_charging_start_error">चार्जिंग शुरू करने से पहले कृपया प्लग चुनें।</string>
+    <string name="station_charging_start">चार्जिंग शुरू करें</string>
+    <string name="station_charging_start_error">चार्जिंग शुरू करने से पहले कृपया प्लग चुनें.</string>
     <string name="station_charging_how_to">चार्ज कैसे करें</string>
     <string name="station_charging_stop">चार्जिंग बंद करें</string>
-    <string name="station_charging_stop_msg">कृपया सुनिश्चित करें कि चार्ज बंद करने से पहले प्लग आपके EV से अलग हो गया है।</string>
-    <string name="station_charging_full">पूर्ण</string>
-    <string name="station_charging_minute">मिनट</string>
-    <string name="station_charging_hour">घंटे</string>
+    <string name="station_charging_stop_msg">कृपया चार्जिंग रोकने से पहले सुनिश्चित करें कि प्लग आपकी EV से अलग हो गया है.</string>
+    <string name="station_charging_full">भरपूर</string>
+    <string name="station_charging_minute">मि</string>
+    <string name="station_charging_hour">घं</string>
 
-    <string name="station_charging_msg_1">"आप चार्जर को सक्रिय करने के लिए तैयार हैं।\nअपना चार्ज समय चुनें और शुरू करने के लिए \'चार्ज करना शुरू करें\' पर टैप करें।"</string>
+    <string name="station_charging_msg_1">"आप चार्जर को सक्रिय करने के लिए तैयार हैं।\nअपना चार्जिंग समय चुनें और शुरू करने के लिए \'चार्जिंग शुरू करें\' टैप करें।"</string>
     <string name="station_charging_msg_2">"चार्जिंग शुरू करने से पहले, कृपया ध्यान रखें:"</string>
     <string name="station_charging_msg_3">"यदि आप वर्तमान में चार्जिंग स्टेशन के पास नहीं हैं, तो भी यदि आप आगे बढ़ते हैं तो चार्जिंग सत्र शुरू हो जाएगा।</string>
-    <string name="station_charging_msg_4">"यदि आप पहले से ही चार्जिंग स्टेशन पर हैं और चार्जर को सक्रिय करने के लिए तैयार हैं, तो अपनी चार्जिंग अवधि चुनें और आरंभ करने के लिए \'चार्ज करना शुरू करें\' पर टैप करें।"</string>
-    <string name="station_total_price">कुल मूल्य</string>
+    <string name="station_charging_msg_4">"यदि आप पहले से ही चार्जिंग स्टेशन पर हैं और चार्जर को सक्रिय करने के लिए तैयार हैं, तो अपनी चार्जिंग अवधि चुनें और शुरू करने के लिए \'चार्जिंग शुरू करें\' टैप करें।"</string>
+    <string name="station_total_price">कुल कीमत</string>
     <string name="station_charged">चार्ज किया गया</string>
-    <string name="station_recharge">रिचार्ज करें</string>
+    <string name="station_recharge">रिचार्ज</string>
     <string name="station_time">समय</string>
     <string name="station_price">कीमत</string>
     <string name="station_app_fees">ऐप शुल्क</string>
 
     <string name="onboarding1_title1">सुरक्षित रूप से</string>
     <string name="onboarding1_title2">स्टेशन तक ड्राइव करें</string>
-    <string name="onboarding1_description">हमारे ऐप से अपना चार्जर ढूंढें और उसके स्थान पर जाएं। आसान नेविगेशन के लिए मानचित्र आपका मार्गदर्शन करेगा।</string>
-    <string name="onboarding2_title">चार्जर पहचानें</string>
-    <string name="onboarding2_description1">एकाधिक चार्जर वाले क्षेत्रों में, अपने चार्जर को उसकी अद्वितीय ID या नाम का उपयोग करके पहचानें, खासकर यदि आपने</string>
-    <string name="onboarding2_description2">पहले से बुक किया है</string>
-    <string name="onboarding2_description3">।</string>
+    <string name="onboarding1_description">हमारे ऐप से अपना चार्जर ढूंढें और उसके स्थान पर जाएं. आसान नेविगेशन के लिए मानचित्र आपका मार्गदर्शन करेगा.</string>
+    <string name="onboarding2_title">चार्जर को पहचानें</string>
+    <string name="onboarding2_description1">एकाधिक चार्जर वाले क्षेत्रों में, अपने चार्जर को उसकी अद्वितीय आईडी या नाम का उपयोग करके पहचानें, खासकर यदि आपने</string>
+    <string name="onboarding2_description2">पहले से बुक कर लिया है</string>
+    <string name="onboarding2_description3">.</string>
     <string name="onboarding3_title">चार्जर शुरू करें</string>
-    <string name="onboarding3_description1">सबसे पहले, अपने वाहन को चार्जर से कनेक्ट करें। फिर,</string>
-    <string name="onboarding3_description2">चार्जिंग</string>
-    <string name="onboarding3_description3">शुरू करने के लिए चार्जर पर QR कोड स्कैन करें</string>
+    <string name="onboarding3_description1">सबसे पहले, अपने वाहन को चार्जर से कनेक्ट करें. फिर,</string>
+    <string name="onboarding3_description2">चार्जिंग को शुरू करने के लिए चार्जर पर QR कोड स्कैन करें</string>
+    <string name="onboarding3_description3">चार्जिंग</string>
     <string name="onboarding3_description4">प्रक्रिया।</string>
-    <string name="onboarding4_title1">चार्जिंग के</string>
-    <string name="onboarding4_title2">लिए प्रतीक्षा करें</string>
-    <string name="onboarding4_description">सेटअप पूरा! एक उलटी गिनती टाइमर दिखाएगा कि आपके वाहन को पूरी तरह चार्ज होने में कितना समय लगेगा। इस बीच आराम करें या अपने लिए एक पल निकालें।</string>
+    <string name="onboarding4_title1">प्रतीक्षा करें</string>
+    <string name="onboarding4_title2">चार्जिंग के लिए</string>
+    <string name="onboarding4_description">सेटअप पूरा हुआ! एक उलटी गिनती घड़ी दिखाएगी कि आपके वाहन को पूरी तरह से चार्ज होने में कितना समय लगेगा. इस बीच आराम करें या अपने लिए कुछ समय निकालें.</string>
 
     <!-- My Power Sources -->
     <string name="station_plugs">प्लग</string>
-    <string name="station_plug_type">प्लग प्रकार</string>
+    <string name="station_plug_type">प्लग का प्रकार</string>
     <string name="station_plug_add">प्लग जोड़ें</string>
     <string name="station_details_plug">प्लग: %d</string>
     <string name="station_details_parking">पार्किंग</string>
@@ -241,13 +241,13 @@
 
     <!-- Vehicles -->
     <string name="vehicle_title">मेरे वाहन</string>
-    <string name="vehicle_make">मेक</string>
+    <string name="vehicle_make">बनाएँ</string>
     <string name="vehicle_model">मॉडल</string>
     <string name="vehicle_model_search">मॉडल खोजें</string>
     <string name="vehicle_version">संस्करण</string>
     <string name="vehicle_add">वाहन जोड़ें</string>
-    <string name="vehicle_delete">वाहन हटाएं?</string>
-    <string name="vehicle_delete_message">क्या आप निश्चित रूप से इस वाहन को हटाना चाहते हैं?</string>
+    <string name="vehicle_delete">क्या वाहन हटाना है?</string>
+    <string name="vehicle_delete_message">क्या आप वाकई इस वाहन को हटाना चाहते हैं?</string>
     <string name="vehicle_manufacturer">निर्माता</string>
     <string name="vehicle_manufacturer_search">निर्माता खोजें</string>
     <string name="vehicle_details">विवरण</string>
@@ -260,41 +260,41 @@
     <string name="fuel_fuel">ईंधन</string>
     <string name="fuel_hybrid">हाइब्रिड</string>
     <string name="fuel_plug_in_hybrid">प्लग-इन हाइब्रिड</string>
-    <string name="fuel_electric">इलेक्ट्रिक</string>
+    <string name="fuel_electric">विद्युत</string>
     <string name="fuel_other">अन्य</string>
 
     <!-- Orders-->
     <string name="sessions_active">सक्रिय सत्र</string>
-    <string name="sessions_scheduled">निर्धारित</string>
+    <string name="sessions_scheduled">अनुसूचित</string>
     <string name="sessions_booking_id">बुकिंग आईडी</string>
     <string name="sessions_history">इतिहास</string>
-    <string name="sessions_completed">पूर्ण</string>
+    <string name="sessions_completed">पूरा हुआ</string>
     <string name="sessions_active_empty">कोई सक्रिय ऑर्डर नहीं</string>
     <string name="sessions_history_empty">कोई पूर्ण ऑर्डर नहीं</string>
-    <string name="sessions_charging_stop_msg">क्या आप वाकई चार्जिंग बंद करना चाहते हैं?</string>
+    <string name="sessions_charging_stop_msg">क्या आप निश्चित रूप से चार्जिंग बंद करना चाहते हैं?</string>
 
     <string name="station_closed">बंद</string>
     <string name="order_Id">ऑर्डर आईडी</string>
     <string name="order_selected_product">उत्पाद</string>
     <string name="order_discount">छूट</string>
     <string name="order_vatId">वैट आईडी</string>
-    <string name="order_subtotal">उप-योग : </string>
+    <string name="order_subtotal">उप-कुल : </string>
     <string name="order_total">कुल</string>
     <string name="order_payment_method">भुगतान विधि</string>
     <string name="order_payment_methods">भुगतान विधियां</string>
-    <string name="order_total_price">कुल मूल्य</string>
+    <string name="order_total_price">कुल कीमत</string>
     <string name="order_vat">वैट</string>
 
-    <string name="time_h">घ</string>
+    <string name="time_h">घं</string>
     <string name="time_m">मि</string>
     <string name="time_s">से</string>
 
     <!-- Home Slider -->
     <array name="slider_title">
-        <item>जाने के लिए सब तैयार</item>
+        <item>जाने के लिए तैयार</item>
     </array>
 
     <array name="slider_message">
-        <item>एक चार्जर खोजें, पावर अप करें और सड़क पर उतरें।</item>
+        <item>एक चार्जर खोजें, पावर अप करें और सड़क पर निकलें.</item>
     </array>
 </resources>

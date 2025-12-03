@@ -2,7 +2,7 @@
     <!-- HOME -->
     <string name="home">Trang chủ</string>
     <string name="scan">Quét</string>
-    <string name="scan_qr_code">Quét để kích hoạt</string>
+    <string name="scan_qr_code">Quét để Kích hoạt</string>
     <string name="orders">Đơn hàng</string>
     <string name="account">Tài khoản</string>
     <string name="home_help">Trợ giúp</string>
@@ -10,26 +10,26 @@
     <!--Side Menu-->
     <string name="language">Ngôn ngữ</string>
     <string name="support">Hỗ trợ</string>
-    <string name="account_vehicles">Phương tiện</string>
+    <string name="account_vehicles">Xe</string>
     <string name="invite">Mời</string>
     <string name="invite_link_copied">Đã sao chép liên kết</string>
-    <string name="invite_QR_description">Mời bạn bè của bạn tải xuống ứng dụng tuyệt vời của chúng tôi</string>
+    <string name="invite_QR_description">Mời bạn bè tải xuống ứng dụng tuyệt vời của chúng tôi</string>
     <string name="logout_title">Đăng xuất</string>
     <string name="logout_confirmation">Bạn có chắc chắn muốn đăng xuất không?</string>
     <string name="select_language">Chọn ngôn ngữ</string>
 
     <!-- Update-->
-    <string name="update_required">Cần cập nhật</string>
-    <string name="update_force_desc1">Yêu cầu một bản cập nhật quan trọng bao gồm các tính năng bổ sung, cập nhật bảo mật và cải tiến.</string>
+    <string name="update_required">Cần Cập nhật</string>
+    <string name="update_force_desc1">Cần có một bản cập nhật quan trọng bao gồm các tính năng bổ sung, cập nhật bảo mật và cải tiến.</string>
     <string name="update_force_desc2">Vui lòng cập nhật ứng dụng để tiếp tục.</string>
 
     <!--Profile Screen-->
     <string name="profile_email">Email</string>
-    <string name="profile">Hồ sơ của tôi</string>
+    <string name="profile">Thông tin cá nhân</string>
     <string name="profile_select_country">Chọn quốc gia</string>
     <string name="profile_require_email_address">Cần có email để cập nhật hồ sơ của bạn</string>
     <string name="profile_confirm_delete_account">Bạn có chắc chắn muốn xóa tài khoản của mình không?</string>
-    <string name="profile_delete_account_description">Tài khoản của bạn sẽ bị hủy kích hoạt ngay lập tức. Sau 30 ngày, tài khoản sẽ bị xóa vĩnh viễn và mọi khoản tín dụng, khuyến mãi hoặc phần thưởng chưa sử dụng sẽ bị xóa.</string>
+    <string name="profile_delete_account_description">Tài khoản của bạn sẽ bị hủy kích hoạt ngay lập tức. Sau 30 ngày, nó sẽ bị xóa vĩnh viễn và mọi khoản tín dụng, khuyến mãi hoặc phần thưởng chưa sử dụng sẽ bị xóa.</string>
     <string name="profile_guest">Khách</string>
     <string name="profile_see">Xem hồ sơ</string>
     <string name="profile_select_country_please">Vui lòng chọn quốc gia</string>
@@ -38,7 +38,7 @@
     <string name="welcome">Xin chào :)</string>
     <string name="welcome_description">Chào mừng bạn đến với tương lai của sạc EV! Hãy thiết lập cho bạn, trước tiên là tùy chọn ngôn ngữ của bạn.</string>
     <string name="welcome_user_agreement">Bằng cách sử dụng %s, bạn đồng ý với</string>
-    <string name="welcome_privacy_policy">Chính sách bảo mật.</string>
+    <string name="welcome_privacy_policy">Chính sách bảo mật của chúng tôi.</string>
     <string name="welcome_and">và</string>
     <string name="welcome_terms_of_service">Điều khoản dịch vụ</string>
     <string name="welcome_terms_condition">Điều khoản và điều kiện</string>
@@ -52,7 +52,7 @@
     <string name="login_enter_first_name">Vui lòng nhập tên của bạn</string>
     <string name="login_Verification_title">Xác minh</string>
     <string name="login_resend_code">Gửi lại mã</string>
-    <string name="login_need_help">Tôi cần giúp đỡ</string>
+    <string name="login_need_help">Tôi cần trợ giúp</string>
     <string name="login_enter_code">Nhập mã gồm 4 chữ số mà chúng tôi đã gửi cho bạn</string>
     <string name="login_option_title">Đăng nhập</string>
     <string name="login_option_google">Đăng nhập bằng Google</string>
@@ -62,7 +62,7 @@
     <string name="login_email">Email</string>
     <string name="login_email_title">Đăng nhập hoặc tạo tài khoản</string>
     <string name="login_email_enter">Nhập email của bạn</string>
-    <string name="login_email_enter_msg">Vui lòng nhập địa chỉ email của bạn. Chúng tôi sẽ gửi cho bạn một mã xác minh để giữ an toàn cho tài khoản của bạn.</string>
+    <string name="login_email_enter_msg">Vui lòng nhập địa chỉ email của bạn. Chúng tôi sẽ gửi cho bạn một mã xác minh để giữ cho tài khoản của bạn an toàn.</string>
     <string name="login_email_error_msg">Địa chỉ email không chính xác</string>
     <string name="login_email_password">Mật khẩu</string>
     <string name="login_email_password_enter">Nhập mật khẩu</string>
@@ -70,11 +70,11 @@
     <string name="login_email_password_confirm">Xác nhận mật khẩu</string>
     <string name="login_email_password_create_title">Đăng nhập bằng địa chỉ email</string>
     <string name="login_email_password_create">Tạo mật khẩu</string>
-    <string name="login_email_password_create_msg">Tạo một mật khẩu mạnh mà bạn sẽ sử dụng để đăng nhập</string>
+    <string name="login_email_password_create_msg">Tạo mật khẩu mạnh mà bạn sẽ sử dụng để đăng nhập</string>
     <string name="login_email_password_length_msg">Mật khẩu phải có ít nhất %d ký tự.</string>
     <string name="login_email_password_not_matched">Mật khẩu không giống nhau</string>
     <string name="login_email_password_forget">Quên mật khẩu?</string>
-    <string name="login_email_password_forget_msg">Không vấn đề gì! Chúng tôi sẽ gửi Mật khẩu dùng một lần (OTP) đến %s. Sau khi bạn nhận được, bạn có thể sử dụng OTP để đăng nhập và đặt lại mật khẩu của mình</string>
+    <string name="login_email_password_forget_msg">Không sao cả! Chúng tôi sẽ gửi Mật khẩu dùng một lần (OTP) đến %s. Sau khi bạn nhận được, bạn có thể sử dụng OTP để đăng nhập và đặt lại mật khẩu của bạn</string>
     <string name="login_email_password_weak">Yếu</string>
     <string name="login_email_password_medium">Trung bình</string>
     <string name="login_email_password_strong">Mạnh</string>
@@ -96,7 +96,7 @@
     <string name="agree_and_continue">Đồng ý &amp; Tiếp tục</string>
     <string name="update">Cập nhật</string>
     <string name="edit">Chỉnh sửa</string>
-    <string name="next">Tiếp theo</string>
+    <string name="next">Tiếp</string>
     <string name="skip">Bỏ qua</string>
     <string name="delete">Xóa</string>
     <string name="select">Chọn</string>
@@ -110,10 +110,10 @@
     <string name="payment_card_scan">Quét thẻ</string>
     <string name="payment_default">Phương thức mặc định</string>
     <string name="payment_paypal">Paypal</string>
-    <string name="payment_point_checkout">Điểm thanh toán</string>
-    <string name="payment_failed">Thanh toán không thành công</string>
+    <string name="payment_point_checkout">Thanh toán bằng điểm</string>
+    <string name="payment_failed">Thanh toán thất bại</string>
     <string name="payment_add_new_card">Thêm thẻ mới</string>
-    <string name="payment_cash_on_delivery">Thanh toán khi nhận hàng</string>
+    <string name="payment_cash_on_delivery">Thanh toán khi giao hàng</string>
     <string name="payment_delete_card_message">Bạn có chắc chắn muốn xóa phương thức thanh toán này không?</string>
     <string name="payment_card">Thẻ</string>
     <string name="payment_make_default">Đặt làm mặc định</string>
@@ -123,7 +123,7 @@
     <string name="wallet_withdraw_from">Rút tiền từ:</string>
     <string name="wallet_withdraw_agree">Đồng ý &amp; Rút tiền</string>
     <string name="wallet_withdraw_successful">Rút tiền thành công</string>
-    <string name="wallet_withdraw_failed">Rút tiền không thành công</string>
+    <string name="wallet_withdraw_failed">Rút tiền thất bại</string>
     <string name="wallet_policy">Chính sách rút tiền</string>
     <string name="wallet_policy_read_our">Đọc</string>
     <string name="wallet_policy_tab_withdraw">. Nhấn \"Đồng ý và Rút tiền\" để chấp nhận</string>
@@ -131,32 +131,32 @@
 
     <!-- balance-->
     <string name="balance">Số dư</string>
-    <string name="balance_show">Hiện số dư</string>
+    <string name="balance_show">Hiển thị số dư</string>
     <string name="balance_available">Số dư khả dụng</string>
     <string name="balance_add">Nạp số dư</string>
     <string name="balance_popular">Phổ biến</string>
     <string name="balance_non_refundable">Số dư có chiết khấu không được hoàn lại, vui lòng nhấn tiếp tục để đồng ý</string>
-    <string name="balance_refill_select_method">Vui lòng chọn một phương thức thanh toán.</string>
+    <string name="balance_refill_select_method">Vui lòng chọn phương thức thanh toán.</string>
     <string name="balance_add_message">Chúng tôi sẽ thêm vào số dư của bạn</string>
 
     <!-- Location -->
     <string name="location_search_address">Tìm kiếm địa chỉ</string>
-    <string name="location_search_for">Tìm kiếm địa điểm</string>
-    <string name="location_search">Tìm kiếm địa điểm</string>
+    <string name="location_search_for">Tìm kiếm vị trí</string>
+    <string name="location_search">Tìm kiếm vị trí</string>
     <string name="location_delivery_address">Địa chỉ giao hàng</string>
 
     <!--Messages-->
-    <string name="no_internet_message">Vui lòng đảm bảo bạn đã kết nối với internet</string>
+    <string name="no_internet_message">Vui lòng đảm bảo bạn đã kết nối internet</string>
     <string name="internet_connection_error">Xin lỗi, ứng dụng này cần kết nối internet để hoạt động bình thường. Vui lòng kiểm tra kết nối internet của bạn và thử lại.</string>
     <string name="maintenance_mode_error">Dịch vụ hiện không khả dụng để bảo trì. Vui lòng kiểm tra lại sau. Xin lỗi vì sự bất tiện này</string>
     <string name="camera_permission_message">Vui lòng cho phép quyền truy cập máy ảnh</string>
-    <string name="reminder_message">Vui lòng hoàn thành đăng ký để nhận các ưu đãi và giảm giá của chúng tôi</string>
+    <string name="reminder_message">Vui lòng hoàn tất đăng ký để nhận ưu đãi và giảm giá của chúng tôi</string>
 
     <!-- Feedback-->
-    <string name="feedback_msg">Trải nghiệm của bạn thế nào?</string>
+    <string name="feedback_msg">Bạn có trải nghiệm như thế nào?</string>
     <string name="feedback_terrible">Tệ</string>
     <string name="feedback_bad">Không tốt</string>
-    <string name="feedback_fine">Ổn</string>
+    <string name="feedback_fine">Bình thường</string>
     <string name="feedback_good">Tốt</string>
     <string name="feedback_excellent">Tuyệt vời</string>
 
@@ -165,8 +165,8 @@
     <string name="station_number">Trạm #%s</string>
     <string name="station_new">Mới</string>
     <string name="station_drive">Lái xe đến trạm</string>
-    <string name="station_unit_price_per_minute_total">%s %s/phút X %s</string> <!-- ex: 1.0 SR/minute X 1m 20 s -->
-    <string name="station_unit_price_per_kwh_total">%s %s/kWh X %s</string> <!-- ex: 1.0 SR/kWh X 50 -->
+    <string name="station_unit_price_per_minute_total">%1$s %2$s/phút X %3$s</string>
+    <string name="station_unit_price_per_kwh_total">%1$s %2$s/kWh X %3$s</string>
     <string name="station_per_minute">Mỗi phút</string>
     <string name="station_per_kwh">Mỗi kWh</string>
     <string name="station_per">Mỗi</string>
@@ -176,11 +176,11 @@
     <string name="station_km_away">%.1f km</string>
 
     <string name="station_status_open24">Mở cửa 24 giờ</string>
-    <string name="station_status_open">Mở cửa</string>
+    <string name="station_status_open">Đang mở cửa</string>
     <string name="station_unavailable">Không khả dụng</string>
     <string name="station_status_busy">Đang bận</string>
-    <string name="station_status_self_charging">Đang sạc bởi bạn</string>
-    <string name="station_status_self_booked">Đã đặt bởi bạn</string>
+    <string name="station_status_self_charging">Bạn đang sử dụng</string>
+    <string name="station_status_self_booked">Bạn đã đặt trước</string>
     <string name="station_status_booked">Đã đặt</string>
     <string name="station_open_in">Mở cửa lúc %s</string>
     <string name="station_close_in">Đóng cửa lúc %s</string>
@@ -188,56 +188,56 @@
     <string name="station_max_power">Tối đa %s kWh</string>
     <string name="station_max">Tối đa</string>
     <string name="station_max_value">(Tối đa %s)</string>
-    <string name="station_reviews">Đánh giá</string>
+    <string name="station_reviews">Đánh giá &amp; Nhận xét</string>
     <string name="station_reviews_helpful">Hữu ích</string>
     <string name="station_charging_activate">Kích hoạt bộ sạc</string>
     <string name="station_charging">Đang sạc</string>
     <string name="station_charging_start">Bắt đầu sạc</string>
-    <string name="station_charging_start_error">Vui lòng chọn phích cắm trước khi bắt đầu sạc.</string>
+    <string name="station_charging_start_error">Vui lòng chọn ổ cắm trước khi bắt đầu sạc.</string>
     <string name="station_charging_how_to">Cách sạc</string>
     <string name="station_charging_stop">Dừng sạc</string>
-    <string name="station_charging_stop_msg">Vui lòng đảm bảo phích cắm đã được tháo khỏi xe EV của bạn trước khi dừng sạc.</string>
+    <string name="station_charging_stop_msg">Vui lòng đảm bảo rằng phích cắm đã được tháo ra khỏi xe điện của bạn trước khi dừng sạc.</string>
     <string name="station_charging_full">Đầy</string>
     <string name="station_charging_minute">ph</string>
     <string name="station_charging_hour">g</string>
 
-    <string name="station_charging_msg_1">"Bạn đã sẵn sàng để kích hoạt bộ sạc.\nChọn thời gian sạc của bạn và nhấn 'Bắt đầu sạc' để bắt đầu."</string>
-    <string name="station_charging_msg_2">"Trước khi bạn bắt đầu sạc, xin lưu ý:"</string>
+    <string name="station_charging_msg_1">"Bạn đã sẵn sàng kích hoạt bộ sạc.\nChọn thời gian sạc của bạn và nhấn 'Bắt đầu sạc' để bắt đầu."</string>
+    <string name="station_charging_msg_2">"Trước khi bạn bắt đầu sạc, vui lòng ghi nhớ:"</string>
     <string name="station_charging_msg_3">"Nếu bạn hiện không ở gần trạm sạc, phiên sạc vẫn sẽ bắt đầu nếu bạn tiếp tục.</string>
     <string name="station_charging_msg_4">"Nếu bạn đã ở trạm sạc và sẵn sàng kích hoạt bộ sạc, hãy chọn thời lượng sạc của bạn và nhấn 'Bắt đầu sạc' để bắt đầu."</string>
     <string name="station_total_price">Tổng giá</string>
     <string name="station_charged">Đã sạc</string>
-    <string name="station_recharge">Nạp tiền</string>
+    <string name="station_recharge">Nạp lại</string>
     <string name="station_time">Thời gian</string>
     <string name="station_price">Giá</string>
     <string name="station_app_fees">Phí ứng dụng</string>
 
-    <string name="onboarding1_title1">Lái xe</string>
-    <string name="onboarding1_title2">An toàn đến Trạm</string>
+    <string name="onboarding1_title1">An toàn</string>
+    <string name="onboarding1_title2">Lái xe đến trạm</string>
     <string name="onboarding1_description">Định vị bộ sạc của bạn bằng ứng dụng của chúng tôi và đi đến vị trí của nó. Bản đồ sẽ hướng dẫn bạn điều hướng dễ dàng.</string>
-    <string name="onboarding2_title">Xác định Bộ sạc</string>
-    <string name="onboarding2_description1">Ở những khu vực có nhiều bộ sạc, hãy xác định bộ sạc của bạn bằng ID hoặc tên duy nhất của nó, đặc biệt hữu ích nếu bạn đã</string>
+    <string name="onboarding2_title">Xác định bộ sạc</string>
+    <string name="onboarding2_description1">Trong các khu vực có nhiều bộ sạc, hãy xác định bộ sạc của bạn bằng ID hoặc tên duy nhất của nó, đặc biệt hữu ích nếu bạn đã</string>
     <string name="onboarding2_description2">đặt trước</string>
     <string name="onboarding2_description3">.</string>
-    <string name="onboarding3_title">Bắt đầu Bộ sạc</string>
-    <string name="onboarding3_description1">Đầu tiên, hãy kết nối xe của bạn với bộ sạc. Sau đó,</string>
+    <string name="onboarding3_title">Bắt đầu bộ sạc</string>
+    <string name="onboarding3_description1">Trước tiên, hãy kết nối xe của bạn với bộ sạc. Sau đó,</string>
     <string name="onboarding3_description2">quét mã QR trên bộ sạc để</string>
     <string name="onboarding3_description3">bắt đầu sạc</string>
     <string name="onboarding3_description4">quá trình.</string>
     <string name="onboarding4_title1">Chờ</string>
-    <string name="onboarding4_title2">để Sạc</string>
-    <string name="onboarding4_description">Thiết lập hoàn tất! Đồng hồ đếm ngược sẽ hiển thị thời gian đến khi xe của bạn được sạc đầy. Thư giãn hoặc dành một chút thời gian cho bản thân trong thời gian chờ đợi.</string>
+    <string name="onboarding4_title2">để sạc</string>
+    <string name="onboarding4_description">Thiết lập hoàn tất! Đồng hồ đếm ngược sẽ hiển thị thời gian cho đến khi xe của bạn được sạc đầy. Thư giãn hoặc dành một chút thời gian cho bản thân trong thời gian đó.</string>
 
     <!-- My Power Sources -->
-    <string name="station_plugs">Phích cắm</string>
-    <string name="station_plug_type">Loại phích cắm</string>
-    <string name="station_plug_add">Thêm phích cắm</string>
-    <string name="station_details_plug">Phích cắm: %d</string>
+    <string name="station_plugs">Ổ cắm</string>
+    <string name="station_plug_type">Loại ổ cắm</string>
+    <string name="station_plug_add">Thêm ổ cắm</string>
+    <string name="station_details_plug">Ổ cắm: %d</string>
     <string name="station_details_parking">Đỗ xe</string>
     <string name="station_details_amenities">Tiện nghi</string>
     <string name="station_details_title">Tiêu đề</string>
     <string name="station_details_descriptions">Mô tả</string>
-    <string name="station_save_next">Lưu và tiếp theo</string>
+    <string name="station_save_next">Lưu và Tiếp</string>
 
     <!-- Vehicles -->
     <string name="vehicle_title">Xe của tôi</string>
@@ -264,20 +264,20 @@
     <string name="fuel_other">Khác</string>
 
     <!-- Orders-->
-    <string name="sessions_active">Phiên đang hoạt động</string>
+    <string name="sessions_active">Phiên hoạt động</string>
     <string name="sessions_scheduled">Đã lên lịch</string>
     <string name="sessions_booking_id">Mã đặt chỗ</string>
     <string name="sessions_history">Lịch sử</string>
     <string name="sessions_completed">Đã hoàn thành</string>
-    <string name="sessions_active_empty">Không có đơn hàng đang hoạt động</string>
+    <string name="sessions_active_empty">Không có đơn hàng hoạt động</string>
     <string name="sessions_history_empty">Không có đơn hàng đã hoàn thành</string>
-    <string name="sessions_charging_stop_msg">Bạn có chắc chắn muốn dừng sạc không.</string>
+    <string name="sessions_charging_stop_msg">Bạn có chắc chắn muốn dừng sạc không?</string>
 
     <string name="station_closed">Đã đóng cửa</string>
     <string name="order_Id">Mã đơn hàng</string>
     <string name="order_selected_product">Sản phẩm</string>
     <string name="order_discount">Giảm giá</string>
-    <string name="order_vatId">Mã số thuế</string>
+    <string name="order_vatId">Mã VAT</string>
     <string name="order_subtotal">Tổng phụ : </string>
     <string name="order_total">Tổng cộng</string>
     <string name="order_payment_method">Phương thức thanh toán</string>
@@ -286,12 +286,12 @@
     <string name="order_vat">VAT</string>
 
     <string name="time_h">g</string>
-    <string name="time_m">p</string>
+    <string name="time_m">ph</string>
     <string name="time_s">s</string>
 
     <!-- Home Slider -->
     <array name="slider_title">
-        <item>Sẵn sàng để đi</item>
+        <item>Sẵn sàng lên đường</item>
     </array>
 
     <array name="slider_message">

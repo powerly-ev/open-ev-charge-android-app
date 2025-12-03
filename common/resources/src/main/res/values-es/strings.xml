@@ -165,8 +165,8 @@
     <string name="station_number">Estación #%s</string>
     <string name="station_new">Nueva</string>
     <string name="station_drive">Conducir a la Estación</string>
-    <string name="station_unit_price_per_minute_total">%s %s/minuto X %s</string>
-    <string name="station_unit_price_per_kwh_total">%s %s/kWh X %s</string>
+    <string name="station_unit_price_per_minute_total">%1$s %2$s/minuto X %3$s</string>
+    <string name="station_unit_price_per_kwh_total">%1$s %2$s/kWh X %3$s</string>
     <string name="station_per_minute">Por minuto</string>
     <string name="station_per_kwh">Por kWh</string>
     <string name="station_per">Por</string>
