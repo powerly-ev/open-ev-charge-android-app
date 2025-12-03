@@ -29,7 +29,7 @@
     <string name="profile_select_country">Pilih Negara</string>
     <string name="profile_require_email_address">Email diperlukan untuk memperbarui profil Anda</string>
     <string name="profile_confirm_delete_account">Apakah Anda yakin ingin menghapus akun Anda?</string>
-    <string name="profile_delete_account_description">Akun Anda akan segera dinonaktifkan. Setelah 30 hari, akun akan dihapus secara permanen, dan kredit, promosi, atau hadiah yang tidak terpakai akan dihapus.</string>
+    <string name="profile_delete_account_description">Akun Anda akan segera dinonaktifkan. Setelah 30 hari, akun tersebut akan dihapus secara permanen, dan kredit, promosi, atau hadiah yang tidak terpakai akan dihapus.</string>
     <string name="profile_guest">Tamu</string>
     <string name="profile_see">Lihat Profil</string>
     <string name="profile_select_country_please">Silakan pilih negara</string>
@@ -86,17 +86,17 @@
     <string name="yes">Ya</string>
     <string name="no">Tidak</string>
     <string name="dialog_cancel">Batal</string>
-    <string name="dialog_ok">Oke</string>
+    <string name="dialog_ok">OK</string>
     <string name="update_now">Perbarui Sekarang</string>
     <string name="remove">Hapus</string>
     <string name="add_a_note">Tambahkan catatan</string>
     <string name="delete_account">Hapus Akun</string>
-    <string name="share_code">Bagikan Tautan Referal</string>
-    <string name="copy_code">Salin Tautan Referal</string>
+    <string name="share_code">Bagikan Tautan Referral</string>
+    <string name="copy_code">Salin Tautan Referral</string>
     <string name="agree_and_continue">Setuju &amp; Lanjutkan</string>
     <string name="update">Perbarui</string>
     <string name="edit">Edit</string>
-    <string name="next">Selanjutnya</string>
+    <string name="next">Berikutnya</string>
     <string name="skip">Lewati</string>
     <string name="delete">Hapus</string>
     <string name="select">Pilih</string>
@@ -110,7 +110,7 @@
     <string name="payment_card_scan">Pindai Kartu</string>
     <string name="payment_default">Metode Default</string>
     <string name="payment_paypal">Paypal</string>
-    <string name="payment_point_checkout">Pembayaran Poin</string>
+    <string name="payment_point_checkout">Point Checkout</string>
     <string name="payment_failed">Pembayaran Gagal</string>
     <string name="payment_add_new_card">Tambahkan Kartu Baru</string>
     <string name="payment_cash_on_delivery">Bayar di Tempat</string>
@@ -133,7 +133,7 @@
     <string name="balance">Saldo</string>
     <string name="balance_show">Tampilkan Saldo</string>
     <string name="balance_available">Saldo Tersedia</string>
-    <string name="balance_add">Tambahkan Saldo</string>
+    <string name="balance_add">Tambah Saldo</string>
     <string name="balance_popular">Populer</string>
     <string name="balance_non_refundable">Saldo dengan diskon tidak dapat dikembalikan, silakan tab lanjutkan untuk menyetujui</string>
     <string name="balance_refill_select_method">Silakan pilih metode pembayaran.</string>
@@ -147,9 +147,9 @@
 
     <!--Messages-->
     <string name="no_internet_message">Pastikan Anda terhubung ke internet</string>
-    <string name="internet_connection_error">Maaf, aplikasi ini memerlukan koneksi internet untuk berfungsi dengan baik. Harap periksa koneksi internet Anda dan coba lagi.</string>
+    <string name="internet_connection_error">Maaf, aplikasi ini memerlukan koneksi internet agar berfungsi dengan baik. Silakan periksa koneksi internet Anda dan coba lagi.</string>
     <string name="maintenance_mode_error">Layanan saat ini tidak tersedia karena pemeliharaan. Silakan periksa kembali nanti. Maaf atas ketidaknyamanannya</string>
-    <string name="camera_permission_message">Harap Izinkan Izin Kamera</string>
+    <string name="camera_permission_message">Izinkan Izin Kamera</string>
     <string name="reminder_message">Harap selesaikan pendaftaran untuk menerima penawaran dan diskon kami</string>
 
     <!-- Feedback-->
@@ -158,22 +158,22 @@
     <string name="feedback_bad">Buruk</string>
     <string name="feedback_fine">Baik</string>
     <string name="feedback_good">Bagus</string>
-    <string name="feedback_excellent">Luar Biasa</string>
+    <string name="feedback_excellent">Sangat Baik</string>
 
     <!-- Stations -->
     <string name="station_location_allow">Izinkan</string>
     <string name="station_number">Stasiun #%s</string>
     <string name="station_new">Baru</string>
     <string name="station_drive">Berkendara ke Stasiun</string>
-    <string name="station_unit_price_per_minute_total">%s %s/menit X %s</string> <!-- ex: 1.0 SR/minute X 1m 20 s -->
-    <string name="station_unit_price_per_kwh_total">%s %s/kWh X %s</string> <!-- ex: 1.0 SR/kWh X 50 -->
+    <string name="station_unit_price_per_minute_total">%1$s %2$s/menit X %3$s</string>
+    <string name="station_unit_price_per_kwh_total">%1$s %2$s/kWh X %3$s</string>
     <string name="station_per_minute">Per menit</string>
     <string name="station_per_kwh">Per kWh</string>
     <string name="station_per">Per</string>
     <string name="station_kwh">kWh</string>
     <string name="station_km_value">%s km</string>
     <string name="station_kwh_value">%s kWh</string>
-    <string name="station_km_away">%.1f km</string>
+    <string name="station_km_away">%.1f km jauhnya</string>
 
     <string name="station_status_open24">Buka 24 jam</string>
     <string name="station_status_open">Buka</string>
@@ -192,21 +192,21 @@
     <string name="station_reviews_helpful">Bermanfaat</string>
     <string name="station_charging_activate">Aktivasi Pengisi Daya</string>
     <string name="station_charging">Pengisian Daya</string>
-    <string name="station_charging_start">Mulai Pengisian Daya</string>
-    <string name="station_charging_start_error">Silakan pilih colokan sebelum memulai pengisian daya.</string>
+    <string name="station_charging_start">Mulai Mengisi Daya</string>
+    <string name="station_charging_start_error">Silakan pilih colokan sebelum mulai mengisi daya.</string>
     <string name="station_charging_how_to">Cara mengisi daya</string>
-    <string name="station_charging_stop">Hentikan Pengisian Daya</string>
+    <string name="station_charging_stop">Berhenti Mengisi Daya</string>
     <string name="station_charging_stop_msg">Pastikan colokan terlepas dari EV Anda sebelum menghentikan pengisian daya.</string>
     <string name="station_charging_full">Penuh</string>
     <string name="station_charging_minute">m</string>
     <string name="station_charging_hour">j</string>
 
-    <string name="station_charging_msg_1">"Anda siap mengaktifkan pengisi daya.\nPilih waktu pengisian daya Anda dan ketuk \'Mulai Pengisian Daya\' untuk memulai."</string>
+    <string name="station_charging_msg_1">"Anda siap mengaktifkan pengisi daya.\nPilih waktu pengisian daya Anda dan ketuk \'Mulai Mengisi Daya\' untuk memulai."</string>
     <string name="station_charging_msg_2">"Sebelum Anda mulai mengisi daya, harap ingat:"</string>
-    <string name="station_charging_msg_3">"Jika Anda saat ini tidak berada di dekat stasiun pengisian daya, sesi pengisian daya akan tetap dimulai jika Anda melanjutkan.</string>
-    <string name="station_charging_msg_4">"Jika Anda sudah berada di stasiun pengisian daya dan siap mengaktifkan pengisi daya, pilih durasi pengisian daya Anda dan ketuk \'Mulai Pengisian Daya\' untuk memulai."</string>
+    <string name="station_charging_msg_3">"Jika Anda tidak berada di dekat stasiun pengisian daya, sesi pengisian daya akan tetap dimulai jika Anda melanjutkan.</string>
+    <string name="station_charging_msg_4">"Jika Anda sudah berada di stasiun pengisian daya dan siap mengaktifkan pengisi daya, pilih durasi pengisian daya Anda dan ketuk \'Mulai Mengisi Daya\' untuk memulai."</string>
     <string name="station_total_price">Total Harga</string>
-    <string name="station_charged">Diisi</string>
+    <string name="station_charged">Diisi Daya</string>
     <string name="station_recharge">Isi Ulang</string>
     <string name="station_time">Waktu</string>
     <string name="station_price">Harga</string>
@@ -214,19 +214,19 @@
 
     <string name="onboarding1_title1">Aman</string>
     <string name="onboarding1_title2">Berkendara ke Stasiun</string>
-    <string name="onboarding1_description">Temukan pengisi daya Anda dengan aplikasi kami dan menuju ke lokasinya. Peta akan memandu Anda untuk navigasi yang mudah.</string>
+    <string name="onboarding1_description">Temukan pengisi daya Anda dengan aplikasi kami dan pergi ke lokasinya. Peta akan memandu Anda untuk navigasi yang mudah.</string>
     <string name="onboarding2_title">Identifikasi Pengisi Daya</string>
-    <string name="onboarding2_description1">Di area dengan beberapa pengisi daya, identifikasi pengisi daya Anda menggunakan ID atau nama uniknya, terutama berguna jika Anda memiliki</string>
-    <string name="onboarding2_description2">dipesan terlebih dahulu</string>
+    <string name="onboarding2_description1">Di area dengan beberapa pengisi daya, identifikasi pengisi daya Anda menggunakan ID atau nama uniknya, terutama berguna jika Anda telah</string>
+    <string name="onboarding2_description2">memesan di muka</string>
     <string name="onboarding2_description3">.</string>
     <string name="onboarding3_title">Mulai Pengisi Daya</string>
     <string name="onboarding3_description1">Pertama, hubungkan kendaraan Anda ke pengisi daya. Kemudian,</string>
     <string name="onboarding3_description2">pindai kode QR pada pengisi daya untuk</string>
-    <string name="onboarding3_description3">mulai pengisian daya</string>
+    <string name="onboarding3_description3">memulai pengisian daya</string>
     <string name="onboarding3_description4">proses.</string>
     <string name="onboarding4_title1">Tunggu</string>
     <string name="onboarding4_title2">untuk Pengisian Daya</string>
-    <string name="onboarding4_description">Pengaturan selesai! Timer hitung mundur akan menunjukkan berapa lama hingga kendaraan Anda terisi penuh. Bersantai atau luangkan waktu sejenak untuk diri sendiri sementara itu.</string>
+    <string name="onboarding4_description">Penyiapan selesai! Timer hitung mundur akan menunjukkan berapa lama hingga kendaraan Anda terisi penuh. Bersantai atau luangkan waktu untuk diri sendiri sementara itu.</string>
 
     <!-- My Power Sources -->
     <string name="station_plugs">Colokan</string>
@@ -237,7 +237,7 @@
     <string name="station_details_amenities">Fasilitas</string>
     <string name="station_details_title">Judul</string>
     <string name="station_details_descriptions">Deskripsi</string>
-    <string name="station_save_next">Simpan dan Selanjutnya</string>
+    <string name="station_save_next">Simpan dan Berikutnya</string>
 
     <!-- Vehicles -->
     <string name="vehicle_title">Kendaraan Saya</string>
@@ -248,8 +248,8 @@
     <string name="vehicle_add">Tambahkan Kendaraan</string>
     <string name="vehicle_delete">Hapus kendaraan?</string>
     <string name="vehicle_delete_message">Apakah Anda yakin ingin menghapus kendaraan ini?</string>
-    <string name="vehicle_manufacturer">Produsen</string>
-    <string name="vehicle_manufacturer_search">Cari Produsen</string>
+    <string name="vehicle_manufacturer">Pabrikan</string>
+    <string name="vehicle_manufacturer_search">Cari Pabrikan</string>
     <string name="vehicle_details">Detail</string>
     <string name="vehicle_details_color">Warna</string>
     <string name="vehicle_details_color_custom">Warna Kustom</string>
@@ -259,7 +259,7 @@
 
     <string name="fuel_fuel">Bahan Bakar</string>
     <string name="fuel_hybrid">Hibrida</string>
-    <string name="fuel_plug_in_hybrid">Hibrida Plug-In</string>
+    <string name="fuel_plug_in_hybrid">Plug-In Hybrid</string>
     <string name="fuel_electric">Listrik</string>
     <string name="fuel_other">Lainnya</string>
 
@@ -270,11 +270,11 @@
     <string name="sessions_history">Riwayat</string>
     <string name="sessions_completed">Selesai</string>
     <string name="sessions_active_empty">Tidak ada pesanan aktif</string>
-    <string name="sessions_history_empty">Tidak ada pesanan selesai</string>
-    <string name="sessions_charging_stop_msg">Apakah Anda yakin ingin menghentikan pengisian daya.</string>
+    <string name="sessions_history_empty">Tidak ada pesanan yang selesai</string>
+    <string name="sessions_charging_stop_msg">Apakah Anda yakin ingin berhenti mengisi daya?</string>
 
     <string name="station_closed">Tutup</string>
-    <string name="order_Id">Id Pemesanan</string>
+    <string name="order_Id">Id Pesanan</string>
     <string name="order_selected_product">Produk</string>
     <string name="order_discount">Diskon</string>
     <string name="order_vatId">ID PPN</string>
@@ -287,14 +287,14 @@
 
     <string name="time_h">j</string>
     <string name="time_m">m</string>
-    <string name="time_s">s</string>
+    <string name="time_s">d</string>
 
     <!-- Home Slider -->
     <array name="slider_title">
-        <item>Siap Berangkat</item>
+        <item>Semua Siap untuk Pergi</item>
     </array>
 
     <array name="slider_message">
-        <item>Temukan pengisi daya, isi daya, dan mulailah perjalanan.</item>
+        <item>Temukan pengisi daya, hidupkan, dan jalan.</item>
     </array>
 </resources>

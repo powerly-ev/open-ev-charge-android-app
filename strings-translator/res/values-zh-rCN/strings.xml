@@ -12,32 +12,32 @@
     <string name="support">支持</string>
     <string name="account_vehicles">车辆</string>
     <string name="invite">邀请</string>
-    <string name="invite_link_copied">链接已复制</string>
-    <string name="invite_QR_description">邀请您的朋友下载我们这款超棒的应用</string>
+    <string name="invite_link_copied">已复制链接</string>
+    <string name="invite_QR_description">邀请您的朋友下载我们精彩的应用程序</string>
     <string name="logout_title">退出登录</string>
     <string name="logout_confirmation">确定要退出登录吗？</string>
     <string name="select_language">选择语言</string>
 
     <!-- Update-->
     <string name="update_required">需要更新</string>
-    <string name="update_force_desc1">需要进行重要更新，其中包括其他功能、安全更新和改进。</string>
-    <string name="update_force_desc2">请更新应用以继续。</string>
+    <string name="update_force_desc1">需要进行重要更新，其中包含其他功能、安全更新和改进。</string>
+    <string name="update_force_desc2">请更新应用程序以继续。</string>
 
     <!--Profile Screen-->
     <string name="profile_email">电子邮件</string>
     <string name="profile">我的个人资料</string>
     <string name="profile_select_country">选择国家/地区</string>
-    <string name="profile_require_email_address">更新个人资料需要电子邮件</string>
-    <string name="profile_confirm_delete_account">确定要删除您的账户吗？</string>
-    <string name="profile_delete_account_description">您的账户将立即停用。 30 天后，它将被永久删除，任何未使用的积分、促销或奖励都将被删除。</string>
-    <string name="profile_guest">游客</string>
+    <string name="profile_require_email_address">需要电子邮件地址才能更新您的个人资料</string>
+    <string name="profile_confirm_delete_account">确定要删除您的帐户吗？</string>
+    <string name="profile_delete_account_description">您的帐户将被立即停用。30 天后，它将被永久删除，任何未使用的积分、促销或奖励将被删除。</string>
+    <string name="profile_guest">访客</string>
     <string name="profile_see">查看个人资料</string>
     <string name="profile_select_country_please">请选择国家/地区</string>
 
     <!-- Welcome Screen-->
-    <string name="welcome">您好 :)</string>
-    <string name="welcome_description">欢迎来到电动汽车充电的未来！让我们为您设置，首先是您的语言偏好。</string>
-    <string name="welcome_user_agreement">使用 %s 即表示您同意我们的</string>
+    <string name="welcome">你好 :)</string>
+    <string name="welcome_description">欢迎来到电动汽车充电的未来！让我们开始设置，首先是您的语言偏好。</string>
+    <string name="welcome_user_agreement">通过使用 %s，您同意我们的</string>
     <string name="welcome_privacy_policy">隐私政策。</string>
     <string name="welcome_and">和</string>
     <string name="welcome_terms_of_service">服务条款</string>
@@ -45,22 +45,22 @@
 
     <!-- Login-->
     <string name="login_select_country">选择您的国家/地区</string>
-    <string name="login_resend_code_in">在以下时间内重新发送代码</string>
+    <string name="login_resend_code_in">在以下时间后重新发送验证码</string>
     <string name="login_first_name">名字</string>
     <string name="login_last_name">姓氏</string>
     <string name="login_password">密码</string>
     <string name="login_enter_first_name">请输入您的名字</string>
     <string name="login_Verification_title">验证</string>
-    <string name="login_resend_code">重新发送代码</string>
-    <string name="login_need_help">我需要帮助</string>
-    <string name="login_enter_code">输入我们发送给您的 4 位数代码</string>
+    <string name="login_resend_code">重新发送验证码</string>
+    <string name="login_need_help">需要帮助</string>
+    <string name="login_enter_code">输入我们发送给您的 4 位数验证码</string>
     <string name="login_option_title">登录</string>
-    <string name="login_option_google">使用 Google 登录</string>
+    <string name="login_option_google">使用 Google 账号登录</string>
     <string name="login_option_email">使用电子邮件登录</string>
-    <string name="login_option_guest">以游客身份继续</string>
-    <string name="login_option_other">探索其他登录选项</string>
+    <string name="login_option_guest">以访客身份继续</string>
+    <string name="login_option_other">浏览其他登录选项</string>
     <string name="login_email">电子邮件</string>
-    <string name="login_email_title">登录或创建帐户</string>
+    <string name="login_email_title">登录或创建账户</string>
     <string name="login_email_enter">输入您的电子邮件</string>
     <string name="login_email_enter_msg">请输入您的电子邮件地址。我们将向您发送验证码以确保您的帐户安全。</string>
     <string name="login_email_error_msg">电子邮件地址不正确</string>
@@ -70,13 +70,13 @@
     <string name="login_email_password_confirm">确认密码</string>
     <string name="login_email_password_create_title">使用电子邮件地址登录</string>
     <string name="login_email_password_create">创建密码</string>
-    <string name="login_email_password_create_msg">创建一个强密码，您将使用它来登录</string>
-    <string name="login_email_password_length_msg">密码必须至少包含 %d 个字符。</string>
+    <string name="login_email_password_create_msg">创建一个您将用于登录的强密码</string>
+    <string name="login_email_password_length_msg">密码必须至少为 %d 个字符。</string>
     <string name="login_email_password_not_matched">密码不一致</string>
     <string name="login_email_password_forget">忘记密码？</string>
     <string name="login_email_password_forget_msg">没问题！我们将向 %s 发送一次性密码 (OTP)。收到后，您可以使用 OTP 登录并重置密码</string>
     <string name="login_email_password_weak">弱</string>
-    <string name="login_email_password_medium">中</string>
+    <string name="login_email_password_medium">中等</string>
     <string name="login_email_password_strong">强</string>
 
     <!-- ACTIONS -->
@@ -89,7 +89,7 @@
     <string name="dialog_ok">确定</string>
     <string name="update_now">立即更新</string>
     <string name="remove">移除</string>
-    <string name="add_a_note">添加注释</string>
+    <string name="add_a_note">添加备注</string>
     <string name="delete_account">删除账户</string>
     <string name="share_code">分享推荐链接</string>
     <string name="copy_code">复制推荐链接</string>
@@ -110,8 +110,8 @@
     <string name="payment_card_scan">扫描银行卡</string>
     <string name="payment_default">默认方式</string>
     <string name="payment_paypal">Paypal</string>
-    <string name="payment_point_checkout">积分结算</string>
-    <string name="payment_failed">付款失败</string>
+    <string name="payment_point_checkout">积分结账</string>
+    <string name="payment_failed">支付失败</string>
     <string name="payment_add_new_card">添加新银行卡</string>
     <string name="payment_cash_on_delivery">货到付款</string>
     <string name="payment_delete_card_message">确定要删除此付款方式吗？</string>
@@ -126,18 +126,18 @@
     <string name="wallet_withdraw_failed">提款失败</string>
     <string name="wallet_policy">提款政策</string>
     <string name="wallet_policy_read_our">阅读我们的</string>
-    <string name="wallet_policy_tab_withdraw">. 点击“同意并提款”以接受</string>
+    <string name="wallet_policy_tab_withdraw">。点击“同意并提款”以接受</string>
     <string name="wallet_policy_terms">服务条款</string>
 
     <!-- balance-->
     <string name="balance">余额</string>
     <string name="balance_show">显示余额</string>
     <string name="balance_available">可用余额</string>
-    <string name="balance_add">添加余额</string>
+    <string name="balance_add">增加余额</string>
     <string name="balance_popular">热门</string>
-    <string name="balance_non_refundable">带有折扣的余额不可退款，请点击继续以同意</string>
+    <string name="balance_non_refundable">有折扣的余额不可退款，请点击继续以同意</string>
     <string name="balance_refill_select_method">请选择付款方式。</string>
-    <string name="balance_add_message">我们将添加到您的余额中</string>
+    <string name="balance_add_message">我们将添加到您的余额</string>
 
     <!-- Location -->
     <string name="location_search_address">搜索地址</string>
@@ -148,7 +148,7 @@
     <!--Messages-->
     <string name="no_internet_message">请确保您已连接到互联网</string>
     <string name="internet_connection_error">抱歉，此应用程序需要互联网连接才能正常工作。请检查您的互联网连接并重试。</string>
-    <string name="maintenance_mode_error">该服务目前正在维护中，暂时不可用。请稍后再回来查看。给您带来不便，敬请谅解</string>
+    <string name="maintenance_mode_error">该服务目前不可用，正在维护中。请稍后再试。给您带来的不便，我们深表歉意</string>
     <string name="camera_permission_message">请允许相机权限</string>
     <string name="reminder_message">请完成注册以接收我们的优惠和折扣</string>
 
@@ -163,10 +163,10 @@
     <!-- Stations -->
     <string name="station_location_allow">允许</string>
     <string name="station_number">充电站 #%s</string>
-    <string name="station_new">新</string>
+    <string name="station_new">新建</string>
     <string name="station_drive">前往充电站</string>
-    <string name="station_unit_price_per_minute_total">%s %s/分钟 X %s</string> <!-- ex: 1.0 SR/minute X 1m 20 s -->
-    <string name="station_unit_price_per_kwh_total">%s %s/千瓦时 X %s</string> <!-- ex: 1.0 SR/kWh X 50 -->
+    <string name="station_unit_price_per_minute_total">%1$s %2$s/分钟 X %3$s</string>
+    <string name="station_unit_price_per_kwh_total">%1$s %2$s/千瓦时 X %3$s</string>
     <string name="station_per_minute">每分钟</string>
     <string name="station_per_kwh">每千瓦时</string>
     <string name="station_per">每</string>
@@ -175,35 +175,35 @@
     <string name="station_kwh_value">%s 千瓦时</string>
     <string name="station_km_away">%.1f 公里外</string>
 
-    <string name="station_status_open24">24 小时营业</string>
-    <string name="station_status_open">营业中</string>
+    <string name="station_status_open24">24 小时开放</string>
+    <string name="station_status_open">开放</string>
     <string name="station_unavailable">不可用</string>
     <string name="station_status_busy">忙碌</string>
     <string name="station_status_self_charging">您正在使用</string>
     <string name="station_status_self_booked">您已预订</string>
     <string name="station_status_booked">已预订</string>
-    <string name="station_open_in">在 %s 开放</string>
-    <string name="station_close_in">在 %s 关闭</string>
+    <string name="station_open_in">%s 开放</string>
+    <string name="station_close_in">%s 关闭</string>
 
     <string name="station_max_power">最大 %s 千瓦时</string>
     <string name="station_max">最大</string>
     <string name="station_max_value">(最大 %s)</string>
-    <string name="station_reviews">评分和评论</string>
-    <string name="station_reviews_helpful">有帮助</string>
+    <string name="station_reviews">评分 &amp; 评价</string>
+    <string name="station_reviews_helpful">有用</string>
     <string name="station_charging_activate">充电器激活</string>
     <string name="station_charging">充电</string>
     <string name="station_charging_start">开始充电</string>
     <string name="station_charging_start_error">请在开始充电前选择插头。</string>
     <string name="station_charging_how_to">如何充电</string>
     <string name="station_charging_stop">停止充电</string>
-    <string name="station_charging_stop_msg">在停止充电之前，请确保插头已从您的电动汽车上拔下。</string>
-    <string name="station_charging_full">已充满</string>
+    <string name="station_charging_stop_msg">请确保在停止充电前，插头已从您的电动汽车上拔下。</string>
+    <string name="station_charging_full">充满</string>
     <string name="station_charging_minute">分</string>
-    <string name="station_charging_hour">时</string>
+    <string name="station_charging_hour">小时</string>
 
-    <string name="station_charging_msg_1">"您已准备好激活充电器。\n选择您的充电时间，然后点击“开始充电”以开始充电。"</string>
-    <string name="station_charging_msg_2">"在您开始充电之前，请记住："</string>
-    <string name="station_charging_msg_3">"如果您当前不在充电站附近，如果继续，充电会话仍将开始。"</string>
+    <string name="station_charging_msg_1">"您已准备好激活充电器。\n选择您的充电时间，然后点击“开始充电”即可开始。"</string>
+    <string name="station_charging_msg_2">"在开始充电之前，请记住："</string>
+    <string name="station_charging_msg_3">"如果您当前不在充电站附近，如果您继续，充电会话仍将开始。</string>
     <string name="station_charging_msg_4">"如果您已经在充电站并准备好激活充电器，请选择您的充电持续时间，然后点击“开始充电”以启动。"</string>
     <string name="station_total_price">总价</string>
     <string name="station_charged">已充电</string>
@@ -212,21 +212,21 @@
     <string name="station_price">价格</string>
     <string name="station_app_fees">应用费用</string>
 
-    <string name="onboarding1_title1">安全地</string>
-    <string name="onboarding1_title2">前往充电站</string>
-    <string name="onboarding1_description">使用我们的应用找到您的充电器，然后前往其位置。地图将引导您轻松导航。</string>
+    <string name="onboarding1_title1">安全</string>
+    <string name="onboarding1_title2">驾驶到充电站</string>
+    <string name="onboarding1_description">使用我们的应用程序找到您的充电器，然后前往其位置。地图将引导您轻松导航。</string>
     <string name="onboarding2_title">识别充电器</string>
     <string name="onboarding2_description1">在有多个充电器的区域，请使用其唯一的 ID 或名称识别您的充电器，如果您</string>
     <string name="onboarding2_description2">提前预订</string>
-    <string name="onboarding2_description3">，这将特别有帮助。</string>
+    <string name="onboarding2_description3">。</string>
     <string name="onboarding3_title">启动充电器</string>
     <string name="onboarding3_description1">首先，将您的车辆连接到充电器。然后，</string>
     <string name="onboarding3_description2">扫描充电器上的二维码以</string>
     <string name="onboarding3_description3">开始充电</string>
-    <string name="onboarding3_description4">流程。</string>
+    <string name="onboarding3_description4">过程。</string>
     <string name="onboarding4_title1">等待</string>
     <string name="onboarding4_title2">充电</string>
-    <string name="onboarding4_description">设置完成！倒计时器将显示您的车辆充满电之前的剩余时间。在此期间放松身心或花点时间犒劳自己。</string>
+    <string name="onboarding4_description">设置完成！倒计时器将显示您的车辆充满电还需要多长时间。在此期间放松身心。</string>
 
     <!-- My Power Sources -->
     <string name="station_plugs">插头</string>
@@ -250,7 +250,7 @@
     <string name="vehicle_delete_message">确定要删除此车辆吗？</string>
     <string name="vehicle_manufacturer">制造商</string>
     <string name="vehicle_manufacturer_search">搜索制造商</string>
-    <string name="vehicle_details">详细信息</string>
+    <string name="vehicle_details">详情</string>
     <string name="vehicle_details_color">颜色</string>
     <string name="vehicle_details_color_custom">自定义颜色</string>
     <string name="vehicle_details_year">年份 (%s)</string>
@@ -278,15 +278,15 @@
     <string name="order_selected_product">产品</string>
     <string name="order_discount">折扣</string>
     <string name="order_vatId">增值税号</string>
-    <string name="order_subtotal">小计 : </string>
+    <string name="order_subtotal">小计：</string>
     <string name="order_total">总计</string>
     <string name="order_payment_method">付款方式</string>
     <string name="order_payment_methods">付款方式</string>
     <string name="order_total_price">总价</string>
     <string name="order_vat">增值税</string>
 
-    <string name="time_h">时</string>
-    <string name="time_m">分</string>
+    <string name="time_h">小时</string>
+    <string name="time_m">分钟</string>
     <string name="time_s">秒</string>
 
     <!-- Home Slider -->
@@ -295,6 +295,6 @@
     </array>
 
     <array name="slider_message">
-        <item>寻找充电器，启动电源，然后出发。</item>
+        <item>找到充电器，启动电源，然后上路。</item>
     </array>
 </resources>
