@@ -15,7 +15,7 @@ secretsPlugin = "2.0.1"
 # Dependency versions
 ## Android Core
 coreKtx = "1.17.0"
-activityKtx = "1.12.0"
+activityKtx = "1.12.1"
 annotation = "1.9.1"
 annotationExperimental = "1.5.1"
 coreSplashscreen = "1.2.0"
@@ -31,8 +31,8 @@ kotlinCoroutines = "1.10.2"
 material = "1.13.0"
 
 ## Compose
-composeBom = "2025.11.01"
-foundationVersion = "1.9.5"
+composeBom = "2025.12.00"
+foundationVersion = "1.10.0"
 material3Version = "1.4.0"
 mapsComposeVersion = "6.12.2"
 mapsComposeUtilsVersion = "6.12.2"
@@ -45,7 +45,7 @@ googlePlaces = "5.1.1"
 playServicesLocation = "21.3.0"
 
 lottie = "6.7.1"
-stripeAndroid = "22.2.0"
+stripeAndroid = "22.3.0"
 stripeCardScanner = "21.29.2"
 zxingCore = "3.5.4"
 zxingAndroidembedded = "4.3.0"

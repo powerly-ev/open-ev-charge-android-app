@@ -11,7 +11,6 @@ import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
-import com.google.gson.annotations.SerializedName
 import com.powerly.core.data.repositories.AppRepository
 import com.powerly.core.database.StorageManager
 import com.powerly.lib.MainScreen.setMainScreenHome
@@ -127,7 +126,7 @@ class NotificationsManager(
 }
 
 data class PushMessage(
-    @SerializedName("title") val title: String,
-    @SerializedName("body") val body: String,
-    @SerializedName("notification_type") val type: String
+    val title: String,
+    val body: String,
+    val type: String
 )
