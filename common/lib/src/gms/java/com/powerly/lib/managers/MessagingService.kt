@@ -8,12 +8,13 @@ import com.powerly.resources.R
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import com.google.firebase.FirebaseApp
 import kotlinx.coroutines.suspendCancellableCoroutine
+import org.koin.android.ext.android.inject
+import org.koin.core.component.KoinComponent
 import kotlin.coroutines.resume
 import kotlin.text.orEmpty
 
@@ -36,7 +37,6 @@ class MessagingService : FirebaseMessagingService(), KoinComponent {
 
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
-        Log.v(TAG, Gson().toJson(remoteMessage))
         val body = remoteMessage.notification?.body.orEmpty()
         val title = remoteMessage.notification?.title ?: getString(R.string.app_name)
         val type = remoteMessage.data[NOTIFICATION_TYPE].orEmpty()
@@ -51,15 +51,14 @@ class MessagingService : FirebaseMessagingService(), KoinComponent {
             FirebaseApp.initializeApp(context)
         }
 
-        internal suspend fun getToken(): String =
-            suspendCancellableCoroutine { continuation ->
-                FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
-                    Log.i(TAG, "token isSuccessful = ${task.isSuccessful}")
-                    if (task.isSuccessful) {
-                        val token = task.result.orEmpty()
-                        continuation.resume(token)
-                    } else continuation.resume("")
-                }
+        internal suspend fun getToken(): String = suspendCancellableCoroutine { continuation ->
+            FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+                Log.i(TAG, "token isSuccessful = ${task.isSuccessful}")
+                if (task.isSuccessful) {
+                    val token = task.result.orEmpty()
+                    continuation.resume(token)
+                } else continuation.resume("")
             }
+        }
     }
 }
