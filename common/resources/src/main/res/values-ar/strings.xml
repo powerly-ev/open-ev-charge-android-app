@@ -165,8 +165,8 @@
     <string name="station_number">المحطة #%s</string>
     <string name="station_new">جديد</string>
     <string name="station_drive">الانتقال إلى المحطة</string>
-    <string name="station_unit_price_per_minute_total">%s %s / دقيقة × %s</string>
-    <string name="station_unit_price_per_kwh_total">%s %s / ك.و.س - %s</string>
+    <string name="station_unit_price_per_minute_total">%1$s %2$s /  دقيقة X %3$s</string>
+    <string name="station_unit_price_per_kwh_total">%1$s %2$s /  ك.و.س - X %3$s</string>
     <string name="station_per_minute">لكل دقيقة</string>
     <string name="station_per_kwh">لكل كيلوواط في الساعة</string>
     <string name="station_per">لكل</string>
@@ -295,6 +295,6 @@
     </array>
 
     <array name="slider_message">
-        <item> دورلك على شاحن، اشحن، وانطلق بأمان.</item>
+        <item>دورلك على شاحن، اشحن، وانطلق بأمان.</item>
     </array>
 </resources>

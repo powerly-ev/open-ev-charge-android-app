@@ -8,18 +8,18 @@ googleServices = "4.4.4"
 koin = "4.1.1"
 koinAnnotations = "2.3.1"
 firebaseCrashlytics = "3.0.6"
-ktorClient = "3.3.2"
-room = "2.8.3"
-datastore = "1.1.7"
+ktorClient = "3.3.3"
+room = "2.8.4"
+datastore = "1.2.0"
 secretsPlugin = "2.0.1"
 # Dependency versions
 ## Android Core
 coreKtx = "1.17.0"
-activityKtx = "1.11.0"
+activityKtx = "1.12.1"
 annotation = "1.9.1"
 annotationExperimental = "1.5.1"
 coreSplashscreen = "1.2.0"
-lifecycleVersion = "2.9.4"
+lifecycleVersion = "2.10.0"
 pagingRuntimeKtx = "3.3.6"
 navigation = "2.9.6"
 workRuntimeKtxVersion = "2.11.0"
@@ -31,23 +31,23 @@ kotlinCoroutines = "1.10.2"
 material = "1.13.0"
 
 ## Compose
-composeBom = "2025.11.00"
-foundationVersion = "1.9.4"
+composeBom = "2025.12.00"
+foundationVersion = "1.10.0"
 material3Version = "1.4.0"
-mapsComposeVersion = "6.12.1"
-mapsComposeUtilsVersion = "6.12.1"
+mapsComposeVersion = "6.12.2"
+mapsComposeUtilsVersion = "6.12.2"
 pagingComposeVersion = "3.3.6"
 coilComposeVersion = "2.7.0"
 ## Google
-firebaseBom = "34.5.0"
+firebaseBom = "34.6.0"
 firebaseMessaging = "25.0.1"
-googlePlaces = "5.0.0"
+googlePlaces = "5.1.1"
 playServicesLocation = "21.3.0"
 
 lottie = "6.7.1"
-stripeAndroid = "22.0.0"
+stripeAndroid = "22.3.0"
 stripeCardScanner = "21.29.2"
-zxingCore = "3.5.3"
+zxingCore = "3.5.4"
 zxingAndroidembedded = "4.3.0"
 customQrGeneratorVersion = "1.6.2"
 pusherClient = "2.4.4"
@@ -70,11 +70,9 @@ build-gradle = { module = "com.android.tools.build:gradle", version.ref = "andro
 # Core
 kotlin-bom = { module = "org.jetbrains.kotlin:kotlin-bom", version.ref = "kotlin" }
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
 activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activityKtx" }
 # material/views is requird for strip CardInputWidget
 material = { module = "com.google.android.material:material", version.ref = "material" }
-lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycleVersion" }
 lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleVersion" }
 paging-runtime-ktx = { module = "androidx.paging:paging-runtime-ktx", version.ref = "pagingRuntimeKtx" }
 androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }

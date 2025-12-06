@@ -249,15 +249,37 @@ data class Connector(
     @SerialName("name") val name: String = "",
     @SerialName("number") var number: Int = 1,
     @SerialName("icon") val icon: String = "",
-    @SerialName("status") val status: String = "available",
+    @SerialName("status") private val status: ConnectorStatus = ConnectorStatus.Available,
+    @SerialName("localized_status") val statusLabel: String = status.name,
     @SerialName("type") val type: String? = "",
     @SerialName("max_power") val maxPower: Double = 0.0,
 ) {
-    val isAvailable: Boolean get() = status.equals("available", ignoreCase = true)
-    val booked: Boolean get() = status.equals("booked", ignoreCase = true)
-    val bookedByYou: Boolean get() = status.equals("booked by you", ignoreCase = true)
-    val busy: Boolean get() = status.equals("busy", ignoreCase = true)
-    val busyByYou: Boolean get() = status.equals("busy by you", ignoreCase = true)
+    val isAvailable: Boolean get() = status == ConnectorStatus.Available
+    val booked: Boolean get() = status == ConnectorStatus.Booked
+    val bookedByYou: Boolean get() = status == ConnectorStatus.BookedByYou
+    val busy: Boolean get() = status == ConnectorStatus.Busy
+    val busyByYou: Boolean get() = status == ConnectorStatus.BusyByYou
+}
+
+@Serializable
+enum class ConnectorStatus {
+    @SerialName("available")
+    Available,
+
+    @SerialName("busy")
+    Busy,
+
+    @SerialName("busy-by-you")
+    BusyByYou,
+
+    @SerialName("booked")
+    Booked,
+
+    @SerialName("booked-by-you")
+    BookedByYou,
+
+    @SerialName("unavailable")
+    Unavailable
 }
 
 @Serializable

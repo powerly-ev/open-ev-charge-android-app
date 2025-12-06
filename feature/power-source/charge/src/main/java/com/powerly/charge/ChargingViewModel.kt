@@ -90,9 +90,9 @@ class ChargeViewModel(
         if (session.id == pendingSessionId) return
         pendingSessionId = session.id
 
-        pusherManager.unbindConsumption(session.id)
-        pusherManager.unsubscribeSession(session.id)
-        pusherManager.disconnect()
+        pusherManager.unsubscribeSessionConsumption(session.id)
+        pusherManager.unsubscribeSessionCompletion(session.id)
+        pusherManager.disconnectIfIdle()
 
         viewModelScope.launch {
             _chargingStatus.emit(ChargingStatus.Loading)
@@ -158,10 +158,7 @@ class ChargeViewModel(
                 }
             }
         )
-
-        delay(5000)
         // subscribe in session completion socket event
-        // and collect response from any screen with [PusherManager.sessionCompletionFlow]
         pusherManager.subscribeSessionCompletion(sessionId)
         viewModelScope.launch {
             pusherManager.sessionCompletionFlow.collect { session ->
@@ -182,7 +179,7 @@ class ChargeViewModel(
 
     fun release() {
         chargingTimerManager.release()
-        pusherManager.unbindConsumption(orderId)
+        pusherManager.unsubscribeSessionConsumption(orderId)
     }
 
     companion object {
