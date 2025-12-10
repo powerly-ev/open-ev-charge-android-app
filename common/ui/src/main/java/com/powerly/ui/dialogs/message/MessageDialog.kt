@@ -2,9 +2,12 @@ package com.powerly.ui.dialogs.message
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.material3.BottomSheetDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -20,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
@@ -49,6 +53,7 @@ fun MessageDialogPreview() {
 fun MessageDialog(
     state: MessageState,
     timeout: Long = 2000L,
+    statusBarHeight: Dp = WindowInsets.statusBars.asPaddingValues().calculateTopPadding(),
     onDone: () -> Unit = {}
 ) {
     state.message.value?.let { message ->
@@ -57,6 +62,7 @@ fun MessageDialog(
             state.dismiss()
             onDone()
         }
+
         Popup(
             onDismissRequest = { },
             properties = PopupProperties(
@@ -65,7 +71,7 @@ fun MessageDialog(
                 dismissOnClickOutside = false,
                 clippingEnabled = false
             ),
-            offset = IntOffset(x = 0, y = -with(LocalDensity.current) { 36.dp.roundToPx() })
+            offset = IntOffset(0, -with(LocalDensity.current) { statusBarHeight.toPx().toInt() })
         ) {
             Surface(
                 color = if (message.isError) MyColors.red500
@@ -92,7 +98,7 @@ fun MessageDialog(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MessageDialog(
+fun ModalMessageDialog(
     message: Message,
     timeout: Long = 2000L,
     onDismiss: () -> Unit

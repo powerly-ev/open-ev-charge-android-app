@@ -61,8 +61,8 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MyDialog(
-    state: MyDialogState? = null,
     modifier: Modifier = Modifier,
+    state: MyDialogState? = null,
     spacing: Dp = 8.dp,
     dismissOnClickOutside: Boolean = true,
     dismissOnBackPress: Boolean = true,
@@ -107,9 +107,9 @@ fun MyDialog(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MyDialog(
+    modifier: Modifier = Modifier,
     state: MyDialogState? = null,
     screenState: ScreenState? = null,
-    modifier: Modifier = Modifier,
     spacing: Dp = 8.dp,
     dismissOnClickOutside: Boolean = true,
     dismissOnBackPress: Boolean = true,
@@ -133,7 +133,7 @@ fun MyDialog(
     ) {
         Box(Modifier.fillMaxSize()) {
             screenState?.successState?.let { SuccessDialog(state = it) }
-            screenState?.messageState?.let { MessageDialog(state = it) }
+            screenState?.messageState?.let { MessageDialog(state = it, statusBarHeight = 32.dp) }
             screenState?.loadingState?.let { LoadingDialog(state = it) }
             MySurfaceColumn(
                 spacing = 16.dp,
@@ -161,8 +161,8 @@ fun MyDialog(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MyBottomSheet(
-    state: MyDialogState? = null,
     modifier: Modifier = Modifier,
+    state: MyDialogState? = null,
     spacing: Dp = 8.dp,
     verticalScroll: Boolean = false,
     background: Color = Color.White,
@@ -220,8 +220,8 @@ fun MyBottomSheet(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MyBasicBottomSheet(
-    state: MyDialogState? = null,
     modifier: Modifier = Modifier,
+    state: MyDialogState? = null,
     dismissOnBackPress: Boolean = true,
     shape: Shape = BottomSheetDefaults.ExpandedShape, // or HiddenShape
     background: Color = Color.White,
@@ -263,8 +263,8 @@ fun MyBasicBottomSheet(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MyScreenBottomSheet(
-    state: MyDialogState? = null,
     modifier: Modifier = Modifier,
+    state: MyDialogState? = null,
     shape: Shape = BottomSheetDefaults.HiddenShape,
     background: Color = Color.White,
     dismissOnBackPress: Boolean = true,
@@ -349,9 +349,9 @@ fun MyDropdownMenu(
 
 @Composable
 fun MyDropdownMenu(
+    modifier: Modifier = Modifier,
     dialogState: MyDialogState,
     onDismiss: () -> Unit = {},
-    modifier: Modifier = Modifier,
     background: Color = Color.White,
     maxHeight: Float? = null,
     spacing: Dp = 8.dp,
@@ -414,11 +414,11 @@ fun ItemOptionsMenu(
 
 @Composable
 fun ItemOptionsMenu(
+    modifier: Modifier = Modifier,
     title: String,
     image: String? = null,
     @DrawableRes icon: Int? = null,
     padding: PaddingValues = PaddingValues(vertical = 12.dp, horizontal = 16.dp),
-    modifier: Modifier = Modifier,
     textAlign: TextAlign = TextAlign.Start,
     background: Color = MaterialTheme.colorScheme.surface,
     selected: () -> Boolean,
