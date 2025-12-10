@@ -8,7 +8,6 @@ import androidx.navigation.navigation
 import androidx.navigation.toRoute
 import com.powerly.charge.ChargingScreen
 import com.powerly.lib.AppRoutes
-import com.powerly.lib.showMessage
 import com.powerly.powerSource.boarding.OnBoardingDialog
 import com.powerly.powerSource.details.PowerSourceScreen
 import com.powerly.powerSource.details.SourceEvents

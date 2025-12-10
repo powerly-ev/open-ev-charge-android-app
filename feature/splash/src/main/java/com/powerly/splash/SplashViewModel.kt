@@ -62,7 +62,8 @@ class SplashViewModel(
                         SplashAction.TryAgain(response.msg.value)
                     }
 
-                    ApiErrorConstants.UNAUTHENTICATED -> {
+                    ApiErrorConstants.UNAUTHENTICATED,
+                    ApiErrorConstants.ACCESS_DENIED -> {
                         userRepository.clearLoginData()
                         SplashAction.OpenWelcomeScreen
                     }

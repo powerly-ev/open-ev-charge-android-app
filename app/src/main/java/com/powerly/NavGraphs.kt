@@ -24,7 +24,7 @@ import com.powerly.payment.paymentDestinations
 import com.powerly.powerSource.PsViewModel
 import com.powerly.powerSource.powersourceDestinations
 import com.powerly.splash.splashDestinations
-import com.powerly.ui.dialogs.message.MessageDialog
+import com.powerly.ui.dialogs.message.ModalMessageDialog
 import com.powerly.user.UserViewModel
 import com.powerly.user.email.EmailLoginViewModel
 import com.powerly.user.userDestinations
@@ -58,7 +58,7 @@ fun RootGraph(
 
         dialog<AppRoutes.MessageDialog> {
             val message: Message = it.toRoute<AppRoutes.MessageDialog>().asMessage
-            MessageDialog(
+            ModalMessageDialog(
                 message = message,
                 onDismiss = { navController.popBackStack() }
             )
