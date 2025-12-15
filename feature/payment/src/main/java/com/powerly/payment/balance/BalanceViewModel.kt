@@ -76,10 +76,14 @@ class BalanceViewModel(
                     paymentRedirect = it.redirect,
                     message = it.message
                 )
+                if (authenticated) {
+                    userBalance.doubleValue = it.balance
+                }
                 return authenticated
             }
 
             is BalanceRefillStatus.Success -> {
+                userBalance.doubleValue = it.balance
                 return true
             }
 
