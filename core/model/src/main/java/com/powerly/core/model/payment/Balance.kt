@@ -28,7 +28,7 @@ data class BalanceRefill(
     @SerialName("next_action") private val nextAction: NextAction?
 ) {
     val hasRedirectUrl: Boolean get() = nextAction != null
-    val redirectUrl: PaymentRedirect get() = nextAction!!.redirectToUrl
+    val redirectUrl: PaymentRedirect? get() = nextAction?.redirectToUrl
 }
 
 @Serializable

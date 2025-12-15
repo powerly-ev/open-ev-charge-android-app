@@ -15,7 +15,6 @@ import com.powerly.resources.R
 import com.powerly.ui.dialogs.alert.AlertDialogProperties
 import com.powerly.ui.dialogs.alert.MyAlertDialog
 import com.powerly.ui.dialogs.loading.rememberScreenState
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 private const val TAG = "AddBalanceScreen"
@@ -51,8 +50,6 @@ internal fun AddBalanceScreen(
             if (refilled) {
                 screenState.loading = false
                 screenState.showSuccess { onBack() }
-                delay(2000) // wait for balance to be updated
-                viewModel.updateUserDetails()
             } else {
                 screenState.loading = false
             }

@@ -78,10 +78,12 @@ class PaymentRepositoryImpl(
                     val result = response.getData()
                     val balance = result.newBalance
                     val message = response.getMessage()
-                    if (result.hasRedirectUrl)
-                        BalanceRefillStatus.Authenticate(result.redirectUrl, message)
-                    else
+                    if (result.hasRedirectUrl) {
+                        val url = result.redirectUrl!!
+                        BalanceRefillStatus.Authenticate(url, message, balance)
+                    } else {
                         BalanceRefillStatus.Success(balance, message)
+                    }
                 } else BalanceRefillStatus.Error(response.getMessage())
             } catch (e: ResponseException) {
                 e.printStackTrace()
