@@ -9,6 +9,7 @@ sealed class BalanceRefillStatus {
     data class Success(val balance: Double, val msg: Message) : BalanceRefillStatus()
     data class Authenticate(
         val redirect: PaymentRedirect,
-        val message: Message
+        val message: Message,
+        val balance: Double
     ) : BalanceRefillStatus()
 }
