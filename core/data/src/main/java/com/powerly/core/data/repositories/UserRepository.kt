@@ -19,7 +19,7 @@ interface UserRepository {
      * A flow that emits a boolean value indicating whether the user is logged in.
      * It will emit `true` when the user logs in and `false` when they log out.
      */
-    val loggedInFlow:Flow<Boolean>
+    val loggedInFlow: Flow<Boolean>
 
     /**
      * A flow that emits the current currency.
@@ -66,6 +66,11 @@ interface UserRepository {
      * @return  [ApiStatus] results containing user details.
      */
     suspend fun getUserDetails(): ApiStatus<User>
+
+    /**
+     * Updates the balance locally.
+     */
+    suspend fun updateLocallBalance(balance: Double)
 
     /**
      * Refreshes the authentication token.

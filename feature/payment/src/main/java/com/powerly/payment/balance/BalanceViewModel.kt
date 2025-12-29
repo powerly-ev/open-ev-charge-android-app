@@ -24,9 +24,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.suspendCancellableCoroutine
 import org.koin.android.annotation.KoinViewModel
 import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCoroutine
 
 @KoinViewModel
 class BalanceViewModel(
@@ -53,6 +53,12 @@ class BalanceViewModel(
         this.balanceItem.value = item
     }
 
+    private fun updateBalanceValue(newBalance: Double) {
+        viewModelScope.launch {
+            userRepository.updateLocallBalance(newBalance)
+        }
+    }
+
     val balanceItems: Flow<ApiStatus<List<BalanceItem>>> = flow {
         emit(ApiStatus.Loading)
         val countryId = countryManager.detectCountry()?.id
@@ -76,14 +82,12 @@ class BalanceViewModel(
                     paymentRedirect = it.redirect,
                     message = it.message
                 )
-                if (authenticated) {
-                    userBalance.doubleValue = it.balance
-                }
+                if (authenticated) updateBalanceValue(it.balance)
                 return authenticated
             }
 
             is BalanceRefillStatus.Success -> {
-                userBalance.doubleValue = it.balance
+                updateBalanceValue(it.balance)
                 return true
             }
 
@@ -96,7 +100,7 @@ class BalanceViewModel(
     private suspend fun authenticatePayment(
         paymentRedirect: PaymentRedirect,
         message: Message
-    ): Boolean = suspendCoroutine { continuation ->
+    ): Boolean = suspendCancellableCoroutine { continuation ->
         val uri = paymentRedirect.url.toUri()
         //val stripeAccountId = uri.getQueryParameter("merchant").orEmpty()
         //val paymentIntent = uri.getQueryParameter("payment_intent").orEmpty()
