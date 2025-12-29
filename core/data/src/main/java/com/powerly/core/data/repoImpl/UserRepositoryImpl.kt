@@ -49,6 +49,12 @@ class UserRepositoryImpl(
         return storageManager.getCurrentLanguage()
     }
 
+    override suspend fun updateLocallBalance(balance: Double) {
+        val user = storageManager.getUser() ?: return
+        user.balance = balance
+        storageManager.saveUser(user)
+    }
+
     override suspend fun updateUserDetails(
         request: UserUpdateBody
     ) = withContext(ioDispatcher) {
