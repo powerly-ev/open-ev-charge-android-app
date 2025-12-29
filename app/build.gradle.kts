@@ -72,6 +72,8 @@ android {
         // test version
         // debuggable && un-minified
         debug {
+            applicationIdSuffix = ".test"
+            resValue("string", "app_name", "Test-Open Powerly")
             signingConfig = signingConfigs.getByName("debug")
         }
         // production version
@@ -119,15 +121,17 @@ android {
         isCoreLibraryDesugaringEnabled = true
     }
 
-    kotlinOptions {
-        jvmTarget = "${MyProject.javaVersion}"
-    }
-
     lint {
         abortOnError = false
         checkReleaseBuilds = false
     }
 
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget.set(MyProject.jvmTarget)
+    }
 }
 
 secrets {
