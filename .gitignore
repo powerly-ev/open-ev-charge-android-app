@@ -56,3 +56,5 @@ captures/
 
 # Kotlin
 .kotlin
+
+.claude

@@ -1,4 +1,3 @@
-import com.android.build.gradle.internal.api.BaseVariantOutputImpl
 import com.powerly.MyProject
 import com.powerly.appBuildName
 import com.powerly.getLocalProperties
@@ -37,11 +36,16 @@ android {
 
     buildFeatures {
         buildConfig = true
+        resValues = true
     }
 
     // set build output apk name ex: app-name-test-20-Mar.apk
-    this.buildOutputs.all {
-        appBuildName(this as BaseVariantOutputImpl)
+    androidComponents {
+        onVariants { variant ->
+            variant.outputs.forEach {
+                appBuildName(variant.name, it)
+            }
+        }
     }
 
 

@@ -14,14 +14,14 @@
  *   limitations under the License.
  */
 
-import com.android.build.gradle.LibraryExtension
+import com.android.build.api.dsl.LibraryExtension
 import com.powerly.configureAndroidCompose
 import com.powerly.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
+import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
-import org.gradle.kotlin.dsl.getByType
 
 
 class LibraryComposeConventionPlugin : Plugin<Project> {
@@ -30,12 +30,14 @@ class LibraryComposeConventionPlugin : Plugin<Project> {
             apply(plugin = "com.android.library")
             apply(plugin = "org.jetbrains.kotlin.plugin.compose")
             dependencies{
+                add("implementation", platform(libs.findLibrary("koin-bom").get()))
                 add("implementation", libs.findLibrary("koin-androidx-compose").get())
                 add("implementation", libs.findLibrary("koin-compose-viewmodel").get())
                 add("implementation", libs.findLibrary("koin-compose-viewmodel-navigation").get())
             }
-            val extension = extensions.getByType<LibraryExtension>()
-            configureAndroidCompose(extension)
+            extensions.configure<LibraryExtension> {
+                configureAndroidCompose(this)
+            }
         }
     }
 

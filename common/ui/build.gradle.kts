@@ -16,8 +16,8 @@ dependencies {
     api(libs.compose.foundation)
     api(libs.compose.material3)
     // UI Tests
-    androidTestApi(libs.androidx.ui.test.junit4)
-    debugApi(libs.androidx.ui.test.manifest)
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+    debugImplementation(libs.androidx.ui.test.manifest)
 
     // Optional - Included automatically by material, only add when you need
     // the icons but not the material library (e.g. when using Material3 or a
@@ -48,7 +48,7 @@ dependencies {
 
     implementation(libs.lottie.compose)
 
-    // google map
+    // Google Maps
     implementation(libs.maps.compose)
     implementation(libs.maps.compose.utils)
 }

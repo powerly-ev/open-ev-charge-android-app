@@ -20,8 +20,8 @@ import com.powerly.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
+import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
-import org.gradle.kotlin.dsl.getByType
 
 
 class AppComposeConventionPlugin : Plugin<Project> {
@@ -30,12 +30,14 @@ class AppComposeConventionPlugin : Plugin<Project> {
             apply(plugin = "com.android.application")
             apply(plugin = "org.jetbrains.kotlin.plugin.compose")
             dependencies {
+                add("implementation", platform(libs.findLibrary("koin-bom").get()))
                 add("implementation", libs.findLibrary("koin-androidx-compose").get())
                 add("implementation", libs.findLibrary("koin-compose-viewmodel").get())
                 add("implementation", libs.findLibrary("koin-compose-viewmodel-navigation").get())
             }
-            val extension = extensions.getByType<ApplicationExtension>()
-            configureAndroidCompose(extension)
+            extensions.configure<ApplicationExtension> {
+                configureAndroidCompose(this)
+            }
         }
     }
 }

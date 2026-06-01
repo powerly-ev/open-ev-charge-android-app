@@ -1,6 +1,6 @@
 package com.powerly
 
-import com.android.build.gradle.internal.api.BaseVariantOutputImpl
+import com.android.build.api.variant.VariantOutput
 import org.gradle.api.Project
 import org.gradle.api.invocation.Gradle
 import java.text.SimpleDateFormat
@@ -58,24 +58,25 @@ fun getPropertiesFileName(gradle: Gradle): String {
  *
  * The filename pattern is: `${Project.DISPLAY_NAME}-${variantName}-${date}.apk`
  *
- * `variantName` is derived from `variantOutputImpl.name`:
+ * `variantName` is derived from `variantOutput.name`:
  *   - "debug" becomes "test"
  *   - "preRelease" becomes "production"
  *   - Otherwise, it remains the same.
  *
  * `date` is the current date in "dd-MMM" format (e.g., 25-Oct).
  *
- * @param variantOutputImpl The [BaseVariantOutputImpl] representing the build variant output.
+ * @param variantName The name of the variant.
+ * @param variantOutput The [VariantOutput] representing the build variant output.
  */
-fun appBuildName(variantOutputImpl: BaseVariantOutputImpl) {
-    val variantName = variantOutputImpl.name
-        .replace("default-", "")
-        .replace("gms-", "")
+fun appBuildName(variantName: String, variantOutput: VariantOutput) {
+    val name = variantName.lowercase()
+        .replace("default", "")
+        .replace("gms", "")
         .replace("debug", "test")
         .replace("release", "production", ignoreCase = true)
-    //println("variantName - $variantName")
+    //println("variantName - $name")
     val date = SimpleDateFormat("dd-MMM", Locale.US).format(Date()) // date Day:Month
-    variantOutputImpl.outputFileName = "${MyProject.DISPLAY_NAME}-$variantName-$date.apk"
+    variantOutput.outputFileName.set("${MyProject.DISPLAY_NAME}-$name-$date.apk")
 }
 
 /**
