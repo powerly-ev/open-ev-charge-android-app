@@ -15,31 +15,3 @@ data class BalanceItem(
     val vat = 0.0
     val active: Boolean get() = true
 }
-
-@Serializable
-class BalanceRefillBody(
-    @SerialName("offer_id") private val offerId: Int,
-    @SerialName("payment_method_id") private val paymentMethodId: String
-)
-
-@Serializable
-data class BalanceRefill(
-    @SerialName("new_balance") val newBalance: Double,
-    @SerialName("next_action") private val nextAction: NextAction?
-) {
-    val hasRedirectUrl: Boolean get() = nextAction != null
-    val redirectUrl: PaymentRedirect? get() = nextAction?.redirectToUrl
-}
-
-@Serializable
-data class NextAction(
-    @SerialName("redirect_to_url") val redirectToUrl: PaymentRedirect,
-    @SerialName("type") val type: String
-)
-
-@Serializable
-data class PaymentRedirect(
-    @SerialName("return_url") val returnUrl: String,
-    @SerialName("url") val url: String
-)
-

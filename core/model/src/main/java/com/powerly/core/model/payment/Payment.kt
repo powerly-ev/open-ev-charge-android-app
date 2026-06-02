@@ -32,6 +32,3 @@ data class StripCard(
         const val PAYMENT_STATUS = "paymentStatus"
     }
 }
-
-@Serializable
-data class AddCardBody(val token: String)

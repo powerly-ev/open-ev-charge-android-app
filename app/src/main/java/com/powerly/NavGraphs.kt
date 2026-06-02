@@ -18,9 +18,7 @@ import com.powerly.main.NavigationScreen
 import com.powerly.lib.AppRoutes
 import com.powerly.lib.Route
 import com.powerly.orders.SessionViewModel
-import com.powerly.payment.balance.BalanceViewModel
-import com.powerly.payment.methods.PaymentViewModel
-import com.powerly.payment.paymentDestinations
+import com.powerly.payment.presentation.paymentDestinations
 import com.powerly.powerSource.PsViewModel
 import com.powerly.powerSource.powersourceDestinations
 import com.powerly.splash.splashDestinations
@@ -37,8 +35,6 @@ fun RootGraph(
     startDestination: Route = AppRoutes.Splash,
     mainViewModel: MainViewModel = koinViewModel(),
     sessionsViewModel: SessionViewModel = koinViewModel(),
-    paymentViewModel: PaymentViewModel = koinViewModel(),
-    balanceViewModel: BalanceViewModel = koinViewModel(),
     userViewModel: UserViewModel = koinViewModel(),
     emailViewModel: EmailLoginViewModel = koinViewModel(),
     psViewModel: PsViewModel = koinViewModel(),
@@ -97,9 +93,7 @@ fun RootGraph(
         )
 
         paymentDestinations(
-            navController = navController,
-            paymentViewModel,
-            balanceViewModel
+            navController = navController
         )
 
         vehiclesDestinations(
@@ -111,7 +105,3 @@ fun RootGraph(
         )
     }
 }
-
-
-
-

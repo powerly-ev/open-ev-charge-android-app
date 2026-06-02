@@ -4,12 +4,6 @@ import com.powerly.core.model.api.ApiResponse
 import com.powerly.core.model.api.BaseResponsePaginated
 import com.powerly.core.model.location.AppCurrency
 import com.powerly.core.model.location.Country
-import com.powerly.core.model.payment.AddCardBody
-import com.powerly.core.model.payment.BalanceItem
-import com.powerly.core.model.payment.BalanceRefill
-import com.powerly.core.model.payment.BalanceRefillBody
-import com.powerly.core.model.payment.StripCard
-import com.powerly.core.model.payment.Wallet
 import com.powerly.core.model.powerly.Connector
 import com.powerly.core.model.powerly.Media
 import com.powerly.core.model.powerly.PowerSource
@@ -278,49 +272,6 @@ class RemoteDataSource(private val client: HttpClient) {
 
     suspend fun vehiclesConnectors(): ApiResponse<List<Connector>?> {
         return client.get(ApiEndPoints.VEHICLE_CONNECTORS).body()
-    }
-
-    // Payment
-    suspend fun cardList(): ApiResponse<List<StripCard>> {
-        return client.get(ApiEndPoints.PAYMENT_CARDS).body()
-    }
-
-    suspend fun cardAdd(request: AddCardBody): ApiResponse<List<StripCard>?> {
-        return client.post(ApiEndPoints.PAYMENT_CARDS) {
-            contentType(ContentType.Application.Json)
-            setBody(request)
-        }.body()
-    }
-
-    suspend fun cardDefault(cardId: String): ApiResponse<StripCard?> {
-        val endpoint = ApiEndPoints.PAYMENT_CARD_DEFAULT.replace("{id}", cardId)
-        return client.post(endpoint).body()
-    }
-
-    suspend fun cardDelete(cardId: String): ApiResponse<StripCard?> {
-        val endpoint = ApiEndPoints.PAYMENT_CARD_DELETE.replace("{id}", cardId)
-        return client.delete(endpoint).body()
-    }
-
-    suspend fun refillBalance(request: BalanceRefillBody): ApiResponse<BalanceRefill> {
-        return client.post(ApiEndPoints.BALANCE_REFILL) {
-            contentType(ContentType.Application.Json)
-            setBody(request)
-        }.body()
-    }
-
-    suspend fun getBalanceItems(countryId: Int?): ApiResponse<List<BalanceItem>> {
-        return client.get(ApiEndPoints.BALANCE_OFFERS) {
-            if (countryId != null) parameter("country_id", countryId)
-        }.body()
-    }
-
-    suspend fun walletList(): ApiResponse<List<Wallet>> {
-        return client.get(ApiEndPoints.PAYOUTS).body()
-    }
-
-    suspend fun walletPayout(): ApiResponse<*> {
-        return client.post(ApiEndPoints.PAYOUTS_REQUEST).body()
     }
 
     companion object {
