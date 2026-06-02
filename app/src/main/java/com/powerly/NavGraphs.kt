@@ -28,8 +28,7 @@ import com.powerly.ui.dialogs.message.ModalMessageDialog
 import com.powerly.user.UserViewModel
 import com.powerly.user.email.EmailLoginViewModel
 import com.powerly.user.userDestinations
-import com.powerly.vehicles.VehiclesViewModel
-import com.powerly.vehicles.vehiclesDestinations
+import com.powerly.vehicles.presentation.vehiclesDestinations
 
 
 @Composable
@@ -40,7 +39,6 @@ fun RootGraph(
     sessionsViewModel: SessionViewModel = koinViewModel(),
     paymentViewModel: PaymentViewModel = koinViewModel(),
     balanceViewModel: BalanceViewModel = koinViewModel(),
-    vehiclesViewModel: VehiclesViewModel = koinViewModel(),
     userViewModel: UserViewModel = koinViewModel(),
     emailViewModel: EmailLoginViewModel = koinViewModel(),
     psViewModel: PsViewModel = koinViewModel(),
@@ -105,8 +103,7 @@ fun RootGraph(
         )
 
         vehiclesDestinations(
-            navController = navController,
-            viewModel = vehiclesViewModel
+            navController = navController
         )
 
         accountDestinations(

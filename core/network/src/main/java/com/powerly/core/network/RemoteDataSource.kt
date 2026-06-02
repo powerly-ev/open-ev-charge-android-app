@@ -18,10 +18,6 @@ import com.powerly.core.model.powerly.ReviewBody
 import com.powerly.core.model.powerly.Session
 import com.powerly.core.model.powerly.StartChargingBody
 import com.powerly.core.model.powerly.StopChargingBody
-import com.powerly.core.model.powerly.Vehicle
-import com.powerly.core.model.powerly.VehicleAddBody
-import com.powerly.core.model.powerly.VehicleMaker
-import com.powerly.core.model.powerly.VehicleModel
 import com.powerly.core.model.user.DeviceBody
 import com.powerly.core.model.user.EmailCheck
 import com.powerly.core.model.user.EmailCheckBody
@@ -278,44 +274,6 @@ class RemoteDataSource(private val client: HttpClient) {
     suspend fun reviewSkip(orderId: String): ApiResponse<Session?> {
         val endpoint = ApiEndPoints.REVIEW_SKIP.replace("{order_id}", orderId)
         return client.post(endpoint).body()
-    }
-
-    // Vehicles
-    suspend fun vehicleAdd(request: VehicleAddBody): ApiResponse<Vehicle?> {
-        return client.post(ApiEndPoints.VEHICLES) {
-            contentType(ContentType.Application.Json)
-            setBody(request)
-        }.body()
-    }
-
-    suspend fun vehicleUpdate(id: Int, request: VehicleAddBody): ApiResponse<Vehicle?> {
-        val endpoint = ApiEndPoints.VEHICLES_ACTION.replace("{id}", id.toString())
-        return client.put(endpoint) {
-            contentType(ContentType.Application.Json)
-            setBody(request)
-        }.body()
-    }
-
-    suspend fun vehicleDelete(id: Int): ApiResponse<Vehicle?> {
-        val endpoint = ApiEndPoints.VEHICLES_ACTION.replace("{id}", id.toString())
-        return client.delete(endpoint).body()
-    }
-
-    suspend fun vehiclesList(): ApiResponse<List<Vehicle>?> {
-        return client.get(ApiEndPoints.VEHICLES).body()
-    }
-
-    suspend fun vehiclesMakes(): ApiResponse<List<VehicleMaker>?> {
-        return client.get(ApiEndPoints.VEHICLE_MAKES).body()
-    }
-
-    suspend fun vehiclesModels(makeId: Int? = null): ApiResponse<List<VehicleModel>?> {
-        val endpoint = if (makeId != null) {
-            ApiEndPoints.VEHICLE_MODELS.replace("{make_id}", makeId.toString())
-        } else {
-            ApiEndPoints.VEHICLE_MODELS
-        }
-        return client.get(endpoint).body()
     }
 
     suspend fun vehiclesConnectors(): ApiResponse<List<Connector>?> {

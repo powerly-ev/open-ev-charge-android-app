@@ -43,7 +43,6 @@ class App : Application() {
                 VehiclesModule().module,
                 SplashModule().module,
                 UserModule().module,
-                VehiclesModule().module,
                 PsModules.psModule,
                 PsModules.chargeModule,
                 com_powerly_di_AppModule

@@ -9,3 +9,10 @@ sealed class ApiStatus<out T> {
 
     val isSuccessful: Boolean get() = this is Success
 }
+
+/** Transforms the success payload while preserving [ApiStatus.Error] and [ApiStatus.Loading]. */
+inline fun <T, R> ApiStatus<T>.map(transform: (T) -> R): ApiStatus<R> = when (this) {
+    is ApiStatus.Success -> ApiStatus.Success(transform(data))
+    is ApiStatus.Error -> this
+    is ApiStatus.Loading -> this
+}

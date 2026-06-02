@@ -14,4 +14,6 @@ android {
 dependencies {
     implementation(projects.common.lib)
     implementation(projects.common.ui)
+    implementation(projects.core.model)
+    implementation(projects.core.network)
 }

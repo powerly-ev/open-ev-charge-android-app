@@ -58,10 +58,6 @@ internal object ApiEndPoints {
     const val REVIEW_SKIP = "orders/{order_id}/review/skip"
     const val REVIEW_ADD = "orders/{order_id}/review"
 
-    const val VEHICLES = "vehicles"
-    const val VEHICLES_ACTION = "vehicles/{id}"
-    const val VEHICLE_MAKES = "vehicles/makes"
-    const val VEHICLE_MODELS = "vehicles/models/{make_id}"
     const val VEHICLE_CONNECTORS = "vehicles/connectors"
 
 }
