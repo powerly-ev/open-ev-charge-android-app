@@ -1,4 +1,4 @@
-package com.powerly.splash
+package com.powerly.splash.presentation
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image

@@ -1,11 +1,11 @@
-package com.powerly.splash
+package com.powerly.splash.presentation
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import com.powerly.lib.AppRoutes
-import com.powerly.splash.update.UpdateAppDialog
+import com.powerly.splash.presentation.update.UpdateAppDialog
 import com.powerly.ui.theme.LocalMainActivity
 
 fun NavGraphBuilder.splashDestinations(

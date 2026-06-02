@@ -1,4 +1,4 @@
-package com.powerly.splash
+package com.powerly.splash.domain.model
 
 sealed interface SplashAction {
     data object OpenHomeScreen : SplashAction

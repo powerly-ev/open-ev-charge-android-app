@@ -21,7 +21,7 @@ import com.powerly.orders.SessionViewModel
 import com.powerly.payment.presentation.paymentDestinations
 import com.powerly.powerSource.PsViewModel
 import com.powerly.powerSource.powersourceDestinations
-import com.powerly.splash.splashDestinations
+import com.powerly.splash.presentation.splashDestinations
 import com.powerly.ui.dialogs.message.ModalMessageDialog
 import com.powerly.user.UserViewModel
 import com.powerly.user.email.EmailLoginViewModel

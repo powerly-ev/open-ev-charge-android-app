@@ -1,4 +1,4 @@
-package com.powerly.splash.update
+package com.powerly.splash.presentation.update
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -16,9 +16,9 @@ import androidx.compose.ui.unit.dp
 import com.powerly.resources.R
 import com.powerly.ui.components.ButtonLarge
 import com.powerly.ui.components.MyIcon
+import com.powerly.ui.extensions.asPadding
 import com.powerly.ui.screen.MyScreen
 import com.powerly.ui.screen.ScreenHeader
-import com.powerly.ui.extensions.asPadding
 import com.powerly.ui.theme.AppTheme
 import com.powerly.ui.theme.MyColors
 
