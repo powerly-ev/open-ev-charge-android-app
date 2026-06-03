@@ -153,7 +153,8 @@ dependencies {
     implementation(projects.feature.main)
     implementation(projects.feature.main.account)
     implementation(projects.feature.main.orders)
-    implementation(projects.feature.powerSource)
+    implementation(projects.feature.powerSource.charging)
+    implementation(projects.feature.powerSource.details)
     implementation(projects.feature.payment)
     implementation(projects.feature.vehicles)
 

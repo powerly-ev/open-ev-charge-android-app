@@ -8,9 +8,7 @@ import com.powerly.core.model.powerly.Connector
 import com.powerly.core.model.powerly.Media
 import com.powerly.core.model.powerly.PowerSource
 import com.powerly.core.model.powerly.Review
-import com.powerly.core.model.powerly.ReviewBody
 import com.powerly.core.model.powerly.Session
-import com.powerly.core.model.powerly.StartChargingBody
 import com.powerly.core.model.powerly.StopChargingBody
 import com.powerly.core.model.user.DeviceBody
 import com.powerly.core.model.user.LogoutBody
@@ -132,13 +130,6 @@ class RemoteDataSource(private val client: HttpClient) {
         }.body()
     }
 
-    suspend fun startCharging(body: StartChargingBody): ApiResponse<Session?> {
-        return client.post(ApiEndPoints.POWER_SOURCE_ORDERS) {
-            contentType(ContentType.Application.Json)
-            setBody(body)
-        }.body()
-    }
-
     suspend fun stopCharging(body: StopChargingBody): ApiResponse<Session?> {
         return client.post(ApiEndPoints.POWER_SOURCE_CHARGING_STOP) {
             contentType(ContentType.Application.Json)
@@ -152,11 +143,6 @@ class RemoteDataSource(private val client: HttpClient) {
     }
 
     // Sessions
-    suspend fun sessionDetails(orderId: String): ApiResponse<Session?> {
-        val endpoint = ApiEndPoints.POWER_SOURCE_ORDER_DETAILS.replace("{orderId}", orderId)
-        return client.get(endpoint).body()
-    }
-
     suspend fun getActiveOrders(
         page: Int,
         status: String = "active",
@@ -179,30 +165,6 @@ class RemoteDataSource(private val client: HttpClient) {
             parameter("status", status)
             parameter("limit", limit)
         }.body()
-    }
-
-    // Feedback
-    suspend fun reviewOptions(): ApiResponse<Map<String, List<String>>?> {
-        return client.get(ApiEndPoints.REVIEW_OPTIONS).body()
-    }
-
-    suspend fun reviewPending(limit: Int): ApiResponse<List<Session>?> {
-        return client.get(ApiEndPoints.REVIEWS) {
-            parameter("limit", limit)
-        }.body()
-    }
-
-    suspend fun reviewAdd(orderId: String, body: ReviewBody): ApiResponse<Session?> {
-        val endpoint = ApiEndPoints.REVIEW_ADD.replace("{order_id}", orderId)
-        return client.post(endpoint) {
-            contentType(ContentType.Application.Json)
-            setBody(body)
-        }.body()
-    }
-
-    suspend fun reviewSkip(orderId: String): ApiResponse<Session?> {
-        val endpoint = ApiEndPoints.REVIEW_SKIP.replace("{order_id}", orderId)
-        return client.post(endpoint).body()
     }
 
     suspend fun vehiclesConnectors(): ApiResponse<List<Connector>?> {

@@ -39,8 +39,8 @@ include(":feature:main:scan")
 include(":feature:main:orders")
 include(":feature:main:account")
 
-include(":feature:power-source")
-include(":feature:power-source:charge")
+include(":feature:power-source:details")
+include(":feature:power-source:charging")
 include(":feature:vehicles")
 
 include(":feature:splash")

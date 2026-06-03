@@ -7,11 +7,10 @@ plugins {
 }
 
 android {
-    namespace = "${MyProject.NAMESPACE}.map"
+    namespace = "${MyProject.NAMESPACE}.powersource.charging"
 }
 
 dependencies {
     implementation(projects.common.lib)
     implementation(projects.common.ui)
-    implementation(projects.feature.powerSource.details)
 }

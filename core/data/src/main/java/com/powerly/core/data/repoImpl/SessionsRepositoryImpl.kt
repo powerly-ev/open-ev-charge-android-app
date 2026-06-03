@@ -5,7 +5,6 @@ import androidx.paging.PagingConfig
 import com.powerly.core.data.model.ChargingStatus
 import com.powerly.core.data.repositories.SessionsRepository
 import com.powerly.core.model.api.BasePagingSource
-import com.powerly.core.model.powerly.StartChargingBody
 import com.powerly.core.model.powerly.StopChargingBody
 import com.powerly.core.network.RemoteDataSource
 import com.powerly.core.network.asErrorMessage
@@ -20,33 +19,6 @@ class SessionsRepositoryImpl(
     private val remoteDataSource: RemoteDataSource,
     @Named("IO") private val ioDispatcher: CoroutineDispatcher
 ) : SessionsRepository {
-
-    /**
-     * Charging
-     */
-
-    override suspend fun startCharging(
-        chargePointId: String,
-        quantity: String,
-        connector: Int?
-    ) = withContext(ioDispatcher) {
-        try {
-            val request = StartChargingBody(
-                powersourceId = chargePointId,
-                quantity = quantity,
-                connector = connector
-            )
-            val response = remoteDataSource.startCharging(request)
-            if (response.isSuccess && response.hasData) {
-                ChargingStatus.Success(response.getData())
-            } else ChargingStatus.Error(response.getMessage())
-        } catch (e: ResponseException) {
-            ChargingStatus.Error(e.asErrorMessage())
-        } catch (e: Exception) {
-            e.printStackTrace()
-            ChargingStatus.Error(e.asErrorMessage())
-        }
-    }
 
     override suspend fun stopCharging(
         orderId: String,
@@ -70,24 +42,6 @@ class SessionsRepositoryImpl(
         }
     }
 
-    /**
-     * Session Details
-     */
-
-    override suspend fun sessionDetails(orderId: String) = withContext(ioDispatcher) {
-        try {
-            val response = remoteDataSource.sessionDetails(orderId)
-            if (response.hasData) ChargingStatus.Success(response.getData())
-            else ChargingStatus.Error(response.getMessage())
-        } catch (e: ResponseException) {
-            ChargingStatus.Error(e.asErrorMessage())
-        } catch (e: Exception) {
-            e.printStackTrace()
-            ChargingStatus.Error(e.asErrorMessage())
-        }
-    }
-
-
     override val activeOrders
         get() = Pager(
             config = PagingConfig(pageSize = 15, prefetchDistance = 2),
@@ -108,5 +62,4 @@ class SessionsRepositoryImpl(
                 )
             }
         ).flow
-
 }

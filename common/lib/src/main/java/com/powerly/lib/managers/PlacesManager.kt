@@ -24,7 +24,7 @@ import java.util.Locale
  * A manager class for interacting with the Google Places API.
  * Provides functionality for autocomplete place queries and fetching place details.
  */
-@Single
+@Single(createdAtStart = true)
 class PlacesManager(
     private val context: Context,
     private val placesProvider: PlacesProvider,

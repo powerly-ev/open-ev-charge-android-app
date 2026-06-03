@@ -34,7 +34,7 @@ import androidx.compose.ui.zIndex
 import com.powerly.core.model.powerly.Connector
 import com.powerly.core.model.powerly.PowerSource
 import com.powerly.home.home.slider.SectionSlider
-import com.powerly.powerSource.boarding.OnBoardingScreenContent
+import com.powerly.powersource.details.presentation.boarding.OnBoardingScreenContent
 import com.powerly.resources.R
 import com.powerly.ui.HomeUiState
 import com.powerly.ui.components.ButtonLarge

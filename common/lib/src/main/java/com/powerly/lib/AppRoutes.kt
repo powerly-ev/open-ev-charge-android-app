@@ -60,7 +60,7 @@ object AppRoutes {
         data class Details(val id: String) : Route()
 
         @Serializable
-        data object Media
+        data class Media(val id: String)
 
         @Serializable
         data class Reviews(val id: String)

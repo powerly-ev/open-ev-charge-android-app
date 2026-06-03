@@ -11,7 +11,8 @@ import com.powerly.lib.di.LibModule
 import com.powerly.main.di.MainModules
 import com.powerly.orders.di.OrdersModule
 import com.powerly.payment.di.PaymentModule
-import com.powerly.powerSource.di.PsModules
+import com.powerly.powersource.charging.di.ChargingModule
+import com.powerly.powersource.details.di.DetailsModule
 import com.powerly.splash.di.SplashModule
 import com.powerly.user.di.UserModule
 import com.powerly.vehicles.di.VehiclesModule
@@ -43,8 +44,8 @@ class App : Application() {
                 VehiclesModule().module,
                 SplashModule().module,
                 UserModule().module,
-                PsModules.psModule,
-                PsModules.chargeModule,
+                DetailsModule().module,
+                ChargingModule().module,
                 com_powerly_di_AppModule
             )
 

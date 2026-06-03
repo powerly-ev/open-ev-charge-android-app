@@ -4,7 +4,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import org.koin.androidx.compose.koinViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -14,17 +13,17 @@ import androidx.navigation.toRoute
 import com.powerly.account.accountDestinations
 import com.powerly.core.model.powerly.OrderTab
 import com.powerly.core.model.util.Message
-import com.powerly.main.NavigationScreen
 import com.powerly.lib.AppRoutes
 import com.powerly.lib.Route
+import com.powerly.main.NavigationScreen
 import com.powerly.orders.SessionViewModel
 import com.powerly.payment.presentation.paymentDestinations
-import com.powerly.powerSource.PsViewModel
-import com.powerly.powerSource.powersourceDestinations
+import com.powerly.powersource.details.presentation.powerSourceDestinations
 import com.powerly.splash.presentation.splashDestinations
 import com.powerly.ui.dialogs.message.ModalMessageDialog
 import com.powerly.user.presentation.userDestinations
 import com.powerly.vehicles.presentation.vehiclesDestinations
+import org.koin.androidx.compose.koinViewModel
 
 
 @Composable
@@ -33,10 +32,8 @@ fun RootGraph(
     startDestination: Route = AppRoutes.Splash,
     mainViewModel: MainViewModel = koinViewModel(),
     sessionsViewModel: SessionViewModel = koinViewModel(),
-    psViewModel: PsViewModel = koinViewModel(),
     navController: NavHostController = rememberNavController()
 ) {
-
 
     val homeTab = remember { mutableStateOf<Route?>(null) }
 
@@ -71,17 +68,14 @@ fun RootGraph(
             navController = navController
         )
 
-        powersourceDestinations(
+        powerSourceDestinations(
             navController = navController,
-            viewModel = psViewModel,
             uiState = mainViewModel.uiState,
             openActiveOrders = {
-                // navigate to tab orders/active section
                 homeTab.value = AppRoutes.Navigation.Orders(OrderTab.ACTIVE)
             },
             openCompletedOrders = {
                 sessionsViewModel.refreshCompletedOrders()
-                // navigate to tab orders/complete section
                 homeTab.value = AppRoutes.Navigation.Orders(OrderTab.HISTORY)
             }
         )
