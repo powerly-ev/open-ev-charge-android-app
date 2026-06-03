@@ -13,20 +13,11 @@ import com.powerly.core.model.powerly.Session
 import com.powerly.core.model.powerly.StartChargingBody
 import com.powerly.core.model.powerly.StopChargingBody
 import com.powerly.core.model.user.DeviceBody
-import com.powerly.core.model.user.EmailCheck
-import com.powerly.core.model.user.EmailCheckBody
-import com.powerly.core.model.user.EmailForgetBody
-import com.powerly.core.model.user.EmailLoginBody
-import com.powerly.core.model.user.EmailRegisterBody
-import com.powerly.core.model.user.EmailResetBody
-import com.powerly.core.model.user.EmailVerifyResendBody
 import com.powerly.core.model.user.LogoutBody
 import com.powerly.core.model.user.RefreshToken
 import com.powerly.core.model.user.SocialLoginBody
 import com.powerly.core.model.user.User
 import com.powerly.core.model.user.UserUpdateBody
-import com.powerly.core.model.user.UserVerification
-import com.powerly.core.model.user.VerificationBody
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.delete
@@ -71,62 +62,6 @@ class RemoteDataSource(private val client: HttpClient) {
 
     suspend fun refreshToken(): ApiResponse<RefreshToken> {
         return client.get(ApiEndPoints.AUTH_TOKEN_REFRESH).body()
-    }
-
-    suspend fun emailCheck(request: EmailCheckBody): ApiResponse<EmailCheck?> {
-        return client.post(ApiEndPoints.AUTH_EMAIL_CHECK) {
-            contentType(ContentType.Application.Json)
-            setBody(request)
-        }.body()
-    }
-
-    suspend fun emailLogin(request: EmailLoginBody): HttpResponse {
-        return client.post(ApiEndPoints.AUTH_EMAIL_LOGIN) {
-            contentType(ContentType.Application.Json)
-            setBody(request)
-        }
-    }
-
-    suspend fun emailRegister(request: EmailRegisterBody): ApiResponse<User?> {
-        return client.post(ApiEndPoints.AUTH_EMAIL_REGISTER) {
-            contentType(ContentType.Application.Json)
-            setBody(request)
-        }.body()
-    }
-
-    suspend fun emailVerify(request: VerificationBody): ApiResponse<User?> {
-        return client.post(ApiEndPoints.AUTH_EMAIL_VERIFY) {
-            contentType(ContentType.Application.Json)
-            setBody(request)
-        }.body()
-    }
-
-    suspend fun emailVerifyResend(request: EmailVerifyResendBody): ApiResponse<UserVerification?> {
-        return client.post(ApiEndPoints.AUTH_EMAIL_VERIFY_RESEND) {
-            contentType(ContentType.Application.Json)
-            setBody(request)
-        }.body()
-    }
-
-    suspend fun emailPasswordForget(request: EmailForgetBody): ApiResponse<UserVerification?> {
-        return client.post(ApiEndPoints.AUTH_PASSWORD_FORGET) {
-            contentType(ContentType.Application.Json)
-            setBody(request)
-        }.body()
-    }
-
-    suspend fun emailPasswordReset(request: EmailResetBody): ApiResponse<User?> {
-        return client.post(ApiEndPoints.AUTH_PASSWORD_RESET) {
-            contentType(ContentType.Application.Json)
-            setBody(request)
-        }.body()
-    }
-
-    suspend fun emailPasswordResetResend(request: EmailVerifyResendBody): ApiResponse<UserVerification?> {
-        return client.post(ApiEndPoints.AUTH_PASSWORD_RESET_RESEND) {
-            contentType(ContentType.Application.Json)
-            setBody(request)
-        }.body()
     }
 
     // Device account social

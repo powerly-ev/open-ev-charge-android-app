@@ -23,9 +23,7 @@ import com.powerly.powerSource.PsViewModel
 import com.powerly.powerSource.powersourceDestinations
 import com.powerly.splash.presentation.splashDestinations
 import com.powerly.ui.dialogs.message.ModalMessageDialog
-import com.powerly.user.UserViewModel
-import com.powerly.user.email.EmailLoginViewModel
-import com.powerly.user.userDestinations
+import com.powerly.user.presentation.userDestinations
 import com.powerly.vehicles.presentation.vehiclesDestinations
 
 
@@ -35,8 +33,6 @@ fun RootGraph(
     startDestination: Route = AppRoutes.Splash,
     mainViewModel: MainViewModel = koinViewModel(),
     sessionsViewModel: SessionViewModel = koinViewModel(),
-    userViewModel: UserViewModel = koinViewModel(),
-    emailViewModel: EmailLoginViewModel = koinViewModel(),
     psViewModel: PsViewModel = koinViewModel(),
     navController: NavHostController = rememberNavController()
 ) {
@@ -72,9 +68,7 @@ fun RootGraph(
         }
 
         userDestinations(
-            navController = navController,
-            userViewModel,
-            emailViewModel
+            navController = navController
         )
 
         powersourceDestinations(
