@@ -8,7 +8,7 @@ import androidx.navigation.navigation
 import com.powerly.account.presentation.invite.InviteScreen
 import com.powerly.account.presentation.language.LanguagesDialog
 import com.powerly.account.presentation.profile.ProfileScreen
-import com.powerly.lib.AppRoutes
+import com.powerly.navigation.AppRoutes
 
 fun NavGraphBuilder.accountDestinations(
     navController: NavHostController

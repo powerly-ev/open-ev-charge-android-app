@@ -1,3 +1,5 @@
+import com.powerly.MyProject
+
 plugins {
     alias(libs.plugins.powerly.library)
 }
@@ -7,5 +9,6 @@ android {
 }
 
 dependencies {
- 
+    api(projects.core.model)
+    implementation(libs.paging.runtime.ktx)
 }

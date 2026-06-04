@@ -2,7 +2,7 @@ package com.powerly.powersource.details.presentation.boarding
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.powerly.core.data.repositories.AppRepository
+import com.powerly.core.domain.repository.AppRepository
 import kotlinx.coroutines.launch
 import org.koin.android.annotation.KoinViewModel
 

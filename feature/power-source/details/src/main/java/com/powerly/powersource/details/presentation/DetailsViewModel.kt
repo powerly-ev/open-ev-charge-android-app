@@ -2,12 +2,12 @@ package com.powerly.powersource.details.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.powerly.core.data.model.SourceStatus
-import com.powerly.core.data.repositories.AppRepository
-import com.powerly.core.data.repositories.PowerSourceRepository
-import com.powerly.core.data.repositories.UserRepository
+import com.powerly.core.domain.model.SourceStatus
+import com.powerly.core.domain.repository.AppRepository
+import com.powerly.core.domain.repository.PowerSourceRepository
+import com.powerly.core.domain.repository.UserRepository
 import com.powerly.core.model.powerly.PowerSource
-import com.powerly.lib.managers.UserLocationManager
+import com.powerly.core.managers.UserLocationManager
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch

@@ -5,8 +5,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.powerly.core.model.powerly.Vehicle
-import com.powerly.lib.AppRoutes
-import com.powerly.lib.IRoute
+import com.powerly.navigation.AppRoutes
+import com.powerly.navigation.IRoute
 import com.powerly.ui.navigation.sharedGraphViewModel
 import com.powerly.vehicles.presentation.newVehicle.NewVehicleViewModel
 import com.powerly.vehicles.presentation.newVehicle.VehicleAddScreen

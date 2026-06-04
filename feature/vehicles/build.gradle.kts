@@ -12,7 +12,7 @@ android {
 }
 
 dependencies {
-    implementation(projects.common.lib)
+    implementation(projects.common.navigation)
     implementation(projects.common.ui)
     implementation(projects.core.model)
     implementation(projects.core.network)

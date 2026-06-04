@@ -13,8 +13,8 @@ import androidx.navigation.toRoute
 import com.powerly.account.presentation.accountDestinations
 import com.powerly.core.model.powerly.OrderTab
 import com.powerly.core.model.util.Message
-import com.powerly.lib.AppRoutes
-import com.powerly.lib.Route
+import com.powerly.navigation.AppRoutes
+import com.powerly.navigation.Route
 import com.powerly.main.NavigationScreen
 import com.powerly.orders.presentation.SessionsViewModel
 import com.powerly.payment.presentation.paymentDestinations

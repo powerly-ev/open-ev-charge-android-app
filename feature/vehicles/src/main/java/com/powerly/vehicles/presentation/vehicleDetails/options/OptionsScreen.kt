@@ -6,7 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
-import com.powerly.lib.IRoute
+import com.powerly.navigation.IRoute
 import com.powerly.vehicles.presentation.newVehicle.NewVehicleViewModel
 import com.powerly.vehicles.presentation.vehicleDetails.options.connectors.ConnectorsDialog
 import com.powerly.resources.R

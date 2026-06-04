@@ -1,6 +1,6 @@
 package com.powerly.user.domain.use_case
 
-import com.powerly.core.data.repositories.AppRepository
+import com.powerly.core.domain.repository.AppRepository
 import com.powerly.user.reminder.ReminderManager
 import org.koin.core.annotation.Single
 

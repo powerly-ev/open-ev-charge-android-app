@@ -7,8 +7,8 @@ import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.toRoute
-import com.powerly.lib.AppRoutes
-import com.powerly.lib.Route
+import com.powerly.navigation.AppRoutes
+import com.powerly.navigation.Route
 import com.powerly.resources.R
 
 internal sealed class MainTab(

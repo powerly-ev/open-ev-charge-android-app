@@ -1,6 +1,6 @@
 package com.powerly.splash.domain.use_case
 
-import com.powerly.core.data.repositories.UserRepository
+import com.powerly.core.domain.repository.UserRepository
 import com.powerly.core.model.api.ApiErrorConstants
 import com.powerly.core.model.api.ApiStatus
 import com.powerly.splash.domain.model.SplashAction

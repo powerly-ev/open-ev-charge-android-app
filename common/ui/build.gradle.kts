@@ -10,7 +10,8 @@ android {
 }
 
 dependencies {
-    implementation(projects.common.lib)
+    implementation(projects.common.navigation)
+    implementation(projects.core.managers)
     "preReleaseApi"(libs.androidx.ui.tooling)
 
     api(libs.compose.foundation)

@@ -32,8 +32,8 @@ import com.powerly.home.presentation.home.HomeScreen
 import com.powerly.home.presentation.home.HomeViewModel
 import com.powerly.home.presentation.home.NavigationEvents
 import com.powerly.home.presentation.map.MapScreen
-import com.powerly.lib.AppRoutes
-import com.powerly.lib.Route
+import com.powerly.navigation.AppRoutes
+import com.powerly.navigation.Route
 import com.powerly.orders.presentation.OrdersScreen
 import com.powerly.orders.presentation.SessionsViewModel
 import com.powerly.orders.presentation.history.details.CompleteSessionDetailsScreen

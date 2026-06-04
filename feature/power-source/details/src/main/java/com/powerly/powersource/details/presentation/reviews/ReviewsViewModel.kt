@@ -6,9 +6,9 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.powerly.core.data.repositories.PowerSourceRepository
+import com.powerly.core.domain.repository.PowerSourceRepository
 import com.powerly.core.model.powerly.Review
-import com.powerly.lib.AppRoutes
+import com.powerly.navigation.AppRoutes
 import kotlinx.coroutines.flow.Flow
 import org.koin.android.annotation.KoinViewModel
 

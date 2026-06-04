@@ -7,7 +7,7 @@ import androidx.navigation.compose.dialog
 import androidx.navigation.navigation
 import androidx.navigation.toRoute
 import androidx.compose.ui.platform.LocalUriHandler
-import com.powerly.lib.AppRoutes
+import com.powerly.navigation.AppRoutes
 import com.powerly.ui.dialogs.countries.CountriesDialog
 import com.powerly.ui.dialogs.signIn.SignInOptions
 import com.powerly.ui.extensions.openUriSafely

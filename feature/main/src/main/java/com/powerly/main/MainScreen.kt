@@ -32,8 +32,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.powerly.lib.AppRoutes
-import com.powerly.lib.Route
+import com.powerly.navigation.AppRoutes
+import com.powerly.navigation.Route
 import com.powerly.orders.presentation.SessionsViewModel
 import com.powerly.ui.HomeUiState
 import com.powerly.ui.theme.AppTheme

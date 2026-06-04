@@ -5,7 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import androidx.navigation.navigation
-import com.powerly.lib.AppRoutes
+import com.powerly.navigation.AppRoutes
 import com.powerly.payment.presentation.balance.add.AddBalanceScreen
 import com.powerly.payment.presentation.balance.show.ShowBalanceScreen
 import com.powerly.payment.presentation.balance.withdraw.WithdrawBalanceDialog

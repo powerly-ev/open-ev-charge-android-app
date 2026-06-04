@@ -8,7 +8,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.powerly.core.data.model.CurrenciesStatus
+import com.powerly.core.domain.model.CurrenciesStatus
 import com.powerly.core.model.location.AppCurrency
 import com.powerly.ui.dialogs.ItemOptionsMenu
 import com.powerly.ui.dialogs.MyDialogState

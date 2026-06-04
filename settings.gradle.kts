@@ -49,12 +49,14 @@ include(":feature:payment")
 
 // common
 include(":common:testing")
-include(":common:lib")
+include(":common:navigation")
 include(":common:ui")
 include(":common:resources")
 
 // core
 include(":core:data")
+include(":core:domain")
+include(":core:managers")
 include(":core:model")
 include(":core:network")
 include(":core:database")

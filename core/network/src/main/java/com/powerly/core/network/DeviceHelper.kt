@@ -4,12 +4,14 @@ import android.content.Context
 import android.os.Build
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.koin.core.annotation.Single
 import java.io.IOException
 import java.net.InetSocketAddress
 import java.net.Socket
 import java.net.SocketAddress
 import java.util.Locale
 
+@Single
 class DeviceHelper(private val context: Context) {
     companion object {
         private const val TAG = "DeviceHelper"

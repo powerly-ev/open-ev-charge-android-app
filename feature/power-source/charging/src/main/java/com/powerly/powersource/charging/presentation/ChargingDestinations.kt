@@ -7,7 +7,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import com.powerly.core.model.powerly.PowerSource
-import com.powerly.lib.AppRoutes
+import com.powerly.navigation.AppRoutes
 import com.powerly.powersource.charging.presentation.activate.ActivateChargerDialog
 import com.powerly.powersource.charging.presentation.feedback.FeedbackDialog
 import com.powerly.powersource.charging.presentation.session.ChargingScreen

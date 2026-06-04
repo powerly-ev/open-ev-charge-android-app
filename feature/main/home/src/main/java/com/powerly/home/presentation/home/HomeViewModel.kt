@@ -3,12 +3,12 @@ package com.powerly.home.presentation.home
 import android.content.Intent
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.powerly.core.data.model.SourceStatus
-import com.powerly.core.data.repositories.PowerSourceRepository
-import com.powerly.core.data.repositories.UserRepository
+import com.powerly.core.domain.model.SourceStatus
+import com.powerly.core.domain.repository.PowerSourceRepository
+import com.powerly.core.domain.repository.UserRepository
 import com.powerly.core.model.powerly.PowerSource
 import com.powerly.core.network.DeviceHelper
-import com.powerly.lib.CONSTANTS.POWER_SOURCE_ID
+import com.powerly.navigation.CONSTANTS.POWER_SOURCE_ID
 import org.koin.android.annotation.KoinViewModel
 
 

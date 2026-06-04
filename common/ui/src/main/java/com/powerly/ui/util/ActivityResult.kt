@@ -11,7 +11,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
-import com.powerly.core.data.model.ActivityResultState
+import com.powerly.ui.util.ActivityResultState
 
 /**
  * Creates and remembers an [ActivityResultState] object.

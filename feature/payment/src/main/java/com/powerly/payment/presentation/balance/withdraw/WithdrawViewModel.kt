@@ -3,7 +3,7 @@ package com.powerly.payment.presentation.balance.withdraw
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.powerly.core.data.repositories.UserRepository
+import com.powerly.core.domain.repository.UserRepository
 import com.powerly.core.model.api.ApiStatus
 import com.powerly.core.model.payment.Wallet
 import com.powerly.payment.domain.repository.BalanceRepository

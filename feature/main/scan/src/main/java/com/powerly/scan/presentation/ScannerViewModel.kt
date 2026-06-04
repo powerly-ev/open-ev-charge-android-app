@@ -1,7 +1,7 @@
 package com.powerly.scan.presentation
 
 import androidx.lifecycle.ViewModel
-import com.powerly.core.data.repositories.PowerSourceRepository
+import com.powerly.core.domain.repository.PowerSourceRepository
 import com.powerly.core.model.api.ApiStatus
 import kotlinx.coroutines.flow.flow
 import org.koin.android.annotation.KoinViewModel

@@ -11,7 +11,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import com.powerly.core.data.model.ActivityResultState
+import com.powerly.ui.util.ActivityResultState
 import com.powerly.home.presentation.map.MyMapViewModel
 import com.powerly.home.presentation.home.NavigationEvents.Login
 import com.powerly.home.presentation.home.NavigationEvents.Map

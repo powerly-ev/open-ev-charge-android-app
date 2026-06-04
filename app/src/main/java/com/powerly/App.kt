@@ -7,7 +7,7 @@ import com.powerly.account.di.AccountModule
 import com.powerly.core.data.di.DataModule
 import com.powerly.core.database.di.DatabaseModule
 import com.powerly.core.network.di.NetworkModule
-import com.powerly.lib.di.LibModule
+import com.powerly.core.managers.di.ManagersModule
 import com.powerly.main.di.MainModules
 import com.powerly.orders.di.OrdersModule
 import com.powerly.payment.di.PaymentModule
@@ -30,7 +30,7 @@ class App : Application() {
             androidLogger(if (BuildConfig.DEBUG) Level.DEBUG else Level.ERROR)
             androidContext(this@App)
             modules(
-                LibModule().module,
+                ManagersModule().module,
                 DatabaseModule().module,
                 NetworkModule().module,
                 DataModule().module,

@@ -1,6 +1,6 @@
 package com.powerly.powersource.charging.domain.repository
 
-import com.powerly.core.data.model.ChargingStatus
+import com.powerly.core.domain.model.ChargingStatus
 
 interface ChargingRepository {
 

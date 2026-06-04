@@ -9,7 +9,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import androidx.lifecycle.compose.LocalLifecycleOwner
-import com.powerly.core.data.model.ChargingStatus
+import com.powerly.core.domain.model.ChargingStatus
 import com.powerly.core.model.powerly.Session
 import com.powerly.resources.R
 import com.powerly.ui.dialogs.alert.MyAlertDialog

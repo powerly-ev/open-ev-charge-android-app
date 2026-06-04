@@ -11,7 +11,8 @@ android {
 }
 
 dependencies {
-    implementation(projects.common.lib)
+    implementation(projects.common.navigation)
+    implementation(projects.core.managers)
     implementation(projects.common.ui)
     //QR Generator
     implementation(libs.custom.qr.generator)

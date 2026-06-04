@@ -3,6 +3,7 @@ package com.powerly.core.network
 import com.powerly.core.model.api.ApiResponse
 import com.powerly.core.model.api.ApiStatus
 import io.ktor.client.plugins.ResponseException
+import io.ktor.client.statement.HttpResponse
 import kotlinx.coroutines.CancellationException
 
 /** Wraps a Ktor call and maps its payload + HTTP errors into [ApiStatus]. */
@@ -32,6 +33,24 @@ suspend inline fun safeApiAction(
 } /*catch (e: CancellationException) {
     throw e
 }*/ catch (e: ResponseException) {
+    e.printStackTrace()
+    ApiStatus.Error(e.asErrorMessage())
+} catch (e: Exception) {
+    e.printStackTrace()
+    ApiStatus.Error(e.asErrorMessage())
+}
+
+/**
+ * Like [safeApiAction] but takes a raw [HttpResponse] — for endpoints with no payload
+ * whose success is determined by HTTP status alone (e.g. DELETE, logout).
+ */
+suspend inline fun safeApiActionRaw(
+    crossinline block: suspend () -> HttpResponse,
+): ApiStatus<Boolean> = try {
+    val response = block()
+    if (response.isSuccessful) ApiStatus.Success(true)
+    else ApiStatus.Error(response.asErrorMessage())
+} catch (e: ResponseException) {
     e.printStackTrace()
     ApiStatus.Error(e.asErrorMessage())
 } catch (e: Exception) {

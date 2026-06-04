@@ -6,7 +6,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import androidx.navigation.navigation
 import androidx.navigation.toRoute
-import com.powerly.lib.AppRoutes
+import com.powerly.navigation.AppRoutes
 import com.powerly.powersource.charging.presentation.chargingDestinations
 import com.powerly.powersource.details.presentation.boarding.OnBoardingDialog
 import com.powerly.powersource.details.presentation.media.MediaScreen

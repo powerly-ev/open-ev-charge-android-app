@@ -6,11 +6,11 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
-import com.powerly.core.data.model.ChargingStatus
-import com.powerly.core.data.repositories.UserRepository
+import com.powerly.core.domain.model.ChargingStatus
+import com.powerly.core.domain.repository.UserRepository
 import com.powerly.core.model.powerly.Session
-import com.powerly.lib.AppRoutes
-import com.powerly.lib.managers.PusherManager
+import com.powerly.navigation.AppRoutes
+import com.powerly.core.managers.PusherManager
 import com.powerly.powersource.charging.domain.repository.ChargingRepository
 import com.powerly.powersource.charging.timer.ChargingTimerManager
 import com.powerly.powersource.charging.timer.ChargingTimerState

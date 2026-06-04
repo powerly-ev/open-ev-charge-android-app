@@ -3,7 +3,7 @@ package com.powerly.vehicles.presentation.vehicleDetails.make
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.powerly.core.model.powerly.VehicleMaker
-import com.powerly.lib.IRoute
+import com.powerly.navigation.IRoute
 import org.koin.androidx.compose.koinViewModel
 
 private const val TAG = "MakesScreen"

@@ -5,7 +5,7 @@ import androidx.compose.runtime.remember
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.powerly.core.model.api.ApiStatus
 import com.powerly.core.model.powerly.VehicleModel
-import com.powerly.lib.IRoute
+import com.powerly.navigation.IRoute
 import org.koin.androidx.compose.koinViewModel
 
 private const val TAG = "ModelScreen"

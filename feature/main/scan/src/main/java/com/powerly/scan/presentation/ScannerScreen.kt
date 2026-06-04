@@ -10,11 +10,11 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.core.net.toUri
-import com.powerly.core.data.model.SourceStatus
+import com.powerly.core.domain.model.SourceStatus
 import com.powerly.core.model.api.ApiStatus
 import com.powerly.core.model.powerly.PowerSource
 import com.powerly.core.model.powerly.SourceCategory
-import com.powerly.lib.CONSTANTS
+import com.powerly.navigation.CONSTANTS
 import com.powerly.resources.R
 import com.powerly.ui.dialogs.loading.LoadingState
 import com.powerly.ui.dialogs.loading.rememberBasicScreenState

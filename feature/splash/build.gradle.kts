@@ -12,5 +12,5 @@ android {
 
 dependencies {
     implementation(projects.common.ui)
-    implementation(projects.common.lib)
+    implementation(projects.common.navigation)
 }
