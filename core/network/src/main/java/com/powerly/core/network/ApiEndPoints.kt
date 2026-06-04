@@ -29,9 +29,6 @@ internal object ApiEndPoints {
     const val POWER_SOURCE_REVIEWS = "stations/{id}/reviews"
     const val POWER_SOURCE_TOKEN = "stations/token/{identifier}"
 
-    const val POWER_SOURCE_ORDERS = "orders"
-    const val POWER_SOURCE_CHARGING_STOP = "orders/stop"
-
     const val VEHICLE_CONNECTORS = "vehicles/connectors"
 
 }

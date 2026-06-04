@@ -10,13 +10,13 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
-import com.powerly.account.accountDestinations
+import com.powerly.account.presentation.accountDestinations
 import com.powerly.core.model.powerly.OrderTab
 import com.powerly.core.model.util.Message
 import com.powerly.lib.AppRoutes
 import com.powerly.lib.Route
 import com.powerly.main.NavigationScreen
-import com.powerly.orders.SessionViewModel
+import com.powerly.orders.presentation.SessionsViewModel
 import com.powerly.payment.presentation.paymentDestinations
 import com.powerly.powersource.details.presentation.powerSourceDestinations
 import com.powerly.splash.presentation.splashDestinations
@@ -31,7 +31,7 @@ fun RootGraph(
     modifier: Modifier = Modifier,
     startDestination: Route = AppRoutes.Splash,
     mainViewModel: MainViewModel = koinViewModel(),
-    sessionsViewModel: SessionViewModel = koinViewModel(),
+    sessionsViewModel: SessionsViewModel = koinViewModel(),
     navController: NavHostController = rememberNavController()
 ) {
 

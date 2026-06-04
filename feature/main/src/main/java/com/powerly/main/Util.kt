@@ -11,37 +11,37 @@ import com.powerly.lib.AppRoutes
 import com.powerly.lib.Route
 import com.powerly.resources.R
 
-internal sealed class NavScreens(
+internal sealed class MainTab(
     val route: Route,
     @StringRes val title: Int,
     @DrawableRes val icon: Int,
 ) {
-    data object Home : NavScreens(
+    data object Home : MainTab(
         AppRoutes.Navigation.Home,
         R.string.home,
         R.drawable.home
     )
 
-    data object Scan : NavScreens(
+    data object Scan : MainTab(
         AppRoutes.Navigation.Scan,
         R.string.scan,
         R.drawable.scan
     )
 
-    data object Orders : NavScreens(
+    data object Orders : MainTab(
         AppRoutes.Navigation.Orders(),
         R.string.orders,
         R.drawable.cart
     )
 
-    data object Account : NavScreens(
+    data object Account : MainTab(
         AppRoutes.Navigation.Account,
         R.string.account,
         R.drawable.account
     )
 }
 
-internal fun Route.isSelected(screen: NavScreens): Boolean {
+internal fun Route.isSelected(screen: MainTab): Boolean {
     return this == screen.route || (screen.route == AppRoutes.Navigation.Home
             && this == AppRoutes.Navigation.Home.Map)
 }
@@ -49,11 +49,11 @@ internal fun Route.isSelected(screen: NavScreens): Boolean {
 internal fun NavBackStackEntry?.asMyRoute(): Route? {
     val route = this?.destination?.route.orEmpty()
     return when {
-        route.contains("Home.Map") -> return AppRoutes.Navigation.Home.Map
-        route.contains("Home") -> return AppRoutes.Navigation.Home
-        route.contains("Scan") -> return AppRoutes.Navigation.Scan
-        route.contains("Orders") -> return this?.toRoute<AppRoutes.Navigation.Orders>()
-        route.contains("Account") -> return AppRoutes.Navigation.Account
+        route.contains("Home.Map") -> AppRoutes.Navigation.Home.Map
+        route.contains("Home") -> AppRoutes.Navigation.Home
+        route.contains("Scan") -> AppRoutes.Navigation.Scan
+        route.contains("Orders") -> this?.toRoute<AppRoutes.Navigation.Orders>()
+        route.contains("Account") -> AppRoutes.Navigation.Account
         else -> null
     }
 }

@@ -8,8 +8,6 @@ import com.powerly.core.model.powerly.Connector
 import com.powerly.core.model.powerly.Media
 import com.powerly.core.model.powerly.PowerSource
 import com.powerly.core.model.powerly.Review
-import com.powerly.core.model.powerly.Session
-import com.powerly.core.model.powerly.StopChargingBody
 import com.powerly.core.model.user.DeviceBody
 import com.powerly.core.model.user.LogoutBody
 import com.powerly.core.model.user.RefreshToken
@@ -130,41 +128,9 @@ class RemoteDataSource(private val client: HttpClient) {
         }.body()
     }
 
-    suspend fun stopCharging(body: StopChargingBody): ApiResponse<Session?> {
-        return client.post(ApiEndPoints.POWER_SOURCE_CHARGING_STOP) {
-            contentType(ContentType.Application.Json)
-            setBody(body)
-        }.body()
-    }
-
     suspend fun powerSourceDetails(identifier: String): ApiResponse<PowerSource?> {
         val endpoint = ApiEndPoints.POWER_SOURCE_TOKEN.replace("{identifier}", identifier)
         return client.get(endpoint).body()
-    }
-
-    // Sessions
-    suspend fun getActiveOrders(
-        page: Int,
-        status: String = "active",
-        limit: Int = 15
-    ): BaseResponsePaginated<Session> {
-        return client.get(ApiEndPoints.POWER_SOURCE_ORDERS) {
-            parameter("page", page)
-            parameter("status", status)
-            parameter("limit", limit)
-        }.body()
-    }
-
-    suspend fun getCompleteOrders(
-        page: Int,
-        status: String = "complete",
-        limit: Int = 15
-    ): BaseResponsePaginated<Session> {
-        return client.get(ApiEndPoints.POWER_SOURCE_ORDERS) {
-            parameter("page", page)
-            parameter("status", status)
-            parameter("limit", limit)
-        }.body()
     }
 
     suspend fun vehiclesConnectors(): ApiResponse<List<Connector>?> {
