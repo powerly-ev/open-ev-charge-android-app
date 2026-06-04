@@ -10,7 +10,7 @@ import com.powerly.isGoogle
 plugins {
     alias(libs.plugins.powerly.application)
     alias(libs.plugins.powerly.koin)
-    alias(libs.plugins.powerly.application.compose)
+    alias(libs.plugins.powerly.compose)
     alias(libs.plugins.secrets)
 }
 
@@ -146,9 +146,13 @@ secrets {
 
 
 dependencies {
-    implementation(projects.common.navigation)
-    implementation(projects.core.managers)
     implementation(projects.common.ui)
+    implementation(projects.common.navigation)
+    implementation(projects.core.model)
+    implementation(projects.core.domain)
+    implementation(projects.core.network)
+    implementation(projects.core.database)
+    implementation(projects.core.managers)
     implementation(projects.core.data)
     implementation(projects.feature.splash)
     implementation(projects.feature.user)

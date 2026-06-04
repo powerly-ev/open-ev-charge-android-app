@@ -10,8 +10,15 @@ android {
 }
 
 dependencies {
+    // Foundational deps (mirrors what powerly.feature bundles for feature modules,
+    // minus common/ui itself which would be self-circular).
     implementation(projects.common.navigation)
+    implementation(projects.common.resources)
+    implementation(projects.core.model)
+    implementation(projects.core.domain)
+    implementation(projects.core.network)
     implementation(projects.core.managers)
+
     "preReleaseApi"(libs.androidx.ui.tooling)
 
     api(libs.compose.foundation)

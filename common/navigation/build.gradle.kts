@@ -10,18 +10,6 @@ android {
 }
 
 dependencies {
-    api(projects.common.resources)
-    api(projects.core.model)
-    api(projects.core.domain)
-    api(projects.core.network)
-    api(projects.core.analytics)
-    api(projects.core.database)
-
-    api(platform(libs.kotlin.bom))
-    api(libs.core.ktx)
-    api(libs.work.runtime.ktx)
-    api(libs.androidx.annotation)
-    api(libs.kotlinx.datetime)
-
+    implementation(projects.core.model)
     implementation(libs.navigation.compose)
 }

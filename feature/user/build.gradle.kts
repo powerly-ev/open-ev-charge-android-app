@@ -1,8 +1,7 @@
 import com.powerly.MyProject
 
 plugins {
-    alias(libs.plugins.powerly.library)
-    alias(libs.plugins.powerly.compose)
+    alias(libs.plugins.powerly.feature)
     alias(libs.plugins.powerly.koin)
     alias(libs.plugins.powerly.serialization)
 }
@@ -12,7 +11,6 @@ android {
 }
 
 dependencies {
-    implementation(projects.common.navigation)
     implementation(projects.core.managers)
-    implementation(projects.common.ui)
+    implementation(projects.core.database)
 }

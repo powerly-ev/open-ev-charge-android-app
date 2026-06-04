@@ -187,9 +187,9 @@ android-test = { id = "com.android.test", version.ref = "androidGradlePlugin" }
 # Plugins defined by this project
 powerly-application = { id = "powerly.application" }
 powerly-library = { id = "powerly.library" }
+powerly-feature = { id = "powerly.feature" }
 powerly-koin = { id = "powerly.koin" }
 powerly-compose = { id = "powerly.compose" }
-powerly-application-compose = { id = "powerly.application.compose" }
 powerly-serialization = { id = "powerly.serialization" }
 powerly-room = { id = "powerly.room" }
 powerly-android-test = { id = "powerly.android.test" }

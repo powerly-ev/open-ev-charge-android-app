@@ -46,17 +46,17 @@ gradlePlugin {
             id = "powerly.library"
             implementationClass = "AndroidLibraryConventionPlugin"
         }
+        register("androidFeature") {
+            id = "powerly.feature"
+            implementationClass = "AndroidFeatureConventionPlugin"
+        }
         register("koin") {
             id = "powerly.koin"
             implementationClass = "KoinConventionPlugin"
         }
         register("compose") {
             id = "powerly.compose"
-            implementationClass = "LibraryComposeConventionPlugin"
-        }
-        register("appCompose") {
-            id = "powerly.application.compose"
-            implementationClass = "AppComposeConventionPlugin"
+            implementationClass = "ComposeConventionPlugin"
         }
         register("androidTest") {
             id = "powerly.android.test"
