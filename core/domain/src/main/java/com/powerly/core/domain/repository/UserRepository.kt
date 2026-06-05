@@ -3,7 +3,6 @@ package com.powerly.core.domain.repository
 import com.powerly.core.domain.model.AuthStatus
 import com.powerly.core.domain.model.ApiStatus
 import com.powerly.core.model.user.User
-import com.powerly.core.model.user.UserUpdateBody
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharedFlow
 
@@ -23,7 +22,17 @@ interface UserRepository {
 
     suspend fun getLanguage(): String
 
-    suspend fun updateUserDetails(request: UserUpdateBody): ApiStatus<User>
+    suspend fun updateUserDetails(
+        firstName: String? = null,
+        lastName: String? = null,
+        email: String? = null,
+        password: String? = null,
+        vatId: String? = null,
+        countryId: Int? = null,
+        currency: String? = null,
+        latitude: Double? = null,
+        longitude: Double? = null
+    ): ApiStatus<User>
 
     suspend fun getUserDetails(): ApiStatus<User>
 

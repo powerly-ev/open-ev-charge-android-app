@@ -10,7 +10,6 @@ import com.powerly.core.domain.repository.UserRepository
 import com.powerly.core.domain.model.ApiStatus
 import com.powerly.core.model.location.Country
 import com.powerly.core.model.user.User
-import com.powerly.core.model.user.UserUpdateBody
 import com.powerly.core.network.DeviceHelper
 import com.powerly.core.managers.NotificationsManager
 import com.powerly.ui.dialogs.loading.initScreenState
@@ -55,18 +54,17 @@ class ProfileViewModel(
         countryId: Int? = null
     ) {
         Log.i(TAG, "updateProfile - $newUser")
-        val request = UserUpdateBody(
-            firstName = newUser?.firstName,
-            lastName = newUser?.lastName,
-            email = newUser?.email,
-            vatId = newUser?.vatId,
-            countryId = countryId,
-            currency = currency,
-            password = password
-        )
         viewModelScope.launch {
             screenState.loading = true
-            val result = userRepository.updateUserDetails(request)
+            val result = userRepository.updateUserDetails(
+                firstName = newUser?.firstName,
+                lastName = newUser?.lastName,
+                email = newUser?.email,
+                vatId = newUser?.vatId,
+                countryId = countryId,
+                currency = currency,
+                password = password
+            )
             screenState.loading = false
             when (result) {
                 is ApiStatus.Error -> {

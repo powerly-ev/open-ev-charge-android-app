@@ -7,8 +7,8 @@ import com.powerly.core.domain.model.ApiStatus
 import com.powerly.core.domain.model.map
 import com.powerly.core.data.model.LogoutBody
 import com.powerly.core.data.model.RefreshToken
+import com.powerly.core.data.model.UserUpdateBody
 import com.powerly.core.model.user.User
-import com.powerly.core.model.user.UserUpdateBody
 import com.powerly.core.network.KtorClient
 import com.powerly.core.network.asErrorMessage
 import com.powerly.core.network.isSuccessful
@@ -35,7 +35,28 @@ internal class UserRemoteDataSource(
         client.get(UserApi.ME).body<ApiResponse<User?>>()
     }
 
-    suspend fun updateUser(body: UserUpdateBody): ApiStatus<User> = safeApiCall {
+    suspend fun updateUser(
+        firstName: String? = null,
+        lastName: String? = null,
+        email: String? = null,
+        password: String? = null,
+        vatId: String? = null,
+        countryId: Int? = null,
+        currency: String? = null,
+        latitude: Double? = null,
+        longitude: Double? = null
+    ): ApiStatus<User> = safeApiCall {
+        val body = UserUpdateBody(
+            firstName = firstName,
+            lastName = lastName,
+            email = email,
+            password = password,
+            vatId = vatId,
+            countryId = countryId,
+            currency = currency,
+            latitude = latitude,
+            longitude = longitude
+        )
         client.put(UserApi.ME) {
             contentType(ContentType.Application.Json)
             setBody(body)

@@ -5,7 +5,6 @@ import com.powerly.core.database.StorageManager
 import com.powerly.core.domain.repository.UserRepository
 import com.powerly.core.domain.model.ApiStatus
 import com.powerly.core.model.user.User
-import com.powerly.core.model.user.UserUpdateBody
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.Flow
@@ -40,12 +39,30 @@ internal class UserRepositoryImpl(
     }
 
     override suspend fun updateUserDetails(
-        request: UserUpdateBody
+        firstName: String?,
+        lastName: String?,
+        email: String?,
+        password: String?,
+        vatId: String?,
+        countryId: Int?,
+        currency: String?,
+        latitude: Double?,
+        longitude: Double?
     ) = withContext(ioDispatcher) {
-        val result = remoteDataSource.updateUser(request)
+        val result = remoteDataSource.updateUser(
+            firstName = firstName,
+            lastName = lastName,
+            email = email,
+            password = password,
+            vatId = vatId,
+            countryId = countryId,
+            currency = currency,
+            latitude = latitude,
+            longitude = longitude
+        )
         if (result is ApiStatus.Success) {
             storageManager.saveUser(result.data)
-            if (request.currency != null) storageManager.setPinUserCurrency(true)
+            if (currency != null) storageManager.setPinUserCurrency(true)
         }
         result
     }
