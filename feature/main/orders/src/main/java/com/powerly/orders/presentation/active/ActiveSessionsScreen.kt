@@ -9,7 +9,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
-import com.powerly.core.model.api.ApiStatus
+import com.powerly.core.domain.model.ApiStatus
 import com.powerly.core.model.powerly.Session
 import com.powerly.orders.presentation.SessionsViewModel
 import com.powerly.resources.R

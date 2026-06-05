@@ -2,8 +2,8 @@ package com.powerly.payment.presentation.paymentMethods.add
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.powerly.core.model.api.ApiStatus
-import com.powerly.core.model.util.asErrorMessage
+import com.powerly.core.domain.model.ApiStatus
+import com.powerly.core.domain.model.asErrorMessage
 import com.powerly.payment.PaymentManager
 import com.powerly.payment.domain.repository.CardsRepository
 import com.powerly.ui.dialogs.loading.initScreenState

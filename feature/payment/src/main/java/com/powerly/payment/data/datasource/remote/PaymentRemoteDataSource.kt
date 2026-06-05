@@ -1,7 +1,7 @@
 package com.powerly.payment.data.datasource.remote
 
-import com.powerly.core.model.api.ApiResponse
-import com.powerly.core.model.api.ApiStatus
+import com.powerly.core.network.api.ApiResponse
+import com.powerly.core.domain.model.ApiStatus
 import com.powerly.core.model.payment.BalanceItem
 import com.powerly.core.model.payment.StripCard
 import com.powerly.core.model.payment.Wallet

@@ -1,7 +1,7 @@
 package com.powerly.orders.presentation.active
 
 import androidx.lifecycle.ViewModel
-import com.powerly.core.model.api.ApiStatus
+import com.powerly.core.domain.model.ApiStatus
 import com.powerly.core.model.powerly.Session
 import com.powerly.orders.domain.repository.SessionsRepository
 import org.koin.android.annotation.KoinViewModel

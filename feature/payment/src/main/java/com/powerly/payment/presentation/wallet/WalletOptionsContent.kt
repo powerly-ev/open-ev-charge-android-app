@@ -7,7 +7,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
-import com.powerly.core.model.util.Item
+import com.powerly.payment.presentation.wallet.Item
 import com.powerly.ui.screen.ScreenHeader
 import com.powerly.ui.dialogs.ItemOptionsMenu
 import com.powerly.ui.dialogs.MyBottomSheet

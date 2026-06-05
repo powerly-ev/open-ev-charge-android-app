@@ -6,7 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.powerly.core.domain.repository.UserRepository
-import com.powerly.core.model.api.ApiStatus
+import com.powerly.core.domain.model.ApiStatus
 import com.powerly.core.model.payment.BalanceItem
 import com.powerly.core.model.payment.StripCard
 import com.powerly.payment.domain.repository.CardsRepository

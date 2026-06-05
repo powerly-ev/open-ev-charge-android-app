@@ -1,6 +1,6 @@
 package com.powerly.payment.domain.model
 
-import com.powerly.core.model.util.Message
+import com.powerly.core.domain.model.Message
 
 sealed class BalanceRefillStatus {
     data object Loading : BalanceRefillStatus()

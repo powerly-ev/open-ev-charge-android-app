@@ -1,10 +1,10 @@
 package com.powerly.orders.data.datasource.remote
 
-import com.powerly.core.model.api.ApiResponse
-import com.powerly.core.model.api.ApiStatus
-import com.powerly.core.model.api.BaseResponsePaginated
+import com.powerly.core.network.api.ApiResponse
+import com.powerly.core.domain.model.ApiStatus
+import com.powerly.core.network.api.BaseResponsePaginated
 import com.powerly.core.model.powerly.Session
-import com.powerly.core.model.powerly.StopChargingBody
+import com.powerly.orders.data.model.StopChargingBody
 import com.powerly.core.network.KtorClient
 import com.powerly.core.network.safeApiCall
 import com.powerly.orders.data.api.SessionsApi

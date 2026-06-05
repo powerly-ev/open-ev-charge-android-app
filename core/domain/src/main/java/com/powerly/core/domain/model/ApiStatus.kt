@@ -1,6 +1,6 @@
-package com.powerly.core.model.api
+package com.powerly.core.domain.model
 
-import com.powerly.core.model.util.Message
+import com.powerly.core.domain.model.Message
 
 sealed class ApiStatus<out T> {
     data class Error(val msg: Message) : ApiStatus<Nothing>()

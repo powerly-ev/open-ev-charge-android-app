@@ -2,7 +2,7 @@ package com.powerly.payment.presentation.balance.show
 
 import androidx.lifecycle.ViewModel
 import com.powerly.core.domain.repository.UserRepository
-import com.powerly.core.model.api.ApiStatus
+import com.powerly.core.domain.model.ApiStatus
 import com.powerly.payment.domain.use_case.GetBalanceItemsUseCase
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flow

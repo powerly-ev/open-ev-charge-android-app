@@ -2,11 +2,11 @@ package com.powerly.core.data.datasource.remote
 
 import com.powerly.core.data.api.AppApi
 import com.powerly.core.domain.model.CurrenciesStatus
-import com.powerly.core.model.api.ApiResponse
-import com.powerly.core.model.api.ApiStatus
+import com.powerly.core.network.api.ApiResponse
+import com.powerly.core.domain.model.ApiStatus
 import com.powerly.core.model.location.AppCurrency
 import com.powerly.core.model.location.Country
-import com.powerly.core.model.user.DeviceBody
+import com.powerly.core.data.model.DeviceBody
 import com.powerly.core.network.KtorClient
 import com.powerly.core.network.safeApiActionRaw
 import com.powerly.core.network.safeApiCall

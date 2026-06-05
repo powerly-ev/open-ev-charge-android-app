@@ -3,7 +3,7 @@ package com.powerly.account.presentation.language
 import androidx.lifecycle.ViewModel
 import com.powerly.core.domain.repository.AppRepository
 import com.powerly.core.domain.repository.UserRepository
-import com.powerly.core.model.api.ApiStatus
+import com.powerly.core.domain.model.ApiStatus
 import com.powerly.ui.dialogs.loading.LoadingState
 import com.powerly.ui.dialogs.loading.initBasicScreenState
 import org.koin.android.annotation.KoinViewModel

@@ -1,6 +1,5 @@
 package com.powerly.core.model.location
 
-import android.location.Location
 import java.io.Serializable
 import java.text.DecimalFormat
 
@@ -19,13 +18,6 @@ class Target(
             return other.latitude == this.latitude && other.longitude == this.longitude
         }
         return super.equals(other)
-    }
-
-    fun toLocation(): Location {
-        val location = Location("")
-        location.latitude = latitude
-        location.longitude = longitude
-        return location
     }
 
     override fun hashCode(): Int {

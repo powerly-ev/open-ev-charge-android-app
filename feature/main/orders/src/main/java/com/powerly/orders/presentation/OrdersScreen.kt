@@ -1,10 +1,11 @@
 package com.powerly.orders.presentation
 
+import com.powerly.navigation.OrderTabs
+
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import com.powerly.core.model.powerly.OrderTab
 import com.powerly.core.model.powerly.Session
 import com.powerly.orders.presentation.active.ActiveSessionsScreen
 import com.powerly.orders.presentation.history.CompleteSessionsScreen
@@ -42,7 +43,7 @@ fun OrdersScreen(
         screenState = screenState
     ) {
         when (it) {
-            OrderTab.ACTIVE -> {
+            OrderTabs.ACTIVE -> {
                 ActiveSessionsScreen(
                     screenState = screenState,
                     viewModel = sessionsViewModel,
@@ -51,7 +52,7 @@ fun OrdersScreen(
                 )
             }
 
-            OrderTab.HISTORY -> {
+            OrderTabs.HISTORY -> {
                 CompleteSessionsScreen(
                     viewModel = sessionsViewModel,
                     openPowerSource = openPowerSource,

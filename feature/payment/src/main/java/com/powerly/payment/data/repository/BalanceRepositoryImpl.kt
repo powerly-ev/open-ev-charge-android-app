@@ -1,6 +1,6 @@
 package com.powerly.payment.data.repository
 
-import com.powerly.core.model.api.ApiStatus
+import com.powerly.core.domain.model.ApiStatus
 import com.powerly.core.network.asErrorMessage
 import com.powerly.payment.data.datasource.remote.PaymentRemoteDataSource
 import com.powerly.payment.domain.model.BalanceRefillStatus

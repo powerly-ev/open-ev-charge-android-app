@@ -1,4 +1,4 @@
-package com.powerly.core.model.util
+package com.powerly.core.domain.model
 
 data class Message(
     val value: String = "",

@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.powerly.core.domain.model.CurrenciesStatus
 import com.powerly.core.domain.repository.AppRepository
 import com.powerly.core.domain.repository.UserRepository
-import com.powerly.core.model.api.ApiStatus
+import com.powerly.core.domain.model.ApiStatus
 import com.powerly.core.model.location.Country
 import com.powerly.core.model.user.User
 import com.powerly.core.model.user.UserUpdateBody

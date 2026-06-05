@@ -1,4 +1,4 @@
-package com.powerly.core.model.api
+package com.powerly.core.network.api
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState

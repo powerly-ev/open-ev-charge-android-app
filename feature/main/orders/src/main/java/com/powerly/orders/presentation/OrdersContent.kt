@@ -1,5 +1,7 @@
 package com.powerly.orders.presentation
 
+import com.powerly.navigation.OrderTabs
+
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.BorderStroke
@@ -40,7 +42,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.powerly.core.model.powerly.OrderTab
 import com.powerly.resources.R
 import com.powerly.ui.components.ButtonSmall
 import com.powerly.ui.components.MyTextDynamic
@@ -78,13 +79,13 @@ private fun OrdersScreenPreview() {
         OrdersScreenContent(
             tabs = tabs,
             pagerState = rememberPagerState(
-                initialPage = OrderTab.ACTIVE,
+                initialPage = OrderTabs.ACTIVE,
                 pageCount = { tabs.size }
             )
         ) {
             when (it) {
-                OrderTab.ACTIVE -> FakeScreen("Screen A")
-                OrderTab.HISTORY -> FakeScreen("Screen B")
+                OrderTabs.ACTIVE -> FakeScreen("Screen A")
+                OrderTabs.HISTORY -> FakeScreen("Screen B")
                 else -> {}
             }
         }

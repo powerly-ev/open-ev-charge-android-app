@@ -1,6 +1,5 @@
 package com.powerly.core.model.powerly
 
-import androidx.annotation.StringRes
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -135,11 +134,3 @@ private fun String.toLocalTime(format: String): String {
     }
 }
 
-data class OrderTab(
-    @StringRes val title: Int
-) {
-    companion object {
-        const val ACTIVE = 0
-        const val HISTORY = 1
-    }
-}

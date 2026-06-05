@@ -11,7 +11,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.core.net.toUri
 import com.powerly.core.domain.model.SourceStatus
-import com.powerly.core.model.api.ApiStatus
+import com.powerly.core.domain.model.ApiStatus
 import com.powerly.core.model.powerly.PowerSource
 import com.powerly.core.model.powerly.SourceCategory
 import com.powerly.navigation.CONSTANTS

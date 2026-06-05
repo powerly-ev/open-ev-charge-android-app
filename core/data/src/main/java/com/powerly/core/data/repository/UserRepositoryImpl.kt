@@ -3,7 +3,7 @@ package com.powerly.core.data.repository
 import com.powerly.core.data.datasource.remote.UserRemoteDataSource
 import com.powerly.core.database.StorageManager
 import com.powerly.core.domain.repository.UserRepository
-import com.powerly.core.model.api.ApiStatus
+import com.powerly.core.domain.model.ApiStatus
 import com.powerly.core.model.user.User
 import com.powerly.core.model.user.UserUpdateBody
 import kotlinx.coroutines.CoroutineDispatcher

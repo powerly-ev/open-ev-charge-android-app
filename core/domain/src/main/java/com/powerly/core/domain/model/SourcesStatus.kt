@@ -1,7 +1,7 @@
 package com.powerly.core.domain.model
 
 import com.powerly.core.model.powerly.PowerSource
-import com.powerly.core.model.util.Message
+import com.powerly.core.domain.model.Message
 
 sealed class SourcesStatus {
     data class Error(val msg: Message) : SourcesStatus()

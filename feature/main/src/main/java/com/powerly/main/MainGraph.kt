@@ -25,7 +25,7 @@ import androidx.navigation.compose.dialog
 import androidx.navigation.toRoute
 import com.powerly.account.presentation.AccountEvents
 import com.powerly.account.presentation.AccountScreen
-import com.powerly.core.model.powerly.OrderTab
+import com.powerly.navigation.OrderTabs
 import com.powerly.core.model.powerly.Session
 import com.powerly.home.presentation.map.MyMapViewModel
 import com.powerly.home.presentation.home.HomeScreen
@@ -80,7 +80,7 @@ fun MainGraph(
         // navigate to completed sessions
         if (openHistory) {
             sessionsViewModel.refreshCompletedOrders()
-            val route = AppRoutes.Navigation.Orders(OrderTab.HISTORY)
+            val route = AppRoutes.Navigation.Orders(OrderTabs.HISTORY)
             innerNavController.navigate(route)
         }
         coroutineScope.launch {

@@ -8,7 +8,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import com.powerly.core.model.util.asErrorMessage
+import com.powerly.core.domain.model.asErrorMessage
 import com.powerly.payment.presentation.PaymentViewModel
 import com.powerly.resources.R
 import com.powerly.ui.dialogs.alert.AlertDialogProperties

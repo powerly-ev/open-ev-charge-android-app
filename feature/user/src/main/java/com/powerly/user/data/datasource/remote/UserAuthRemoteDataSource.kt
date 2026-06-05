@@ -1,17 +1,17 @@
 package com.powerly.user.data.datasource.remote
 
-import com.powerly.core.model.api.ApiResponse
-import com.powerly.core.model.api.ApiStatus
+import com.powerly.core.network.api.ApiResponse
+import com.powerly.core.domain.model.ApiStatus
 import com.powerly.core.model.user.EmailCheck
-import com.powerly.core.model.user.EmailCheckBody
-import com.powerly.core.model.user.EmailForgetBody
-import com.powerly.core.model.user.EmailLoginBody
-import com.powerly.core.model.user.EmailRegisterBody
-import com.powerly.core.model.user.EmailResetBody
-import com.powerly.core.model.user.EmailVerifyResendBody
+import com.powerly.user.data.model.EmailCheckBody
+import com.powerly.user.data.model.EmailForgetBody
+import com.powerly.user.data.model.EmailLoginBody
+import com.powerly.user.data.model.EmailRegisterBody
+import com.powerly.user.data.model.EmailResetBody
+import com.powerly.user.data.model.EmailVerifyResendBody
 import com.powerly.core.model.user.User
 import com.powerly.core.model.user.UserVerification
-import com.powerly.core.model.user.VerificationBody
+import com.powerly.user.data.model.VerificationBody
 import com.powerly.core.network.KtorClient
 import com.powerly.core.network.safeApiAction
 import com.powerly.core.network.safeApiCall

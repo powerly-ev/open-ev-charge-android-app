@@ -1,6 +1,6 @@
 package com.powerly.powersource.charging.domain.repository
 
-import com.powerly.core.model.api.ApiStatus
+import com.powerly.core.domain.model.ApiStatus
 import com.powerly.core.model.powerly.Session
 import com.powerly.powersource.charging.domain.model.ReviewOptionsStatus
 import kotlinx.coroutines.flow.Flow

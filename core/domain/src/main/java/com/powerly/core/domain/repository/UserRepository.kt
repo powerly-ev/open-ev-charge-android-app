@@ -1,7 +1,7 @@
 package com.powerly.core.domain.repository
 
 import com.powerly.core.domain.model.AuthStatus
-import com.powerly.core.model.api.ApiStatus
+import com.powerly.core.domain.model.ApiStatus
 import com.powerly.core.model.user.User
 import com.powerly.core.model.user.UserUpdateBody
 import kotlinx.coroutines.flow.Flow

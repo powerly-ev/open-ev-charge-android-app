@@ -1,4 +1,4 @@
-package com.powerly.core.model.powerly
+package com.powerly.powersource.charging.data.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -16,4 +16,3 @@ class StopChargingBody(
     @SerialName("power_source_id") private val powersourceId: String,
     @SerialName("connector") private val connector: Int? = null
 )
-

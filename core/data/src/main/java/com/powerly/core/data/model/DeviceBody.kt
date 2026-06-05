@@ -1,4 +1,4 @@
-package com.powerly.core.model.user
+package com.powerly.core.data.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -13,4 +13,3 @@ data class DeviceBody(
     @SerialName("app_version") private val appVersion: String? = null,
     @SerialName("lang") private val lang: String? = null
 )
-

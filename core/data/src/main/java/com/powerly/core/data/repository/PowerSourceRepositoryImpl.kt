@@ -4,7 +4,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import com.powerly.core.data.datasource.remote.PowerSourceRemoteDataSource
 import com.powerly.core.domain.repository.PowerSourceRepository
-import com.powerly.core.model.api.BasePagingSource
+import com.powerly.core.network.api.BasePagingSource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import org.koin.core.annotation.Named

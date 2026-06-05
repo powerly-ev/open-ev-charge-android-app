@@ -3,7 +3,7 @@ package com.powerly.core.domain.repository
 import androidx.paging.PagingData
 import com.powerly.core.domain.model.SourceStatus
 import com.powerly.core.domain.model.SourcesStatus
-import com.powerly.core.model.api.ApiStatus
+import com.powerly.core.domain.model.ApiStatus
 import com.powerly.core.model.powerly.Connector
 import com.powerly.core.model.powerly.Media
 import com.powerly.core.model.powerly.Review

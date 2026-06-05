@@ -46,7 +46,7 @@ secrets {
 
 
 dependencies {
-    api(projects.core.model)
+    api(projects.core.domain)
     implementation(projects.core.database)
     implementation(libs.kotlinx.coroutines)
 

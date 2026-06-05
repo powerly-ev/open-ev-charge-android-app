@@ -1,4 +1,4 @@
-package com.powerly.core.model.api
+package com.powerly.core.model.serialization
 
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.descriptors.PrimitiveKind

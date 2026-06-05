@@ -1,7 +1,7 @@
 package com.powerly.core.network
 
-import com.powerly.core.model.api.ApiResponse
-import com.powerly.core.model.api.ApiStatus
+import com.powerly.core.network.api.ApiResponse
+import com.powerly.core.domain.model.ApiStatus
 import io.ktor.client.plugins.ResponseException
 import io.ktor.client.statement.HttpResponse
 import kotlinx.coroutines.CancellationException

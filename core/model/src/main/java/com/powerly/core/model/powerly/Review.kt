@@ -17,12 +17,9 @@ data class Review(
     @SerialName("updated_at") val updatedAt: String = ""
 ) {
     fun createdAt(): String = try {
-        // Define the input and output date formats
         val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'", Locale.US)
         val outputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
-        // Parse the input date string
         val date = inputFormat.parse(createdAt) ?: createdAt
-        // Format the date as per the output format
         outputFormat.format(date)
     } catch (e: Exception) {
         e.printStackTrace()
@@ -41,10 +38,3 @@ data class Reviewer(
         get() = if (userName.isNotBlank()) userName[0].uppercase()
         else "P"
 }
-
-@Serializable
-data class ReviewBody(
-    @SerialName("rating") val rating: Double,
-    @SerialName("content") val msg: String,
-)
-

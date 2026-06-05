@@ -2,11 +2,11 @@ package com.powerly.core.data.datasource.remote
 
 import com.powerly.core.data.api.UserApi
 import com.powerly.core.domain.model.AuthStatus
-import com.powerly.core.model.api.ApiResponse
-import com.powerly.core.model.api.ApiStatus
-import com.powerly.core.model.api.map
-import com.powerly.core.model.user.LogoutBody
-import com.powerly.core.model.user.RefreshToken
+import com.powerly.core.network.api.ApiResponse
+import com.powerly.core.domain.model.ApiStatus
+import com.powerly.core.domain.model.map
+import com.powerly.core.data.model.LogoutBody
+import com.powerly.core.data.model.RefreshToken
 import com.powerly.core.model.user.User
 import com.powerly.core.model.user.UserUpdateBody
 import com.powerly.core.network.KtorClient

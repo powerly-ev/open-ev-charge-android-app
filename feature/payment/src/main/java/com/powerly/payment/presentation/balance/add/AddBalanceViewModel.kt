@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.powerly.core.domain.repository.UserRepository
 import com.powerly.core.model.payment.StripCard
-import com.powerly.core.model.util.Message
+import com.powerly.core.domain.model.Message
 import com.powerly.payment.PaymentManager
 import com.powerly.payment.domain.model.BalanceRefillStatus
 import com.powerly.payment.domain.repository.BalanceRepository

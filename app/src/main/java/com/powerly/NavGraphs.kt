@@ -11,8 +11,8 @@ import androidx.navigation.compose.dialog
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.powerly.account.presentation.accountDestinations
-import com.powerly.core.model.powerly.OrderTab
-import com.powerly.core.model.util.Message
+import com.powerly.navigation.OrderTabs
+import com.powerly.core.domain.model.Message
 import com.powerly.navigation.AppRoutes
 import com.powerly.navigation.Route
 import com.powerly.main.NavigationScreen
@@ -72,11 +72,11 @@ fun RootGraph(
             navController = navController,
             uiState = mainViewModel.uiState,
             openActiveOrders = {
-                homeTab.value = AppRoutes.Navigation.Orders(OrderTab.ACTIVE)
+                homeTab.value = AppRoutes.Navigation.Orders(OrderTabs.ACTIVE)
             },
             openCompletedOrders = {
                 sessionsViewModel.refreshCompletedOrders()
-                homeTab.value = AppRoutes.Navigation.Orders(OrderTab.HISTORY)
+                homeTab.value = AppRoutes.Navigation.Orders(OrderTabs.HISTORY)
             }
         )
 

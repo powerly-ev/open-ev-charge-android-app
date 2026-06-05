@@ -1,6 +1,6 @@
 package com.powerly.payment.domain.use_case
 
-import com.powerly.core.model.api.ApiStatus
+import com.powerly.core.domain.model.ApiStatus
 import com.powerly.core.model.payment.BalanceItem
 import com.powerly.core.managers.CountryManager
 import com.powerly.payment.domain.repository.BalanceRepository

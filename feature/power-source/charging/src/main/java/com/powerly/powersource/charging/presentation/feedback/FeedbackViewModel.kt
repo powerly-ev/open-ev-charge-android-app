@@ -4,7 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
-import com.powerly.core.model.api.ApiStatus
+import com.powerly.core.domain.model.ApiStatus
 import com.powerly.navigation.AppRoutes
 import com.powerly.powersource.charging.domain.model.ReviewOptionsStatus
 import com.powerly.powersource.charging.domain.repository.FeedbackRepository

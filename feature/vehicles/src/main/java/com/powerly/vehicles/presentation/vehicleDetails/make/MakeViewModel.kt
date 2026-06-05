@@ -2,7 +2,7 @@ package com.powerly.vehicles.presentation.vehicleDetails.make
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.powerly.core.model.api.ApiStatus
+import com.powerly.core.domain.model.ApiStatus
 import com.powerly.vehicles.domain.use_case.GetVehicleMakesUseCase
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.flow

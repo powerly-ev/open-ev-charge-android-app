@@ -9,7 +9,7 @@ import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.UriHandler
 import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.unit.Dp
-import com.powerly.core.model.util.Message
+import com.powerly.core.domain.model.Message
 import com.powerly.core.network.asErrorMessage
 import com.powerly.ui.theme.MyColors
 

@@ -1,11 +1,11 @@
 package com.powerly.powersource.charging.data.datasource.remote
 
-import com.powerly.core.model.api.ApiResponse
-import com.powerly.core.model.api.ApiStatus
-import com.powerly.core.model.powerly.ReviewBody
+import com.powerly.core.network.api.ApiResponse
+import com.powerly.core.domain.model.ApiStatus
+import com.powerly.powersource.charging.data.model.ReviewBody
 import com.powerly.core.model.powerly.Session
-import com.powerly.core.model.powerly.StartChargingBody
-import com.powerly.core.model.powerly.StopChargingBody
+import com.powerly.powersource.charging.data.model.StartChargingBody
+import com.powerly.powersource.charging.data.model.StopChargingBody
 import com.powerly.core.network.KtorClient
 import com.powerly.core.network.safeApiCall
 import com.powerly.powersource.charging.data.api.ChargingApi

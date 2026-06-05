@@ -1,8 +1,8 @@
 package com.powerly.navigation
 
 import androidx.navigation.NavHostController
-import com.powerly.core.model.powerly.OrderTab
-import com.powerly.core.model.util.Message
+import com.powerly.navigation.OrderTabs
+import com.powerly.core.domain.model.Message
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -42,7 +42,7 @@ object AppRoutes {
         }
 
         @Serializable
-        data class Orders(val type: Int = OrderTab.ACTIVE) : Route() {
+        data class Orders(val type: Int = OrderTabs.ACTIVE) : Route() {
             @Serializable
             data object Details
         }

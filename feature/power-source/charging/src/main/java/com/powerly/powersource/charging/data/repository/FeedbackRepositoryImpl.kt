@@ -1,6 +1,6 @@
 package com.powerly.powersource.charging.data.repository
 
-import com.powerly.core.model.api.ApiStatus
+import com.powerly.core.domain.model.ApiStatus
 import com.powerly.powersource.charging.data.datasource.remote.ChargingRemoteDataSource
 import com.powerly.powersource.charging.domain.model.ReviewOptionsStatus
 import com.powerly.powersource.charging.domain.repository.FeedbackRepository

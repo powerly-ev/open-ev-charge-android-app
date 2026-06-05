@@ -6,9 +6,9 @@ import com.powerly.core.database.LocalDataSource
 import com.powerly.core.database.StorageManager
 import com.powerly.core.domain.model.CurrenciesStatus
 import com.powerly.core.domain.repository.AppRepository
-import com.powerly.core.model.api.ApiStatus
+import com.powerly.core.domain.model.ApiStatus
 import com.powerly.core.model.location.Country
-import com.powerly.core.model.user.DeviceBody
+import com.powerly.core.data.model.DeviceBody
 import com.powerly.core.network.DeviceHelper
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext

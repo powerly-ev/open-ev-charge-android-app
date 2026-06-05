@@ -1,6 +1,6 @@
-package com.powerly.core.model.api
+package com.powerly.core.network.api
 
-import com.powerly.core.model.util.Message
+import com.powerly.core.domain.model.Message
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonNames
 

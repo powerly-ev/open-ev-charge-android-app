@@ -1,6 +1,6 @@
 package com.powerly.user.domain.repository
 
-import com.powerly.core.model.api.ApiStatus
+import com.powerly.core.domain.model.ApiStatus
 import com.powerly.core.model.user.EmailCheck
 import com.powerly.core.model.user.User
 import com.powerly.core.model.user.UserVerification

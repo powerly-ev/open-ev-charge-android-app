@@ -1,7 +1,6 @@
 package com.powerly.core.model.powerly
 
-import android.util.Log
-import com.powerly.core.model.api.FlexibleBooleanSerializer
+import com.powerly.core.model.serialization.FlexibleBooleanSerializer
 import com.powerly.core.model.location.MyAddress
 import com.powerly.core.model.location.Target
 import kotlinx.serialization.SerialName
@@ -133,8 +132,6 @@ data class PowerSource(
             sdf.timeZone = TimeZone.getTimeZone("UTC")
             val openingTime = sdf.parse(_openTime) ?: return false
             val closingTime = sdf.parse(_closeTime) ?: return false
-            Log.i("PowerSource", "open - $openingTime, close - $closingTime")
-            Log.i("PowerSource", "current - $currentTime")
             val case1 = openingTime < closingTime &&
                     currentTime.after(openingTime) && currentTime.before(closingTime)
             val case2 = openingTime > closingTime && currentTime.before(closingTime)

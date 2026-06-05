@@ -23,7 +23,10 @@ data class User(
     val currency: String get() = appCurrency.orEmpty()
 }
 
-
+/**
+ * TODO: leaks into UserRepository interface. Refactor the interface to take
+ * primitives, then relocate this DTO to core/data/model/.
+ */
 @Serializable
 data class UserUpdateBody(
     @SerialName("first_name") val firstName: String? = null,
@@ -35,16 +38,4 @@ data class UserUpdateBody(
     @SerialName("currency") val currency: String? = null,
     @SerialName("latitude") val latitude: Double? = null,
     @SerialName("longitude") val longitude: Double? = null
-)
-
-
-@Serializable
-data class RefreshToken(
-    @SerialName("access_token") val accessToken: String? = ""
-)
-
-@Serializable
-data class LogoutBody(
-    @SerialName("device_imei")
-    private val imei: String
 )

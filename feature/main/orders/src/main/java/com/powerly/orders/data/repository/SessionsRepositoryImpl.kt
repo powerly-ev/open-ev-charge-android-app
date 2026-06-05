@@ -2,7 +2,7 @@ package com.powerly.orders.data.repository
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import com.powerly.core.model.api.BasePagingSource
+import com.powerly.core.network.api.BasePagingSource
 import com.powerly.orders.data.datasource.remote.SessionsRemoteDataSource
 import com.powerly.orders.domain.repository.SessionsRepository
 import kotlinx.coroutines.CoroutineDispatcher

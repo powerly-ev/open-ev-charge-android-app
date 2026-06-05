@@ -30,7 +30,7 @@ import androidx.compose.ui.unit.dp
 import com.powerly.core.model.powerly.ChargingQuantity
 import com.powerly.core.model.powerly.Connector
 import com.powerly.core.model.powerly.PowerSource
-import com.powerly.core.model.util.asErrorMessage
+import com.powerly.core.domain.model.asErrorMessage
 import com.powerly.core.network.BuildConfig
 import com.powerly.resources.R
 import com.powerly.ui.components.ButtonLarge

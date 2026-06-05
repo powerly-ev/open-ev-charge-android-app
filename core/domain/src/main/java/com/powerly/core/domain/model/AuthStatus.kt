@@ -1,7 +1,7 @@
 package com.powerly.core.domain.model
 
 import com.powerly.core.model.user.User
-import com.powerly.core.model.util.Message
+import com.powerly.core.domain.model.Message
 
 sealed class AuthStatus {
     data class Error(val msg: Message) : AuthStatus()

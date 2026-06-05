@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalContext
-import com.powerly.core.model.api.ApiStatus
+import com.powerly.core.domain.model.ApiStatus
 import com.powerly.ui.dialogs.MyBasicBottomSheet
 import com.powerly.ui.dialogs.loading.LoadingDialog
 import com.powerly.ui.dialogs.loading.rememberLoadingState

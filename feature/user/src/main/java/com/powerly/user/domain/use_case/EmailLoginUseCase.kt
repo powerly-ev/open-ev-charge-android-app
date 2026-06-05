@@ -1,8 +1,8 @@
 package com.powerly.user.domain.use_case
 
-import com.powerly.core.model.api.ApiErrorConstants
-import com.powerly.core.model.api.ApiStatus
-import com.powerly.core.model.util.Message
+import com.powerly.core.network.api.ApiErrorConstants
+import com.powerly.core.domain.model.ApiStatus
+import com.powerly.core.domain.model.Message
 import com.powerly.user.domain.model.LoginResult
 import com.powerly.user.domain.repository.LoginEmailRepository
 import org.koin.core.annotation.Single

@@ -2,7 +2,7 @@ package com.powerly.vehicles.presentation.vehicleDetails.options.connectors
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.powerly.core.model.api.ApiStatus
+import com.powerly.core.domain.model.ApiStatus
 import com.powerly.core.domain.repository.PowerSourceRepository
 import com.powerly.core.model.powerly.Connector
 import org.koin.android.annotation.KoinViewModel

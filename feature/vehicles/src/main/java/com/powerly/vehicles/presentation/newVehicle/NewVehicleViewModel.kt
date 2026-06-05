@@ -2,7 +2,7 @@ package com.powerly.vehicles.presentation.newVehicle
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import com.powerly.core.model.api.ApiStatus
+import com.powerly.core.domain.model.ApiStatus
 import com.powerly.core.model.powerly.Vehicle
 import com.powerly.core.model.powerly.VehicleMaker
 import com.powerly.core.model.powerly.VehicleModel

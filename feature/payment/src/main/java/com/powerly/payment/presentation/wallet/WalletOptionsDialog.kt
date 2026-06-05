@@ -6,7 +6,7 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import com.powerly.core.model.payment.StripCard
-import com.powerly.core.model.util.Item
+import com.powerly.payment.presentation.wallet.Item
 import com.powerly.resources.R
 import com.powerly.ui.dialogs.MyDialogState
 

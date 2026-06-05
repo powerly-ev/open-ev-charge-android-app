@@ -3,7 +3,7 @@ package com.powerly.vehicles.presentation.vehicleDetails.options.connectors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import org.koin.androidx.compose.koinViewModel
-import com.powerly.core.model.api.ApiStatus
+import com.powerly.core.domain.model.ApiStatus
 import com.powerly.core.model.powerly.Connector
 import com.powerly.ui.dialogs.MyDialogState
 import com.powerly.ui.dialogs.MyScreenBottomSheet
