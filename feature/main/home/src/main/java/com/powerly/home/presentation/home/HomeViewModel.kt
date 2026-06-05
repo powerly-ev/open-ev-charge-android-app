@@ -7,7 +7,7 @@ import com.powerly.core.domain.model.SourceStatus
 import com.powerly.core.domain.repository.PowerSourceRepository
 import com.powerly.core.domain.repository.UserRepository
 import com.powerly.core.model.powerly.PowerSource
-import com.powerly.core.network.DeviceHelper
+import com.powerly.core.domain.model.AppInfo
 import com.powerly.navigation.CONSTANTS.POWER_SOURCE_ID
 import org.koin.android.annotation.KoinViewModel
 
@@ -16,7 +16,7 @@ import org.koin.android.annotation.KoinViewModel
 class HomeViewModel(
     private val userRepository: UserRepository,
     private val powerSourceRepository: PowerSourceRepository,
-    private val deviceHelper: DeviceHelper,
+    private val appInfo: AppInfo,
 ) : ViewModel() {
 
     suspend fun isLoggedIn() = userRepository.isLoggedIn()
@@ -32,7 +32,7 @@ class HomeViewModel(
         } else null
     }
 
-    val supportNumber: String get() = deviceHelper.supportNumber
+    val supportNumber: String get() = appInfo.supportNumber
 
     companion object {
         private const val TAG = "HomeViewModel"

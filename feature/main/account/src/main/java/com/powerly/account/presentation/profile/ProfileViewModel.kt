@@ -10,7 +10,7 @@ import com.powerly.core.domain.repository.UserRepository
 import com.powerly.core.domain.model.ApiStatus
 import com.powerly.core.model.location.Country
 import com.powerly.core.model.user.User
-import com.powerly.core.network.DeviceHelper
+import com.powerly.core.domain.model.AppInfo
 import com.powerly.core.managers.NotificationsManager
 import com.powerly.ui.dialogs.loading.initScreenState
 import kotlinx.coroutines.flow.Flow
@@ -25,7 +25,7 @@ import org.koin.android.annotation.KoinViewModel
 class ProfileViewModel(
     private val userRepository: UserRepository,
     private val appRepository: AppRepository,
-    private val deviceHelper: DeviceHelper,
+    private val appInfo: AppInfo,
     private val notificationsManager: NotificationsManager,
 ) : ViewModel() {
     val userCountry = mutableStateOf(Country(1))
@@ -133,7 +133,7 @@ class ProfileViewModel(
     }
 
 
-    val appLink: String get() = deviceHelper.appLink
+    val appLink: String get() = appInfo.appLink
 
 
     companion object {

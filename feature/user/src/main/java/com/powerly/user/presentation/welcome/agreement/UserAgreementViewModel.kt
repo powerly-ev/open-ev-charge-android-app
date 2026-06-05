@@ -1,13 +1,13 @@
 package com.powerly.user.presentation.welcome.agreement
 
 import androidx.lifecycle.ViewModel
-import com.powerly.core.network.DeviceHelper
+import com.powerly.core.domain.model.AppInfo
 import org.koin.android.annotation.KoinViewModel
 
 
 @KoinViewModel
 class UserAgreementViewModel(
-    private val deviceHelper: DeviceHelper
+    private val appInfo: AppInfo
 ) : ViewModel() {
 
     /**
@@ -16,7 +16,7 @@ class UserAgreementViewModel(
      * @param type 1 = privacy policy, anything else = terms & conditions.
      */
     fun getUserAgreementLink(type: Int): String? {
-        return if (type == 1) deviceHelper.privacyPolicyUrl
-        else deviceHelper.termsAndConditionsUrl
+        return if (type == 1) appInfo.privacyPolicyUrl
+        else appInfo.termsAndConditionsUrl
     }
 }

@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.powerly.core.domain.repository.AppRepository
 import com.powerly.core.model.location.Country
-import com.powerly.core.network.DeviceHelper
+import com.powerly.core.domain.model.AppInfo
 import com.powerly.user.domain.use_case.CancelRegistrationRemindersUseCase
 import com.powerly.user.domain.use_case.DetectCountryUseCase
 import com.powerly.user.domain.use_case.InitRegistrationRemindersUseCase
@@ -21,7 +21,7 @@ class UserViewModel(
     private val detectCountryUseCase: DetectCountryUseCase,
     private val cancelRegistrationRemindersUseCase: CancelRegistrationRemindersUseCase,
     private val initRegistrationRemindersUseCase: InitRegistrationRemindersUseCase,
-    private val deviceHelper: DeviceHelper,
+    private val appInfo: AppInfo,
 ) : ViewModel() {
 
     val country = mutableStateOf<Country?>(null)
@@ -65,11 +65,11 @@ class UserViewModel(
     val appVersion: String
         get() = String.format(
             "Version : %s %s",
-            deviceHelper.buildType,
-            deviceHelper.appVersion
+            appInfo.buildType,
+            appInfo.appVersion
         )
 
-    val supportNumber: String get() = deviceHelper.supportNumber
+    val supportNumber: String get() = appInfo.supportNumber
 
     companion object {
         private const val TAG = "UserViewModel"
