@@ -1,7 +1,7 @@
 package com.powerly.home.presentation.map
 
-import com.powerly.core.model.location.Target
-import com.powerly.core.model.powerly.PowerSource
+import com.powerly.core.domain.model.location.Target
+import com.powerly.core.domain.model.powerly.PowerSource
 
 internal sealed class MapEvents {
     data object OnLocation : MapEvents()

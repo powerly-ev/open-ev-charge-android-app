@@ -33,10 +33,10 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.powerly.core.model.location.MyAddress
-import com.powerly.core.model.powerly.PowerSource
-import com.powerly.core.model.powerly.Price
-import com.powerly.core.model.powerly.Session
+import com.powerly.core.domain.model.location.MyAddress
+import com.powerly.core.domain.model.powerly.PowerSource
+import com.powerly.core.domain.model.powerly.Price
+import com.powerly.core.domain.model.powerly.Session
 import com.powerly.resources.R
 import com.powerly.ui.components.ButtonSmall
 import com.powerly.ui.containers.LayoutDirectionAny

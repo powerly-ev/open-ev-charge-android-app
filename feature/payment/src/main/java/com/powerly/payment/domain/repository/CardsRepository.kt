@@ -1,7 +1,7 @@
 package com.powerly.payment.domain.repository
 
 import com.powerly.core.domain.model.ApiStatus
-import com.powerly.core.model.payment.StripCard
+import com.powerly.payment.domain.model.StripCard
 
 interface CardsRepository {
 

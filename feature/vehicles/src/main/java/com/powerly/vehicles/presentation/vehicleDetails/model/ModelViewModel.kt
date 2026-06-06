@@ -2,7 +2,7 @@ package com.powerly.vehicles.presentation.vehicleDetails.model
 
 import androidx.lifecycle.ViewModel
 import com.powerly.core.domain.model.ApiStatus
-import com.powerly.core.model.powerly.VehicleModel
+import com.powerly.core.domain.model.powerly.VehicleModel
 import com.powerly.vehicles.domain.use_case.GetVehicleModelsUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

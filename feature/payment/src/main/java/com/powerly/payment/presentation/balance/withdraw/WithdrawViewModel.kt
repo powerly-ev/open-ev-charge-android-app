@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.powerly.core.domain.repository.UserRepository
 import com.powerly.core.domain.model.ApiStatus
-import com.powerly.core.model.payment.Wallet
+import com.powerly.payment.domain.model.Wallet
 import com.powerly.payment.domain.repository.BalanceRepository
 import com.powerly.ui.dialogs.loading.LoadingState
 import com.powerly.ui.dialogs.loading.initBasicScreenState

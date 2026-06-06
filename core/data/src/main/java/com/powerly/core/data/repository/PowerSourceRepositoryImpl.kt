@@ -2,10 +2,13 @@ package com.powerly.core.data.repository
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
+import androidx.paging.map
 import com.powerly.core.data.datasource.remote.PowerSourceRemoteDataSource
+import com.powerly.core.data.model.powerly.toDomain
 import com.powerly.core.domain.repository.PowerSourceRepository
 import com.powerly.core.network.api.BasePagingSource
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import org.koin.core.annotation.Named
 import org.koin.core.annotation.Single
@@ -35,7 +38,7 @@ internal class PowerSourceRepositoryImpl(
                 apiCall = { remoteDataSource.getReviews(id, page = it) }
             )
         }
-    ).flow
+    ).flow.map { pagingData -> pagingData.map { it.toDomain() } }
 
     override suspend fun getPowerSource(id: String) = withContext(ioDispatcher) {
         remoteDataSource.getPowerSource(id)

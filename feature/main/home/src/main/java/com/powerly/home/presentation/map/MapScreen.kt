@@ -10,8 +10,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import com.powerly.core.model.location.Target
-import com.powerly.core.model.powerly.PowerSource
+import com.powerly.core.domain.model.location.Target
+import com.powerly.core.domain.model.powerly.PowerSource
 import com.powerly.ui.HomeUiState
 import com.powerly.ui.dialogs.locationSearch.LocationSearchDialog
 import com.powerly.ui.dialogs.rememberMyDialogState

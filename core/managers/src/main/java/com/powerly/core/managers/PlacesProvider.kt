@@ -5,7 +5,7 @@ import android.location.Address
 import android.location.Geocoder
 import android.os.Build
 import android.util.Log
-import com.powerly.core.model.location.MyAddress
+import com.powerly.core.domain.model.location.MyAddress
 import org.koin.core.annotation.Single
 import java.util.Locale
 import kotlin.coroutines.resume

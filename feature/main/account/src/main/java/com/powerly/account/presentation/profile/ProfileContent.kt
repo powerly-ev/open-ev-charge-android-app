@@ -39,8 +39,8 @@ import androidx.compose.ui.unit.sp
 import com.powerly.account.presentation.profile.dialogs.CurrencyDropMenu
 import com.powerly.account.presentation.profile.dialogs.ProfileDropMenu
 import com.powerly.core.domain.model.CurrenciesStatus
-import com.powerly.core.model.location.AppCurrency
-import com.powerly.core.model.user.User
+import com.powerly.core.domain.model.location.AppCurrency
+import com.powerly.core.domain.model.user.User
 import com.powerly.resources.R
 import com.powerly.ui.components.ButtonLarge
 import com.powerly.ui.components.ButtonText

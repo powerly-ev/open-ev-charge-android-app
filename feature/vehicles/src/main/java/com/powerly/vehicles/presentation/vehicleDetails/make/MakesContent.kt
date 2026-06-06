@@ -36,7 +36,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.powerly.core.domain.model.ApiStatus
-import com.powerly.core.model.powerly.VehicleMaker
+import com.powerly.core.domain.model.powerly.VehicleMaker
 import com.powerly.vehicles.domain.model.GroupedMakers
 import com.powerly.resources.R
 import com.powerly.ui.containers.MyCardRow

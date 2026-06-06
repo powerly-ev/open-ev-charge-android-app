@@ -3,7 +3,7 @@ package com.powerly.vehicles.presentation.vehicleList
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.powerly.core.domain.model.ApiStatus
-import com.powerly.core.model.powerly.Vehicle
+import com.powerly.core.domain.model.powerly.Vehicle
 import com.powerly.vehicles.domain.repository.VehiclesRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

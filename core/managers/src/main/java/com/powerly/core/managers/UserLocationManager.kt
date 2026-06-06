@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.location.LocationManager
 import androidx.core.app.ActivityCompat
-import com.powerly.core.model.location.Target
+import com.powerly.core.domain.model.location.Target
 import org.koin.core.annotation.Single
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine

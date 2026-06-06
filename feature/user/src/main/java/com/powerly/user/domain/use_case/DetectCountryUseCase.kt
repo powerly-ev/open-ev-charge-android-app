@@ -1,7 +1,7 @@
 package com.powerly.user.domain.use_case
 
 import com.powerly.core.domain.repository.AppRepository
-import com.powerly.core.model.location.Country
+import com.powerly.core.domain.model.location.Country
 import com.powerly.core.managers.CountryManager
 import org.koin.core.annotation.Single
 

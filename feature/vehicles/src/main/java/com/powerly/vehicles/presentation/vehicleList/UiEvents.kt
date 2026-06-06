@@ -1,6 +1,6 @@
 package com.powerly.vehicles.presentation.vehicleList
 
-import com.powerly.core.model.powerly.Vehicle
+import com.powerly.core.domain.model.powerly.Vehicle
 
 internal sealed class VehicleEvents {
     data object Close : VehicleEvents()

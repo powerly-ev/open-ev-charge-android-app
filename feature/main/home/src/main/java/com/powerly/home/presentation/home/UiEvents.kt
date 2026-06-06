@@ -1,6 +1,6 @@
 package com.powerly.home.presentation.home
 
-import com.powerly.core.model.powerly.PowerSource
+import com.powerly.core.domain.model.powerly.PowerSource
 import com.powerly.ui.dialogs.signIn.SignInOptions
 
 internal sealed class HomeEvents {

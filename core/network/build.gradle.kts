@@ -4,6 +4,7 @@ import com.powerly.getPropertiesFileName
 plugins {
     alias(libs.plugins.powerly.library)
     alias(libs.plugins.powerly.koin)
+    alias(libs.plugins.powerly.serialization)
     alias(libs.plugins.secrets)
 }
 
@@ -49,6 +50,7 @@ dependencies {
     api(projects.core.domain)
     implementation(projects.core.database)
     implementation(libs.kotlinx.coroutines)
+    implementation(libs.paging.runtime.ktx)
 
     api(libs.ktor.client.core)
     implementation(libs.ktor.client.okhttp)

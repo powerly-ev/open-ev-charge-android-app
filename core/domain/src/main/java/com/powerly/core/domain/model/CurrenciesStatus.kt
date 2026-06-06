@@ -1,6 +1,6 @@
 package com.powerly.core.domain.model
 
-import com.powerly.core.model.location.AppCurrency
+import com.powerly.core.domain.model.location.AppCurrency
 import com.powerly.core.domain.model.Message
 
 sealed class CurrenciesStatus {

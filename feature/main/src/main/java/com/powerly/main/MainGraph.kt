@@ -26,7 +26,7 @@ import androidx.navigation.toRoute
 import com.powerly.account.presentation.AccountEvents
 import com.powerly.account.presentation.AccountScreen
 import com.powerly.navigation.OrderTabs
-import com.powerly.core.model.powerly.Session
+import com.powerly.core.domain.model.powerly.Session
 import com.powerly.home.presentation.map.MyMapViewModel
 import com.powerly.home.presentation.home.HomeScreen
 import com.powerly.home.presentation.home.HomeViewModel

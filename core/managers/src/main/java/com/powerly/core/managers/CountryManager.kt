@@ -5,7 +5,7 @@ import android.content.Context.TELEPHONY_SERVICE
 import android.telephony.TelephonyManager
 import android.util.Log
 import com.powerly.core.domain.repository.AppRepository
-import com.powerly.core.model.location.Country
+import com.powerly.core.domain.model.location.Country
 import org.koin.core.annotation.Single
 
 /**

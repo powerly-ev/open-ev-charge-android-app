@@ -1,6 +1,6 @@
 package com.powerly.powersource.details.presentation.source
 
-import com.powerly.core.model.location.Target
+import com.powerly.core.domain.model.location.Target
 
 sealed class SourceEvents {
     data object Close : SourceEvents()

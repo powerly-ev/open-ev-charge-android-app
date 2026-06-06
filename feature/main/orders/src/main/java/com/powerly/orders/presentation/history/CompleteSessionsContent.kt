@@ -22,8 +22,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.powerly.core.model.powerly.PowerSource
-import com.powerly.core.model.powerly.Session
+import com.powerly.core.domain.model.powerly.PowerSource
+import com.powerly.core.domain.model.powerly.Session
 import com.powerly.orders.presentation.SessionItemTitle
 import com.powerly.orders.presentation.SessionOutlinedButton
 import com.powerly.orders.presentation.active.ListSessions

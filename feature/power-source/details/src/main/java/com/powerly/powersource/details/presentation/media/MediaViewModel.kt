@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
 import com.powerly.core.domain.repository.PowerSourceRepository
-import com.powerly.core.model.powerly.Media
+import com.powerly.core.domain.model.powerly.Media
 import com.powerly.navigation.AppRoutes
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

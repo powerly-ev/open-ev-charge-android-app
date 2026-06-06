@@ -12,8 +12,8 @@ import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.api.net.FetchPlaceRequest
 import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest
 import com.google.android.libraries.places.api.net.PlacesClient
-import com.powerly.core.model.location.MyAddress
-import com.powerly.core.model.location.Target
+import com.powerly.core.domain.model.location.MyAddress
+import com.powerly.core.domain.model.location.Target
 import com.powerly.core.network.DeviceHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.powerly.core.domain.model.SourceStatus
 import com.powerly.core.domain.repository.PowerSourceRepository
 import com.powerly.core.domain.repository.UserRepository
-import com.powerly.core.model.powerly.PowerSource
+import com.powerly.core.domain.model.powerly.PowerSource
 import com.powerly.core.domain.model.AppInfo
 import com.powerly.navigation.CONSTANTS.POWER_SOURCE_ID
 import org.koin.android.annotation.KoinViewModel

@@ -31,10 +31,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import com.powerly.core.domain.model.ApiStatus
-import com.powerly.core.model.powerly.Connector
-import com.powerly.core.model.powerly.Vehicle
-import com.powerly.core.model.powerly.VehicleMaker
-import com.powerly.core.model.powerly.VehicleModel
+import com.powerly.core.domain.model.powerly.Connector
+import com.powerly.core.domain.model.powerly.Vehicle
+import com.powerly.core.domain.model.powerly.VehicleMaker
+import com.powerly.core.domain.model.powerly.VehicleModel
 import com.powerly.vehicles.presentation.vehicleDetails.options.asVehicleColor
 import com.powerly.resources.R
 import com.powerly.ui.containers.MyColumn

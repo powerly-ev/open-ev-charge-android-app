@@ -43,8 +43,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.powerly.core.model.powerly.PowerSource
-import com.powerly.core.model.powerly.Session
+import com.powerly.core.domain.model.powerly.PowerSource
+import com.powerly.core.domain.model.powerly.Session
 import com.powerly.powersource.charging.timer.ChargingTimerState
 import com.powerly.powersource.charging.timer.asFormattedTime
 import com.powerly.powersource.charging.timer.chargingAnimation

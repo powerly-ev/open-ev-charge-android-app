@@ -2,9 +2,9 @@ package com.powerly.vehicles.data.repository
 
 import com.powerly.core.domain.model.ApiStatus
 import com.powerly.core.domain.model.map
-import com.powerly.core.model.powerly.Vehicle
-import com.powerly.core.model.powerly.VehicleMaker
-import com.powerly.core.model.powerly.VehicleModel
+import com.powerly.core.domain.model.powerly.Vehicle
+import com.powerly.core.domain.model.powerly.VehicleMaker
+import com.powerly.core.domain.model.powerly.VehicleModel
 import com.powerly.vehicles.data.datasource.remote.VehiclesRemoteDataSource
 import com.powerly.vehicles.data.mapper.toAddBody
 import com.powerly.vehicles.domain.repository.VehiclesRepository

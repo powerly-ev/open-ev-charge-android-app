@@ -1,15 +1,17 @@
 package com.powerly.core.data.datasource.remote
 
 import com.powerly.core.data.api.UserApi
-import com.powerly.core.domain.model.AuthStatus
-import com.powerly.core.network.api.ApiResponse
-import com.powerly.core.domain.model.ApiStatus
-import com.powerly.core.domain.model.map
 import com.powerly.core.data.model.LogoutBody
 import com.powerly.core.data.model.RefreshToken
 import com.powerly.core.data.model.UserUpdateBody
-import com.powerly.core.model.user.User
+import com.powerly.core.data.model.user.UserDto
+import com.powerly.core.data.model.user.toDomain
+import com.powerly.core.domain.model.ApiStatus
+import com.powerly.core.domain.model.AuthStatus
+import com.powerly.core.domain.model.map
+import com.powerly.core.domain.model.user.User
 import com.powerly.core.network.KtorClient
+import com.powerly.core.network.api.ApiResponse
 import com.powerly.core.network.asErrorMessage
 import com.powerly.core.network.isSuccessful
 import com.powerly.core.network.needToRefreshToken
@@ -31,9 +33,9 @@ internal class UserRemoteDataSource(
 ) {
     private val client = ktorClient.client
 
-    suspend fun getUser(): ApiStatus<User> = safeApiCall {
-        client.get(UserApi.ME).body<ApiResponse<User?>>()
-    }
+    suspend fun getUser(): ApiStatus<User> = safeApiCall<UserDto> {
+        client.get(UserApi.ME).body<ApiResponse<UserDto?>>()
+    }.map { it.toDomain() }
 
     suspend fun updateUser(
         firstName: String? = null,
@@ -45,7 +47,7 @@ internal class UserRemoteDataSource(
         currency: String? = null,
         latitude: Double? = null,
         longitude: Double? = null
-    ): ApiStatus<User> = safeApiCall {
+    ): ApiStatus<User> = safeApiCall<UserDto> {
         val body = UserUpdateBody(
             firstName = firstName,
             lastName = lastName,
@@ -60,8 +62,8 @@ internal class UserRemoteDataSource(
         client.put(UserApi.ME) {
             contentType(ContentType.Application.Json)
             setBody(body)
-        }.body<ApiResponse<User?>>()
-    }
+        }.body<ApiResponse<UserDto?>>()
+    }.map { it.toDomain() }
 
     suspend fun refreshToken(): ApiStatus<String> = safeApiCall<RefreshToken> {
         client.get(UserApi.TOKEN_REFRESH).body<ApiResponse<RefreshToken?>>()
@@ -75,10 +77,10 @@ internal class UserRemoteDataSource(
     suspend fun checkAuthentication(): AuthStatus = try {
         val response = client.get(UserApi.ME)
         if (response.isSuccessful) {
-            val body = response.body<ApiResponse<User>>()
+            val body = response.body<ApiResponse<UserDto>>()
             when {
                 response.headers.needToRefreshToken() -> AuthStatus.RefreshToken
-                body.hasData -> AuthStatus.Success(body.getData())
+                body.hasData -> AuthStatus.Success(body.getData().toDomain())
                 else -> AuthStatus.Error(body.getMessage())
             }
         } else AuthStatus.Error(response.asErrorMessage())

@@ -7,7 +7,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import com.powerly.core.domain.model.ApiStatus
-import com.powerly.core.model.payment.BalanceItem
+import com.powerly.payment.domain.model.BalanceItem
 import com.powerly.payment.presentation.PaymentViewModel
 import kotlinx.coroutines.launch
 

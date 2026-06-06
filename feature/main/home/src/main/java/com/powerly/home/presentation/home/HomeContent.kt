@@ -31,8 +31,8 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
-import com.powerly.core.model.powerly.Connector
-import com.powerly.core.model.powerly.PowerSource
+import com.powerly.core.domain.model.powerly.Connector
+import com.powerly.core.domain.model.powerly.PowerSource
 import com.powerly.home.presentation.home.slider.SectionSlider
 import com.powerly.powersource.details.presentation.boarding.OnBoardingScreenContent
 import com.powerly.resources.R

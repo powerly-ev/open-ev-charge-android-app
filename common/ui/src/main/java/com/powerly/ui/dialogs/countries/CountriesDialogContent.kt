@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.powerly.core.model.location.Country
+import com.powerly.core.domain.model.location.Country
 import com.powerly.resources.R
 import com.powerly.ui.screen.MyScreen
 import com.powerly.ui.components.MySearchBox

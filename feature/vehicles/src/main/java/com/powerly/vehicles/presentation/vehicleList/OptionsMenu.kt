@@ -3,7 +3,7 @@ package com.powerly.vehicles.presentation.vehicleList
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.powerly.core.model.powerly.Vehicle
+import com.powerly.core.domain.model.powerly.Vehicle
 import com.powerly.resources.R
 import com.powerly.ui.dialogs.ItemOptionsMenu
 import com.powerly.ui.dialogs.MyDropdownMenu

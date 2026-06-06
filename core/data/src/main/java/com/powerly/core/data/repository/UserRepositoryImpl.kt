@@ -4,7 +4,7 @@ import com.powerly.core.data.datasource.remote.UserRemoteDataSource
 import com.powerly.core.database.StorageManager
 import com.powerly.core.domain.repository.UserRepository
 import com.powerly.core.domain.model.ApiStatus
-import com.powerly.core.model.user.User
+import com.powerly.core.domain.model.user.User
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.Flow

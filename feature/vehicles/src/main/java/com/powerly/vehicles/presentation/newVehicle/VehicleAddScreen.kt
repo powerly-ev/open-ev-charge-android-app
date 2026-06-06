@@ -6,7 +6,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import com.powerly.core.domain.model.ApiStatus
-import com.powerly.core.model.powerly.Vehicle
+import com.powerly.core.domain.model.powerly.Vehicle
 import com.powerly.ui.dialogs.loading.rememberScreenState
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

@@ -11,7 +11,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.powerly.core.domain.model.ApiStatus
-import com.powerly.core.model.powerly.Vehicle
+import com.powerly.core.domain.model.powerly.Vehicle
 import com.powerly.resources.R
 import com.powerly.ui.dialogs.alert.MyAlertDialog
 import com.powerly.ui.dialogs.alert.rememberAlertDialogState

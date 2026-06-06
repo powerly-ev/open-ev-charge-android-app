@@ -1,7 +1,7 @@
 package com.powerly.account.presentation.profile
 
-import com.powerly.core.model.location.AppCurrency
-import com.powerly.core.model.user.User
+import com.powerly.core.domain.model.location.AppCurrency
+import com.powerly.core.domain.model.user.User
 
 internal sealed class ProfileEvents {
     data object Close : ProfileEvents()

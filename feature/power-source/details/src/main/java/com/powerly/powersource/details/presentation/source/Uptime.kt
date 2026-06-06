@@ -2,7 +2,7 @@ package com.powerly.powersource.details.presentation.source
 
 import android.content.Context
 import androidx.annotation.DrawableRes
-import com.powerly.core.model.powerly.PowerSource
+import com.powerly.core.domain.model.powerly.PowerSource
 import com.powerly.resources.R
 
 internal class PowerSourceUptime(

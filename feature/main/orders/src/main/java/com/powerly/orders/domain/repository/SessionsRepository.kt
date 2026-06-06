@@ -2,7 +2,7 @@ package com.powerly.orders.domain.repository
 
 import androidx.paging.PagingData
 import com.powerly.core.domain.model.ApiStatus
-import com.powerly.core.model.powerly.Session
+import com.powerly.core.domain.model.powerly.Session
 import kotlinx.coroutines.flow.Flow
 
 interface SessionsRepository {

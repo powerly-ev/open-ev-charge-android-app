@@ -9,7 +9,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalUriHandler
 import com.powerly.core.domain.model.SourceStatus
-import com.powerly.core.model.powerly.PowerSource
+import com.powerly.core.domain.model.powerly.PowerSource
 import com.powerly.powersource.details.presentation.DetailsViewModel
 import com.powerly.ui.HomeUiState
 import com.powerly.ui.dialogs.loading.rememberScreenState

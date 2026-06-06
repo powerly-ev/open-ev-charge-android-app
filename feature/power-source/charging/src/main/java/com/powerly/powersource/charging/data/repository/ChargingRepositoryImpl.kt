@@ -39,7 +39,7 @@ internal class ChargingRepositoryImpl(
         remoteDataSource.sessionDetails(orderId).toChargingStatus()
     }
 
-    private fun ApiStatus<com.powerly.core.model.powerly.Session>.toChargingStatus(): ChargingStatus =
+    private fun ApiStatus<com.powerly.core.domain.model.powerly.Session>.toChargingStatus(): ChargingStatus =
         when (this) {
             is ApiStatus.Success -> ChargingStatus.Success(data)
             is ApiStatus.Error -> ChargingStatus.Error(msg)

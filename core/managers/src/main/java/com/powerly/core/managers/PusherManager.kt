@@ -2,8 +2,10 @@ package com.powerly.core.managers
 
 import android.util.Log
 import androidx.annotation.Keep
+import com.powerly.core.data.model.powerly.SessionDto
+import com.powerly.core.data.model.powerly.toDomain
 import com.powerly.core.database.StorageManager
-import com.powerly.core.model.powerly.Session
+import com.powerly.core.domain.model.powerly.Session
 import com.powerly.core.network.DeviceHelper
 import com.pusher.client.Pusher
 import com.pusher.client.PusherOptions
@@ -300,13 +302,13 @@ private val json = Json {
 @Keep
 @Serializable
 data class SessionData(
-    @SerialName("order") val session: Session
+    @SerialName("order") val session: SessionDto
 )
 
 private fun PusherEvent.asSession(): Session? = try {
     print(this.data)
     val data = json.decodeFromString<SessionData>(this.data)
-    data.session
+    data.session.toDomain()
 } catch (e: Exception) {
     e.printStackTrace()
     null

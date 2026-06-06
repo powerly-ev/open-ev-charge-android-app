@@ -31,8 +31,8 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemContentType
 import androidx.paging.compose.itemKey
-import com.powerly.core.model.powerly.Review
-import com.powerly.core.model.powerly.Reviewer
+import com.powerly.core.domain.model.powerly.Review
+import com.powerly.core.domain.model.powerly.Reviewer
 import com.powerly.resources.R
 import com.powerly.ui.components.ButtonSmall
 import com.powerly.ui.components.RatingBar

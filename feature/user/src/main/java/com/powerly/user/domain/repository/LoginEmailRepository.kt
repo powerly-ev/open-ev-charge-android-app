@@ -1,9 +1,9 @@
 package com.powerly.user.domain.repository
 
 import com.powerly.core.domain.model.ApiStatus
-import com.powerly.core.model.user.EmailCheck
-import com.powerly.core.model.user.User
-import com.powerly.core.model.user.UserVerification
+import com.powerly.user.domain.model.EmailCheck
+import com.powerly.core.domain.model.user.User
+import com.powerly.user.domain.model.UserVerification
 import kotlinx.coroutines.flow.Flow
 
 interface LoginEmailRepository {

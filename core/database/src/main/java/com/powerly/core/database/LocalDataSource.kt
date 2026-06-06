@@ -4,7 +4,7 @@ import com.powerly.core.database.dao.CountriesDao
 import com.powerly.core.database.model.CountryEntity
 import com.powerly.core.database.model.asCountry
 import com.powerly.core.database.model.asEntity
-import com.powerly.core.model.location.Country
+import com.powerly.core.domain.model.location.Country
 import org.koin.core.annotation.Single
 
 @Single

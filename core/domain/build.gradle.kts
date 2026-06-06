@@ -2,6 +2,7 @@ import com.powerly.MyProject
 
 plugins {
     alias(libs.plugins.powerly.library)
+    alias(libs.plugins.powerly.serialization)
 }
 
 android {
@@ -9,6 +10,5 @@ android {
 }
 
 dependencies {
-    api(projects.core.model)
     implementation(libs.paging.runtime.ktx)
 }

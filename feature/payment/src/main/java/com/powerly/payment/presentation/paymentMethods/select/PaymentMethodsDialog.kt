@@ -7,7 +7,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import com.powerly.core.model.payment.StripCard
+import com.powerly.payment.domain.model.StripCard
 import com.powerly.payment.presentation.PaymentViewModel
 import com.powerly.ui.dialogs.MyScreenBottomSheet
 import kotlinx.coroutines.launch

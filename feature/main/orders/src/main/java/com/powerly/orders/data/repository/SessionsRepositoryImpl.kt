@@ -2,10 +2,13 @@ package com.powerly.orders.data.repository
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
+import androidx.paging.map
 import com.powerly.core.network.api.BasePagingSource
 import com.powerly.orders.data.datasource.remote.SessionsRemoteDataSource
+import com.powerly.core.data.model.powerly.toDomain
 import com.powerly.orders.domain.repository.SessionsRepository
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import org.koin.core.annotation.Named
 import org.koin.core.annotation.Single
@@ -24,7 +27,7 @@ internal class SessionsRepositoryImpl(
                     apiCall = { remoteDataSource.getActiveOrders(page = it) }
                 )
             }
-        ).flow
+        ).flow.map { pagingData -> pagingData.map { it.toDomain() } }
 
     override val completedOrders
         get() = Pager(
@@ -34,7 +37,7 @@ internal class SessionsRepositoryImpl(
                     apiCall = { remoteDataSource.getCompleteOrders(page = it) }
                 )
             }
-        ).flow
+        ).flow.map { pagingData -> pagingData.map { it.toDomain() } }
 
     override suspend fun stopCharging(
         orderId: String,

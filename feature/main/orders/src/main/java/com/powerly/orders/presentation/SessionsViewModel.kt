@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.powerly.core.domain.repository.UserRepository
-import com.powerly.core.model.powerly.Session
+import com.powerly.core.domain.model.powerly.Session
 import com.powerly.core.managers.PusherManager
 import com.powerly.orders.domain.repository.SessionsRepository
 import kotlinx.coroutines.flow.MutableSharedFlow

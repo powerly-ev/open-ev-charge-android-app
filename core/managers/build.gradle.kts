@@ -13,9 +13,9 @@ android {
 dependencies {
     implementation(projects.common.resources)
     implementation(projects.common.navigation)
-    implementation(projects.core.model)
     implementation(projects.core.domain)
     implementation(projects.core.network)
+    implementation(projects.core.data)
     implementation(projects.core.database)
     implementation(projects.core.analytics)
     implementation(projects.core.analytics.impl)

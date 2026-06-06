@@ -6,7 +6,7 @@ import com.powerly.core.domain.model.SourceStatus
 import com.powerly.core.domain.repository.AppRepository
 import com.powerly.core.domain.repository.PowerSourceRepository
 import com.powerly.core.domain.repository.UserRepository
-import com.powerly.core.model.powerly.PowerSource
+import com.powerly.core.domain.model.powerly.PowerSource
 import com.powerly.core.managers.UserLocationManager
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

@@ -8,7 +8,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
-import com.powerly.core.model.payment.StripCard
+import com.powerly.payment.domain.model.StripCard
 import com.powerly.payment.presentation.PaymentViewModel
 import com.powerly.resources.R
 import com.powerly.ui.dialogs.alert.MyAlertDialog

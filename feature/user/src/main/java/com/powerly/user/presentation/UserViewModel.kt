@@ -6,7 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.powerly.core.domain.repository.AppRepository
-import com.powerly.core.model.location.Country
+import com.powerly.core.domain.model.location.Country
 import com.powerly.core.domain.model.AppInfo
 import com.powerly.user.domain.use_case.CancelRegistrationRemindersUseCase
 import com.powerly.user.domain.use_case.DetectCountryUseCase

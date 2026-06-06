@@ -3,7 +3,7 @@ package com.powerly.powersource.charging.presentation.activate
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import com.powerly.core.model.powerly.PowerSource
+import com.powerly.core.domain.model.powerly.PowerSource
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 

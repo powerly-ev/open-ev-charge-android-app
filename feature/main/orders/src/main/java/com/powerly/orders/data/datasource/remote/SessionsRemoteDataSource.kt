@@ -1,13 +1,16 @@
 package com.powerly.orders.data.datasource.remote
 
-import com.powerly.core.network.api.ApiResponse
 import com.powerly.core.domain.model.ApiStatus
-import com.powerly.core.network.api.BaseResponsePaginated
-import com.powerly.core.model.powerly.Session
-import com.powerly.orders.data.model.StopChargingBody
+import com.powerly.core.domain.model.map
+import com.powerly.core.domain.model.powerly.Session
 import com.powerly.core.network.KtorClient
+import com.powerly.core.network.api.ApiResponse
+import com.powerly.core.network.api.BaseResponsePaginated
 import com.powerly.core.network.safeApiCall
 import com.powerly.orders.data.api.SessionsApi
+import com.powerly.core.data.model.powerly.SessionDto
+import com.powerly.orders.data.model.StopChargingBody
+import com.powerly.core.data.model.powerly.toDomain
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
@@ -27,7 +30,7 @@ internal class SessionsRemoteDataSource(
         orderId: String,
         chargePointId: String,
         connector: Int?
-    ): ApiStatus<Session> = safeApiCall {
+    ): ApiStatus<Session> = safeApiCall<SessionDto> {
         client.post(SessionsApi.ORDERS_STOP) {
             contentType(ContentType.Application.Json)
             setBody(
@@ -37,13 +40,13 @@ internal class SessionsRemoteDataSource(
                     connector = connector
                 )
             )
-        }.body<ApiResponse<Session?>>()
-    }
+        }.body<ApiResponse<SessionDto?>>()
+    }.map { it.toDomain() }
 
     suspend fun getActiveOrders(
         page: Int,
         limit: Int = 15
-    ): BaseResponsePaginated<Session> {
+    ): BaseResponsePaginated<SessionDto> {
         return client.get(SessionsApi.ORDERS) {
             parameter("page", page)
             parameter("status", "active")
@@ -54,7 +57,7 @@ internal class SessionsRemoteDataSource(
     suspend fun getCompleteOrders(
         page: Int,
         limit: Int = 15
-    ): BaseResponsePaginated<Session> {
+    ): BaseResponsePaginated<SessionDto> {
         return client.get(SessionsApi.ORDERS) {
             parameter("page", page)
             parameter("status", "complete")

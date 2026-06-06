@@ -2,7 +2,7 @@ package com.powerly.payment.presentation.balance.add
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import com.powerly.core.model.payment.StripCard
+import com.powerly.payment.domain.model.StripCard
 import com.powerly.resources.R
 
 @Composable

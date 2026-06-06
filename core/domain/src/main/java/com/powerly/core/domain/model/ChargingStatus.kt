@@ -1,6 +1,6 @@
 package com.powerly.core.domain.model
 
-import com.powerly.core.model.powerly.Session
+import com.powerly.core.domain.model.powerly.Session
 import com.powerly.core.domain.model.Message
 
 sealed class ChargingStatus {

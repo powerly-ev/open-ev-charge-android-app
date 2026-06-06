@@ -4,9 +4,9 @@ import androidx.paging.PagingData
 import com.powerly.core.domain.model.SourceStatus
 import com.powerly.core.domain.model.SourcesStatus
 import com.powerly.core.domain.model.ApiStatus
-import com.powerly.core.model.powerly.Connector
-import com.powerly.core.model.powerly.Media
-import com.powerly.core.model.powerly.Review
+import com.powerly.core.domain.model.powerly.Connector
+import com.powerly.core.domain.model.powerly.Media
+import com.powerly.core.domain.model.powerly.Review
 import kotlinx.coroutines.flow.Flow
 
 

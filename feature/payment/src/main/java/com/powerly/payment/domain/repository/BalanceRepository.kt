@@ -1,8 +1,8 @@
 package com.powerly.payment.domain.repository
 
 import com.powerly.core.domain.model.ApiStatus
-import com.powerly.core.model.payment.BalanceItem
-import com.powerly.core.model.payment.Wallet
+import com.powerly.payment.domain.model.BalanceItem
+import com.powerly.payment.domain.model.Wallet
 import com.powerly.core.domain.model.Message
 import com.powerly.payment.domain.model.BalanceRefillStatus
 

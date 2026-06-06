@@ -28,7 +28,6 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
                 add("implementation", project(":common:navigation"))
                 add("implementation", project(":common:resources"))
                 add("implementation", project(":common:ui"))
-                add("implementation", project(":core:model"))
                 add("implementation", project(":core:domain"))
                 add("implementation", project(":core:network"))
             }

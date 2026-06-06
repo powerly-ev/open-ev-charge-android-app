@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.powerly.core.model.powerly.Media
+import com.powerly.core.domain.model.powerly.Media
 import com.powerly.resources.R
 import com.powerly.ui.components.NetworkImage
 import com.powerly.ui.components.SlidingCarousel

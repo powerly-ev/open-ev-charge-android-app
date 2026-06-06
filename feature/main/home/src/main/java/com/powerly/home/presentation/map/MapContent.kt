@@ -37,10 +37,10 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
-import com.powerly.core.model.location.Target
-import com.powerly.core.model.powerly.Amenity
-import com.powerly.core.model.powerly.Connector
-import com.powerly.core.model.powerly.PowerSource
+import com.powerly.core.domain.model.location.Target
+import com.powerly.core.domain.model.powerly.Amenity
+import com.powerly.core.domain.model.powerly.Connector
+import com.powerly.core.domain.model.powerly.PowerSource
 import com.powerly.home.presentation.home.MapPlaceHolder
 import com.powerly.resources.R
 import com.powerly.ui.HomeUiState

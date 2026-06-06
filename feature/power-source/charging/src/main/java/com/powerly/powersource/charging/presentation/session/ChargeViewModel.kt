@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
 import com.powerly.core.domain.model.ChargingStatus
 import com.powerly.core.domain.repository.UserRepository
-import com.powerly.core.model.powerly.Session
+import com.powerly.core.domain.model.powerly.Session
 import com.powerly.navigation.AppRoutes
 import com.powerly.core.managers.PusherManager
 import com.powerly.powersource.charging.domain.repository.ChargingRepository

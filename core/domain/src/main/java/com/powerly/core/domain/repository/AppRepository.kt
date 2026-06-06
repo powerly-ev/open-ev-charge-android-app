@@ -2,7 +2,7 @@ package com.powerly.core.domain.repository
 
 import com.powerly.core.domain.model.CurrenciesStatus
 import com.powerly.core.domain.model.ApiStatus
-import com.powerly.core.model.location.Country
+import com.powerly.core.domain.model.location.Country
 import kotlinx.coroutines.flow.Flow
 
 interface AppRepository {

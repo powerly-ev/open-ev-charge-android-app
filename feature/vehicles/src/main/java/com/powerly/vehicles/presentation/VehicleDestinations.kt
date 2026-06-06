@@ -4,7 +4,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.powerly.core.model.powerly.Vehicle
+import com.powerly.core.domain.model.powerly.Vehicle
 import com.powerly.navigation.AppRoutes
 import com.powerly.navigation.IRoute
 import com.powerly.ui.navigation.sharedGraphViewModel

@@ -8,8 +8,8 @@ import com.powerly.core.domain.model.CurrenciesStatus
 import com.powerly.core.domain.repository.AppRepository
 import com.powerly.core.domain.repository.UserRepository
 import com.powerly.core.domain.model.ApiStatus
-import com.powerly.core.model.location.Country
-import com.powerly.core.model.user.User
+import com.powerly.core.domain.model.location.Country
+import com.powerly.core.domain.model.user.User
 import com.powerly.core.domain.model.AppInfo
 import com.powerly.core.managers.NotificationsManager
 import com.powerly.ui.dialogs.loading.initScreenState

@@ -12,7 +12,7 @@ android {
 }
 
 dependencies {
-    implementation(projects.core.model)
+    implementation(projects.core.domain)
     api(libs.androidx.datastore.preferences)
     //implementation(libs.androidx.datastore.core)
 }

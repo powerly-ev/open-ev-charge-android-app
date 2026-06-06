@@ -22,7 +22,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
-import com.powerly.core.model.location.Target
+import com.powerly.core.domain.model.location.Target
 import com.powerly.core.managers.PlacesManager
 import com.powerly.resources.R
 import com.powerly.ui.map.Distance

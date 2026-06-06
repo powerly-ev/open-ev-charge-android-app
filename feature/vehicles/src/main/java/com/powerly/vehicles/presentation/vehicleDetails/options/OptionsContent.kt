@@ -21,7 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.powerly.core.model.powerly.Connector
+import com.powerly.core.domain.model.powerly.Connector
 import com.powerly.resources.R
 import com.powerly.ui.containers.MyCardColum
 import com.powerly.ui.containers.MyCardRow

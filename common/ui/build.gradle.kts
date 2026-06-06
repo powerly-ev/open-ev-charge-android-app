@@ -14,7 +14,6 @@ dependencies {
     // minus common/ui itself which would be self-circular).
     implementation(projects.common.navigation)
     implementation(projects.common.resources)
-    implementation(projects.core.model)
     implementation(projects.core.domain)
     implementation(projects.core.network)
     implementation(projects.core.managers)
