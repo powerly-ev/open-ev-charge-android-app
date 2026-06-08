@@ -2,7 +2,9 @@ package com.powerly.vehicles.presentation.vehicleDetails.options
 
 import androidx.annotation.StringRes
 import com.powerly.resources.R
-import java.time.Year
+import kotlin.time.Clock
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.todayIn
 
 
 internal val fuelTypes = listOf(
@@ -27,7 +29,8 @@ internal val fuelTypes = listOf(
     )
 )
 
-internal val currentYear: Int = Year.now().value
+internal val currentYear: Int =
+    Clock.System.todayIn(TimeZone.currentSystemDefault()).year
 
 val years = (2000..currentYear).map { it.toString() }
 

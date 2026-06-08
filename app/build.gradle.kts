@@ -31,7 +31,6 @@ android {
         applicationId = appPackageName
         versionCode = MyProject.VERSION_CODE
         versionName = MyProject.VERSION_NAME
-        multiDexEnabled = true
     }
 
     buildFeatures {
@@ -122,7 +121,6 @@ android {
     compileOptions {
         sourceCompatibility = MyProject.javaVersion
         targetCompatibility = MyProject.javaVersion
-        isCoreLibraryDesugaringEnabled = true
     }
 
     lint {
@@ -162,12 +160,6 @@ dependencies {
     implementation(projects.feature.powerSource.details)
     implementation(projects.feature.payment)
     implementation(projects.feature.vehicles)
-
-    //--------- core
-    implementation(libs.activity.ktx)
-    implementation(libs.lifecycle.viewmodel.ktx)
-    coreLibraryDesugaring(libs.desugar.jdk.libs)
-    implementation(libs.multidex)
 
     gmsImplementation(platform(libs.firebase.bom))
     gmsImplementation(libs.firebase.crashlytics)

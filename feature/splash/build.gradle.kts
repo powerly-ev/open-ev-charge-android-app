@@ -8,6 +8,3 @@ plugins {
 android {
     namespace = "${MyProject.NAMESPACE}.splash"
 }
-
-dependencies {
-}

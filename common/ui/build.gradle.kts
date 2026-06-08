@@ -26,22 +26,12 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    // Optional - Included automatically by material, only add when you need
-    // the icons but not the material library (e.g. when using Material3 or a
-    // custom design system based on Foundation)
-    api(libs.androidx.material.icons.core)
-    // Optional - Add full set of material icons
-    api(libs.androidx.material.icons.extended)
-    // Optional - Add window size utils
-    api(libs.androidx.material3.window.size)
+    // Material icons — used internally for star ratings; not re-exported
+    implementation(libs.androidx.material.icons.core)
+    implementation(libs.androidx.material.icons.extended)
 
-    // Optional - Integration with activities
+    // Compose Activity integration — needed by feature screens
     api(libs.androidx.activity.compose)
-    // Optional - Integration with ViewModels
-    api(libs.androidx.lifecycle.viewmodel.compose)
-
-    // Optional - Integration with LiveData
-    api(libs.androidx.runtime.livedata)
 
     api(libs.androidx.lifecycle.runtime.compose)
 

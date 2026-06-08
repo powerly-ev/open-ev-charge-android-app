@@ -1,8 +1,6 @@
 package com.powerly
 
 import android.app.Application
-import android.content.Context
-import androidx.multidex.MultiDex
 import com.powerly.account.di.AccountModule
 import com.powerly.core.data.di.DataModule
 import com.powerly.core.database.di.DatabaseModule
@@ -48,13 +46,7 @@ class App : Application() {
                 ChargingModule().module,
                 com_powerly_di_AppModule
             )
-
         }
-    }
-
-    override fun attachBaseContext(base: Context) {
-        super.attachBaseContext(base)
-        MultiDex.install(this)
     }
 }
 
