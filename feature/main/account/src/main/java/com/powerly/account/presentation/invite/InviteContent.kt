@@ -56,7 +56,7 @@ private fun InviteScreenPreview() {
 }
 
 @Composable
-internal fun InviteScreenContent(
+fun InviteScreenContent(
     qrDrawable: () -> Drawable?,
     onCopyLink: () -> Unit,
     onShare: () -> Unit,
