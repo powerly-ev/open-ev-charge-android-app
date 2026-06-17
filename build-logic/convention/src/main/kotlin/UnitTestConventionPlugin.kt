@@ -12,8 +12,10 @@ import org.gradle.kotlin.dsl.dependencies
  * - Turbine — testing Kotlin `Flow`s
  * - kotlinx-coroutines-test — `runTest` and test dispatchers
  *
- * Apply it with `alias(libs.plugins.powerly.test)` so modules don't repeat the
- * same four dependency declarations.
+ * It also wires the shared `common:testing` fixtures (e.g. `MainDispatcherRule`)
+ * onto `testImplementation`, so modules don't repeat any of these declarations.
+ *
+ * Apply it with `alias(libs.plugins.powerly.test)`.
  */
 class UnitTestConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
@@ -23,6 +25,10 @@ class UnitTestConventionPlugin : Plugin<Project> {
                 add("testImplementation", libs.findLibrary("mockk").get())
                 add("testImplementation", libs.findLibrary("turbine").get())
                 add("testImplementation", libs.findLibrary("kotlinx-coroutines-test").get())
+                // Shared test fixtures. Guard against the testing module depending on itself.
+                if (target.path != ":common:testing") {
+                    add("testImplementation", project(":common:testing"))
+                }
             }
         }
     }

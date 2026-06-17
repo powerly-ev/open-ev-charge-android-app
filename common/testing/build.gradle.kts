@@ -8,6 +8,10 @@ android {
     namespace = "${MyProject.NAMESPACE}.testing"
 }
 
-// Shared unit-test dependencies are provided to each module by the `powerly.test`
-// convention plugin (see build-logic). This module hosts shared test fixtures
-// (rules, fakes, data builders) reused across module test suites.
+dependencies {
+    // Exposed on the main classpath so shared fixtures (rules, fakes) compile here
+    // and consumers get them transitively. Per-module test deps still come from the
+    // `powerly.test` convention plugin.
+    api(libs.junit)
+    api(libs.kotlinx.coroutines.test)
+}
