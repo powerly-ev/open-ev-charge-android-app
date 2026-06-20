@@ -2,7 +2,7 @@ package com.powerly.payment.domain.use_case
 
 import com.powerly.core.domain.model.ApiStatus
 import com.powerly.payment.domain.model.BalanceItem
-import com.powerly.core.managers.CountryManager
+import com.powerly.core.domain.manager.CountryManager
 import com.powerly.payment.domain.repository.BalanceRepository
 import org.koin.core.annotation.Single
 

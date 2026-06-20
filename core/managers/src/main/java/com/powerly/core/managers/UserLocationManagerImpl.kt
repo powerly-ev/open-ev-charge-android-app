@@ -5,55 +5,34 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.location.LocationManager
 import androidx.core.app.ActivityCompat
+import com.powerly.core.domain.manager.UserLocationManager
 import com.powerly.core.domain.model.location.Target
 import org.koin.core.annotation.Single
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
 /**
- * Manages user location-related functionality such as checking location service status,
- * requesting location permissions, fetching user's physical location, and map navigation.
- *
- * @property context The Context from which this manager is invoked.
- * @constructor Creates an instance of UserLocationManager.
+ * Default [UserLocationManager]: checks permission/service state and fetches the
+ * physical location via [UserLocationProvider] (FusedLocation).
  */
-@Single
-class UserLocationManager(
+@Single(binds = [UserLocationManager::class])
+internal class UserLocationManagerImpl(
     private val context: Context,
     private val locationProvider: UserLocationProvider
-) {
+) : UserLocationManager {
 
     private var lastLocation: Target? = null
 
-    fun getLastLocation() = lastLocation
+    override fun getLastLocation() = lastLocation
 
-    /**
-     * Checks if both location permissions and location services are enabled.
-     */
-    val allEnabled: Boolean get() = permissionGranted && serviceEnabled
+    override val allEnabled: Boolean get() = permissionGranted && serviceEnabled
 
-    /**
-     * Checks if location services are enabled.
-     */
-    val serviceEnabled: Boolean get() = isLocationEnabled(context)
+    override val serviceEnabled: Boolean get() = isLocationEnabled(context)
 
-    /**
-     * Checks if location permissions are granted.
-     */
-    val permissionGranted: Boolean get() = isPermissionGranted(context)
+    override val permissionGranted: Boolean get() = isPermissionGranted(context)
 
-    /**
-     * Requests the user's physical location.
-     *
-     * This method prioritizes using the cached location for efficiency. If `forceUpdate` is set to
-     * `true` or no cached location is available, it requests an updated location from the device.
-     *
-     * Location access requires appropriate permissions to be granted. If permissions are not granted,
-     *
-     * @param forceUpdate If `true`, forces an updated location fetch even if cached data is available.
-     */
-    suspend fun requestLocation(
-        forceUpdate: Boolean = false
+    override suspend fun requestLocation(
+        forceUpdate: Boolean
     ): Target? = suspendCoroutine { continuation ->
         if (isPermissionGranted(context)) {
             if (forceUpdate) {
@@ -97,12 +76,6 @@ class UserLocationManager(
     companion object {
         private const val TAG = "LOCATION_MANAGER"
 
-        /**
-         * Checks if location permissions are granted.
-         *
-         * @param context The Context in which to check permissions.
-         * @return `true` if either fine or coarse location permission is granted, `false` otherwise.
-         */
         fun isPermissionGranted(context: Context): Boolean {
             val preciseLocation = (ActivityCompat.checkSelfPermission(
                 context,
@@ -117,12 +90,6 @@ class UserLocationManager(
             return preciseLocation || approxLocation
         }
 
-        /**
-         * Checks if location services are enabled.
-         *
-         * @param context The Context in which to check location services.
-         * @return `true` if either GPS or network location provider is enabled, `false` otherwise.
-         */
         fun isLocationEnabled(context: Context): Boolean {
             val lm = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
             var gpsEnabled = false

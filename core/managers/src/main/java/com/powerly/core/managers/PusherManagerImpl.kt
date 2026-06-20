@@ -5,6 +5,7 @@ import androidx.annotation.Keep
 import com.powerly.core.data.model.powerly.SessionDto
 import com.powerly.core.data.model.powerly.toDomain
 import com.powerly.core.database.StorageManager
+import com.powerly.core.domain.manager.PusherManager
 import com.powerly.core.domain.model.powerly.Session
 import com.powerly.core.network.DeviceHelper
 import com.pusher.client.Pusher
@@ -23,11 +24,11 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import org.koin.core.annotation.Single
 
-@Single
-class PusherManager(
+@Single(binds = [PusherManager::class])
+internal class PusherManagerImpl(
     private val storageManager: StorageManager,
     private val deviceHelper: DeviceHelper
-) {
+) : PusherManager {
     private var pusher: Pusher? = null
 
     companion object {
@@ -40,10 +41,7 @@ class PusherManager(
 
     private val subscriptions = mutableMapOf<String, Subscription>()
 
-    /**
-     * Initializes the Pusher manager with the necessary configuration.
-     */
-    suspend fun initPusherManager() {
+    override suspend fun initPusherManager() {
         Log.i(TAG, "initPusherManager")
         val userToken = storageManager.getUserToken()
         val host = deviceHelper.pusherHost
@@ -61,10 +59,7 @@ class PusherManager(
         pusher = Pusher(key, options)
     }
 
-    /**
-     * Indicates whether the Pusher connection is currently connected.
-     */
-    val isConnected: Boolean get() = pusher?.connection?.state == ConnectionState.CONNECTED
+    override val isConnected: Boolean get() = pusher?.connection?.state == ConnectionState.CONNECTED
 
     private val connectionEvent = object : ConnectionEventListener {
         override fun onConnectionStateChange(change: ConnectionStateChange) {
@@ -78,28 +73,19 @@ class PusherManager(
         }
     }
 
-    /**
-     * Connects to the Pusher server .
-     */
-    fun connect() {
+    override fun connect() {
         Log.i(TAG, "attempt to connected")
         pusher?.connect(connectionEvent, ConnectionState.ALL)
     }
 
-    /**
-     * Disconnects from the Pusher server if no subscriptions are active.
-     */
-    fun disconnectIfIdle() {
+    override fun disconnectIfIdle() {
         if (subscriptions.isEmpty()) {
             pusher?.disconnect()
             Log.i(TAG, "disconnectIfIdle")
         }
     }
 
-    /**
-     * Disconnects from the Pusher server.
-     */
-    fun disconnect() {
+    override fun disconnect() {
         pusher?.disconnect()
         subscriptions.clear()
         Log.i(TAG, "disconnect")
@@ -107,22 +93,13 @@ class PusherManager(
 
 ///////////////////////////////////////////////////
 
-
     private val _sessionCompletion = MutableStateFlow<Session?>(null)
-    val sessionCompletionFlow = _sessionCompletion.asStateFlow()
+    override val sessionCompletionFlow = _sessionCompletion.asStateFlow()
 
     private val _sessionConsumption = MutableStateFlow<Session?>(null)
-    val sessionConsumptionFlow = _sessionConsumption.asStateFlow()
+    override val sessionConsumptionFlow = _sessionConsumption.asStateFlow()
 
-    /*private val _sessionCompletion = MutableSharedFlow<Session?>(replay = 0)
-    val sessionCompletionFlow = _sessionCompletion.asSharedFlow()*/
-
-    /**
-     * Subscribes to session completion events for the given session ID using a StateFlow.
-     *
-     * @param sessionId The ID of the session to subscribe to.
-     */
-    fun subscribeSessionCompletion(sessionId: String) {
+    override fun subscribeSessionCompletion(sessionId: String) {
         _sessionCompletion.tryEmit(null)
         subscribe(
             channelName = "$CHANNEL_CHARGING.$sessionId",
@@ -138,12 +115,7 @@ class PusherManager(
         )
     }
 
-    /**
-     * Unsubscribes from session completion events for the given session ID.
-     *
-     * @param sessionId The ID of the session to unsubscribe from.
-     */
-    fun unsubscribeSessionCompletion(sessionId: String) {
+    override fun unsubscribeSessionCompletion(sessionId: String) {
         unbindEvent(
             eventName = EVENT_CHARGING_COMPLETED,
             channelName = "$CHANNEL_CHARGING.$sessionId"
@@ -152,13 +124,7 @@ class PusherManager(
 
 ///////////////////////////////////////////////////
 
-    /**
-     * Subscribes to consumption updates for a specific session.
-     *
-     * @param sessionId The ID of the session to subscribe to.
-     * @param onUpdate A callback that will be invoked whenever a consumption update is received for the session.
-     */
-    fun subscribeConsumption(
+    override fun subscribeConsumption(
         sessionId: String,
         onUpdate: (Session) -> Unit
     ) {
@@ -172,14 +138,7 @@ class PusherManager(
         )
     }
 
-    /**
-     * Unsubscribes from consumption updates for a specific session.
-     *
-     * @param sessionId The ID of the session to unsubscribe from.
-     * We unbind but don't make unsubscribe consumption,
-     * cause it use the same channel of session completion.
-     */
-    fun unsubscribeSessionConsumption(sessionId: String) {
+    override fun unsubscribeSessionConsumption(sessionId: String) {
         unbindEvent(
             channelName = "$CHANNEL_CHARGING.$sessionId",
             eventName = EVENT_CHARGING,
@@ -187,14 +146,7 @@ class PusherManager(
     }
 
 ///////////////////////////////////////////
-    /**
-     * Subscribes to a specific event on a private channel.
-     *
-     * @param channelName The name of the channel to subscribe to.
-     * @param eventName The name of the event to listen for.
-     * @param onReceive A callback to be invoked when the event is received.
-     * @param onSuccess A callback to be invoked when the subscription succeeds.
-     */
+
     private fun subscribe(
         channelName: String,
         eventName: String,
@@ -246,13 +198,6 @@ class PusherManager(
         }
     }
 
-
-    /**
-     * Unbinds the event listener from the specified channel.
-     *
-     * @param eventName The name of the event.
-     * @param channelName The name of the channel.
-     */
     private fun unbindEvent(eventName: String, channelName: String) {
         if (subscriptions.isEmpty()) return
         Log.v(TAG, "subscriptions = $subscriptions")
@@ -274,10 +219,7 @@ class PusherManager(
         }
     }
 
-    /**
-     * Unsubscribes from all currently subscribed channels.
-     */
-    fun unsubscribeAll() {
+    override fun unsubscribeAll() {
         subscriptions.keys.forEach { channelName ->
             pusher?.unsubscribe(channelName)
         }
@@ -289,7 +231,7 @@ class PusherManager(
  * Data
  */
 
-data class Subscription(
+private data class Subscription(
     val privateChannel: PrivateChannel,
     val events: MutableMap<String, PrivateChannelEventListener>
 )
@@ -301,7 +243,7 @@ private val json = Json {
 
 @Keep
 @Serializable
-data class SessionData(
+private data class SessionData(
     @SerialName("order") val session: SessionDto
 )
 

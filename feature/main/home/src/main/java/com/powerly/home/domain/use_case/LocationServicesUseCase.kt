@@ -3,7 +3,7 @@ package com.powerly.home.domain.use_case
 import android.content.Intent
 import android.provider.Settings
 import android.util.Log
-import com.powerly.core.managers.UserLocationManager
+import com.powerly.core.domain.manager.UserLocationManager
 import com.powerly.ui.util.ActivityResultState
 import com.powerly.ui.util.PermissionsState
 import org.koin.core.annotation.Single

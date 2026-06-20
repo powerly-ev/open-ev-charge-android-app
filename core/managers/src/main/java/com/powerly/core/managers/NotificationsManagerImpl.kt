@@ -11,6 +11,7 @@ import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
+import com.powerly.core.domain.manager.NotificationsManager
 import com.powerly.core.domain.repository.AppRepository
 import com.powerly.core.database.StorageManager
 import com.powerly.navigation.MainScreen.setMainScreenHome
@@ -19,12 +20,12 @@ import com.powerly.resources.R
 import org.koin.core.annotation.Single
 import java.util.UUID
 
-@Single
-class NotificationsManager(
+@Single(binds = [NotificationsManager::class])
+internal class NotificationsManagerImpl(
     private val context: Context,
     private val storageManager: StorageManager,
     private val appRepository: AppRepository
-) {
+) : NotificationsManager {
     companion object {
         private const val TAG = "NotificationsManager"
         private const val NOTIFICATION_CHANNEL_ID = "powerly_notification_channel"
@@ -113,7 +114,7 @@ class NotificationsManager(
         }
     }
 
-    fun clearNotifications() {
+    override fun clearNotifications() {
         val nm = context.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         nm.cancelAll()
     }
