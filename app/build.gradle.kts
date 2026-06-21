@@ -31,6 +31,9 @@ android {
         applicationId = appPackageName
         versionCode = MyProject.VERSION_CODE
         versionName = MyProject.VERSION_NAME
+        // Custom runner installs TestApp, which starts Koin with a MockEngine override
+        // for end-to-end journey tests.
+        testInstrumentationRunner = "com.powerly.PowerlyTestRunner"
     }
 
     buildFeatures {
@@ -114,7 +117,13 @@ android {
         }
         resources {
             merges += listOf("core.properties")
-            excludes += listOf("META-INF/INDEX.LIST", "META-INF/io.netty.versions.properties")
+            excludes += listOf(
+                "META-INF/INDEX.LIST",
+                "META-INF/io.netty.versions.properties",
+                // Duplicated by JUnit Jupiter jars on the androidTest classpath
+                "META-INF/LICENSE.md",
+                "META-INF/LICENSE-notice.md",
+            )
         }
     }
 
@@ -163,4 +172,18 @@ dependencies {
 
     gmsImplementation(platform(libs.firebase.bom))
     gmsImplementation(libs.firebase.crashlytics)
+
+    // End-to-end journey tests: fake repositories + relaxed-mockk managers.
+    // (Compose UI test deps come from the compose convention.)
+    androidTestImplementation(libs.mockk.android)
+}
+
+// androidx.test.ext:junit:1.3.0 pulls androidx.concurrent:concurrent-futures 1.2.0, which
+// conflicts with the 1.1.0 strictly required elsewhere on the app's test classpath. Align
+// the instrumented-test classpath to 1.2.0 (backward compatible).
+configurations.matching { it.name.contains("AndroidTest") }.configureEach {
+    resolutionStrategy.force(
+        "androidx.concurrent:concurrent-futures:1.2.0",
+        "androidx.concurrent:concurrent-futures-ktx:1.2.0",
+    )
 }

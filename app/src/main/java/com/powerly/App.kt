@@ -18,36 +18,44 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.GlobalContext.startKoin
 import org.koin.core.logger.Level
+import org.koin.core.module.Module
 import org.koin.ksp.generated.com_powerly_di_AppModule
 import org.koin.ksp.generated.module
 
-class App : Application() {
+open class App : Application() {
     override fun onCreate() {
         super.onCreate()
         startKoin {
             androidLogger(if (BuildConfig.DEBUG) Level.DEBUG else Level.ERROR)
             androidContext(this@App)
-            modules(
-                ManagersModule().module,
-                DatabaseModule().module,
-                NetworkModule().module,
-                DataModule().module,
-                PaymentModule().module,
-                OrdersModule().module,
-                AccountModule().module,
-                MainModules.homeModule,
-                MainModules.ordersModule,
-                MainModules.accountModule,
-                MainModules.scanModule,
-                VehiclesModule().module,
-                SplashModule().module,
-                UserModule().module,
-                DetailsModule().module,
-                ChargingModule().module,
-                com_powerly_di_AppModule
-            )
+            // Test overrides are appended last so they win before any createdAtStart
+            // singletons are eagerly instantiated.
+            modules(productionModules() + testOverrideModules())
         }
     }
+
+    private fun productionModules(): List<Module> = listOf(
+        ManagersModule().module,
+        DatabaseModule().module,
+        NetworkModule().module,
+        DataModule().module,
+        PaymentModule().module,
+        OrdersModule().module,
+        AccountModule().module,
+        MainModules.homeModule,
+        MainModules.ordersModule,
+        MainModules.accountModule,
+        MainModules.scanModule,
+        VehiclesModule().module,
+        SplashModule().module,
+        UserModule().module,
+        DetailsModule().module,
+        ChargingModule().module,
+        com_powerly_di_AppModule,
+    )
+
+    /** Overridden by [TestApp] to replace bindings with fakes for E2E journeys. */
+    protected open fun testOverrideModules(): List<Module> = emptyList()
 }
 
 
