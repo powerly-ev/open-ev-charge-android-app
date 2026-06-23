@@ -11,6 +11,7 @@ android {
 
 dependencies {
     implementation(projects.core.managers)
+    implementation(projects.core.data)
     // Strip payment
     implementation(libs.stripe.android) {
         exclude(group = "org.bouncycastle", module = "bcprov-jdk15to18")

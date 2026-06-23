@@ -1,6 +1,6 @@
 package com.powerly.core.data.datasource.remote
 
-import com.powerly.core.data.api.UserApi
+import com.powerly.core.data.api.ApiEndpoints
 import com.powerly.core.data.model.LogoutBody
 import com.powerly.core.data.model.RefreshToken
 import com.powerly.core.data.model.UserUpdateBody
@@ -34,7 +34,7 @@ internal class UserRemoteDataSource(
     private val client = ktorClient.client
 
     suspend fun getUser(): ApiStatus<User> = safeApiCall<UserDto> {
-        client.get(UserApi.ME).body<ApiResponse<UserDto?>>()
+        client.get(ApiEndpoints.ME).body<ApiResponse<UserDto?>>()
     }.map { it.toDomain() }
 
     suspend fun updateUser(
@@ -59,14 +59,14 @@ internal class UserRemoteDataSource(
             latitude = latitude,
             longitude = longitude
         )
-        client.put(UserApi.ME) {
+        client.put(ApiEndpoints.ME) {
             contentType(ContentType.Application.Json)
             setBody(body)
         }.body<ApiResponse<UserDto?>>()
     }.map { it.toDomain() }
 
     suspend fun refreshToken(): ApiStatus<String> = safeApiCall<RefreshToken> {
-        client.get(UserApi.TOKEN_REFRESH).body<ApiResponse<RefreshToken?>>()
+        client.get(ApiEndpoints.TOKEN_REFRESH).body<ApiResponse<RefreshToken?>>()
     }.map { it.accessToken.orEmpty() }
 
     /**
@@ -75,7 +75,7 @@ internal class UserRemoteDataSource(
      * can't go through the generic [safeApiCall] helper.
      */
     suspend fun checkAuthentication(): AuthStatus = try {
-        val response = client.get(UserApi.ME)
+        val response = client.get(ApiEndpoints.ME)
         if (response.isSuccessful) {
             val body = response.body<ApiResponse<UserDto>>()
             when {
@@ -90,13 +90,13 @@ internal class UserRemoteDataSource(
     }
 
     suspend fun logout(imei: String): ApiStatus<Boolean> = safeApiActionRaw {
-        client.post(UserApi.LOGOUT) {
+        client.post(ApiEndpoints.LOGOUT) {
             contentType(ContentType.Application.Json)
             setBody(LogoutBody(imei))
         }
     }
 
     suspend fun deleteUser(): ApiStatus<Boolean> = safeApiActionRaw {
-        client.delete(UserApi.ME)
+        client.delete(ApiEndpoints.ME)
     }
 }

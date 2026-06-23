@@ -13,4 +13,5 @@ android {
 dependencies {
     implementation(projects.core.managers)
     implementation(projects.core.database)
+    implementation(projects.core.data)
 }

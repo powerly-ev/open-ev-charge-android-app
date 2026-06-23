@@ -6,7 +6,7 @@ import com.powerly.core.domain.model.powerly.Session
 import com.powerly.core.network.KtorClient
 import com.powerly.core.network.api.ApiResponse
 import com.powerly.core.network.safeApiCall
-import com.powerly.powersource.charging.data.api.ChargingApi
+import com.powerly.core.data.api.ApiEndpoints
 import com.powerly.powersource.charging.data.model.ReviewBody
 import com.powerly.core.data.model.powerly.SessionDto
 import com.powerly.powersource.charging.data.model.StartChargingBody
@@ -33,7 +33,7 @@ internal class ChargingRemoteDataSource(
         quantity: String,
         connector: Int?
     ): ApiStatus<Session> = safeApiCall<SessionDto> {
-        client.post(ChargingApi.ORDERS) {
+        client.post(ApiEndpoints.CHARGING_ORDERS) {
             contentType(ContentType.Application.Json)
             setBody(
                 StartChargingBody(
@@ -50,7 +50,7 @@ internal class ChargingRemoteDataSource(
         chargePointId: String,
         connector: Int?
     ): ApiStatus<Session> = safeApiCall<SessionDto> {
-        client.post(ChargingApi.CHARGING_STOP) {
+        client.post(ApiEndpoints.CHARGING_STOP) {
             contentType(ContentType.Application.Json)
             setBody(
                 StopChargingBody(
@@ -63,14 +63,14 @@ internal class ChargingRemoteDataSource(
     }.map { it.toDomain() }
 
     suspend fun sessionDetails(orderId: String): ApiStatus<Session> = safeApiCall<SessionDto> {
-        client.get(ChargingApi.ORDER_DETAILS.replace("{orderId}", orderId))
+        client.get(ApiEndpoints.orderDetails(orderId))
             .body<ApiResponse<SessionDto?>>()
     }.map { it.toDomain() }
 
     // Feedback
 
     suspend fun reviewOptions(): ApiStatus<Map<String, List<String>>> = safeApiCall {
-        client.get(ChargingApi.REVIEW_OPTIONS)
+        client.get(ApiEndpoints.REVIEW_OPTIONS)
             .body<ApiResponse<Map<String, List<String>>?>>()
     }
 
@@ -79,14 +79,14 @@ internal class ChargingRemoteDataSource(
         rating: Double,
         msg: String
     ): ApiStatus<Session> = safeApiCall<SessionDto> {
-        client.post(ChargingApi.REVIEW_ADD.replace("{order_id}", orderId)) {
+        client.post(ApiEndpoints.reviewAdd(orderId)) {
             contentType(ContentType.Application.Json)
             setBody(ReviewBody(rating = rating, msg = msg))
         }.body<ApiResponse<SessionDto?>>()
     }.map { it.toDomain() }
 
     suspend fun reviewSkip(orderId: String): ApiStatus<Session> = safeApiCall<SessionDto> {
-        client.post(ChargingApi.REVIEW_SKIP.replace("{order_id}", orderId))
+        client.post(ApiEndpoints.reviewSkip(orderId))
             .body<ApiResponse<SessionDto?>>()
     }.map { it.toDomain() }
 }

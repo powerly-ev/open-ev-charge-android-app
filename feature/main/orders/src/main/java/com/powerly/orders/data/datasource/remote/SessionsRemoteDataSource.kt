@@ -7,7 +7,7 @@ import com.powerly.core.network.KtorClient
 import com.powerly.core.network.api.ApiResponse
 import com.powerly.core.network.api.BaseResponsePaginated
 import com.powerly.core.network.safeApiCall
-import com.powerly.orders.data.api.SessionsApi
+import com.powerly.core.data.api.ApiEndpoints
 import com.powerly.core.data.model.powerly.SessionDto
 import com.powerly.orders.data.model.StopChargingBody
 import com.powerly.core.data.model.powerly.toDomain
@@ -31,7 +31,7 @@ internal class SessionsRemoteDataSource(
         chargePointId: String,
         connector: Int?
     ): ApiStatus<Session> = safeApiCall<SessionDto> {
-        client.post(SessionsApi.ORDERS_STOP) {
+        client.post(ApiEndpoints.ORDERS_STOP) {
             contentType(ContentType.Application.Json)
             setBody(
                 StopChargingBody(
@@ -47,7 +47,7 @@ internal class SessionsRemoteDataSource(
         page: Int,
         limit: Int = 15
     ): BaseResponsePaginated<SessionDto> {
-        return client.get(SessionsApi.ORDERS) {
+        return client.get(ApiEndpoints.ORDERS) {
             parameter("page", page)
             parameter("status", "active")
             parameter("limit", limit)
@@ -58,7 +58,7 @@ internal class SessionsRemoteDataSource(
         page: Int,
         limit: Int = 15
     ): BaseResponsePaginated<SessionDto> {
-        return client.get(SessionsApi.ORDERS) {
+        return client.get(ApiEndpoints.ORDERS) {
             parameter("page", page)
             parameter("status", "complete")
             parameter("limit", limit)

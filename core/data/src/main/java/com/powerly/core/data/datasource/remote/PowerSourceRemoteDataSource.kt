@@ -1,6 +1,6 @@
 package com.powerly.core.data.datasource.remote
 
-import com.powerly.core.data.api.PowerSourceApi
+import com.powerly.core.data.api.ApiEndpoints
 import com.powerly.core.data.model.powerly.ConnectorDto
 import com.powerly.core.data.model.powerly.MediaDto
 import com.powerly.core.data.model.powerly.PowerSourceDto
@@ -34,7 +34,7 @@ internal class PowerSourceRemoteDataSource(
         longitude: Double,
         search: String? = null
     ): SourcesStatus = try {
-        val response: BaseResponsePaginated<PowerSourceDto> = client.get(PowerSourceApi.SOURCES) {
+        val response: BaseResponsePaginated<PowerSourceDto> = client.get(ApiEndpoints.SOURCES) {
             parameter("latitude", latitude)
             parameter("longitude", longitude)
             if (search != null) parameter("search", search)
@@ -52,14 +52,14 @@ internal class PowerSourceRemoteDataSource(
 
     suspend fun getMedia(id: String): List<Media> {
         val result = safeApiCall<List<MediaDto>> {
-            val endpoint = PowerSourceApi.MEDIA.replace("{id}", id)
+            val endpoint = ApiEndpoints.media(id)
             client.get(endpoint).body<ApiResponse<List<MediaDto>?>>()
         }
         return (result as? ApiStatus.Success)?.data.orEmpty().map { it.toDomain() }
     }
 
     suspend fun getReviews(id: String, page: Int, limit: Int = 15): BaseResponsePaginated<ReviewDto> {
-        val endpoint = PowerSourceApi.REVIEWS.replace("{id}", id)
+        val endpoint = ApiEndpoints.reviews(id)
         return client.get(endpoint) {
             parameter("page", page)
             parameter("limit", limit)
@@ -68,7 +68,7 @@ internal class PowerSourceRemoteDataSource(
 
     suspend fun getPowerSource(id: String): SourceStatus {
         val result = safeApiCall<PowerSourceDto> {
-            val endpoint = PowerSourceApi.SOURCE.replace("{id}", id)
+            val endpoint = ApiEndpoints.source(id)
             client.get(endpoint).body<ApiResponse<PowerSourceDto?>>()
         }.map { it.toDomain() }
         return when (result) {
@@ -80,7 +80,7 @@ internal class PowerSourceRemoteDataSource(
 
     suspend fun getPowerSourceByIdentifier(identifier: String): SourceStatus {
         val result = safeApiCall<PowerSourceDto> {
-            val endpoint = PowerSourceApi.BY_IDENTIFIER.replace("{identifier}", identifier)
+            val endpoint = ApiEndpoints.byIdentifier(identifier)
             client.get(endpoint).body<ApiResponse<PowerSourceDto?>>()
         }.map { it.toDomain() }
         return when (result) {
@@ -91,6 +91,6 @@ internal class PowerSourceRemoteDataSource(
     }
 
     suspend fun connectors(): ApiStatus<List<Connector>> = safeApiCall<List<ConnectorDto>> {
-        client.get(PowerSourceApi.CONNECTORS).body<ApiResponse<List<ConnectorDto>?>>()
+        client.get(ApiEndpoints.CONNECTORS).body<ApiResponse<List<ConnectorDto>?>>()
     }.map { dtos -> dtos.map { it.toDomain() } }
 }
