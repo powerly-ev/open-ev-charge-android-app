@@ -1,0 +1,59 @@
+# Add-vehicle journey (pure Maestro). Logged-in user.
+# Account -> Vehicles -> Add -> pick manufacturer (BMW) -> model (330e) ->
+# details (color + charging) -> Save and Next -> Add Vehicle. Adds BMW 330e.
+#
+# Note: the colour swatches have no text/id, so the first one is tapped by screen
+# position (~17%,22%). Precondition: user already logged in.
+appId: com.powerly.open.test
+---
+- launchApp
+- extendedWaitUntil:
+    visible: "Account"
+    timeout: 45000
+- tapOn: "Account"
+- tapOn: "Vehicles"
+- extendedWaitUntil:
+    visible: "My Vehicles"
+    timeout: 10000
+- tapOn: "Add"
+
+# Step 1/3 — Manufacturer
+- extendedWaitUntil:
+    visible: "Search Manufacturer"
+    timeout: 10000
+- tapOn: "BMW"
+
+# Step 2/3 — Model
+- extendedWaitUntil:
+    visible: "Search Model"
+    timeout: 10000
+- tapOn: "330e"
+
+# Step 3/3 — Details: colour (by position) + charging type
+# (field labels carry a "* " prefix, so wait on the exact-text button instead)
+- extendedWaitUntil:
+    visible: "Save and Next"
+    timeout: 10000
+- tapOn:
+    point: "17%,22%"          # first colour swatch (no text)
+- tapOn: "Select"             # charging type
+- extendedWaitUntil:
+    visible: "Add Plug"
+    timeout: 10000
+- tapOn: "Add Plug"           # first connector
+- extendedWaitUntil:
+    visible: "Save and Next"
+    timeout: 10000
+- tapOn: "Save and Next"
+
+# Confirmation summary
+- extendedWaitUntil:
+    visible: "Add Vehicle"
+    timeout: 10000
+- tapOn: "Add Vehicle"
+
+# Back on the list with the new vehicle
+- extendedWaitUntil:
+    visible: "My Vehicles"
+    timeout: 15000
+- assertVisible: "330e"

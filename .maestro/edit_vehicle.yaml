@@ -1,0 +1,72 @@
+# Edit-vehicle journey (pure Maestro). Logged-in user.
+# Account -> Vehicles -> first vehicle "..." -> Edit, then actually CHANGE the vehicle:
+# Manufacturer (-> Audi) -> Model -> Details (colour + charging) -> Save and Next ->
+# Update. Asserts the new manufacturer shows on the list.
+#
+# Textless rows/icons are tapped by position. Precondition: logged in, >=1 vehicle.
+appId: com.powerly.open.test
+---
+- launchApp
+- extendedWaitUntil:
+    visible: "Account"
+    timeout: 45000
+- tapOn: "Account"
+- tapOn: "Vehicles"
+- extendedWaitUntil:
+    visible: "My Vehicles"
+    timeout: 10000
+
+# Open the first vehicle's "..." menu -> Edit
+- tapOn:
+    point: "88%,14%"
+- extendedWaitUntil:
+    visible: "Edit"
+    timeout: 8000
+- tapOn: "Edit"
+- extendedWaitUntil:
+    visible: "Update"
+    timeout: 10000
+
+# Change Manufacturer (tap the Manufacturer row) -> BMW
+- tapOn:
+    point: "25%,19%"
+- extendedWaitUntil:
+    visible: "Search Manufacturer"
+    timeout: 10000
+- tapOn: "BMW"
+
+# Change Model (cascades) -> 330e
+- extendedWaitUntil:
+    visible: "Search Model"
+    timeout: 10000
+- tapOn: "530e"
+
+# Details: change the colour (by position). Charging type is inherited when editing,
+# so only pick one if the field is still empty ("Select").
+- extendedWaitUntil:
+    visible: "Save and Next"
+    timeout: 10000
+- tapOn:
+    point: "17%,22%"
+- runFlow:
+    when:
+      visible: "Select"
+    commands:
+      - tapOn: "Select"
+      - extendedWaitUntil:
+          visible: "Add Plug"
+          timeout: 10000
+      - tapOn: "Add Plug"
+- tapOn: "Save and Next"
+
+# Summary -> Update
+- extendedWaitUntil:
+    visible: "Update"
+    timeout: 10000
+- tapOn: "Update"
+
+# Back on the list with the changed manufacturer
+- extendedWaitUntil:
+    visible: "My Vehicles"
+    timeout: 15000
+- assertVisible: "BMW"
