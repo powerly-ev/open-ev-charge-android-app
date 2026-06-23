@@ -8,22 +8,6 @@ android {
     namespace = "${MyProject.NAMESPACE}.testing"
 }
 
-
-dependencies {
-    //--------- test libraries
-    api(libs.junit)
-    // Robolectric environment
-    api(libs.test.core)
-    // Mockito framework
-    api(libs.mockito.core)
-    api(libs.junit.ktx)
-    // Coroutines test
-    api(libs.kotlinx.coroutines.test)
-    // Instrumented tests
-    api(libs.test.runner)
-    api(libs.test.rules)
-    // Optional -- UI testing with Espresso
-    api(libs.espresso.core)
-    // Optional -- UI testing with UI Automator
-    api(libs.uiautomator)
-}
+// Shared unit-test dependencies are provided to each module by the `powerly.test`
+// convention plugin (see build-logic). This module hosts shared test fixtures
+// (rules, fakes, data builders) reused across module test suites.

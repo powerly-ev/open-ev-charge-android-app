@@ -70,5 +70,9 @@ gradlePlugin {
             id = "powerly.room"
             implementationClass = "RoomConventionPlugin"
         }
+        register("unitTest") {
+            id = "powerly.test"
+            implementationClass = "UnitTestConventionPlugin"
+        }
     }
 }
