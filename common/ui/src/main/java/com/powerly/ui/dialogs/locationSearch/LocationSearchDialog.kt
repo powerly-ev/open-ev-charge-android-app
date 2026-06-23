@@ -1,7 +1,7 @@
 package com.powerly.ui.dialogs.locationSearch
 
 import androidx.compose.runtime.Composable
-import com.powerly.core.model.location.Target
+import com.powerly.core.domain.model.location.Target
 import com.powerly.ui.dialogs.MyDialogState
 import com.powerly.ui.dialogs.MyScreenBottomSheet
 

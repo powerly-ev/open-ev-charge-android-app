@@ -1,61 +1,64 @@
 [versions]
 # Plugin verisons
-androidGradlePlugin = "8.13.2"
-kotlin = "2.3.0"
-kotlinKsp = "2.2.21-2.0.4"
-androidTools = "31.13.2"
+androidGradlePlugin = "9.2.1"
+kotlin = "2.3.21"
+kotlinKsp = "2.3.2"
+androidTools = "32.2.1"
 googleServices = "4.4.4"
-koin = "4.1.1"
-koinAnnotations = "2.3.1"
-firebaseCrashlytics = "3.0.6"
-ktorClient = "3.3.3"
+koin = "4.2.1"
+# Pinned strictly so the koin-bom (4.2.1) can't promote koin-annotations to 4.2.1,
+# which lacks the org.koin.meta.annotations package that koin-ksp-compiler 2.3.1
+# emits references to. See https://github.com/InsertKoinIO/koin/issues/2351
+koinAnnotations = { strictly = "2.3.1" }
+firebaseCrashlytics = "3.0.7"
+ktorClient = "3.5.0"
 room = "2.8.4"
-datastore = "1.2.0"
+datastore = "1.2.1"
 secretsPlugin = "2.0.1"
 # Dependency versions
 ## Android Core
-coreKtx = "1.17.0"
-activityKtx = "1.12.2"
-annotation = "1.9.1"
-annotationExperimental = "1.5.1"
+coreKtx = "1.18.0"
+activityKtx = "1.13.0"
+annotation = "1.10.0"
+annotationExperimental = "1.6.0"
 coreSplashscreen = "1.2.0"
 lifecycleVersion = "2.10.0"
-pagingRuntimeKtx = "3.3.6"
-navigation = "2.9.6"
-workRuntimeKtxVersion = "2.11.0"
+pagingRuntimeKtx = "3.5.0"
+navigation = "2.9.8"
+workRuntimeKtxVersion = "2.11.2"
 multidex = "2.0.1"
 desugar_jdk_libsVersion = "2.1.5"
-serialization-json = "1.9.0"
-kotlinDateTime = "0.7.1"
-kotlinCoroutines = "1.10.2"
-material = "1.13.0"
+serialization-json = "1.11.0"
+kotlinDateTime = "0.8.0"
+kotlinCoroutines = "1.11.0"
+material = "1.14.0"
 
 ## Compose
-composeBom = "2025.12.01"
-foundationVersion = "1.10.0"
+composeBom = "2026.05.01"
+foundationVersion = "1.11.2"
 material3Version = "1.4.0"
-mapsComposeVersion = "7.0.0"
-pagingComposeVersion = "3.3.6"
+mapsComposeVersion = "8.3.0"
+pagingComposeVersion = "3.5.0"
 coilComposeVersion = "2.7.0"
 ## Google
-firebaseBom = "34.7.0"
-firebaseMessaging = "25.0.1"
-googlePlaces = "5.1.1"
+firebaseBom = "34.14.0"
+firebaseMessaging = "25.0.2"
+googlePlaces = "5.2.0"
 playServicesLocation = "21.3.0"
 
 lottie = "6.7.1"
-stripeAndroid = "22.5.0"
-stripeCardScanner = "21.29.2"
+stripeAndroid = "23.9.1"
+stripeCardScanner = "23.9.1"
 zxingCore = "3.5.4"
 zxingAndroidembedded = "4.3.0"
 customQrGeneratorVersion = "1.6.2"
 pusherClient = "2.4.4"
 ## Test
 espressoCoreVersion = "3.7.0"
-mockitoCore = "5.21.0"
+mockitoCore = "5.23.0"
 junit = "4.13.2"
 junitKtx = "1.3.0"
-kotlinxCoroutinesTestVersion = "1.10.2"
+kotlinxCoroutinesTestVersion = "1.11.0"
 runnerVersion = "1.7.0"
 uiautomator = "2.3.0"
 testCore = "1.7.0"
@@ -172,7 +175,6 @@ androidx-benchmark-macro-junit4 = { group = "androidx.benchmark", name = "benchm
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlin-ksp = { id = "com.google.devtools.ksp", version.ref = "kotlinKsp" }
@@ -185,9 +187,9 @@ android-test = { id = "com.android.test", version.ref = "androidGradlePlugin" }
 # Plugins defined by this project
 powerly-application = { id = "powerly.application" }
 powerly-library = { id = "powerly.library" }
+powerly-feature = { id = "powerly.feature" }
 powerly-koin = { id = "powerly.koin" }
 powerly-compose = { id = "powerly.compose" }
-powerly-application-compose = { id = "powerly.application.compose" }
 powerly-serialization = { id = "powerly.serialization" }
 powerly-room = { id = "powerly.room" }
 powerly-android-test = { id = "powerly.android.test" }

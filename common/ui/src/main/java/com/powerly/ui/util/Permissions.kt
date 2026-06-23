@@ -15,7 +15,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.app.ActivityCompat
-import com.powerly.core.data.model.PermissionsState
+import com.powerly.ui.util.PermissionsState
 import kotlin.collections.get
 
 

@@ -20,7 +20,6 @@ dependencies {
     // Coroutines test
     api(libs.kotlinx.coroutines.test)
     // Instrumented tests
-    api(libs.junit.ktx)
     api(libs.test.runner)
     api(libs.test.rules)
     // Optional -- UI testing with Espresso

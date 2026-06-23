@@ -1,17 +1,16 @@
 package com.powerly
 
 import android.app.Application
-import android.content.Context
-import androidx.multidex.MultiDex
 import com.powerly.account.di.AccountModule
 import com.powerly.core.data.di.DataModule
 import com.powerly.core.database.di.DatabaseModule
 import com.powerly.core.network.di.NetworkModule
-import com.powerly.lib.di.LibModule
+import com.powerly.core.managers.di.ManagersModule
 import com.powerly.main.di.MainModules
 import com.powerly.orders.di.OrdersModule
 import com.powerly.payment.di.PaymentModule
-import com.powerly.powerSource.di.PsModules
+import com.powerly.powersource.charging.di.ChargingModule
+import com.powerly.powersource.details.di.DetailsModule
 import com.powerly.splash.di.SplashModule
 import com.powerly.user.di.UserModule
 import com.powerly.vehicles.di.VehiclesModule
@@ -29,7 +28,7 @@ class App : Application() {
             androidLogger(if (BuildConfig.DEBUG) Level.DEBUG else Level.ERROR)
             androidContext(this@App)
             modules(
-                LibModule().module,
+                ManagersModule().module,
                 DatabaseModule().module,
                 NetworkModule().module,
                 DataModule().module,
@@ -43,18 +42,11 @@ class App : Application() {
                 VehiclesModule().module,
                 SplashModule().module,
                 UserModule().module,
-                VehiclesModule().module,
-                PsModules.psModule,
-                PsModules.chargeModule,
+                DetailsModule().module,
+                ChargingModule().module,
                 com_powerly_di_AppModule
             )
-
         }
-    }
-
-    override fun attachBaseContext(base: Context) {
-        super.attachBaseContext(base)
-        MultiDex.install(this)
     }
 }
 

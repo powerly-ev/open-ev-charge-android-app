@@ -18,9 +18,9 @@ import org.koin.core.component.inject
 
 
 /**
- *  ReminderReceiver is a BroadcastReceiver that listens for a specific broadcast intent.
- *  Upon receiving the intent, it checks if the user is logged in. If the user is NOT logged in,
- *  it displays a notification to remind the user to complete the registration process.
+ * Fires the "complete your registration" notification when one of
+ * [ReminderManager]'s alarms triggers — but only if the user hasn't logged in
+ * since the alarm was scheduled.
  */
 class ReminderReceiver : BroadcastReceiver(), KoinComponent {
 

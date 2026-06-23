@@ -39,8 +39,8 @@ include(":feature:main:scan")
 include(":feature:main:orders")
 include(":feature:main:account")
 
-include(":feature:power-source")
-include(":feature:power-source:charge")
+include(":feature:power-source:details")
+include(":feature:power-source:charging")
 include(":feature:vehicles")
 
 include(":feature:splash")
@@ -49,13 +49,14 @@ include(":feature:payment")
 
 // common
 include(":common:testing")
-include(":common:lib")
+include(":common:navigation")
 include(":common:ui")
 include(":common:resources")
 
 // core
 include(":core:data")
-include(":core:model")
+include(":core:domain")
+include(":core:managers")
 include(":core:network")
 include(":core:database")
 include(":core:analytics")

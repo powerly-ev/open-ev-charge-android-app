@@ -2,20 +2,23 @@ package com.powerly.core.network
 
 import android.content.Context
 import android.os.Build
+import com.powerly.core.domain.model.AppInfo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.koin.core.annotation.Single
 import java.io.IOException
 import java.net.InetSocketAddress
 import java.net.Socket
 import java.net.SocketAddress
 import java.util.Locale
 
-class DeviceHelper(private val context: Context) {
+@Single(binds = [AppInfo::class])
+class DeviceHelper(private val context: Context) : AppInfo {
     companion object {
         private const val TAG = "DeviceHelper"
     }
 
-    suspend fun isOnline(): Boolean = withContext(Dispatchers.IO) {
+    override suspend fun isOnline(): Boolean = withContext(Dispatchers.IO) {
         if (isDemo) true
         else try {
             val timeoutMs = 5000
@@ -32,17 +35,17 @@ class DeviceHelper(private val context: Context) {
         }
     }
 
-    val appVersion: String = BuildConfig.APP_VERSION
+    override val appVersion: String = BuildConfig.APP_VERSION
     val deviceModel: String get() = deviceModel()
     val deviceType: Int = 1
-    val buildType: String get() = BuildConfig.BUILD_TYPE
+    override val buildType: String get() = BuildConfig.BUILD_TYPE
     val apiKey = BuildConfig.API_KEY
     val apiBaseUrl = BuildConfig.API_BASE_URL
     val pusherHost = BuildConfig.PUSHER_HOST
     val pusherKey = BuildConfig.PUSHER_APP_KEY
-    val privacyPolicyUrl = BuildConfig.PRIVACY_POLICY_URL
-    val termsAndConditionsUrl = BuildConfig.TERMS_AND_CONDITIONS_URL
-    val supportNumber = BuildConfig.SUPPORT_NUMBER
+    override val privacyPolicyUrl: String = BuildConfig.PRIVACY_POLICY_URL
+    override val termsAndConditionsUrl: String = BuildConfig.TERMS_AND_CONDITIONS_URL
+    override val supportNumber: String = BuildConfig.SUPPORT_NUMBER
     val appType = BuildConfig.APP_TYPE
     val deviceVersion: String = Build.VERSION.RELEASE
 
@@ -54,7 +57,8 @@ class DeviceHelper(private val context: Context) {
     val googlePlacesApiKey: String get() = BuildConfig.PLACES_API_KEY
     val publishableKey: String get() = BuildConfig.STRIP_PUBLISHABLE_KEY
     val supportMap: Boolean get() = googlePlacesApiKey.isNotBlank()
-    val appLink get() = "https://play.google.com/store/apps/details?id=${context?.packageName}"
+    override val appLink: String
+        get() = "https://play.google.com/store/apps/details?id=${context?.packageName}"
 
 
     fun deviceModel(): String {

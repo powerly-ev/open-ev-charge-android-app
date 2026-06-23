@@ -9,8 +9,8 @@ import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import com.powerly.core.model.location.MyAddress
-import com.powerly.core.model.location.Target
+import com.powerly.core.domain.model.location.MyAddress
+import com.powerly.core.domain.model.location.Target
 
 @Composable
 fun rememberMapState(

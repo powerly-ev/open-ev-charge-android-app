@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
 import androidx.compose.ui.window.PopupProperties
-import com.powerly.core.model.util.Message
+import com.powerly.core.domain.model.Message
 import com.powerly.ui.theme.MyColors
 import kotlinx.coroutines.delay
 

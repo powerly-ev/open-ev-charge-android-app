@@ -14,7 +14,8 @@
  *   limitations under the License.
  */
 
-import com.android.build.gradle.TestExtension
+import com.android.build.api.dsl.TestExtension
+import com.android.build.api.dsl.TestProductFlavor
 import com.powerly.configureFlavors
 import com.powerly.configureKotlinAndroid
 import org.gradle.api.Plugin
@@ -27,14 +28,13 @@ class AndroidTestConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             apply(plugin = "com.android.test")
-            apply(plugin = "org.jetbrains.kotlin.android")
 
             extensions.configure<TestExtension> {
                 configureKotlinAndroid(this)
                 defaultConfig.targetSdk = Proj.TARGET_SDK
-                configureFlavors(this)
+                configureFlavors<TestProductFlavor>(this)
                 buildTypes {
-                    create("preRelease") {
+                    register("preRelease") {
                     }
                 }
             }

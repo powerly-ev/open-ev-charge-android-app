@@ -15,16 +15,16 @@ import com.powerly.MyProject as proj
  * Configure base Kotlin with Android options
  */
 internal fun Project.configureKotlinAndroid(
-    commonExtension: CommonExtension<*, *, *, *, *, *>,
+    commonExtension: CommonExtension,
 ) {
     commonExtension.apply {
         compileSdk = proj.COMPILE_SDK
 
-        defaultConfig {
+        defaultConfig.apply {
             minSdk = proj.MIN_SDK
         }
 
-        compileOptions {
+        compileOptions.apply {
             sourceCompatibility = proj.javaVersion
             targetCompatibility = proj.javaVersion
             isCoreLibraryDesugaringEnabled = true

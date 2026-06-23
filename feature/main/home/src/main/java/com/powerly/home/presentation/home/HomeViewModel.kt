@@ -1,0 +1,40 @@
+package com.powerly.home.presentation.home
+
+import android.content.Intent
+import android.util.Log
+import androidx.lifecycle.ViewModel
+import com.powerly.core.domain.model.SourceStatus
+import com.powerly.core.domain.repository.PowerSourceRepository
+import com.powerly.core.domain.repository.UserRepository
+import com.powerly.core.domain.model.powerly.PowerSource
+import com.powerly.core.domain.model.AppInfo
+import com.powerly.navigation.CONSTANTS.POWER_SOURCE_ID
+import org.koin.android.annotation.KoinViewModel
+
+
+@KoinViewModel
+class HomeViewModel(
+    private val userRepository: UserRepository,
+    private val powerSourceRepository: PowerSourceRepository,
+    private val appInfo: AppInfo,
+) : ViewModel() {
+
+    suspend fun isLoggedIn() = userRepository.isLoggedIn()
+
+    suspend fun getPowerSourceFromDeepLink(intent: Intent): PowerSource? {
+        return if (intent.hasExtra(POWER_SOURCE_ID)) {
+            val identifier = intent.getStringExtra(POWER_SOURCE_ID).orEmpty()
+            Log.i(TAG, "deep-link-identifier - $identifier")
+            intent.removeExtra(POWER_SOURCE_ID)
+            val it = powerSourceRepository.getPowerSourceByIdentifier(identifier)
+            if (it is SourceStatus.Success) it.powerSource
+            else null
+        } else null
+    }
+
+    val supportNumber: String get() = appInfo.supportNumber
+
+    companion object {
+        private const val TAG = "HomeViewModel"
+    }
+}

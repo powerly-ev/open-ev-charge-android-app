@@ -1,0 +1,11 @@
+package com.powerly.core.domain.model
+
+import com.powerly.core.domain.model.powerly.Session
+import com.powerly.core.domain.model.Message
+
+sealed class ChargingStatus {
+    data class Error(val message: Message) : ChargingStatus()
+    data class Success(val session: Session) : ChargingStatus()
+    data class Stop(val session: Session) : ChargingStatus()
+    data object Loading : ChargingStatus()
+}

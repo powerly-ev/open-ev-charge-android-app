@@ -1,5 +1,8 @@
+@file:Suppress("RestrictedApi")
+
 package com.powerly.payment
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -14,12 +17,12 @@ import com.stripe.android.payments.paymentlauncher.PaymentResult
 import com.stripe.android.stripecardscan.cardscan.CardScanSheet
 import com.stripe.android.stripecardscan.cardscan.CardScanSheetResult
 import com.stripe.android.stripecardscan.payment.card.ScannedCard
-import org.koin.core.annotation.Single
 
 
 /**
  * A class to manage payment operations with stripe sde.
  */
+@SuppressLint("RestrictedApi")
 class PaymentManager(
     private val context: Context,
     private val publishableKey: String

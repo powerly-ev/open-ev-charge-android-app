@@ -2,7 +2,7 @@ package com.powerly.core.database.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.powerly.core.model.location.Country
+import com.powerly.core.domain.model.location.Country
 
 @Entity(tableName = "countries")
 data class CountryEntity(
