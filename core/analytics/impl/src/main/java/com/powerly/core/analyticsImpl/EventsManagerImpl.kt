@@ -3,9 +3,10 @@ package com.powerly.core.analyticsImpl
 import android.content.Context
 import com.powerly.core.analytics.EventsManager
 import com.powerly.core.analytics.UserIdentifier
-import org.koin.core.annotation.Single
 
-@Single
+// Constructed via ManagersModule.provideEventsManager (which supplies isDebug); no @Single
+// here, otherwise Koin would also auto-register it and try to resolve isDebug: Boolean from
+// the graph, which isn't provided.
 class EventsManagerImpl(
     private val context: Context,
     private val isDebug: Boolean,

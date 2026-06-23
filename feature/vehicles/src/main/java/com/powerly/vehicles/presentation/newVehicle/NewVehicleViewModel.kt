@@ -8,7 +8,7 @@ import com.powerly.core.domain.model.powerly.VehicleMaker
 import com.powerly.core.domain.model.powerly.VehicleModel
 import com.powerly.vehicles.domain.repository.VehiclesRepository
 import kotlinx.coroutines.flow.flow
-import org.koin.android.annotation.KoinViewModel
+import org.koin.core.annotation.KoinViewModel
 
 @KoinViewModel
 class NewVehicleViewModel(

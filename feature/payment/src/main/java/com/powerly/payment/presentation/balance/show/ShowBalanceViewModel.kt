@@ -6,7 +6,7 @@ import com.powerly.core.domain.model.ApiStatus
 import com.powerly.payment.domain.use_case.GetBalanceItemsUseCase
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flow
-import org.koin.android.annotation.KoinViewModel
+import org.koin.core.annotation.KoinViewModel
 
 @KoinViewModel
 class ShowBalanceViewModel(

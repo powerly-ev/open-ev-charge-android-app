@@ -11,7 +11,7 @@ import com.powerly.core.domain.manager.PusherManager
 import com.powerly.payment.PaymentManager
 import com.powerly.ui.HomeUiState
 import kotlinx.coroutines.launch
-import org.koin.android.annotation.KoinViewModel
+import org.koin.core.annotation.KoinViewModel
 
 @KoinViewModel
 class MainViewModel(

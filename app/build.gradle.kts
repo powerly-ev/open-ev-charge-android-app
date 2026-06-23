@@ -173,8 +173,6 @@ dependencies {
     gmsImplementation(platform(libs.firebase.bom))
     gmsImplementation(libs.firebase.crashlytics)
 
-    // End-to-end journey tests: fake repositories + relaxed-mockk managers.
-    // (Compose UI test deps come from the compose convention.)
     androidTestImplementation(libs.mockk.android)
 }
 

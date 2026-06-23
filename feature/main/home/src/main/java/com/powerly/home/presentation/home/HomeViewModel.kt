@@ -9,7 +9,7 @@ import com.powerly.core.domain.repository.UserRepository
 import com.powerly.core.domain.model.powerly.PowerSource
 import com.powerly.core.domain.model.AppInfo
 import com.powerly.navigation.CONSTANTS.POWER_SOURCE_ID
-import org.koin.android.annotation.KoinViewModel
+import org.koin.core.annotation.KoinViewModel
 
 
 @KoinViewModel

@@ -6,7 +6,7 @@ import com.powerly.core.domain.model.powerly.VehicleModel
 import com.powerly.vehicles.domain.use_case.GetVehicleModelsUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import org.koin.android.annotation.KoinViewModel
+import org.koin.core.annotation.KoinViewModel
 
 @KoinViewModel
 class ModelViewModel(

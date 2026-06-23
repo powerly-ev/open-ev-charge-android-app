@@ -15,7 +15,7 @@ import com.powerly.core.domain.manager.UserLocationManager
 import com.powerly.home.domain.use_case.LocationServicesUseCase
 import com.powerly.ui.map.initMapViewState
 import kotlinx.coroutines.launch
-import org.koin.android.annotation.KoinViewModel
+import org.koin.core.annotation.KoinViewModel
 
 
 @KoinViewModel

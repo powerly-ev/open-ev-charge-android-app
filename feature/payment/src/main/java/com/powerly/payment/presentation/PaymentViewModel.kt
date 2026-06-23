@@ -13,7 +13,7 @@ import com.powerly.payment.domain.repository.CardsRepository
 import com.powerly.ui.dialogs.loading.initScreenState
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
-import org.koin.android.annotation.KoinViewModel
+import org.koin.core.annotation.KoinViewModel
 
 /**
  * Holds state shared across every screen in the Payment nav graph:

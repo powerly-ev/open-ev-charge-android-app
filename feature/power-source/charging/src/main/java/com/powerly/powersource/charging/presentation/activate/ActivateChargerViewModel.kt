@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.powerly.core.domain.model.ChargingStatus
 import com.powerly.powersource.charging.domain.repository.ChargingRepository
 import com.powerly.ui.dialogs.loading.initScreenState
-import org.koin.android.annotation.KoinViewModel
+import org.koin.core.annotation.KoinViewModel
 
 @KoinViewModel
 class ActivateChargerViewModel(
