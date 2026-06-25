@@ -1,0 +1,76 @@
+# Add-balance journey (pure Maestro). Logged-in user, uses an existing card.
+#
+# Home top-bar balance value -> Show Balance -> pick the first balance item -> Add Balance.
+# If the user has no cards, Add Balance auto-opens the Add Card screen (nothing to pay with),
+# so "Agree & Continue" never appears and the flow ends cleanly. If a card is present we
+# Agree & Continue and assert the response (success returns to Show Balance; failure shows
+# the "Payment Failed" dialog).
+#
+# Precondition: user already logged in.
+appId: com.powerly.open.test
+---
+- launchApp
+- extendedWaitUntil:
+    visible: "Account"
+    timeout: 45000
+
+# Top-bar balance chip (right) -> Show Balance. Tap the currency code (any 3-letter
+# ISO code) so it works for any currency the profile is set to.
+- tapOn:
+    text: "[A-Z][A-Z][A-Z]"
+- extendedWaitUntil:
+    visible: "Add Balance"
+    timeout: 15000
+
+# Select the first balance item (the row directly below the "Add Balance" label)
+- tapOn:
+    below:
+      text: "Add Balance"
+
+# Cards exist -> Add Balance screen ("Agree & Continue"); no cards -> app opened Add Card.
+- extendedWaitUntil:
+    visible:
+      text: "Agree & Continue|Add Card"
+    timeout: 15000
+
+# Proceed only when a payment is possible (Agree & Continue present). If no cards, the
+# Add Card screen is showing instead and the flow simply ends here.
+- runFlow:
+    when:
+      visible: "Agree & Continue"
+    commands:
+      - tapOn: "Agree & Continue"
+
+      # If no card was selected, the app prompts to choose one: open the list, pick the
+      # first card, and agree again.
+      - runFlow:
+          when:
+            visible: "Please select a payment method"
+          commands:
+            - tapOn: "Change"
+            - extendedWaitUntil:
+                visible:
+                  text: "\\*+[0-9]{4}"
+                timeout: 10000
+            - tapOn:
+                text: "\\*+[0-9]{4}"
+            - tapOn: "Agree & Continue"
+
+      # Some cards require 3D Secure authentication (Stripe test "Secure Checkout"
+      # page with FAIL / COMPLETE). Wait for the challenge OR the final response.
+      - extendedWaitUntil:
+          visible:
+            text: "COMPLETE|Payment Failed|Available Balance"
+          timeout: 30000
+      - runFlow:
+          when:
+            visible: "COMPLETE"
+          commands:
+            - tapOn: "COMPLETE"
+
+      # Final response: success returns to Show Balance; failure shows the dialog.
+      - extendedWaitUntil:
+          visible:
+            text: "Payment Failed|Available Balance"
+          timeout: 30000
+      - takeScreenshot: artifacts/add_balance_result

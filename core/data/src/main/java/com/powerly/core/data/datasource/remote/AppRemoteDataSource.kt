@@ -1,6 +1,6 @@
 package com.powerly.core.data.datasource.remote
 
-import com.powerly.core.data.api.AppApi
+import com.powerly.core.data.api.ApiEndpoints
 import com.powerly.core.data.model.DeviceBody
 import com.powerly.core.data.model.location.AppCurrencyDto
 import com.powerly.core.data.model.location.CountryDto
@@ -29,17 +29,17 @@ internal class AppRemoteDataSource(
     private val client = ktorClient.client
 
     suspend fun getCountries(): ApiStatus<List<Country>> = safeApiCall<List<CountryDto>> {
-        client.get(AppApi.COUNTRIES).body<ApiResponse<List<CountryDto>?>>()
+        client.get(ApiEndpoints.COUNTRIES).body<ApiResponse<List<CountryDto>?>>()
     }.map { dtos -> dtos.map { it.toDomain() } }
 
     suspend fun getCountry(id: Int): ApiStatus<Country> = safeApiCall<CountryDto> {
-        val endpoint = AppApi.COUNTRY.replace("{id}", id.toString())
+        val endpoint = ApiEndpoints.country(id)
         client.get(endpoint).body<ApiResponse<CountryDto?>>()
     }.map { it.toDomain() }
 
     suspend fun getCurrencies(): CurrenciesStatus {
         val result = safeApiCall<List<AppCurrencyDto>> {
-            client.get(AppApi.CURRENCIES).body<ApiResponse<List<AppCurrencyDto>?>>()
+            client.get(ApiEndpoints.CURRENCIES).body<ApiResponse<List<AppCurrencyDto>?>>()
         }.map { dtos -> dtos.map { it.toDomain() } }
         return when (result) {
             is ApiStatus.Success -> CurrenciesStatus.Success(result.data)
@@ -49,7 +49,7 @@ internal class AppRemoteDataSource(
     }
 
     suspend fun updateDevice(body: DeviceBody): ApiStatus<Boolean> = safeApiActionRaw {
-        client.put(AppApi.DEVICE) {
+        client.put(ApiEndpoints.DEVICE) {
             contentType(ContentType.Application.Json)
             setBody(body)
         }

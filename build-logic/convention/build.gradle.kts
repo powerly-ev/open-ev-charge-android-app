@@ -27,6 +27,7 @@ dependencies {
     compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.ksp.gradlePlugin)
     compileOnly(libs.room.gradlePlugin)
+    compileOnly(libs.koin.gradlePlugin)
 }
 
 tasks {
@@ -69,6 +70,10 @@ gradlePlugin {
         register("androidRoom") {
             id = "powerly.room"
             implementationClass = "RoomConventionPlugin"
+        }
+        register("unitTest") {
+            id = "powerly.test"
+            implementationClass = "UnitTestConventionPlugin"
         }
     }
 }

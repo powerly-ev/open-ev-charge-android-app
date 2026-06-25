@@ -1,0 +1,37 @@
+# Delete-vehicle journey (pure Maestro). Logged-in user.
+# Account -> Vehicles -> first vehicle "..." menu -> Delete -> confirm -> back on list.
+#
+# The "..." menu icon has no text, so it's tapped by position (top-right, ~88%,14%).
+# Deletes the topmost vehicle; pair with add_vehicle to keep the list populated.
+# Precondition: user already logged in, at least one vehicle exists.
+appId: com.powerly.open.test
+---
+- launchApp
+- extendedWaitUntil:
+    visible: "Account"
+    timeout: 45000
+- tapOn: "Account"
+- tapOn: "Vehicles"
+- extendedWaitUntil:
+    visible: "My Vehicles"
+    timeout: 10000
+
+# Open the first vehicle's "..." menu, then Delete
+- tapOn:
+    point: "88%,14%"
+- extendedWaitUntil:
+    visible: "Delete"
+    timeout: 8000
+- tapOn: "Delete"
+
+# Confirm deletion (dialog: "Delete vehicle?" -> Cancel / OK)
+- extendedWaitUntil:
+    visible: "OK"
+    timeout: 8000
+- tapOn: "OK"
+
+# Back on the list
+- extendedWaitUntil:
+    visible: "My Vehicles"
+    timeout: 15000
+- assertVisible: "My Vehicles"

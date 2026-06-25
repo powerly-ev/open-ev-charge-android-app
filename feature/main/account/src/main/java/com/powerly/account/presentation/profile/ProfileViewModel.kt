@@ -11,14 +11,14 @@ import com.powerly.core.domain.model.ApiStatus
 import com.powerly.core.domain.model.location.Country
 import com.powerly.core.domain.model.user.User
 import com.powerly.core.domain.model.AppInfo
-import com.powerly.core.managers.NotificationsManager
+import com.powerly.core.domain.manager.NotificationsManager
 import com.powerly.ui.dialogs.loading.initScreenState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import org.koin.android.annotation.KoinViewModel
+import org.koin.core.annotation.KoinViewModel
 
 
 @KoinViewModel

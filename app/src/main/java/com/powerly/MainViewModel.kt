@@ -7,11 +7,11 @@ import androidx.lifecycle.viewModelScope
 import com.powerly.core.domain.repository.UserRepository
 import com.powerly.core.domain.model.user.User
 import com.powerly.core.network.DeviceHelper
-import com.powerly.core.managers.PusherManager
+import com.powerly.core.domain.manager.PusherManager
 import com.powerly.payment.PaymentManager
 import com.powerly.ui.HomeUiState
 import kotlinx.coroutines.launch
-import org.koin.android.annotation.KoinViewModel
+import org.koin.core.annotation.KoinViewModel
 
 @KoinViewModel
 class MainViewModel(

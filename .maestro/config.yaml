@@ -1,0 +1,12 @@
+# Maestro workspace configuration — https://maestro.mobile.dev/cli/configuration
+flows:
+  - "*.yaml"
+executionOrder:
+  flowsOrder:
+    - smoke
+    - login
+    - add_balance
+    - add_vehicle
+    - edit_vehicle
+    - delete_vehicle
+    - edit_profile

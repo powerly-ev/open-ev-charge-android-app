@@ -4,6 +4,7 @@ import android.util.Log
 import com.powerly.core.database.StorageManager
 import com.powerly.core.network.api.FlexibleBooleanSerializer
 import io.ktor.client.HttpClient
+import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.DefaultRequest
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -25,23 +26,22 @@ import java.util.concurrent.TimeUnit
 @Single
 class KtorClient(
     private val deviceHelper: DeviceHelper,
-    private val storageManager: StorageManager
+    private val storageManager: StorageManager,
+    // Injectable so tests can supply a MockEngine; production keeps the OkHttp engine.
+    engine: HttpClientEngine = OkHttp.create {
+        config {
+            connectTimeout(60, TimeUnit.SECONDS)
+            readTimeout(60, TimeUnit.SECONDS)
+        }
+    }
 ) {
 
     val client: HttpClient
 
     init {
         Log.v(TAG, "init..")
-        client = HttpClient(OkHttp) {
+        client = HttpClient(engine) {
             expectSuccess = true
-
-            // ✅ Timeout setup
-            engine {
-                config {
-                    connectTimeout(60, TimeUnit.SECONDS)
-                    readTimeout(60, TimeUnit.SECONDS)
-                }
-            }
 
             // ✅ JSON serialization setup
             install(ContentNegotiation) {

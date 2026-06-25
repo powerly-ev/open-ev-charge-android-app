@@ -21,7 +21,7 @@ import kotlin.text.orEmpty
 
 class MessagingService : FirebaseMessagingService(), KoinComponent {
     private val eventsManager: EventsManager by inject()
-    private val notificationsManager: NotificationsManager by inject()
+    private val notificationsManager: NotificationsManagerImpl by inject()
 
     private val serviceScope = CoroutineScope(SupervisorJob())
 

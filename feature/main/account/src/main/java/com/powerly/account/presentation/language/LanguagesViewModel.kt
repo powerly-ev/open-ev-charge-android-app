@@ -6,7 +6,7 @@ import com.powerly.core.domain.repository.UserRepository
 import com.powerly.core.domain.model.ApiStatus
 import com.powerly.ui.dialogs.loading.LoadingState
 import com.powerly.ui.dialogs.loading.initBasicScreenState
-import org.koin.android.annotation.KoinViewModel
+import org.koin.core.annotation.KoinViewModel
 
 
 @KoinViewModel

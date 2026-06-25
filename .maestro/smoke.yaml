@@ -1,0 +1,12 @@
+# Smoke flow: validates the Maestro -> device -> app pipeline end to end.
+# Clears state (logged out), waits out the Splash bootstrap, and asserts the
+# Welcome screen renders.
+appId: com.powerly.open.test
+---
+- launchApp:
+    clearState: true        # log out -> Splash -> Welcome
+- extendedWaitUntil:
+    visible: "Sign in with email"
+    timeout: 30000          # Splash re-bootstraps countries from the real backend
+- takeScreenshot: artifacts/02-welcome
+- assertVisible: "Sign in with email"

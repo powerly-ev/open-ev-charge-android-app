@@ -12,7 +12,7 @@ import com.powerly.ui.dialogs.loading.initBasicScreenState
 import com.powerly.ui.dialogs.message.MessageState
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
-import org.koin.android.annotation.KoinViewModel
+import org.koin.core.annotation.KoinViewModel
 
 @KoinViewModel
 class WithdrawViewModel(

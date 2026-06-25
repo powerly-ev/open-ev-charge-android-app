@@ -15,7 +15,7 @@ import com.powerly.ui.dialogs.alert.initAlertDialogState
 import com.stripe.android.payments.paymentlauncher.PaymentResult
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
-import org.koin.android.annotation.KoinViewModel
+import org.koin.core.annotation.KoinViewModel
 import kotlin.coroutines.resume
 
 @KoinViewModel

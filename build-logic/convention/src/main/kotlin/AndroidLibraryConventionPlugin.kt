@@ -34,6 +34,9 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
                 configureKotlinAndroid(this)
                 defaultConfig.testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
                 testOptions.animationsDisabled = true
+                // Let android.util.Log (and other android.jar stubs) return defaults in JVM
+                // unit tests instead of throwing "not mocked".
+                testOptions.unitTests.isReturnDefaultValues = true
                 configureFlavors<LibraryProductFlavor>(this)
                 buildTypes {
                     register("preRelease") {

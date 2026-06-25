@@ -7,11 +7,11 @@ import com.powerly.core.domain.repository.AppRepository
 import com.powerly.core.domain.repository.PowerSourceRepository
 import com.powerly.core.domain.repository.UserRepository
 import com.powerly.core.domain.model.powerly.PowerSource
-import com.powerly.core.managers.UserLocationManager
+import com.powerly.core.domain.manager.UserLocationManager
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import org.koin.android.annotation.KoinViewModel
+import org.koin.core.annotation.KoinViewModel
 
 @KoinViewModel
 class DetailsViewModel(

@@ -10,7 +10,7 @@ import com.powerly.core.domain.model.ChargingStatus
 import com.powerly.core.domain.repository.UserRepository
 import com.powerly.core.domain.model.powerly.Session
 import com.powerly.navigation.AppRoutes
-import com.powerly.core.managers.PusherManager
+import com.powerly.core.domain.manager.PusherManager
 import com.powerly.powersource.charging.domain.repository.ChargingRepository
 import com.powerly.powersource.charging.timer.ChargingTimerManager
 import com.powerly.powersource.charging.timer.ChargingTimerState
@@ -18,7 +18,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import org.koin.android.annotation.KoinViewModel
+import org.koin.core.annotation.KoinViewModel
 
 
 @KoinViewModel

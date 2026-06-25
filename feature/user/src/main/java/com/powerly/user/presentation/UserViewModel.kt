@@ -12,7 +12,7 @@ import com.powerly.user.domain.use_case.CancelRegistrationRemindersUseCase
 import com.powerly.user.domain.use_case.DetectCountryUseCase
 import com.powerly.user.domain.use_case.InitRegistrationRemindersUseCase
 import kotlinx.coroutines.launch
-import org.koin.android.annotation.KoinViewModel
+import org.koin.core.annotation.KoinViewModel
 
 
 @KoinViewModel

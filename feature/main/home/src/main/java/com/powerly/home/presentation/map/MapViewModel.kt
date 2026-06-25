@@ -11,11 +11,11 @@ import com.powerly.core.domain.model.SourcesStatus
 import com.powerly.core.domain.repository.PowerSourceRepository
 import com.powerly.core.domain.model.location.Target
 import com.powerly.core.domain.model.powerly.PowerSource
-import com.powerly.core.managers.UserLocationManager
+import com.powerly.core.domain.manager.UserLocationManager
 import com.powerly.home.domain.use_case.LocationServicesUseCase
 import com.powerly.ui.map.initMapViewState
 import kotlinx.coroutines.launch
-import org.koin.android.annotation.KoinViewModel
+import org.koin.core.annotation.KoinViewModel
 
 
 @KoinViewModel

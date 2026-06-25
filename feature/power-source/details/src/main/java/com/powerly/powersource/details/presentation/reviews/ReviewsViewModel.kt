@@ -10,7 +10,7 @@ import com.powerly.core.domain.repository.PowerSourceRepository
 import com.powerly.core.domain.model.powerly.Review
 import com.powerly.navigation.AppRoutes
 import kotlinx.coroutines.flow.Flow
-import org.koin.android.annotation.KoinViewModel
+import org.koin.core.annotation.KoinViewModel
 
 @KoinViewModel
 class ReviewsViewModel(

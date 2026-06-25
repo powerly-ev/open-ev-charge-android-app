@@ -8,22 +8,10 @@ android {
     namespace = "${MyProject.NAMESPACE}.testing"
 }
 
-
 dependencies {
-    //--------- test libraries
+    // Exposed on the main classpath so shared fixtures (rules, fakes) compile here
+    // and consumers get them transitively. Per-module test deps still come from the
+    // `powerly.test` convention plugin.
     api(libs.junit)
-    // Robolectric environment
-    api(libs.test.core)
-    // Mockito framework
-    api(libs.mockito.core)
-    api(libs.junit.ktx)
-    // Coroutines test
     api(libs.kotlinx.coroutines.test)
-    // Instrumented tests
-    api(libs.test.runner)
-    api(libs.test.rules)
-    // Optional -- UI testing with Espresso
-    api(libs.espresso.core)
-    // Optional -- UI testing with UI Automator
-    api(libs.uiautomator)
 }

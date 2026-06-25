@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.powerly.library)
     alias(libs.plugins.powerly.koin)
     alias(libs.plugins.powerly.serialization)
+    alias(libs.plugins.powerly.test)
 }
 
 android {

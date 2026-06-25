@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.powerly.feature)
     alias(libs.plugins.powerly.koin)
     alias(libs.plugins.powerly.serialization)
+    alias(libs.plugins.powerly.test)
 }
 android {
     namespace = "${MyProject.NAMESPACE}.payment"
@@ -11,6 +12,7 @@ android {
 
 dependencies {
     implementation(projects.core.managers)
+    implementation(projects.core.data)
     // Strip payment
     implementation(libs.stripe.android) {
         exclude(group = "org.bouncycastle", module = "bcprov-jdk15to18")
