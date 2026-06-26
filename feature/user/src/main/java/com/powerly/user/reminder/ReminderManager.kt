@@ -12,38 +12,20 @@ import java.util.Calendar
 
 
 /**
- * Manages registration reminders using the Android AlarmManager.
- *
- * This class is responsible for scheduling and canceling various types of
- * reminders that trigger notifications. These notifications can be set to occur
- * at specific intervals after a certain event, such as an app installation or
- * user registration.
- *
- * @property context The application context, needed to access system services
- *   like [AlarmManager]. It's injected using dependency injection.
+ * Schedules / cancels the registration nag-notification cascade
+ * (1h + 24h + 48h after first launch) via [AlarmManager], delivered to
+ * [ReminderReceiver].
  */
 @Single
-class ReminderManager (
-     private val context: Context
+class ReminderManager(
+    private val context: Context
 ) {
 
     companion object {
-        /**
-         * A tag used for logging purposes to identify the source of log messages.
-         */
         private const val TAG = "ReminderManager"
         private val destination = ReminderReceiver::class.java
     }
 
-    /**
-     * Schedules a series of registration reminder notifications.
-     *
-     * This method sets up multiple alarms to trigger at different time intervals
-     * (1 hour, 24 hours, and 48 hours). Each alarm will launch the specified
-     * destination activity or broadcast receiver. It also calls the
-     * `disableNotification` lambda to perform any actions necessary to disable any
-     * other conflicting notifications.
-     */
     fun initRegistrationReminders() {
         Log.v(TAG, "showRegistrationReminders")
         callNotification1H(destination)
@@ -51,14 +33,6 @@ class ReminderManager (
         callNotification48H(destination)
     }
 
-    /**
-     * Cancels all previously scheduled registration reminder notifications.
-     *
-     * This method cancels the alarms that were set up by `showRegistrationReminders`.
-     *
-     * @param destination The class of the component (Activity or BroadcastReceiver)
-     *   that was scheduled to be launched by the reminders.
-     */
     fun cancelRegistrationReminders() {
         Log.v(TAG, "cancelRegistrationReminders")
         callNotification1H(destination, cancel = true)
@@ -66,17 +40,6 @@ class ReminderManager (
         callNotification48H(destination, cancel = true)
     }
 
-    /**
-     * Schedules or cancels a reminder notification that triggers after a specific number of minutes.
-     *
-     * This is a private utility function that can set up a notification for a specific number of minutes or cancel it.
-     *
-     * @param minutes The number of minutes to wait before triggering the notification.
-     * @param destination The class of the component (Activity or BroadcastReceiver) that
-     *   should be launched when the reminder is triggered.
-     * @param cancel A boolean flag indicating whether to cancel the notification (true)
-     *   or to schedule it (false). Defaults to false.
-     */
     private fun callNotificationNMin(
         minutes: Int,
         destination: Class<*>,
@@ -95,17 +58,6 @@ class ReminderManager (
         else am[AlarmManager.RTC_WAKEUP, calendar.timeInMillis] = contentIntent
     }
 
-    /**
-     * Schedules or cancels a reminder notification that triggers after 1 hour.
-     *
-     * This is a private utility function to set up or cancel a notification
-     * specifically for the 1-hour interval.
-     *
-     * @param destination The class of the component (Activity or BroadcastReceiver)
-     *   that should be launched when the reminder is triggered.
-     * @param cancel A boolean flag indicating whether to cancel the notification (true)
-     *   or to schedule it (false). Defaults to false.
-     */
     private fun callNotification1H(
         destination: Class<*>,
         cancel: Boolean = false
@@ -123,17 +75,6 @@ class ReminderManager (
         else am[AlarmManager.RTC_WAKEUP, calendar.timeInMillis] = contentIntent
     }
 
-    /**
-     * Schedules or cancels a reminder notification that triggers after 24 hours.
-     *
-     * This is a private utility function to set up or cancel a notification
-     * specifically for the 24-hour interval.
-     *
-     * @param destination The class of the component (Activity or BroadcastReceiver)
-     *   that should be launched when the reminder is triggered.
-     * @param cancel A boolean flag indicating whether to cancel the notification (true)
-     *   or to schedule it (false). Defaults to false.
-     */
     private fun callNotification24H(
         destination: Class<*>,
         cancel: Boolean = false
@@ -151,17 +92,6 @@ class ReminderManager (
         else am[AlarmManager.RTC_WAKEUP, calendar.timeInMillis] = contentIntent
     }
 
-    /**
-     * Schedules or cancels a reminder notification that triggers after 48 hours.
-     *
-     * This is a private utility function to set up or cancel a notification
-     * specifically for the 48-hour interval.
-     *
-     * @param destination The class of the component (Activity or BroadcastReceiver)
-     *   that should be launched when the reminder is triggered.
-     * @param cancel A boolean flag indicating whether to cancel the notification (true)
-     *   or to schedule it (false). Defaults to false.
-     */
     private fun callNotification48H(
         destination: Class<*>,
         cancel: Boolean = false

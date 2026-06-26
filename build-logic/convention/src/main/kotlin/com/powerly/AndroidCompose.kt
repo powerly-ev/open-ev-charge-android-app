@@ -24,12 +24,10 @@ import org.gradle.kotlin.dsl.dependencies
  * Configure Compose-specific options
  */
 internal fun Project.configureAndroidCompose(
-    commonExtension: CommonExtension<*, *, *, *, *, *>,
+    commonExtension: CommonExtension,
 ) {
     commonExtension.apply {
-        buildFeatures {
-            compose = true
-        }
+        buildFeatures.compose = true
 
         dependencies {
             val bom = libs.findLibrary("compose-bom").get()
@@ -38,6 +36,12 @@ internal fun Project.configureAndroidCompose(
             add("implementation", libs.findLibrary("compose-ui-tooling-preview").get())
             add("debugImplementation", libs.findLibrary("compose-ui-tooling").get())
             //add("preReleaseImplementation", libs.findLibrary("compose-ui-tooling").get())
+
+            // Compose UI (instrumented) test stack
+            add("androidTestImplementation", libs.findLibrary("androidx-ui-test-junit4").get())
+            add("androidTestImplementation", libs.findLibrary("androidx-junit").get())
+            add("androidTestImplementation", libs.findLibrary("test-runner").get())
+            add("debugImplementation", libs.findLibrary("androidx-ui-test-manifest").get())
         }
     }
 }

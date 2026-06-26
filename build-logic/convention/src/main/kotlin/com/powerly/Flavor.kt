@@ -19,20 +19,21 @@ enum class MyFlavor(val dimension: FlavorDimension, val applicationIdSuffix: Str
     //demo(FlavorDimension.contentType, applicationIdSuffix = null)
 }
 
-fun configureFlavors(
-    commonExtension: CommonExtension<*, *, *, *, *, *>,
-    flavorConfigurationBlock: ProductFlavor.(flavor: MyFlavor) -> Unit = {},
+fun <T : ProductFlavor> configureFlavors(
+    commonExtension: CommonExtension,
+    flavorConfigurationBlock: T.(flavor: MyFlavor) -> Unit = {},
 ) {
     commonExtension.apply {
-        FlavorDimension.values().forEach { flavorDimension ->
-            flavorDimensions += flavorDimension.name
+        FlavorDimension.entries.forEach { flavorDimension ->
+            flavorDimensions.add(flavorDimension.name)
         }
 
-        productFlavors {
-            MyFlavor.values().forEach { myFlavor ->
+        productFlavors.apply {
+            MyFlavor.entries.forEach { myFlavor ->
                 register(myFlavor.name) {
                     dimension = myFlavor.dimension.name
-                    flavorConfigurationBlock(this, myFlavor)
+                    @Suppress("UNCHECKED_CAST")
+                    flavorConfigurationBlock(this as T, myFlavor)
                     if (this@apply is ApplicationExtension && this is ApplicationProductFlavor) {
                         if (myFlavor.applicationIdSuffix != null) {
                             applicationIdSuffix = myFlavor.applicationIdSuffix

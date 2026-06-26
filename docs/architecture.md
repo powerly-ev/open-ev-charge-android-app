@@ -1,186 +1,198 @@
-# 📐 Application Architecture — Open Powerly Android
+# Application Architecture — Open Powerly Android
 
-This document provides a detailed overview of the architecture for the **`open-powerly-android`** application — part of the **Powerly** open-source EV charging ecosystem.  
-It is designed to ensure the app remains **scalable**, **modular**, **testable**, and **maintainable** as it evolves.
-
----
-
-## 🏛️ 1. Architectural Overview
-
-The project follows the **MVVM (Model–View–ViewModel)** pattern, strongly inspired by **Clean Architecture** principles. It uses a **Single Activity Architecture**, where a single host `Activity` manages the app’s navigation and lifecycle, while individual screens are implemented as **Jetpack Compose destinations**.
-
-### 🧱 Layered Architecture
-
-- **UI Layer (View):**
-    - Composable screens responsible for rendering data and handling user interaction.
-    - They delegate business logic and state management to ViewModels.
-
-- **ViewModel Layer:**
-    - Holds and exposes UI state using `StateFlow`.
-    - Handles UI events and communicates with Use Cases or Repositories.
-
-- **Domain Layer (Recommended):**
-    - Encapsulates core business logic in **Use Cases** (a.k.a. Interactors).
-    - Decouples ViewModels from data sources and enforces clear business rules.
-
-- **Data Layer:**
-    - Composed of **Repositories** and **Data Sources** (network, database, shared preferences).
-    - Provides a unified API to the domain layer, abstracting away implementation details.
-
-This layered approach ensures each component has a single responsibility, improves testability, and allows the project to scale without breaking existing functionality.
+This document describes the architecture of **`open-powerly-android`**, the Android client of the **Powerly** open-source EV charging ecosystem. The architecture is designed to keep the application **scalable**, **modular**, **testable**, and **maintainable** as it grows.
 
 ---
 
-## 🧩 2. Modules & Structure
+## 1. Architectural Overview
 
-The application is modularized into several Gradle modules, each responsible for a well-defined part of the system.
+The project follows the **MVVM (Model–View–ViewModel)** pattern, guided by **Clean Architecture** principles and a clear separation of concerns. It uses a **single-activity architecture**: one host `Activity` owns navigation and lifecycle, while every screen is a **Jetpack Compose** destination.
 
-### 📱 App Module
+### Layered Architecture
 
-- **`app`** – The entry point of the application.
-    - Hosts the main Activity and orchestrates navigation between feature modules.
-    - Provides dependency graph initialization and global configuration.
+| Layer | Responsibility |
+| --- | --- |
+| **UI (View)** | Composable screens that render state and forward user interactions. They contain no business logic and delegate to ViewModels. |
+| **ViewModel** | Holds and exposes UI state via `StateFlow`, handles UI events, and coordinates use cases and repositories. |
+| **Domain** | Pure business logic expressed as use cases and domain entities. Independent of any framework or data source. |
+| **Data** | Repository implementations backed by data sources (network, database, preferences). Exposes a clean API to the layers above and hides implementation details. |
 
----
-
-### 🌟 Feature Modules
-
-Feature modules encapsulate user-facing functionality. Each is self-contained and follows MVVM internally:
-
-- `feature.main` – Main app flow
-- `feature.main.home` – Home and map-based charger discovery
-- `feature.main.account` – Account management and profile
-- `feature.main.orders` – Charging history and billing
-- `feature.main.scan` – QR scanning for chargers
-- `feature.payment` – Payments and Stripe integration
-- `feature.power-source` – Power source management
-- `feature.power-source.charge` – Session control and charging logic
-- `feature.user` – User authentication and onboarding
-
-🧪 Each feature can evolve independently, minimizing coupling and enabling parallel development.
+Each layer has a single responsibility, depends only on the layer beneath it, and can be tested in isolation.
 
 ---
 
-### ⚙️ Core Modules
+## 2. Module Structure
 
-Core modules provide shared functionality and infrastructure used across features:
+The application is split into Gradle modules, each owning a well-defined part of the system. Feature modules depend only on `core` and `common` — never on one another — and the `app` module wires everything together.
 
-- **`core.data`** – Repository implementations, data source contracts, and domain models.
-- **`core.database`** – Room database setup, entities, and DAOs.
-- **`core.network`** – Retrofit setup, DTOs, and API service definitions.
-- **`core.model`** – Shared data models.
+```
+open-powerly-android
+├── app                     # Single Activity host, navigation graph, DI bootstrap
+│
+├── feature
+│   ├── splash              # Launch & initial routing
+│   ├── user               # Authentication and onboarding
+│   ├── payment            # Payments and Stripe integration
+│   ├── vehicles           # Vehicle management
+│   ├── main               # Bottom-navigation shell
+│   │   ├── home           # Map-based charger discovery
+│   │   ├── scan           # QR scanning for chargers
+│   │   ├── orders         # Charging history & billing
+│   │   └── account        # Account and profile management
+│   └── power-source
+│       ├── details        # Power-source / charger details
+│       └── charging       # Charging session control
+│
+├── core
+│   ├── domain             # Use cases and domain entities (business rules)
+│   ├── data               # Repository implementations & data-source contracts
+│   ├── network            # Ktor setup, DTOs, API services
+│   ├── database           # Room database, entities, and DAOs
+│   ├── managers           # Cross-cutting managers (storage, device, app state)
+│   └── analytics          # Analytics abstraction
+│       └── impl           # Concrete analytics implementation (Firebase)
+│
+├── common
+│   ├── navigation         # Shared navigation routes & contracts
+│   ├── ui                 # Reusable Jetpack Compose components
+│   ├── resources          # Themes, strings, drawables, dimensions
+│   └── testing            # Test utilities, fixtures, and base classes
+│
+├── build-logic            # Gradle convention plugins (see §6)
+└── benchmark              # Macrobenchmark & profiling for critical flows
+```
+
+### App Module
+
+- **`app`** — the entry point. Hosts the main `Activity`, owns the top-level navigation graph, initializes the dependency graph, and holds global configuration.
+
+### Feature Modules
+
+Feature modules encapsulate user-facing functionality and apply MVVM internally. Because they are isolated from each other, features can evolve independently and be developed in parallel.
+
+### Core Modules
+
+Core modules provide the business and infrastructure foundation shared across features — the domain layer (`core:domain`), data layer (`core:data`), and the platform integrations they rely on (`network`, `database`, `managers`, `analytics`).
+
+### Common Modules
+
+Common modules host the shared presentation and tooling layer: navigation contracts, reusable UI components, design resources, and testing infrastructure.
+
+### Benchmark Module
+
+- **`benchmark`** — Macrobenchmarks and profiling for performance-critical app flows (e.g. startup and navigation).
 
 ---
 
-### 🧰 Common Modules
+## 3. Dependency Management
 
-These modules house utilities, shared resources, reusable UI components, and testing infrastructure:
-
-- `common.lib` – Extension functions, constants, and utility classes
-- `common.resources` – Shared themes, strings, drawables, and dimensions
-- `common.ui` – Reusable Jetpack Compose components
-- `common.testing` – Test utilities, base test classes, and custom rules
+- **Dependency Injection** — [Koin](https://insert-koin.io/) provides the DI graph. Modules declare their own definitions, which are injected into ViewModels, repositories, and use cases.
+- **Module Dependencies** — Feature modules depend only on `core` and `common` modules, never on each other, preserving loose coupling. The `app` module composes the full graph.
+- **Version Catalog** — Dependencies and versions are centralized in a Gradle [version catalog](https://docs.gradle.org/current/userguide/version_catalogs.html) (`gradle/libs.versions.toml`).
 
 ---
 
-### ⚡ Benchmark Module
-
-- **`benchmark`** – Contains performance benchmarks and profiling tools for critical app flows.
-
----
-
-## 🪄 3. Dependency Management
-
-- **Dependency Injection:**
-    - [Koin](https://insert-koin.io/) powers dependency injection. Modules declare their dependencies, which are injected into ViewModels, Repositories, and Use Cases.
-
-- **Gradle Module Dependencies:**
-    - Feature modules depend only on `core` and `common` modules — **never on each other**, to maintain loose coupling.
-    - The `app` module ties everything together.
-
----
-
-## 🛠️ 4. Tech Stack
+## 4. Tech Stack
 
 - **Language:** [Kotlin](https://kotlinlang.org/)
 - **UI:** [Jetpack Compose](https://developer.android.com/jetpack/compose)
-- **Architecture Components:**
-    - ViewModel, StateFlow, Room, Navigation Component
-- **Networking:** [Retrofit](https://square.github.io/retrofit/)
-- **Async:** Kotlin Coroutines
-- **DI:** [Koin](https://insert-koin.io/)
-- **Image Loading:** [Coil](https://coil-kt.github.io/coil/) 
+- **Architecture Components:** ViewModel, StateFlow, Room, Navigation
+- **Networking:** Ktor
+- **Asynchrony:** Kotlin Coroutines & Flow
+- **Dependency Injection:** [Koin](https://insert-koin.io/)
+- **Image Loading:** [Coil](https://coil-kt.github.io/coil/)
 
 **Testing:**
 
-- Unit Tests – [JUnit5](https://junit.org/junit5/), [MockK](https://mockk.io/), Mockito
-- UI Tests – [Espresso](https://developer.android.com/training/testing/espresso), Compose Test APIs
+- Unit — [JUnit 5](https://junit.org/junit5/), [MockK](https://mockk.io/), [Turbine](https://github.com/cashapp/turbine)
+- UI — [Espresso](https://developer.android.com/training/testing/espresso), Compose Test APIs
+- E2E — on-device journeys with fake repositories, installed via a custom instrumentation runner
+- QA — [Maestro](https://maestro.mobile.dev/) black-box flows
+
+### Running the Test Suites
+
+Tasks are flavor-qualified (`default` / `gms` — see §5). Replace `Default` with `Gms` to target the GMS flavor.
+
+```bash
+# Unit tests (JVM, no device) — all modules
+./gradlew testDefaultDebugUnitTest
+
+# Instrumented + Compose UI + on-device E2E (needs a device/emulator)
+./gradlew connectedDefaultDebugAndroidTest
+```
+
+**Maestro QA flows** live in `.maestro/` and run against the installed app (`appId: com.powerly.open.test`), independent of Gradle. Install the [Maestro CLI](https://maestro.mobile.dev/getting-started/installing-maestro), then with a device/emulator connected and the app installed:
+
+```bash
+# Run the whole suite in the configured order (smoke → login → balance → vehicles → profile)
+maestro test .maestro/
+
+# Run a single flow
+maestro test .maestro/login.yaml
+```
+
 ---
 
-## 🧪 5. Build Variants & Product Flavors
+## 5. Build Variants & Product Flavors
 
-The app leverages Gradle’s variant system to support multiple build configurations.
+The app uses Gradle's variant system to support multiple build configurations.
 
 ### Build Types
 
-- **`debug`** – Development builds with debug symbols and verbose logging.
-- **`release`** – Production builds with code shrinker (R8/ProGuard), signing, and optimizations.
+- **`debug`** — Development builds with debug symbols and verbose logging.
+- **`release`** — Production builds with code shrinking (R8/ProGuard), signing, and optimizations.
 
 ### Product Flavors
 
-- **`default`** – Base build without Firebase dependencies.
-- **`gms`** – Google Mobile Services-enabled build:
-    - Firebase Analytics
-    - Firebase Cloud Messaging
-    - Crashlytics
+Flavors are defined on the `contentType` dimension:
 
-⚠️ `gms` builds require a `google-services.json` in `app/src/gms/`.
+- **`default`** — Base build without Firebase / Google services.
+- **`gms`** — Google Mobile Services build, adding Firebase Analytics, Cloud Messaging, and Crashlytics.
+
+> `gms` builds require a `google-services.json` under `app/src/gms/`.
 
 **Resulting variants:**
+
 - `defaultDebug`
 - `gmsDebug`
 - `defaultRelease`
 - `gmsRelease`
-- `gmsPreRelease` (production API + debuggable)
+- `gmsPreRelease` — production API, debuggable
 
 ---
 
-## 🏗️ 6. Build Logic (`build-logic`)
+## 6. Build Logic (`build-logic`)
 
-The `build-logic` module centralizes Gradle configurations, plugin definitions, and dependency versions. This approach:
+The included `build-logic` build centralizes Gradle configuration through Kotlin DSL **convention plugins**, keeping module build scripts DRY and type-safe. It provides shared conventions for:
 
-- Keeps module build files DRY
-- Improves maintainability
-- Ensures type safety using Kotlin DSL
-- Provides shared convention plugins for:
-    - Android application & library
-    - Kotlin JVM
-    - Jetpack Compose setup
-    - Dependency management
-    - Feature and core module conventions
+- Android application & library modules
+- Kotlin JVM modules
+- Jetpack Compose setup
+- Product flavors (see §5)
+- Feature and core module conventions
 
 ---
 
-## 🚀 7. CI/CD with Fastlane
+## 7. CI/CD with Fastlane
 
-[Fastlane](https://fastlane.tools/) powers automation for build, test, and release pipelines:
+[Fastlane](https://fastlane.tools/) automates the build, test, and release pipelines:
 
-- **Build Automation:** Generates debug and release builds across flavors.
-- **Testing:** Runs unit, instrumentation, and UI tests automatically.
-- **Code Signing:** Manages signing keys and provisioning.
-- **Distribution:**
----
-
-## 🧭 8. Future-Proofing & Best Practices
-
-- Emphasize **feature modularization** to enable on-demand delivery and parallel development.
-- Adopt **domain-driven design (DDD)** where appropriate to further isolate business logic.
-- Use **Gradle version catalogs** for centralized dependency management.
+- **Build Automation** — Generates debug and release builds across flavors.
+- **Testing** — Runs unit, instrumentation, and UI tests.
+- **Code Signing** — Manages signing keys and provisioning.
+- **Distribution** — Publishes builds to the configured distribution channels.
 
 ---
 
-## 🧾 Final Note
+## 8. Future-Proofing & Best Practices
 
-This architecture document is a **living resource** — update it as the project evolves.  
-Its purpose is to guide contributors and ensure the project stays clean, scalable, and future-ready as it powers the future of electric mobility.
+- Keep features **modularized** to enable parallel development and on-demand delivery.
+- Keep business logic in **`core:domain`**, isolated from frameworks and data sources.
+- Centralize dependencies through the **Gradle version catalog**.
+- Treat module boundaries as contracts — depend on abstractions, not implementations.
 
+---
+
+## Final Note
+
+This document is a **living resource** — keep it in sync as the project evolves. Its purpose is to guide contributors and keep the codebase clean, scalable, and ready to power the future of electric mobility.

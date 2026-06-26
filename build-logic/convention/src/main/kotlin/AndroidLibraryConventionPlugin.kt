@@ -14,7 +14,8 @@
  *   limitations under the License.
  */
 
-import com.android.build.gradle.LibraryExtension
+import com.android.build.api.dsl.LibraryExtension
+import com.android.build.api.dsl.LibraryProductFlavor
 import com.powerly.configureFlavors
 import com.powerly.configureKotlinAndroid
 import org.gradle.api.Plugin
@@ -27,17 +28,18 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
         with(target) {
             with(pluginManager) {
                 apply("com.android.library")
-                apply("org.jetbrains.kotlin.android")
             }
 
             extensions.configure<LibraryExtension> {
                 configureKotlinAndroid(this)
-                defaultConfig.targetSdk = proj.TARGET_SDK
                 defaultConfig.testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
                 testOptions.animationsDisabled = true
-                configureFlavors(this)
+                // Let android.util.Log (and other android.jar stubs) return defaults in JVM
+                // unit tests instead of throwing "not mocked".
+                testOptions.unitTests.isReturnDefaultValues = true
+                configureFlavors<LibraryProductFlavor>(this)
                 buildTypes {
-                    create("preRelease") {
+                    register("preRelease") {
                     }
                 }
             }

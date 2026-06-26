@@ -1,0 +1,38 @@
+# Login journey (existing, verified account) against the live backend.
+#
+# Maestro hits the real API, so it needs a real test account. Pass credentials at
+# runtime instead of hard-coding them:
+#   maestro --device <id> test -e EMAIL=you@example.com -e PASSWORD=secret .maestro/login.yaml
+appId: com.powerly.open.test
+env:
+  EMAIL: "ma7moud3ly2012@gmail.com"
+  PASSWORD: "@Mahmoud123"
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: "Sign in with email"
+    timeout: 30000
+- tapOn: "Sign in with email"
+
+# Email step
+- tapOn: "Enter your email"
+- inputText: "${EMAIL}"
+- hideKeyboard
+- tapOn: "Continue"
+
+# Password step (existing user)
+- extendedWaitUntil:
+    visible: "Enter a password"
+    timeout: 20000
+- tapOn: "Enter a password"
+- inputText: "${PASSWORD}"
+- hideKeyboard
+- tapOn: "Sign in"
+
+# Success: landed on Home (top bar shows "Help")
+- extendedWaitUntil:
+    visible: "Help"
+    timeout: 45000
+- assertVisible: "Help"
+- takeScreenshot: artifacts/login-home

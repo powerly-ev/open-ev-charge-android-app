@@ -15,7 +15,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.powerly.lib.managers.PlaceItem
+import com.powerly.core.managers.PlaceItem
 import com.powerly.resources.R
 import com.powerly.ui.theme.AppTheme
 import com.powerly.ui.containers.MyCardRow

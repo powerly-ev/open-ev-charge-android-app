@@ -22,7 +22,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
-import com.powerly.core.model.location.Target
+import com.powerly.core.domain.model.location.Target
 import com.powerly.resources.R
 import com.powerly.ui.components.ButtonRound
 import com.powerly.ui.containers.MyCardRow
@@ -158,5 +158,5 @@ object Distance {
     }
 }
 
-val com.powerly.core.model.location.Target.toLatLng: LatLng get() = LatLng(this.latitude, this.longitude)
-val LatLng.toTarget: com.powerly.core.model.location.Target get() = Target(this.latitude, this.longitude)
+val com.powerly.core.domain.model.location.Target.toLatLng: LatLng get() = LatLng(this.latitude, this.longitude)
+val LatLng.toTarget: com.powerly.core.domain.model.location.Target get() = Target(this.latitude, this.longitude)

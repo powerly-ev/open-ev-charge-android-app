@@ -77,7 +77,7 @@ This Android app is part of that ecosystem, allowing businesses, fleet operators
 - Google Maps SDK
 - Fastlane & GitHub Actions (CI/CD)
 
-📚 For deeper insights, add `docs/architecture.md` and link it here.
+📚 For a deeper dive into modules, layering, build variants, and testing, see the [Architecture Guide](docs/architecture.md).
 
 ---
 

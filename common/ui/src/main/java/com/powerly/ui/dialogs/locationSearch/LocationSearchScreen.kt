@@ -3,9 +3,9 @@ package com.powerly.ui.dialogs.locationSearch
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
-import com.powerly.core.model.location.Target
-import com.powerly.lib.managers.PlaceItem
-import com.powerly.lib.managers.PlacesManager
+import com.powerly.core.domain.model.location.Target
+import com.powerly.core.managers.PlaceItem
+import com.powerly.core.managers.PlacesManager
 
 
 private const val TAG = " LocationSearchScreen"

@@ -6,7 +6,10 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
-import com.powerly.core.model.user.User
+import com.powerly.core.database.model.UserStorageDto
+import com.powerly.core.database.model.asStorageDto
+import com.powerly.core.database.model.asUser
+import com.powerly.core.domain.model.user.User
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -81,7 +84,7 @@ class StorageManager(
         .map { prefs ->
             prefs[UserKeys.USER]?.let { jsonStr ->
                 try {
-                    json.decodeFromString<User>(jsonStr)
+                    json.decodeFromString<UserStorageDto>(jsonStr).asUser()
                 } catch (e: Exception) {
                     e.printStackTrace()
                     null
@@ -98,7 +101,7 @@ class StorageManager(
     suspend fun getUser(): User? = withContext(ioDispatcher) {
         userDataStore.data.first()[UserKeys.USER]?.let { jsonStr ->
             try {
-                json.decodeFromString<User>(jsonStr)
+                json.decodeFromString<UserStorageDto>(jsonStr).asUser()
             } catch (e: Exception) {
                 e.printStackTrace()
                 null
@@ -116,7 +119,7 @@ class StorageManager(
         userDataStore.edit { prefs ->
             if (user != null) {
                 try {
-                    val jsonStr = json.encodeToString(user)
+                    val jsonStr = json.encodeToString(user.asStorageDto())
                     prefs[UserKeys.USER] = jsonStr
                 } catch (e: Exception) {
                     e.printStackTrace()

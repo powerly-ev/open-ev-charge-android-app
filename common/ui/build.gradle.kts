@@ -10,31 +10,28 @@ android {
 }
 
 dependencies {
-    implementation(projects.common.lib)
+    // Foundational deps (mirrors what powerly.feature bundles for feature modules,
+    // minus common/ui itself which would be self-circular).
+    implementation(projects.common.navigation)
+    implementation(projects.common.resources)
+    implementation(projects.core.domain)
+    implementation(projects.core.network)
+    implementation(projects.core.managers)
+
     "preReleaseApi"(libs.androidx.ui.tooling)
 
     api(libs.compose.foundation)
     api(libs.compose.material3)
     // UI Tests
-    androidTestApi(libs.androidx.ui.test.junit4)
-    debugApi(libs.androidx.ui.test.manifest)
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+    debugImplementation(libs.androidx.ui.test.manifest)
 
-    // Optional - Included automatically by material, only add when you need
-    // the icons but not the material library (e.g. when using Material3 or a
-    // custom design system based on Foundation)
-    api(libs.androidx.material.icons.core)
-    // Optional - Add full set of material icons
-    api(libs.androidx.material.icons.extended)
-    // Optional - Add window size utils
-    api(libs.androidx.material3.window.size)
+    // Material icons — used internally for star ratings; not re-exported
+    implementation(libs.androidx.material.icons.core)
+    implementation(libs.androidx.material.icons.extended)
 
-    // Optional - Integration with activities
+    // Compose Activity integration — needed by feature screens
     api(libs.androidx.activity.compose)
-    // Optional - Integration with ViewModels
-    api(libs.androidx.lifecycle.viewmodel.compose)
-
-    // Optional - Integration with LiveData
-    api(libs.androidx.runtime.livedata)
 
     api(libs.androidx.lifecycle.runtime.compose)
 
@@ -48,7 +45,7 @@ dependencies {
 
     implementation(libs.lottie.compose)
 
-    // google map
+    // Google Maps
     implementation(libs.maps.compose)
     implementation(libs.maps.compose.utils)
 }

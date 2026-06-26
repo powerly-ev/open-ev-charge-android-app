@@ -1,0 +1,60 @@
+# Edit-profile journey (pure Maestro). Logged-in user.
+# Account -> See Profile -> change currency (random of SAR/AED/EGP/EUR/USD), change
+# first name / last name / VAT ID (random) -> Save.
+#
+# Currency is a scrollable alphabetical dropdown; the trigger has no stable id so it's
+# tapped by position (~47%,38%). Precondition: user already logged in.
+appId: com.powerly.open.test
+---
+- launchApp
+- extendedWaitUntil:
+    visible: "Account"
+    timeout: 45000
+- tapOn: "Account"
+- extendedWaitUntil:
+    visible: "See Profile"
+    timeout: 10000
+- tapOn: "See Profile"
+- extendedWaitUntil:
+    visible: "Save"
+    timeout: 10000
+
+# Currency -> random of SAR/AED/EGP/EUR/USD
+- evalScript: ${output.cur = ['SAR','AED','EUR','USD'][Math.floor(Math.random() * 4)]}
+- tapOn:
+    point: "47%,38%"          # currency dropdown trigger
+- scrollUntilVisible:
+    element:
+      text: "${output.cur}"
+    direction: DOWN
+    timeout: 25000
+    speed: 20
+    visibilityPercentage: 20
+    centerElement: true
+- tapOn:
+    text: "${output.cur}"
+
+# lower fields get covered by the keyboard -> scroll to them
+- scrollUntilVisible:
+    element:
+      text: "VAT ID"
+    direction: DOWN
+    timeout: 8000
+- tapOn: "VAT ID"
+- eraseText
+- inputRandomNumber:
+    length: 4
+
+# Save
+- scrollUntilVisible:
+    element:
+      text: "Save"
+    direction: DOWN
+    timeout: 8000
+- tapOn: "Save"
+- waitForAnimationToEnd:
+    timeout: 8000
+- takeScreenshot: artifacts/profile-saved
+# the saved currency is reflected on the profile
+- assertVisible:
+    text: "${output.cur}"

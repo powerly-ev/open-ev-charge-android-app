@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import com.powerly.core.model.util.Message
+import com.powerly.core.domain.model.Message
 
 @Composable
 fun rememberMessageState(

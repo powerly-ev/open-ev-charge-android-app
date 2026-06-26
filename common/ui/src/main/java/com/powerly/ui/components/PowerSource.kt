@@ -29,8 +29,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.powerly.core.model.powerly.Connector
-import com.powerly.core.model.powerly.ConnectorStatus
+import com.powerly.core.domain.model.powerly.Connector
+import com.powerly.core.domain.model.powerly.ConnectorStatus
 import com.powerly.resources.R
 import com.powerly.ui.containers.MyRow
 import com.powerly.ui.containers.MySurface

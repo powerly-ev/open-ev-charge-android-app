@@ -2,7 +2,7 @@ package com.powerly.ui.dialogs.countries
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import com.powerly.core.model.location.Country
+import com.powerly.core.domain.model.location.Country
 import com.powerly.ui.dialogs.MyDialogState
 import com.powerly.ui.dialogs.MyScreenBottomSheet
 

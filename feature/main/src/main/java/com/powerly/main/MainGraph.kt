@@ -1,0 +1,279 @@
+package com.powerly.main
+
+import android.util.Log
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalUriHandler
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.dialog
+import androidx.navigation.toRoute
+import com.powerly.account.presentation.AccountEvents
+import com.powerly.account.presentation.AccountScreen
+import com.powerly.navigation.OrderTabs
+import com.powerly.core.domain.model.powerly.Session
+import com.powerly.home.presentation.map.MyMapViewModel
+import com.powerly.home.presentation.home.HomeScreen
+import com.powerly.home.presentation.home.HomeViewModel
+import com.powerly.home.presentation.home.NavigationEvents
+import com.powerly.home.presentation.map.MapScreen
+import com.powerly.navigation.AppRoutes
+import com.powerly.navigation.Route
+import com.powerly.orders.presentation.OrdersScreen
+import com.powerly.orders.presentation.SessionsViewModel
+import com.powerly.orders.presentation.history.details.CompleteSessionDetailsScreen
+import com.powerly.scan.presentation.ScannerScreen
+import com.powerly.ui.HomeUiState
+import com.powerly.ui.extensions.openUriSafely
+import com.powerly.ui.theme.LocalMainActivity
+import com.powerly.ui.util.rememberActivityResultState
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import org.koin.compose.viewmodel.koinViewModel
+
+private const val TAG = "MainGraph"
+
+@Composable
+fun MainGraph(
+    tab: Route,
+    uiState: HomeUiState,
+    sessionsViewModel: SessionsViewModel,
+    rootNavController: NavHostController,
+    innerNavController: NavHostController,
+) {
+    val activity = LocalMainActivity.current!!
+    val uriHandler = LocalUriHandler.current
+    val coroutineScope = rememberCoroutineScope()
+    val navigationEntry = remember(rootNavController) {
+        rootNavController.getBackStackEntry(AppRoutes.Navigation)
+    }
+    val mapViewModel: MyMapViewModel = koinViewModel(viewModelStoreOwner = navigationEntry)
+    val homeViewModel: HomeViewModel = koinViewModel(viewModelStoreOwner = navigationEntry)
+    var doOnce by rememberSaveable { mutableStateOf(true) }
+    var sessionToReview by rememberSaveable { mutableStateOf("") }
+    val activityResult = rememberActivityResultState()
+
+    fun sessionFeedBack(
+        session: Session,
+        openHistory: Boolean = true
+    ) {
+        // to avoid multiple feedback for the same session
+        if (session.id == sessionToReview) return
+        sessionToReview = session.id
+        Log.i(TAG, "sessionFeedBack ${session.id} - openHistory = $openHistory")
+
+        // navigate to completed sessions
+        if (openHistory) {
+            sessionsViewModel.refreshCompletedOrders()
+            val route = AppRoutes.Navigation.Orders(OrderTabs.HISTORY)
+            innerNavController.navigate(route)
+        }
+        coroutineScope.launch {
+            delay(2000)
+            // show feedback dialog
+            val route = AppRoutes.PowerSource.Feedback(
+                sessionId = session.id,
+                title = session.chargePointName
+            )
+            rootNavController.navigate(route)
+        }
+    }
+
+    // open a power source passed in a deep link
+    LaunchedEffect(Unit) {
+        if (homeViewModel.isLoggedIn().not()) return@LaunchedEffect
+        val powerSource = homeViewModel.getPowerSourceFromDeepLink(activity.intent)
+        if (powerSource != null) {
+            rootNavController.navigate(NavigationEvents.SourceDetails(powerSource))
+        }
+
+        if (doOnce) {
+            doOnce = false
+            launch {
+                delay(2000)
+                val order = sessionsViewModel.getPendingOrderToReview()
+                if (order != null) sessionFeedBack(order, openHistory = false)
+            }
+        }
+    }
+
+    LaunchedEffect(Unit) {
+        sessionsViewModel.sessionCompletionFlow.collect { session ->
+            Log.v(TAG, "sessionCompletionFlow - ${session.id}")
+            sessionFeedBack(session)
+        }
+    }
+
+
+    fun openSupport() {
+        uriHandler.openUriSafely("tel: ${homeViewModel.supportNumber}")
+    }
+
+
+    NavHost(
+        innerNavController,
+        startDestination = tab,
+        modifier = Modifier.fillMaxSize(),
+        enterTransition = { EnterTransition.None },
+        exitTransition = { ExitTransition.None },
+    ) {
+        composable<AppRoutes.Navigation.Home> {
+            HomeScreen(
+                uiState = uiState,
+                activityResult = activityResult,
+                mapViewModel = mapViewModel,
+                navigate = {
+                    when (it) {
+                        is NavigationEvents.Balance -> {
+                            rootNavController.navigate(AppRoutes.Payment.Balance.Show)
+                        }
+
+                        is NavigationEvents.Login -> {
+                            rootNavController.navigate(AppRoutes.User.Email.Login)
+                        }
+
+                        is NavigationEvents.Map -> {
+                            mapViewModel.setSelectedPowerSource(it.source)
+                            val route = AppRoutes.Navigation.Home.Map
+                            innerNavController.navigate(route)
+                        }
+
+                        is NavigationEvents.SourceDetails -> {
+                            val route = AppRoutes.PowerSource.Details(it.source.id)
+                            rootNavController.navigate(route)
+                        }
+
+                        is NavigationEvents.Support -> openSupport()
+                    }
+                }
+            )
+        }
+        composable<AppRoutes.Navigation.Orders> { backStackEntry ->
+            val order: AppRoutes.Navigation.Orders = backStackEntry.toRoute()
+            OrdersScreen(
+                orderType = order.type,
+                sessionsViewModel = sessionsViewModel,
+                openHistoryScreen = { sessionFeedBack(it) },
+                openChargingScreen = {
+                    val route = AppRoutes.PowerSource.Charging(orderId = it.id)
+                    rootNavController.navigate(route)
+                },
+                openPowerSource = { chargePointId ->
+                    val route = AppRoutes.PowerSource.Details(id = chargePointId)
+                    rootNavController.navigate(route)
+                },
+                openOrderDetails = {
+                    sessionsViewModel.setSession(it)
+                    val route = AppRoutes.Navigation.Orders.Details
+                    innerNavController.navigate(route)
+                }
+            )
+        }
+
+        dialog<AppRoutes.Navigation.Orders.Details> {
+            CompleteSessionDetailsScreen(
+                viewModel = sessionsViewModel,
+                onBack = { innerNavController.popBackStack() }
+            )
+        }
+
+        composable<AppRoutes.Navigation.Scan> {
+            ScannerScreen(
+                onBack = { innerNavController.popBackStack() },
+                openPowerSource = {
+                    val route = AppRoutes.PowerSource.Details(it.id)
+                    rootNavController.navigate(route)
+                }
+            )
+        }
+
+        composable<AppRoutes.Navigation.Home.Map>(
+            enterTransition = {
+                slideInHorizontally(
+                    initialOffsetX = { it },
+                    animationSpec = tween(
+                        durationMillis = 400,
+                        easing = LinearEasing
+                    )
+                )
+            },
+            exitTransition = {
+                slideOutHorizontally(
+                    targetOffsetX = { it },
+                    animationSpec = tween(
+                        durationMillis = 400,
+                        easing = LinearEasing
+                    )
+                )
+            }
+        ) {
+            MapScreen(
+                uiState = uiState,
+                viewModel = mapViewModel,
+                showBalance = {
+                    rootNavController.navigate(AppRoutes.Payment.Balance.Show)
+                },
+                openPowerSource = {
+                    val route = AppRoutes.PowerSource.Details(it.id)
+                    rootNavController.navigate(route)
+                },
+                openSupport = ::openSupport,
+                onBack = { innerNavController.popBackStack() }
+            )
+        }
+
+        composable<AppRoutes.Navigation.Account> {
+            val isUser = remember { uiState.isLoggedIn.value }
+            AccountScreen(
+                uiState = uiState,
+                uiEvents = {
+                    when (it) {
+                        AccountEvents.OpenProfile -> {
+                            rootNavController.navigate(AppRoutes.Account.Profile)
+                        }
+
+                        AccountEvents.LanguageDialog -> {
+                            rootNavController.navigate(AppRoutes.Account.Language)
+                        }
+
+                        AccountEvents.OpenBalance -> {
+                            rootNavController.navigate(AppRoutes.Payment.Balance.Show)
+                        }
+
+                        AccountEvents.OpenSupport -> openSupport()
+
+                        AccountEvents.OpenInvite -> {
+                            rootNavController.navigate(AppRoutes.Account.Invite)
+                        }
+
+                        AccountEvents.OpenVehicles -> {
+                            rootNavController.navigate(AppRoutes.Vehicles.List)
+                        }
+
+                        AccountEvents.OpenWallet -> {
+                            if (isUser) {
+                                rootNavController.navigate(AppRoutes.Payment.Wallet)
+                            }
+                        }
+                    }
+                }
+            )
+        }
+    }
+}
+

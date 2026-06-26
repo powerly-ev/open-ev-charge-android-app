@@ -1,4 +1,3 @@
-import com.android.build.gradle.internal.api.BaseVariantOutputImpl
 import com.powerly.MyProject
 import com.powerly.appBuildName
 import com.powerly.getLocalProperties
@@ -11,7 +10,7 @@ import com.powerly.isGoogle
 plugins {
     alias(libs.plugins.powerly.application)
     alias(libs.plugins.powerly.koin)
-    alias(libs.plugins.powerly.application.compose)
+    alias(libs.plugins.powerly.compose)
     alias(libs.plugins.secrets)
 }
 
@@ -32,16 +31,23 @@ android {
         applicationId = appPackageName
         versionCode = MyProject.VERSION_CODE
         versionName = MyProject.VERSION_NAME
-        multiDexEnabled = true
+        // Custom runner installs TestApp, which starts Koin with a MockEngine override
+        // for end-to-end journey tests.
+        testInstrumentationRunner = "com.powerly.PowerlyTestRunner"
     }
 
     buildFeatures {
         buildConfig = true
+        resValues = true
     }
 
     // set build output apk name ex: app-name-test-20-Mar.apk
-    this.buildOutputs.all {
-        appBuildName(this as BaseVariantOutputImpl)
+    androidComponents {
+        onVariants { variant ->
+            variant.outputs.forEach {
+                appBuildName(variant.name, it)
+            }
+        }
     }
 
 
@@ -111,14 +117,19 @@ android {
         }
         resources {
             merges += listOf("core.properties")
-            excludes += listOf("META-INF/INDEX.LIST", "META-INF/io.netty.versions.properties")
+            excludes += listOf(
+                "META-INF/INDEX.LIST",
+                "META-INF/io.netty.versions.properties",
+                // Duplicated by JUnit Jupiter jars on the androidTest classpath
+                "META-INF/LICENSE.md",
+                "META-INF/LICENSE-notice.md",
+            )
         }
     }
 
     compileOptions {
         sourceCompatibility = MyProject.javaVersion
         targetCompatibility = MyProject.javaVersion
-        isCoreLibraryDesugaringEnabled = true
     }
 
     lint {
@@ -142,23 +153,35 @@ secrets {
 
 
 dependencies {
-    implementation(projects.common.lib)
     implementation(projects.common.ui)
+    implementation(projects.common.navigation)
+    implementation(projects.core.domain)
+    implementation(projects.core.network)
+    implementation(projects.core.database)
+    implementation(projects.core.managers)
+    implementation(projects.core.data)
     implementation(projects.feature.splash)
     implementation(projects.feature.user)
     implementation(projects.feature.main)
     implementation(projects.feature.main.account)
     implementation(projects.feature.main.orders)
-    implementation(projects.feature.powerSource)
+    implementation(projects.feature.powerSource.charging)
+    implementation(projects.feature.powerSource.details)
     implementation(projects.feature.payment)
     implementation(projects.feature.vehicles)
 
-    //--------- core
-    implementation(libs.activity.ktx)
-    implementation(libs.lifecycle.viewmodel.ktx)
-    coreLibraryDesugaring(libs.desugar.jdk.libs)
-    implementation(libs.multidex)
-
     gmsImplementation(platform(libs.firebase.bom))
     gmsImplementation(libs.firebase.crashlytics)
+
+    androidTestImplementation(libs.mockk.android)
+}
+
+// androidx.test.ext:junit:1.3.0 pulls androidx.concurrent:concurrent-futures 1.2.0, which
+// conflicts with the 1.1.0 strictly required elsewhere on the app's test classpath. Align
+// the instrumented-test classpath to 1.2.0 (backward compatible).
+configurations.matching { it.name.contains("AndroidTest") }.configureEach {
+    resolutionStrategy.force(
+        "androidx.concurrent:concurrent-futures:1.2.0",
+        "androidx.concurrent:concurrent-futures-ktx:1.2.0",
+    )
 }

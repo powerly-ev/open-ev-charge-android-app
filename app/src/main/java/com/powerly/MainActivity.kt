@@ -11,7 +11,7 @@ import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import com.powerly.lib.MainScreen.getMainDestination
+import com.powerly.navigation.MainScreen.getMainDestination
 import com.powerly.ui.theme.AppTheme
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

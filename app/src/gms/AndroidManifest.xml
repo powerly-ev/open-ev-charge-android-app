@@ -10,7 +10,7 @@
             android:resource="@color/notification_icon_bg" />
 
         <service
-            android:name="com.powerly.lib.managers.MessagingService"
+            android:name="com.powerly.core.managers.MessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

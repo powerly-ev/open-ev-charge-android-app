@@ -56,3 +56,7 @@ captures/
 
 # Kotlin
 .kotlin
+
+.claude
+# Maestro QA automation screenshots/output
+artifacts/

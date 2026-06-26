@@ -27,6 +27,7 @@ dependencies {
     compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.ksp.gradlePlugin)
     compileOnly(libs.room.gradlePlugin)
+    compileOnly(libs.koin.gradlePlugin)
 }
 
 tasks {
@@ -46,17 +47,17 @@ gradlePlugin {
             id = "powerly.library"
             implementationClass = "AndroidLibraryConventionPlugin"
         }
+        register("androidFeature") {
+            id = "powerly.feature"
+            implementationClass = "AndroidFeatureConventionPlugin"
+        }
         register("koin") {
             id = "powerly.koin"
             implementationClass = "KoinConventionPlugin"
         }
         register("compose") {
             id = "powerly.compose"
-            implementationClass = "LibraryComposeConventionPlugin"
-        }
-        register("appCompose") {
-            id = "powerly.application.compose"
-            implementationClass = "AppComposeConventionPlugin"
+            implementationClass = "ComposeConventionPlugin"
         }
         register("androidTest") {
             id = "powerly.android.test"
@@ -69,6 +70,10 @@ gradlePlugin {
         register("androidRoom") {
             id = "powerly.room"
             implementationClass = "RoomConventionPlugin"
+        }
+        register("unitTest") {
+            id = "powerly.test"
+            implementationClass = "UnitTestConventionPlugin"
         }
     }
 }
