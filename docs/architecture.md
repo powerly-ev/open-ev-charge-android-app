@@ -104,8 +104,32 @@ Common modules host the shared presentation and tooling layer: navigation contra
 
 **Testing:**
 
-- Unit — [JUnit 5](https://junit.org/junit5/), [MockK](https://mockk.io/)
+- Unit — [JUnit 5](https://junit.org/junit5/), [MockK](https://mockk.io/), [Turbine](https://github.com/cashapp/turbine)
 - UI — [Espresso](https://developer.android.com/training/testing/espresso), Compose Test APIs
+- E2E — on-device journeys with fake repositories, installed via a custom instrumentation runner
+- QA — [Maestro](https://maestro.mobile.dev/) black-box flows
+
+### Running the Test Suites
+
+Tasks are flavor-qualified (`default` / `gms` — see §5). Replace `Default` with `Gms` to target the GMS flavor.
+
+```bash
+# Unit tests (JVM, no device) — all modules
+./gradlew testDefaultDebugUnitTest
+
+# Instrumented + Compose UI + on-device E2E (needs a device/emulator)
+./gradlew connectedDefaultDebugAndroidTest
+```
+
+**Maestro QA flows** live in `.maestro/` and run against the installed app (`appId: com.powerly.open.test`), independent of Gradle. Install the [Maestro CLI](https://maestro.mobile.dev/getting-started/installing-maestro), then with a device/emulator connected and the app installed:
+
+```bash
+# Run the whole suite in the configured order (smoke → login → balance → vehicles → profile)
+maestro test .maestro/
+
+# Run a single flow
+maestro test .maestro/login.yaml
+```
 
 ---
 
