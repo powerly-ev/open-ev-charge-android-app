@@ -1,6 +1,7 @@
 name: Fastlane Build & Upload (Test Branch)
 
 on:
+  # PRs into test build only; the merge (a push to test) builds and deploys.
   push:
     branches:
       - test
@@ -47,6 +48,7 @@ jobs:
           EOF
 
       - name: 📝 Save Google Drive service JSON
+        if: github.event_name == 'push'
         run: |
           cat <<EOF > $DRIVE_SERVICE_JSON_PATH
           ${{ secrets.DRIVE_SERVICE_JSON }}
@@ -70,9 +72,13 @@ jobs:
       - name: 📦 Install dependencies
         run: bundle install
 
-      - name: 🚀 Run Fastlane build
+      - name: 🚀 Run Fastlane
         run: |
-          bundle exec fastlane build_and_deploy
+          if [ "$GITHUB_EVENT_NAME" = "push" ]; then
+            bundle exec fastlane build_and_deploy
+          else
+            bundle exec fastlane build
+          fi
         env:
           BUILD_FLAVOR: ${{ env.BUILD_FLAVOR }}
           BUILD_VARIANT: ${{ env.BUILD_VARIANT }}

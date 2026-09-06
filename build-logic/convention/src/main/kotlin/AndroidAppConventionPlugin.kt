@@ -19,9 +19,11 @@ import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.dsl.ApplicationProductFlavor
 import com.powerly.configureFlavors
 import com.powerly.configureKotlinAndroid
+import com.powerly.libs
+import com.powerly.minSdk
+import com.powerly.targetSdk
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import com.powerly.MyProject as Proj
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.configure
 
@@ -32,8 +34,8 @@ class AndroidAppConventionPlugin : Plugin<Project> {
             apply(plugin = "com.android.application")
 
             extensions.configure<ApplicationExtension> {
-                defaultConfig.targetSdk = Proj.TARGET_SDK
-                defaultConfig.minSdk = Proj.MIN_SDK
+                defaultConfig.targetSdk = libs.targetSdk
+                defaultConfig.minSdk = libs.minSdk
                 configureKotlinAndroid(this)
                 configureFlavors<ApplicationProductFlavor>(this)
             }

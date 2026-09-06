@@ -83,6 +83,13 @@ def send_slack_notification(message)
   UI.message("Slack message sent successfully.")
 end
 
+# === === BUILD WITHOUT DEPLOY (pull requests) === ===
+lane :build do
+  UI.message("🚧 Starting APK build for #{BUILD_TYPE}...")
+  apk_path = build_apk
+  UI.success("✅ Build complete: #{apk_path}")
+end
+
 # === === MAIN LANE === ===
 lane :build_and_deploy do
   UI.message("🚧 Starting APK build for #{BUILD_TYPE}...")
