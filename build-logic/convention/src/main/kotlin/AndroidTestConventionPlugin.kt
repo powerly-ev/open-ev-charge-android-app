@@ -18,9 +18,10 @@ import com.android.build.api.dsl.TestExtension
 import com.android.build.api.dsl.TestProductFlavor
 import com.powerly.configureFlavors
 import com.powerly.configureKotlinAndroid
+import com.powerly.libs
+import com.powerly.targetSdk
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import com.powerly.MyProject as Proj
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.configure
 
@@ -31,7 +32,7 @@ class AndroidTestConventionPlugin : Plugin<Project> {
 
             extensions.configure<TestExtension> {
                 configureKotlinAndroid(this)
-                defaultConfig.targetSdk = Proj.TARGET_SDK
+                defaultConfig.targetSdk = libs.targetSdk
                 configureFlavors<TestProductFlavor>(this)
                 buildTypes {
                     register("preRelease") {
