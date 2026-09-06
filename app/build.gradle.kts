@@ -3,6 +3,8 @@ import com.powerly.appBuildName
 import com.powerly.getLocalProperties
 import com.powerly.getPackageName
 import com.powerly.getPropertiesFileName
+import com.powerly.getVersionCode
+import com.powerly.getVersionName
 import com.powerly.hasDebugStoreConfig
 import com.powerly.hasReleaseStoreConfig
 import com.powerly.isGoogle
@@ -24,14 +26,21 @@ android {
     namespace = MyProject.NAMESPACE
     compileSdk = libs.versions.compileSdk.get().toInt()
 
-    // read local.properties
+    /**
+     * Load application configuration from local.properties if defined.
+     * This allows developers to override the package name and versioning locally
+     * without modifying the version catalog or source code.
+     */
     val localProperties = getLocalProperties(rootProject)
-    val appPackageName = localProperties.getPackageName()
-    println("Package Name - $appPackageName")
+    val appPackageName = localProperties.getPackageName() ?: "com.esttp.powerly"
+    val appVersionName = localProperties.getVersionName() ?: libs.versions.versionName.get()
+    val appVersionCode = localProperties.getVersionCode() ?: libs.versions.versionCode.get().toInt()
+    println("Package Name: $appPackageName - Version Name: $appVersionName - Version Code: $appVersionCode")
+
     defaultConfig {
         applicationId = appPackageName
-        versionCode = libs.versions.versionCode.get().toInt()
-        versionName = libs.versions.versionName.get()
+        versionCode = appVersionCode
+        versionName = appVersionName
         // Custom runner installs TestApp, which starts Koin with a MockEngine override
         // for end-to-end journey tests.
         testInstrumentationRunner = "com.powerly.PowerlyTestRunner"
