@@ -1,20 +1,29 @@
-name: Fastlane Build & Upload (PRODUCTION Branch)
+name: Build & Release (PRODUCTION)
 
 on:
+  # PR into main        -> build only
+  # merge into main     -> build + deploy to Drive/Slack
+  # push a v* tag       -> build + GitHub release (no Drive/Slack)
   push:
     branches:
       - main
+    tags:
+      - 'v*'
   pull_request:
     branches: [ main ]
 
+permissions:
+  contents: write
+
 jobs:
-  build-and-upload:
+  build-and-release:
     runs-on: ubuntu-latest
 
     env:
       BUILD_FLAVOR: default
       BUILD_VARIANT: release
       DRIVE_SERVICE_JSON_PATH: fastlane-drive-service.json
+      IS_TAG: ${{ startsWith(github.ref, 'refs/tags/') }}
 
     defaults:
       run:
@@ -24,7 +33,7 @@ jobs:
       - name: 🧾 Checkout repo
         uses: actions/checkout@v4
 
-      - name: Set up JDK 18
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
@@ -39,7 +48,7 @@ jobs:
           cat <<EOF > ../secrets.default.properties
           ${{ secrets.SECRETS_PRODUCTION }}
           EOF
-      
+
       - name: 📁 Copy local.properties to project direcotry
         run: |
           cat <<EOF > ../local.properties
@@ -47,6 +56,7 @@ jobs:
           EOF
 
       - name: 📝 Save Google Drive service JSON
+        if: github.event_name == 'push' && !startsWith(github.ref, 'refs/tags/')
         run: |
           cat <<EOF > $DRIVE_SERVICE_JSON_PATH
           ${{ secrets.DRIVE_SERVICE_JSON }}
@@ -60,19 +70,23 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gems-
 
-
       - name: 🔧 Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.2.8'  
+          ruby-version: '3.2.8'
           bundler-cache: true
 
       - name: 📦 Install dependencies
         run: bundle install
 
-      - name: 🚀 Run Fastlane build
+      - name: 🚀 Run Fastlane
         run: |
-          bundle exec fastlane build_and_deploy
+          # Only a merge into main deploys; PRs and tags build without deploying.
+          if [ "$GITHUB_EVENT_NAME" = "push" ] && [ "$IS_TAG" != "true" ]; then
+            bundle exec fastlane build_and_deploy
+          else
+            bundle exec fastlane build
+          fi
         env:
           BUILD_FLAVOR: ${{ env.BUILD_FLAVOR }}
           BUILD_VARIANT: ${{ env.BUILD_VARIANT }}
@@ -80,3 +94,25 @@ jobs:
           SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           DRIVE_SERVICE_JSON: ${{ env.DRIVE_SERVICE_JSON_PATH }}
+
+      - name: 🏷️ Rename APK for release
+        if: startsWith(github.ref, 'refs/tags/')
+        working-directory: .
+        run: |
+          # Tag v0.0.2 -> Powerly-V0.0.2.apk
+          VERSION="${GITHUB_REF_NAME#v}"
+          APK=$(find "app/build/outputs/apk/$BUILD_FLAVOR/$BUILD_VARIANT" -name '*.apk' | head -1)
+          if [ -z "$APK" ]; then
+            echo "::error::No APK found to release"
+            exit 1
+          fi
+          mkdir -p release
+          cp "$APK" "release/Powerly-V${VERSION}.apk"
+          echo "Release asset: Powerly-V${VERSION}.apk (from $APK)"
+
+      - name: 📦 Create GitHub release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: release/*.apk
