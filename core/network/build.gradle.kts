@@ -17,7 +17,7 @@ android {
     }
 
     defaultConfig {
-        buildConfigField("String", "APP_VERSION", "\"${MyProject.VERSION_NAME}\"")
+        buildConfigField("String", "APP_VERSION", "\"${libs.versions.versionName.get()}\"")
         buildConfigField("int", "APP_TYPE", "3")
     }
 
