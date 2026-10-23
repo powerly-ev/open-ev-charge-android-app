@@ -6,16 +6,18 @@ plugins {
 
 group = "com.powerly.buildlogic"
 
-// Configure the build-logic plugins to target JDK 18
+// Configure the build-logic plugins to target the JDK named by libs.versions.jvmTarget.
 // This matches the JDK used to build the project, and is not related to what is running on device.
+val jvmTargetVersion = libs.versions.jvmTarget.get()
+
 java {
-    sourceCompatibility = JavaVersion.VERSION_18
-    targetCompatibility = JavaVersion.VERSION_18
+    sourceCompatibility = JavaVersion.toVersion(jvmTargetVersion)
+    targetCompatibility = JavaVersion.toVersion(jvmTargetVersion)
 }
 
 kotlin {
     compilerOptions {
-        jvmTarget = JvmTarget.JVM_18
+        jvmTarget = JvmTarget.fromTarget(jvmTargetVersion)
     }
 }
 

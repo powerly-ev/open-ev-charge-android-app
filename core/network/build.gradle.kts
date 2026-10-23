@@ -1,5 +1,7 @@
 import com.powerly.MyProject
+import com.powerly.getLocalProperties
 import com.powerly.getPropertiesFileName
+import com.powerly.getVersionName
 
 plugins {
     alias(libs.plugins.powerly.library)
@@ -17,7 +19,10 @@ android {
     }
 
     defaultConfig {
-        buildConfigField("String", "APP_VERSION", "\"${MyProject.VERSION_NAME}\"")
+        // Must match the app's versionName, including a local.properties override.
+        val appVersionName = getLocalProperties(rootProject).getVersionName()
+            ?: libs.versions.versionName.get()
+        buildConfigField("String", "APP_VERSION", "\"$appVersionName\"")
         buildConfigField("int", "APP_TYPE", "3")
     }
 
